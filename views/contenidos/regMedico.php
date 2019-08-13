@@ -106,19 +106,19 @@ $insMedico= new medicoControlador();
                         <!--Formulario de inicio-->
                         <div class="card-body px-lg-5" >
                             
-                            Rol:
+                           <!--Rol-->
                             <div class="form-group">
                                 <div class="col-sm-15">
                                     <div class="input-group-prepend">
-                                        <?php $insMedico->consultarRol(); ?>
+                                       <input type="text" name="cod_rol" value="2" hidden>
                                     </div>
                                 </div>
                             </div>
-                            Perfil:
+                            <!--Perfil-->
                             <div class="form-group">
                                 <div class="col-sm-15">
                                     <div class="input-group-prepend">
-                                        <?php $insMedico->consultarPerfil(); ?>
+                                      <input type="text" name="cod_perf" value="5" hidden=""> 
                                     </div>
                                 </div>
                             </div>

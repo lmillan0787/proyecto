@@ -118,7 +118,7 @@ $insDeportista= new deportistaControlador();
                             <div class="form-group">
                                 <div class="col-sm-15">
                                     <div class="input-group-prepend">
-                                      <input type="text" name="cod_perf" value="4" hidden=""> 
+                                      <input type="text" name="cod_perf" value="5" hidden=""> 
                                     </div>
                                 </div>
                             </div>
