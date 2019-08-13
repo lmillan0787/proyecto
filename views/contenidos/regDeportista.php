@@ -106,19 +106,19 @@ $insDeportista= new deportistaControlador();
                         <!--Formulario de inicio-->
                         <div class="card-body px-lg-5" >
                             
-                            Rol:
+                            <!--Rol-->
                             <div class="form-group">
                                 <div class="col-sm-15">
                                     <div class="input-group-prepend">
-                                        <?php $insDeportista->consultarRol(); ?>
+                                       <input type="text" name="cod_rol" value="2" hidden>
                                     </div>
                                 </div>
                             </div>
-                            Perfil:
+                            <!--Perfil-->
                             <div class="form-group">
                                 <div class="col-sm-15">
                                     <div class="input-group-prepend">
-                                        <?php $insDeportista->consultarPerfil(); ?>
+                                      <input type="text" name="cod_perf" value="4" hidden=""> 
                                     </div>
                                 </div>
                             </div>
