@@ -72,7 +72,6 @@ class medicoControlador extends medicoModelo{
                     <td>'.$row['ced'].'</td>
                     <td>'.$row['des_gen'].'</td>
                     <td>'.$row['des_reg'].'</td>
-                    <td>'.$row['des_esp'].'</td>
                     <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit"><a href="act_dep.php?cod_per='.$row['cod_per'].'">Editar</a></button></td>                                                        
                 </tr>';
         }
