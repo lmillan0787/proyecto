@@ -25,7 +25,6 @@ require_once "./controllers/medicoControlador.php";
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
                     <th scope="col">Género</th>
-                    <th scope="col">Especialidad</th>
                     <th scope="col">Editar</th>
                 </tr>
             </thead>
