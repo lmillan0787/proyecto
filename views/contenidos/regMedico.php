@@ -118,7 +118,7 @@ $insMedico= new medicoControlador();
                             <div class="form-group">
                                 <div class="col-sm-15">
                                     <div class="input-group-prepend">
-                                      <input type="text" name="cod_perf" value="5" hidden=""> 
+                                      <input type="text" name="cod_perf" value="6" hidden=""> 
                                     </div>
                                 </div>
                             </div>
