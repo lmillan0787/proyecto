@@ -127,6 +127,7 @@ class eventoControlador extends eventoModelo
             <td><button id="modalActivate" type="button" class="btn btn-success btn-md" data-toggle="modal"><i class="far fa-edit fa-2x"></i></button></td>
             <td>
                 <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/eliEventoAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
+                <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
                     <button type="submit" class="btn btn-danger btn-md">
                         <i class="far fa-trash-alt fa-2x"></i>
                     </button>

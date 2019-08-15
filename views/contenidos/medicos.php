@@ -15,8 +15,8 @@ require_once "./controllers/medicoControlador.php";
         <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>regMedico/'">Registrar</button>
     </nav>
     <!-- Tabla -->
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tabla">
-        <table class="table table-bordered table-striped">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+        <table class="table table-bordered table-striped"id="tabla">
             <thead>
                 <tr>
                     <th scope="col">#</th>

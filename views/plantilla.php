@@ -6,7 +6,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class=" animated fadeIn">
 
 <head>
     <meta charset="utf-8">
@@ -27,8 +27,9 @@ session_start();
     <link href="<?php echo SERVERURL ?>views/assets/css/sweetalert2.css" rel="stylesheet">   
     <!-- Estilos personalizados -->
     <link href="<?php echo SERVERURL ?>views/assets/css/style.css" rel="stylesheet">
-     <!-- Estilos personalizados -->
-    <link href="<?php echo SERVERURL ?>views/assets/css/desplegable.css" rel="stylesheet">
+     <!-- Plugin Animate -->
+   
+     <link href="<?php echo SERVERURL ?>views/assets/css/animate.css" rel="stylesheet">
 
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/jquery-3.4.1.min.js"></script>
 

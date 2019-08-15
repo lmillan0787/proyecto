@@ -1,0 +1,149 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  margin: 0px;
+  padding: 0px;   
+  background-color: #dfdfdf;
+  background: url('../img/fondo3.png') no-repeat center center;
+  background-size:100% 100%;
+  background-size: contain;   
+}
+
+.container {
+  display: grid;
+  max-width: 100%;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*404*/
+/********************************************/
+.ful-box{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+} 
+.cover{
+  background: 50% 50% no-repeat;
+  background-size: cover;
+}
+.container-404{  
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  /*Cabecera*/
+/*******************************************/  
+#conb {
+  background-color: #255b99;  
+  width: 100%; 
+}
+
+#banner {
+  width: 100%;
+  height: auto;
+  max-width: 1170px;
+  margin: auto;
+  padding: 0px;  
+}
+
+#nav1{
+  max-width: 1170px;
+  margin: auto;
+}
+
+#brand1{
+  margin: auto;
+}
+
+#nav_menu{
+  max-width: 1170px;
+  margin: auto;
+}
+  /*Pié de pagina*/
+  /******************************************/
+#conf {
+  background-color: #255b99;  
+  width: 100%;   
+    
+}
+#pie {
+  width: 100%;
+  height: auto;
+  max-width: 1170px;
+  margin: auto;
+  padding: 0px;  
+}
+
+ /*inicio*/ 
+/*****************************************************/
+#form_ini{
+  width: 400px;
+  margin: auto;
+  opacity: 0.9; 
+}
+
+/******************************************************/
+#con_todo{
+  max-width: 1170px;
+  margin: auto;
+  height: auto;
+  min-height: 600px;
+}
+/*modales*/
+/**********************************************************/
+.modal-header{
+  background-color: #255b99;
+}
+
+#form_bas1{
+  margin: auto;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+/*Tablas*/
+/*******************************************************/
+.my-custom-scrollbar {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+  }
+
+.table-wrapper-scroll-y {
+  display: block;
+  }
+ #tabla{
+   max-width: 1170px;
+   margin: auto;
+   margin-top: 30px;
+   margin-bottom: 30px;
+   background-color: #ffffff;
+   opacity: 0.9;
+   text-align: center;
+ }
+ table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+bottom: .5em;
+}
+/********************************************************/
+.formPer{
+  max-width: 500px;
+  margin: 1%;
+  background-color: #ffffffe3;
+ 
+
+}

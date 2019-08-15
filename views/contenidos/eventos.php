@@ -31,23 +31,25 @@ require_once "./controllers/eventoControlador.php";
         <tbody class="buscar">
             <?php
 
-                $tablaEvento = new eventoControlador();
-                $tablaEvento->tabla_evento();
+            $tablaEvento = new eventoControlador();
+            $tablaEvento->tabla_evento();
 
             ?>
         </tbody>
         <tfoot>
             <tr></tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre del Evento</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Estado del Evento</th>
-                <th scope="col">Estatus</th>
-                <th scope="col">Ver</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
+            <th scope="col">#</th>
+            <th scope="col">Nombre del Evento</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estado del Evento</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Ver</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
             </tr>
         </tfoot>
     </table>
 </div>
+
+

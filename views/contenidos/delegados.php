@@ -20,9 +20,9 @@ require_once "./controllers/delegadoControlador.php";
     <!-- Tabla -->
 
 
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tabla">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar" >
       
-        <table id="myTable" class="table table-bordered table-striped">
+        <table id="tabla" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
