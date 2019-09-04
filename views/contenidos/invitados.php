@@ -4,7 +4,7 @@ $peticionAjax = false;
 require_once "./controllers/invitadoControlador.php";
 
 ?>
-<!--tabla Deportista-->
+<!--tabla Invitado-->
 <div id="con_todo">
 
     <!-- Barra de busqueda y boton -->
@@ -14,13 +14,12 @@ require_once "./controllers/invitadoControlador.php";
             <span class="navbar-brand" id="brand1">Invitados</span>
         </form>        
         <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>regInvitado/'">Registrar</button>
-        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='reg_bas1.php?cod_perf=4'">Participación</button>
     </nav> 
     
     <!-- Tabla -->
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tabla">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
         
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="tabla">
             <thead>
                 <tr>
                     <th scope="col">#</th>

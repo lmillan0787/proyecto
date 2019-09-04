@@ -12,12 +12,11 @@ require_once "./controllers/deportistaControlador.php";
             <span class="navbar-brand" id="brand1">Deportistas</span>
         </form>        
         <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>regDeportista/'">Registrar</button>
-        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='reg_bas1.php?cod_perf=4'">Participación</button>
     </nav> 
     <!-- Tabla -->
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tabla">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar" >
         
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="tabla">
             <thead>
                 <tr>
                     <th scope="col">#</th>
