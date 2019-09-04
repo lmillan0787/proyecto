@@ -29,7 +29,7 @@
         <a class="nav-link" href="<?php echo SERVERURL ?>">Usuarios</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="<?php echo SERVERURL ?>">Participación</a>
+        <a class="nav-link" href="<?php echo SERVERURL ?>participacion/">Participación</a>
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="<?php echo SERVERURL ?>personas/">Personas</a>
