@@ -2,11 +2,11 @@
 
 $peticionAjax = true;
 require_once "../core/configGeneral.php";
-if (isset($_POST['des_even'])) {
+if (isset($_POST['cod_even'])) {
     require_once "../controllers/eventoControlador.php";
-    $insEvento = new eventoControlador();
-    $insEvento->agregar_evento_controlador();
-   
+    $insEvento = new eventoControlador();   
+        echo $insEvento->eliminar_evento_controlador();
+    
 } else {
     session_start();
     session_destroy();

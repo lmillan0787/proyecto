@@ -17,16 +17,16 @@
             $sql->execute();
             return $sql;
         }
-        public function consultar_evento(){
-            $consultaEvento=mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_edo AS b ON a.cod_edo=b.cod_edo INNER JOIN tab_estat AS c ON a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even ORDER BY cod_even DESC ");
-            $consultaEvento->execute();
-            $row = $consultaEvento->fetchAll(PDO::FETCH_ASSOC);
+        protected function consultar_evento(){
+            $sql=mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_edo AS b ON a.cod_edo=b.cod_edo INNER JOIN tab_estat AS c ON      a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even ORDER BY cod_even DESC ");
+            $sql->execute();
+            $row =$sql->fetchAll(PDO::FETCH_ASSOC);
             return $row;
         }
-        public function eliminar_evento($datos){
-            $eliminarEvento=mainModel::conectar()->prepare("DELETE FROM dat_even WHERE cod_even=:cod_even");
-            $eliminarEvento->bindParam(":cod_even",$datos['cod_even']);
-            $eliminarEvento->execute();
-            return $eliminarEvento;
+        protected function eliminar_evento($datos){
+            $sql=mainModel::conectar()->prepare("DELETE FROM dat_even WHERE cod_even=:cod_even");
+            $sql->bindParam(":cod_even",$datos['cod_even']);
+            $sql->execute();
+            return $sql;
         }
     }

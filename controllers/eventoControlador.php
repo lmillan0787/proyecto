@@ -8,7 +8,7 @@ if ($peticionAjax) {
 
 class eventoControlador extends eventoModelo
 {
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function agregar_evento_controlador()
     {
         $des_even = mainModel::limpiar_cadena($_POST['des_even']);
@@ -46,22 +46,49 @@ class eventoControlador extends eventoModelo
                     "Tipo" => "success"
                 ];
             } else {
-                echo $datosEvento['des_even'];
                 $alerta = [
                     "Alerta" => "simple",
                     "Titulo" => "Ocurrió un error inesperado",
                     "Texto" => "Error al crear evento",
                     "Tipo" => "error"
-
                 ];
             }
         }
         return mainModel::sweet_alert($alerta);
     }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function eliminar_evento_controlador()
+    {
 
-
-
-
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $datosEvento = [
+            "cod_even" => $cod_even
+        ];
+        $eliminarEvento = eventoModelo::eliminar_evento($datosEvento);
+        if ($eliminarEvento >= 1) {
+            echo "
+            <script>
+                Swal.fire(
+                    'eliminado',
+                    'evento eliminado',
+                    'success'
+                ).then(function(){
+                    location.reload();
+                });
+            </script>
+        ";
+            
+        } else {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "Error al crear evento",
+                "Tipo" => "error"
+            ];
+        }
+        return mainModel::sweet_alert($alerta);
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function formulario_evento()
     {
         $consultaEdo = mainModel::ejecutar_consulta_simple("SELECT * FROM tab_edo");
@@ -72,7 +99,9 @@ class eventoControlador extends eventoModelo
         }
         return $row;
     }
-    public function formulario_evento_disciplinas_autoctonas(){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_evento_disciplinas_autoctonas()
+    {
         $consultaDis = mainModel::ejecutar_consulta_simple("SELECT * FROM tab_dis WHERE cod_tip_even=1");
         $row = $consultaDis->fetchAll(PDO::FETCH_ASSOC);
         foreach ($row as $row) {
@@ -81,11 +110,13 @@ class eventoControlador extends eventoModelo
                     <input type="checkbox" class="custom-control-input" id="' . $row['des_dis'] . '" name="" value="' . $row['cod_dis'] . '" checked>
                     <label class="custom-control-label" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
                 </div>
-                ';          
+                ';
         }
         return $row;
     }
-    public function formulario_evento_disciplinas_convencionales(){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_evento_disciplinas_convencionales()
+    {
         $consultaDis = mainModel::ejecutar_consulta_simple("SELECT * FROM tab_dis WHERE cod_tip_even=2");
         $row = $consultaDis->fetchAll(PDO::FETCH_ASSOC);
         foreach ($row as $row) {
@@ -94,11 +125,13 @@ class eventoControlador extends eventoModelo
                     <input type="checkbox" class="custom-control-input" id="' . $row['des_dis'] . '" name="" value="' . $row['cod_dis'] . '" checked>
                     <label class="custom-control-label" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
                 </div>
-                ';          
+                ';
         }
         return $row;
     }
-    public function formulario_evento_disciplinas(){
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_evento_disciplinas()
+    {
         $consultaDis = mainModel::ejecutar_consulta_simple("SELECT * FROM tab_dis");
         $row = $consultaDis->fetchAll(PDO::FETCH_ASSOC);
         foreach ($row as $row) {
@@ -107,10 +140,11 @@ class eventoControlador extends eventoModelo
                     <input type="checkbox" class="custom-control-input" id="' . $row['des_dis'] . '" name="" value="' . $row['cod_dis'] . '" checked>
                     <label class="custom-control-label" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
                 </div>
-                ';          
+                ';
         }
         return $row;
     }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function tabla_evento()
     {
         $row = eventoModelo::consultar_evento();
@@ -126,8 +160,8 @@ class eventoControlador extends eventoModelo
             <td><button id="modalActivate" type="button" class="btn btn-warning btn-md" data-toggle="modal"><i class="fas fa-eye fa-2x"></i></button></td>
             <td><button id="modalActivate" type="button" class="btn btn-success btn-md" data-toggle="modal"><i class="far fa-edit fa-2x"></i></button></td>
             <td>
-                <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/eliEventoAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
+                <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarEventoAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
+                    <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
                     <button type="submit" class="btn btn-danger btn-md">
                         <i class="far fa-trash-alt fa-2x"></i>
                     </button>
