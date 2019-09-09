@@ -1,7 +1,7 @@
 <?php
 
 if ($peticionAjax) {
-    require_once "../models/participacionModelo.php";
+    require_once "./models/participacionModelo.php";
 } else {
     require_once "./models/participacionModelo.php";
 }
@@ -10,12 +10,11 @@ class participacionControlador extends participacionModelo
 {
     public function agregar_participacion_controlador()
     {
-        $nac = mainModel::limpiar_cadena($_POST['nac']);
-        $ced = mainModel::limpiar_cadena($_POST['ced']);
-        $nom = mainModel::limpiar_cadena($_POST['nom']);
+        $nac = mainModel::limpiar_cadena($_POST['cod_per']);
+        $ced = mainModel::limpiar_cadena($_POST['cod_even']);
+        $nom = mainModel::limpiar_cadena($_POST['cod_perf']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
-        $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
-        $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
+       
 
         $validarCedula = participacionModelo::validar_cedula($ced);
         if ($validarCedula->rowCount() >= 1) {
@@ -27,12 +26,10 @@ class participacionControlador extends participacionModelo
             ];
         } else {
             $datosParticipacion = [
-                "nac" => $nac,
-                "ced" => $ced,
-                "nom" => $nom,
-                "ape" => $ape,
-                "fec_nac" => $fec_nac,
-                "cod_gen" => $cod_gen
+                "nac" => $cod_per,
+                "ced" => $cod_even,
+                "nom" => $cod_perf,
+                
             ];
             $guardarParticipacion = participacionModelo::agregar_participacion($datosParticipacion);
 
@@ -72,10 +69,13 @@ class participacionControlador extends participacionModelo
                 <td>'.$row['edad'].'</td>
                 <td>'.$row['des_gen'].'</td>
                 <td>'.$row['des_even'].'</td>
-                <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="act_dep.php?cod_per='.$row['cod_per'].'">Ver</a></button></td>
+               
+                <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="../regParticipacion.php?nom='.$row['nom'].'">Ver</a></button></td>
                 <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="act_dep.php?cod_per='.$row['cod_per'].'">Editar</a></button></td>
             </tr>';
         }
         return $row;
     }
 }
+
+

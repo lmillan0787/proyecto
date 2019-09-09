@@ -9,13 +9,10 @@ if ($peticionAjax) {
 class participacionModelo extends mainModel
 {
     protected function agregar_participacion($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_per(nac,ced,nom,ape,fec_nac,cod_gen) VALUES (:nac,:ced,:nom,:ape,:fec_nac,:cod_gen)");
-        $sql->bindParam(":nac", $datos['nac']);
-        $sql->bindParam(":ced", $datos['ced']);
-        $sql->bindParam(":nom", $datos['nom']);
-        $sql->bindParam(":ape", $datos['ape']);
-        $sql->bindParam(":fec_nac", $datos['fec_nac']);
-        $sql->bindParam(":cod_gen", $datos['cod_gen']);
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_par(cod_per,cod_even,cod_perf) VALUES (:cod_per,:cod_even,:cod_perf)");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->bindParam(":ced", $datos['cod_even']);
+        $sql->bindParam(":nom", $datos['cod_perf']);        
         $sql->execute();
         return $sql;
     }
