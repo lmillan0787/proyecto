@@ -24,6 +24,7 @@ class mainModel
         return $respuesta;
     }  
     
+
     //encryptar datos
     protected function encryption($string){
 

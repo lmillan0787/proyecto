@@ -11,8 +11,8 @@ class participacionModelo extends mainModel
     protected function agregar_participacion($datos){
         $sql = mainModel::conectar()->prepare("INSERT INTO dat_par(cod_per,cod_even,cod_perf) VALUES (:cod_per,:cod_even,:cod_perf)");
         $sql->bindParam(":cod_per", $datos['cod_per']);
-        $sql->bindParam(":ced", $datos['cod_even']);
-        $sql->bindParam(":nom", $datos['cod_perf']);        
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->bindParam(":cod_perf", $datos['cod_perf']);        
         $sql->execute();
         return $sql;
     }
@@ -29,7 +29,7 @@ class participacionModelo extends mainModel
 
     }
     protected function editar_participacion($datos){
-        $editarParticipacion = mainModel::conectar()->prepare("UPDATE dat_per SET (nac=:nac, ced=:ced, nom=:nom, ape=:ape, fec_nac=:fec_nac, cod_gen=cod_gen) WHERE cod_per=:cod_per");
+        $editarParticipacion = mainModel::conectar()->prepare("UPDATE dat_par SET (nac=:nac, ced=:ced, nom=:nom, ape=:ape, fec_nac=:fec_nac, cod_gen=cod_gen) WHERE cod_per=:cod_per");
        $editarParticipacion->bindParam(":nac", $datos['nac']);
        $editarParticipacion->bindParam(":ced", $datos['ced']);
        $editarParticipacion->bindParam(":nom", $datos['nom']);
