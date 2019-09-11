@@ -33,7 +33,7 @@ $insEvento = new eventoControlador();
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
-        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/regEventoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarEventoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
             <div class="text-center">
             </div>
             <!-- Nombre del Evento-->
