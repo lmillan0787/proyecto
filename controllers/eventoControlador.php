@@ -65,19 +65,13 @@ class eventoControlador extends eventoModelo
             "cod_even" => $cod_even
         ];
         $eliminarEvento = eventoModelo::eliminar_evento($datosEvento);
-        if ($eliminarEvento >= 1) {
-            echo "
-            <script>
-                Swal.fire(
-                    'eliminado',
-                    'evento eliminado',
-                    'success'
-                ).then(function(){
-                    location.reload();
-                });
-            </script>
-        ";
-            
+        if ($eliminarEvento->rowCount() >= 1) {
+            $alerta = [
+                "Alerta" => "simpleEventos",
+                "Titulo" => "Registro Exitoso",
+                "Texto" => "Evento Creado exitosamente",
+                "Tipo" => "success"
+            ];
         } else {
             $alerta = [
                 "Alerta" => "simple",
