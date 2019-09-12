@@ -69,7 +69,7 @@ $('.FormularioAjax').submit(function(e) {
 
 $(document).ready(function() {
     $('#tabla').DataTable({
-        searching: false,
+        searching: true,
         ordering: true,
         paging: true,
         language: idioma,
