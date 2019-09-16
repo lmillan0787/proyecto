@@ -8,7 +8,7 @@ $insDeportista= new deportistaControlador();
 <div>
     <center><h1>Registro de Participación</h1></center>
 </div>
-<form id="form" action="<?php echo SERVERURL ?>ajax/personaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+<form class="FormularioAjax" id="form" action="<?php echo SERVERURL ?>ajax/personaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">

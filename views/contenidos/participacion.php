@@ -8,7 +8,7 @@ require_once "./controllers/participacionControlador.php";
 <nav class="navbar navbar-dark unique-color">
     <form class="form-inline">
         <input class="form-control mr-sm-2" id="filtrar" type="text" placeholder="Buscar" aria-label="Buscar">
-        <span class="navbar-brand" id="brand1">Personas</span>
+        <span class="navbar-brand" id="brand1">Participación</span>
     </form>
     <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>regParticipacion/'">Registrar</button>
 </nav>

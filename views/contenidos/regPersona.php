@@ -37,7 +37,7 @@ $(document).ready(function() {
                 <select class="browser-default custom-select" id="inputGroupSelect01" name="nac">
                     <option selected disabled>Nacionalidad</option>
                     <option value="1">Venezolan@</option>
-                    <option value="0">Extrajer@</option>
+                    <option value="0">Extranjer@</option>
                 </select>
             </div>
             <!-- Cédula-->
