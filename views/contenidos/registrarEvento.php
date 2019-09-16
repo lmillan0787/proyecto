@@ -5,7 +5,7 @@ require_once "./controllers/eventoControlador.php";
 $insEvento = new eventoControlador();
 
 ?>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     function toggle(elemento) {
 
         if (elemento.value == "1") {
@@ -25,7 +25,7 @@ $insEvento = new eventoControlador();
 
         }
     }
-</script>
+</script>-->
 <div class="card" id="form_evento">
 
     <h5 class="card-header info-color white-text text-center py-4">
@@ -33,7 +33,7 @@ $insEvento = new eventoControlador();
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
-        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/regEventoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarEventoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
             <div class="text-center">
             </div>
             <!-- Nombre del Evento-->
@@ -85,6 +85,7 @@ $insEvento = new eventoControlador();
                 <input type="radio" class="custom-control-input " id="mix" onclick="toggle(this)" name="cod_tip_even" value="3" required>
                 <label class="custom-control-label" for="mix">Mixto</label>
             </div>
+            <p><button class="btn btn-info btn-block" type="submit">Registrar</button></p>
             <div id="autoctono" style="display:none">
                 <label for="textInput">Disciplinas Autoctonas:</label>
 

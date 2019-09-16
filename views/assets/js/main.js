@@ -1,4 +1,4 @@
-$('.FormularioAjax').submit(function (e) {
+$('.FormularioAjax').submit(function(e) {
     e.preventDefault();
 
     var form = $(this);
@@ -31,7 +31,7 @@ $('.FormularioAjax').submit(function (e) {
         showCancelButton: true,
         confirmButtonText: "Aceptar",
         cancelButtonText: "Cancelar"
-    }).then(function () {
+    }).then(function() {
         $.ajax({
             type: metodo,
             url: accion,
@@ -39,9 +39,9 @@ $('.FormularioAjax').submit(function (e) {
             cache: false,
             contentType: false,
             processData: false,
-            xhr: function () {
+            xhr: function() {
                 var xhr = new window.XMLHttpRequest();
-                xhr.upload.addEventListener("progress", function (evt) {
+                xhr.upload.addEventListener("progress", function(evt) {
                     if (evt.lengthComputable) {
                         var percentComplete = evt.loaded / evt.total;
                         percentComplete = parseInt(percentComplete * 100);
@@ -54,10 +54,10 @@ $('.FormularioAjax').submit(function (e) {
                 }, false);
                 return xhr;
             },
-            success: function (data) {
+            success: function(data) {
                 respuesta.html(data);
             },
-            error: function () {
+            error: function() {
                 respuesta.html(msjError);
             }
         });
@@ -67,20 +67,19 @@ $('.FormularioAjax').submit(function (e) {
 
 // Tablas
 
-$(document).ready(function () {
-    $('#tabla').DataTable({        
-        searching: false,
+$(document).ready(function() {
+    $('#tabla').DataTable({
+        searching: true,
         ordering: true,
         paging: true,
-        language: idioma,        
-        scrollY: 500,
+        language: idioma,
         deferRender: true,
-        scroller: true,
+        scroller: false,
         responsive: true,
-       
+
 
     });
-   
+
     $('.dataTables_length').addClass('bs-select');
 
 });

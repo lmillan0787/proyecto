@@ -11,7 +11,7 @@
     </form>
 </nav>
 <!-- Tabla -->
-<div class='table-responsive' id="tablasTodas">
+<div class="" id="">
     <table id="tabla" class="table table-bordered table-striped">
         <thead>
             <tr>
