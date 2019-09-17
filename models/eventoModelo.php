@@ -18,7 +18,7 @@
             return $sql;
         }
         protected function consultar_evento(){
-            $sql=mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_edo AS b ON a.cod_edo=b.cod_edo INNER JOIN tab_estat AS c ON      a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even ORDER BY cod_even DESC ");
+            $sql=mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_edo AS b ON a.cod_edo=b.cod_edo INNER JOIN tab_estat AS c ON a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even ORDER BY cod_even DESC ");
             $sql->execute();
             $row =$sql->fetchAll(PDO::FETCH_ASSOC);
             return $row;
@@ -28,5 +28,12 @@
             $sqle->bindParam(":cod_even",$datos['cod_even']);
             $sqle->execute();
             return $sqle;
+        }
+        protected function consultar_evento_2($datos){
+            $sql=mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_edo AS b ON a.cod_edo=b.cod_edo INNER JOIN tab_estat AS c ON a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even WHERE a.cod_even= ORDER BY cod_even DESC ");
+            $sql->bindParam(":cod_even",$datos['cod_even']);
+            $sql->execute();
+            $row =$sql->fetchAll(PDO::FETCH_ASSOC);
+            return $row;
         }
     }

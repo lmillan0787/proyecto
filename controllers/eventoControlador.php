@@ -65,7 +65,7 @@ class eventoControlador extends eventoModelo
             "cod_even" => $cod_even
         ];
         $eliminarEvento = eventoModelo::eliminar_evento($datosEvento);
-        if ($eliminarEvento->rowCount() >= 1) {
+        if ($eliminarEvento==1) {
             $alerta = [
                 "Alerta" => "simpleEventos",
                 "Titulo" => "Registro Exitoso",
@@ -173,12 +173,5 @@ class eventoControlador extends eventoModelo
         }
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function editar_evento()
-    {
-        $row = eventoModelo::consultar_evento();
-        $consultaEvento = mainModel::ejecutar_consulta_simple("SELECT * FROM dat_even WHERE cod_even='$cod_even'");
-        $row = $consultaEvento->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $row;
-    }
+
 }
