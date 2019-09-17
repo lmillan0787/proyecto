@@ -24,7 +24,7 @@ $(document).ready(function() {
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
-        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/personaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
 
             <div class="text-center">
             </div>
@@ -34,8 +34,8 @@ $(document).ready(function() {
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
                 </div>
-                <select class="browser-default custom-select" id="inputGroupSelect01" name="nac">
-                    <option selected disabled>Nacionalidad</option>
+                <select class="browser-default custom-select" id="inputGroupSelect01" name="nac" required>
+                    <option value="">Nacionalidad</option>
                     <option value="1">Venezolan@</option>
                     <option value="0">Extrajer@</option>
                 </select>
@@ -79,8 +79,8 @@ $(document).ready(function() {
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>
                 </div>
-                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_gen" name="cod_gen">
-                    <option selected disabled>Género</option>
+                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_gen" name="cod_gen" required>
+                    <option value="">Género</option>
                     <option value="1">Masculino</option>
                     <option value="2">Femenino</option>
                 </select>

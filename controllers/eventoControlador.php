@@ -151,8 +151,15 @@ class eventoControlador extends eventoModelo
             <td>' . $row['des_tip_even'] . '</td>
             <td>' . $row['des_edo'] . '</td>            
             <td>' . $row['des_estat'] . '</td>
-            <td><button id="modalActivate" type="button" class="btn btn-warning btn-md" data-toggle="modal"><i class="fas fa-eye fa-2x"></i></button></td>
-            <td><button id="modalActivate" type="button" class="btn btn-success btn-md" data-toggle="modal"><i class="far fa-edit fa-2x"></i></button></td>
+            <td><button id="modalActivate" type="button" class="btn btn-warning btn-md" data-toggle="modal"><i class="fas fa-eye fa-2x"></i></button></td>            
+            <td>
+                <form class="" action="' . SERVERURL . 'editarEvento/" method="POST" data-form="borrar" enctype="multipart/form-data">
+                    <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
+                    <button type="submit" class="btn btn-default btn-md">
+                        <i class="far fa-edit fa-2x"></i>
+                    </button>
+                </form>
+            </td>
             <td>
                 <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarEventoAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
@@ -164,5 +171,14 @@ class eventoControlador extends eventoModelo
         </tr>   
         ';
         }
+    }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function editar_evento()
+    {
+        $row = eventoModelo::consultar_evento();
+        $consultaEvento = mainModel::ejecutar_consulta_simple("SELECT * FROM dat_even WHERE cod_even='$cod_even'");
+        $row = $consultaEvento->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $row;
     }
 }
