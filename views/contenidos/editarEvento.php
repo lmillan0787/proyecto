@@ -1,6 +1,7 @@
 <?php
 
 $peticionAjax = false;
+$cod_even = $_POST['cod_even'];
 require_once "./controllers/eventoControlador.php";
 $insEvento = new eventoControlador();
 
@@ -42,7 +43,7 @@ $insEvento = new eventoControlador();
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Nombre del Evento" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s0-9]+" name="des_even" required>
+                <input value="<?php $row['des_even']?>" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Nombre del Evento" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s0-9]+" name="des_even" required>
             </div>
             <!-- Fecha del evento-->
             <label for="textInput">Fecha del evento:</label>

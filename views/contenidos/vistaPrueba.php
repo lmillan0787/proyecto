@@ -1,11 +1,25 @@
 <?php
 $peticionAjax = false;
-include "./controllers/invitadoControlador.php";
-$insDeportista= new invitadoControlador();
+include "./controllers/tecnicoControlador.php";
+$insTecnico= new tecnicoControlador();
 
-
-
-$insDeportista->agregar_invitado_controlador();
-
+session_start();
 ?>
 
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    hola <?php $insTecnico->consultarCargo(); ?>
+</body>
+</html>

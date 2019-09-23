@@ -1,16 +1,16 @@
 <?php
 $peticionAjax = false;
 
-require_once "./controllers/participacionControlador.php";
+require_once "./controllers/tecnicoControlador.php";
 
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark unique-color">
     <form class="form-inline">
         <input class="form-control mr-sm-2" id="filtrar" type="text" placeholder="Buscar" aria-label="Buscar">
-        <span class="navbar-brand" id="brand1">Personas</span>
+        <span class="navbar-brand" id="brand1">Personal Técnico</span>
     </form>
-    <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>regParticipacion/'">Registrar</button>
+    <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarTecnico/'">Registrar</button>
 </nav>
 <!-- Tabla -->
 <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tablaTodas">
@@ -20,9 +20,9 @@ require_once "./controllers/participacionControlador.php";
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">Perfil</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Género</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Institución</th>
                 <th scope="col">Evento</th>
                 <th scope="col">Ver</th>
                 <th scope="col">Editar</th>
@@ -31,8 +31,8 @@ require_once "./controllers/participacionControlador.php";
         <tbody class="buscar">
             <?php
 
-                $insPersona = new participacionControlador();
-                $insPersona->tabla_participacion();
+                $insTecnico = new tecnicoControlador();
+                $insTecnico->tabla_tecnico();
 
             ?>
         </tbody>

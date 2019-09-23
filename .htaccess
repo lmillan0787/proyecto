@@ -1,15 +1,4 @@
-#Options All -Indexes
-
-#RewriteEngine On
-#RewriteRule ^([a-zA-Z0-9/]+)$ index.php?views=$1
-
 Options All -Indexes
 
 RewriteEngine On
-RewriteRule ^([a-zA-Z0-9/]+)$ index.php?views=$1 [L,QSA]
-
-
-
-
-
-
+RewriteRule ^([a-zA-Z0-9/]+)$ index.php?views=$1

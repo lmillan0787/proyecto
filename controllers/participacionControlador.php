@@ -69,8 +69,6 @@ class participacionControlador extends participacionModelo
                 <td>'.$row['edad'].'</td>
                 <td>'.$row['des_gen'].'</td>
                 <td>'.$row['des_even'].'</td>
-              
-
                 <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="../regParticipacion.php?nom='.$row['nom'].'">Ver</a></button></td>
                 <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="act_dep.php?cod_per='.$row['cod_per'].'">Editar</a></button></td>
             </tr>';

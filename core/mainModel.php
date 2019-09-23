@@ -132,18 +132,6 @@ class mainModel
                         });
                     </script>
                 ";            
-        }else if ($datos['Alerta'] == "simpleInvitado") {
-            $alerta = "
-                    <script>
-                        Swal.fire(
-                            '" . $datos['Titulo'] . "',
-                            '" . $datos['Texto'] . "',
-                            '" . $datos['Tipo'] . "'
-                        ).then(function(){
-                            window.location='" . SERVERURL . "invitados/';
-                        });
-                    </script>
-                ";            
         }return $alerta;
     }
 }

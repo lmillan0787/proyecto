@@ -8,7 +8,7 @@ if ($peticionAjax) {
 
 class invitadoControlador extends invitadoModelo{
     
-    public function agregar_invitado_controlador()
+    public function agregar_deportista_controlador()
     {
         $nac = mainModel::limpiar_cadena($_POST['nac']);
         $ced = mainModel::limpiar_cadena($_POST['ced']);
@@ -16,11 +16,8 @@ class invitadoControlador extends invitadoModelo{
         $ape = mainModel::limpiar_cadena($_POST['ape']);
         $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
         $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
-        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
-        $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
 
-        $validarCedula = InvitadoModelo::validar_cedula($ced);
+        $validarCedula = deportistaModelo::validar_cedula($ced);
         if ($validarCedula->rowCount() >= 1) {
             $alerta = [
                 "Alerta" => "simple",
@@ -29,39 +26,36 @@ class invitadoControlador extends invitadoModelo{
                 "Tipo" => "error"
             ];
         } else {
-            $datosInvitado = [
+            $datosDeportista = [
                 "nac" => $nac,
                 "ced" => $ced,
                 "nom" => $nom,
                 "ape" => $ape,
                 "fec_nac" => $fec_nac,
-                "cod_gen" => $cod_gen,
-                "cod_per" => $cod_per,
-                "cod_even" => $cod_even,
-                "cod_perf" => $cod_perf
+                "cod_gen" => $cod_gen
             ];
-            $guardarInvitado = invitadoModelo::agregar_invitado($datosInvitado);
-            
+            $guardarDeportista = invitadoModelo::agregar_invitado($datosDeportista);
 
-            if ($guardarInvitado->rowCount() >= 1) {
+            if ($guardarDeportista->rowCount() >= 1) {
                 $alerta = [
-                    "Alerta" => "simpleInvitado",
+                    "Alerta" => "simple",
                     "Titulo" => "",
-                    "Texto" => "Invitado registrada exitosamente",
+                    "Texto" => "Deportista registrada exitosamente",
                     "Tipo" => "success"
                 ];
             } else {
                 $alerta = [
                     "Alerta" => "simple",
                     "Titulo" => "Ocurrió un error inesperado",
-                    "Texto" => "Error al registrar invitado",
+                    "Texto" => "Error al registrar deportista",
                     "Tipo" => "error"
                 ];
             }
         }
         return mainModel::sweet_alert($alerta);
     }
-    public function tabla_invitado(){
+    public function tabla_invitado()
+    {
         
         $row=invitadoModelo::consultar_invitado();
         foreach ($row as $row) {
@@ -78,11 +72,7 @@ class invitadoControlador extends invitadoModelo{
                     <td>'.$row['ced'].'</td>
                     <td>'.$row['des_gen'].'</td>
                     <td>'.$row['edad'].'</td>
-                    <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit"><a href="../regInvitado.php?cod_per='.$row['nom'].'">Editar</a></button></td>
-
-
-
-
+                    <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit"><a href="act_dep.php?cod_per='.$row['cod_per'].'">Editar</a></button></td>                                                        
                 </tr>';
         }
         return $row;

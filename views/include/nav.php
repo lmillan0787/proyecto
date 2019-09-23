@@ -23,7 +23,7 @@
         <a class="nav-link" href="<?php echo SERVERURL ?>invitados/">Invitados</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="<?php echo SERVERURL ?>pertec/">Personal Técnico</a>
+        <a class="nav-link" href="<?php echo SERVERURL ?>tecnicos/">Personal Técnico</a>
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="<?php echo SERVERURL ?>">Usuarios</a>

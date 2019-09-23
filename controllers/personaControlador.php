@@ -72,10 +72,22 @@ class personaControlador extends personaModelo
                 <td>'.$row['ape'].'</td>
                 <td>'.$row['des_gen'].'</td>
                 <td>'.$row['edad'].'</td>
-                <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="act_dep.php?cod_per='.$row['cod_per'].'">Editar</a></button></td>
-                <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="act_dep.php?cod_per='.$row['cod_per'].'">Editar</a></button></td>
+                <td><button id="modalActivate" type="button" class="btn btn-warning btn-md" data-toggle="modal"><i class="fas fa-eye fa-2x"></i></button></td>
+                <td><a href="' . SERVERURL . 'editarPersona/?cod_per='.$row['cod_per'].'" class="btn btn-default btn-md"><i class="far fa-edit fa-2x"></i></a></td>
+            
+            <td>
+                <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
+                    <input type="text" value="' . $row['cod_per'] . '" name="cod_even" hidden required>
+                    <button type="submit" class="btn btn-danger btn-md">
+                        <i class="far fa-trash-alt fa-2x"></i>
+                    </button>
+                </form>
+            </td>
             </tr>';
         }
         return $row;
     }
+    public function eliminar_persona_controlador(){
+        
+    }   
 }
