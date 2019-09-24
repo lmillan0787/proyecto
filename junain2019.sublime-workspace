@@ -332,38 +332,10 @@
 	"buffers":
 	[
 		{
-			"file": "/C/UwAmp/www/junain1707/process/reg_per.php",
+			"file": "models/vistasModelo.php",
 			"settings":
 			{
-				"buffer_size": 1167,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/UwAmp/www/junain1707/app/persona.php",
-			"settings":
-			{
-				"buffer_size": 3318,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 263 files for \"des_gen\" (case sensitive)\n\nC:\\UwAmp\\www\\junain1707\\127_0_0_1.sql:\n  135    `ape` varchar(30) COLLATE utf8_spanish_ci NOT NULL,\n  136    `fec_nac` date NOT NULL,\n  137:   `des_gen` tinyint(1) NOT NULL\n  138  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;\n  139  \n  ...\n  142  --\n  143  \n  144: INSERT INTO `dat_per` (`cod_per`, `nac`, `ced`, `nom`, `ape`, `fec_nac`, `des_gen`) VALUES\n  145  (1, 1, 19885429, 'Deifer Gabriel', 'Garanton Goyo', '1990-12-08', 1),\n  146  (2, 1, 24217511, 'Emibell', 'Romero', '1995-12-08', 0),\n\nC:\\UwAmp\\www\\junain1707\\junain (4).sql:\n  130    `ape` varchar(30) COLLATE utf8_spanish_ci NOT NULL,\n  131    `fec_nac` date NOT NULL,\n  132:   `des_gen` varchar(15) COLLATE utf8_spanish_ci NOT NULL,\n  133    `cod_aud` int(11) NOT NULL\n  134  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;\n  ...\n  138  --\n  139  \n  140: INSERT INTO `dat_per` (`cod_per`, `des_nac`, `ced`, `nom`, `ape`, `fec_nac`, `des_gen`, `cod_aud`) VALUES\n  141  (1, 'V', 19885429, 'Deifer Gabriel', 'Garanton Goyo', '1990-12-08', 'Masculino', 1),\n  142  (2, 'V', 123333, 'test', 'wqerqwer', '2006-11-28', 'Masculino', 1),\n\nC:\\UwAmp\\www\\junain1707\\junain1107.sql:\n  134    `ape` varchar(30) COLLATE utf8_spanish_ci NOT NULL,\n  135    `fec_nac` date NOT NULL,\n  136:   `des_gen` varchar(15) COLLATE utf8_spanish_ci NOT NULL,\n  137    `cod_aud` int(11) NOT NULL\n  138  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;\n  ...\n  142  --\n  143  \n  144: INSERT INTO `dat_per` (`cod_per`, `des_nac`, `ced`, `nom`, `ape`, `fec_nac`, `des_gen`, `cod_aud`) VALUES\n  145  (1, 'V', 19885429, 'Deifer Gabriel', 'Garanton Goyo', '1990-12-08', 'Masculino', 1),\n  146  (2, 'V', 123333, 'test', 'wqerqwer', '2006-11-28', 'Masculino', 1),\n\nC:\\UwAmp\\www\\junain1707\\junain1407.sql:\n  252    `ape` varchar(30) COLLATE utf8_spanish_ci NOT NULL,\n  253    `fec_nac` date NOT NULL,\n  254:   `des_gen` varchar(15) COLLATE utf8_spanish_ci NOT NULL,\n  255    `cod_aud` int(11) NOT NULL\n  256  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;\n  ...\n  260  --\n  261  \n  262: INSERT INTO `dat_per` (`cod_per`, `des_nac`, `ced`, `nom`, `ape`, `fec_nac`, `des_gen`, `cod_aud`) VALUES\n  263  (1, 'V', 19885429, 'Deifer Gabriel', 'Garanton Goyo', '1990-12-08', 'Masculino', 1),\n  264  (2, 'V', 123333, 'test', 'wqerqwer', '2006-11-28', 'Masculino', 1),\n\nC:\\UwAmp\\www\\junain1707\\app\\act_dep.php:\n   23  \t$registro['ape'],\n   24  \t$registro['fec_nac'],\n   25: \t$registro['cod_gen'],\n   26  \t$registro['cod_per'],\n   27  \n   ..\n  126    <div class=\"col-sm-10\">\n  127    <div class=\"input-group-prepend\">\n  128:                  <select id=\"cod_gen\" name=\"cod_gen\" type=\"date\" placeholder=\"Sexo\" class=\"form-control\" required>\n  129  <option value=\"\" selected=\"\"><?php echo $consulta['4'] ?></option>\n  130  <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\del_4.php:\n   45                          $r['nac'] = 'Extranjero';\n   46                      }\n   47:                     if ($r['cod_gen'] == 1) {\n   48:                         $r['cod_gen'] = 'Masculino';\n   49                      } else {\n   50:                         $r['cod_gen'] = 'Femenino';\n   51                      }\n   52                      echo '\n   ..\n   56                      <td>'.$r['ape'].'</td>\n   57                      <td>'.$r['ced'].'</td>\n   58:                     <td>'.$r[cod_gen'].'</td>\n   59                      <td>'.$r['des_dis'].'</td>\n   60                      <td>'.$r['des_cat'].'</td>\n\nC:\\UwAmp\\www\\junain1707\\app\\del_5.php:\n   52                          $r['nac'] = 'Extranjero';\n   53                      }\n   54:                     if ($r['cod_gen'] == 1) {\n   55:                         $r['cod_gen'] = 'Masculino';\n   56                      } else {\n   57:                         $r['cod_gen'] = 'Femenino';\n   58                      }\n   59                      echo '\n   ..\n   63                      <td>'.$r['ape'].'</td>\n   64                      <td>'.$r['ced'].'</td>\n   65:                     <td>'.$r['cod_gen'].'</td>\n   66                      <td>'.$r['edad'].'</td>\n   67                      <td>'.$r['des_reg'].'</tcod\nC:\\UwAmp\\www\\junain1707\\app\\del_6.php:\n   42                      <td>' . $row['nom'] . '</td>\n   43                      <td>' . $row['ape'] . '</td>\n   44:                     <td>' . $row['cod_gen'] . '</td>  \n   45                    \n   46                     <td><button class=\"btn btn-success btn-md my-2 my-sm-0 ml-3\" type=\"submit\"><a href=\"edit_med.php?cod_per=' . $row['cod_per'] . '\">Editar</a></button></td>\n\nC:\\UwAmp\\www\\junain1707\\app\\delegadoBasico.php:\n  119                          class=\"fas fa-venus-mars prefix grey-text\"></i></label>\n  120              </div>\n  121:             <select class=\"browser-default custom-select\" id=\"inputGroupSelect01\" id=\"cod_gen\" name=\"cod_gen\">\n  122                  <option selected disabled>Género</option>\n  123                  <option value=\"1\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\deportistaBasico.php:\n  119                          class=\"fas fa-venus-mars prefix grey-text\"></i></label>\n  120              </div>\n  121:             <select class=\"browser-default custom-select\" id=\"inputGroupSelect01\" id=\"cod_gen\" name=\"cod_gen\">\n  122                  <option selected disabled>Género</option>\n  123                  <option value=\"1\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\desplegable.php:\n  115                          class=\"fas fa-venus-mars prefix grey-text\"></i></label>\n  116              </div>\n  117:             <select class=\"browser-default custom-select\" id=\"inputGroupSelect01\" id=\"cod_gen\" name=\"cod_gen\">\n  118                  <option selected disabled>Género</option>\n  119                  <option value=\"1\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\edi_inv.php:\n   30  \t$registro['ape'],\n   31  \t$registro['fec_nac'],\n   32: \t$registro['des_gen'],\n   33  \t$registro['cod_per'],\n   34  \n   ..\n  139      <div class=\"col-sm-10\">\n  140        <div class=\"input-group-prepend\">\n  141:         <select id=\"des_gen\" name=\"des_gen\" type=\"date\" placeholder=\"Sexo\"  class=\"form-control\" required>\n  142            <option value=\"<?php echo $consulta['4'] ?>\" selected=\"\"><?php echo $consulta['4'] ?></option>\n  143            <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\edi_per.php:\n   23  \t$registro['ape'],\n   24  \t$registro['fec_nac'],\n   25: \t$registro['des_gen'],\n   26      $registro['cod_per'],\n   27      $registro['nac'],\n   ..\n   33      $registro['nac'] = 'Extranjero';\n   34  }\n   35: if ($registro['des_gen'] == 1) {\n   36:     $registro['des_gen'] = 'Masculino';\n   37  } else {\n   38:     $registro['des_gen'] = 'Femenino';\n   39  }\n   40  }\n   ..\n  116                          class=\"fas fa-venus-mars prefix grey-text\"></i></label>\n  117              </div>\n  118:             <select class=\"browser-default custom-select\" id=\"inputGroupSelect01\" id=\"des_gen\" name=\"des_gen\">\n  119                  <option selected disabled></option>\n  120                  <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\edi_tec.php:\n   30  \t$registro['ape'],\n   31  \t$registro['fec_nac'],\n   32: \t$registro['des_gen'],\n   33  \t$registro['cod_per'],\n   34  \n   ..\n  139      <div class=\"col-sm-10\">\n  140        <div class=\"input-group-prepend\">\n  141:         <select id=\"des_gen\" name=\"des_gen\" type=\"date\" placeholder=\"Sexo\"  class=\"form-control\" required>\n  142            <option value=\"<?php echo $consulta['4'] ?>\" selected=\"\"><?php echo $consulta['4'] ?></option>\n  143            <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\edit_med.php:\n   26          $registro['ape'],\n   27          $registro['fec_nac'],\n   28:         $registro['des_gen'],\n   29          $registro['cod_per'],\n   30      ];\n   ..\n   94          <div class=\"col-sm-10\">\n   95              <div class=\"input-group-prepend\">\n   96:                 <select id=\"des_gen\" name=\"des_gen\" type=\"date\" placeholder=\"Sexo\" class=\"form-control\" required>\n   97                      <option value=\"<?php echo $consulta['4'] ?>\" selected=\"\"><?php echo $consulta['4'] ?></option>\n   98                      <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\inv.php:\n   53                      <td>'.$r['ape'].'</td>\n   54                      <td>'.$r['ced'].'</td>\n   55:                     <td>'.$r['des_gen'].'</td>\n   56                      <td>'.$r['cod_perf'].'</td>                    \n   57                      <td><button class=\"btn btn-success btn-md my-2 my-sm-0 ml-3\" type=\"submit\"><a href=\"edi_inv.php?cod_per='.$r['cod_per'].'\">Editar</a></button></td>               \n\nC:\\UwAmp\\www\\junain1707\\app\\medicoBasico.php:\n  119                          class=\"fas fa-venus-mars prefix grey-text\"></i></label>\n  120              </div>\n  121:             <select class=\"browser-default custom-select\" id=\"inputGroupSelect01\" id=\"des_gen\" name=\"des_gen\">\n  122                  <option selected disabled>Género</option>\n  123                  <option value=\"1\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\part.php:\n   52                      <td>'.$r['ape'].'</td>\n   53                      <td>'.$r['ced'].'</td>\n   54:                     <td>'.$r['des_gen'].'</td>\n   55                      <td>'.$r['des_dis'].'</td>\n   56                      <td>'.$r['des_cat'].'</td>\n\nC:\\UwAmp\\www\\junain1707\\app\\per_tec.php:\n   54                      <td>'.$r['ape'].'</td>\n   55                      <td>'.$r['ced'].'</td>\n   56:                     <td>'.$r['des_gen'].'</td>\n   57                      <td>'.$r['des_ins'].'</td>\n   58                      <td>'.$r['des_perf'].'</td>\n\nC:\\UwAmp\\www\\junain1707\\app\\persona.php:\n   51                          $r['nac'] = 'Extranjero';\n   52                      }\n   53:                     if ($r['des_gen'] == 1) {\n   54:                         $r['des_gen'] = 'Masculino';\n   55                      } else {\n   56:                         $r['des_gen'] = 'Femenino';\n   57                      }\n   58                      echo '\n   ..\n   64                      <td>'.$r['ape'].'</td>\n   65                      <td>'.$r['edad'].'</td>\n   66:                     <td>'.$r['des_gen'].'</td>\n   67                      \n   68  \n\nC:\\UwAmp\\www\\junain1707\\app\\reg_bas1.php:\n   99    <div class=\"col-sm-10\">\n  100    <div class=\"input-group-prepend\">\n  101:                  <select id=\"des_gen\" name=\"des_gen\" type=\"date\" placeholder=\"Sexo\" class=\"form-control\" required>\n  102  <option value=\"\" disabled=\"\" selected=\"\">Seleccione Género</option>\n  103  <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\reg_bas2.php:\n   48  var ape =  $('#ape').val();\n   49  var fec_nac =  $('#fec_nac').val();\n   50: var des_gen =  $('#des_gen').val();\n   51  \n   52  \n   ..\n   55  type: \"POST\",\n   56  url: \"../process/reg_bas2.php\",\n   57: data: ('des_nac='+des_nac+'&ced='+ced+'&nom='+nom+'&ape='+ape+'&fec_nac='+fec_nac+'&des_gen='+des_gen),\n   58  success: function(respuesta){\n   59    alert(respuesta);\n   ..\n  172    <div class=\"col-sm-10\">\n  173    <div class=\"input-group-prepend\">\n  174:                  <select id=\"des_gen\" name=\"des_gen\" type=\"date\" placeholder=\"Sexo\" class=\"form-control\" required=\"\">\n  175  <option value=\"\" disabled=\"\" selected=\"\">Seleccione Género</option>\n  176  <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\reg_bas2ajax2.php:\n  124    <div class=\"col-sm-10\">\n  125    <div class=\"input-group-prepend\">\n  126:                  <select id=\"des_gen\" name=\"des_gen\" type=\"date\" placeholder=\"Sexo\" class=\"form-control\" required>\n  127  <option value=\"\" disabled=\"\" selected=\"\">Seleccione Género</option>\n  128  <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\reg_inv.php:\n   70          <div class=\"col-sm-10\">\n   71              <div class=\"input-group-prepend\">\n   72:                 <select id=\"des_gen\" name=\"des_gen\" type=\"date\" placeholder=\"Sexo\" class=\"form-control\" required>\n   73                      <option value=\"\" disabled=\"\" selected=\"\">Seleccione Género</option>\n   74                      <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\app\\reg_tec.php:\n  114      <div class=\"col-sm-10\">\n  115        <div class=\"input-group-prepend\">\n  116:         <select id=\"des_gen\" name=\"des_gen\" type=\"date\" placeholder=\"Sexo\" class=\"form-control\" required>\n  117            <option value=\"\" disabled=\"\" selected=\"\">Seleccione Género</option>\n  118            <option value=\"masculino\">Masculino</option>\n\nC:\\UwAmp\\www\\junain1707\\process\\act_dep.php:\n    2  include '../database/db.php';\n    3  \n    4: ActualizarPersona($_POST['cod_per'],$_POST['des_nac'],$_POST['ced'],$_POST['nom'],$_POST['ape'],$_POST['fec_nac'],$_POST['des_gen']);\n    5  \n    6: function ActualizarPersona($cod_per,$des_nac,$ced, $nom, $ape, $fec_nac, $des_gen){\n    7  \n    8  \tGlobal $conexion;\n    9  \n   10: \t$selact=\" UPDATE dat_per SET des_nac= '\".$des_nac.\"', ced= '\".$ced.\"', nom= '\".$nom.\"', ape= '\".$ape.\"', fec_nac= '\".$fec_nac.\"', des_gen= '\".$des_gen.\"' WHERE cod_per='\".$cod_per.\"' \";\n   11  \n   12  \t$resultado=mysqli_query($conexion,$selact) or die (mysqli_error($conexion));\n\nC:\\UwAmp\\www\\junain1707\\process\\delegadoBasico.php:\n    7  \n    8    \n    9: if(isset($_POST['nac']) AND isset($_POST['ced']) AND isset($_POST['nom']) AND isset($_POST['ape']) AND isset($_POST['fec_nac']) AND isset($_POST['des_gen'])){\n   10  \n   11    $nac=$_POST['nac'];\n   ..\n   14    $ape=$_POST['ape'];\n   15    $fec_nac=$_POST['fec_nac'];\n   16:   $des_gen=$_POST['des_gen'];\n   17    //$cod_aud=$_POST['cod_aud'];\n   18    $_SESSION['ced'] = $_POST['ced'];\n   ..\n   22    \n   23    \n   24:   $insertar=\"insert into dat_per(nac,ced,nom,ape,fec_nac,des_gen)\n   25        values\n   26:       ('$nac','$ced','$nom','$ape','$fec_nac','$des_gen')\";\n   27    \n   28    \n\nC:\\UwAmp\\www\\junain1707\\process\\deportistaBasico.php:\n    7  \n    8    \n    9: if(isset($_POST['nac']) AND isset($_POST['ced']) AND isset($_POST['nom']) AND isset($_POST['ape']) AND isset($_POST['fec_nac']) AND isset($_POST['des_gen'])){\n   10  \n   11    $nac=$_POST['nac'];\n   ..\n   14    $ape=$_POST['ape'];\n   15    $fec_nac=$_POST['fec_nac'];\n   16:   $des_gen=$_POST['des_gen'];\n   17    //$cod_aud=$_POST['cod_aud'];\n   18    $_SESSION['ced'] = $_POST['ced'];\n   ..\n   22    \n   23    \n   24:   $insertar=\"insert into dat_per(nac,ced,nom,ape,fec_nac,des_gen)\n   25        values\n   26:       ('$nac','$ced','$nom','$ape','$fec_nac','$des_gen')\";\n   27    \n   28    \n\nC:\\UwAmp\\www\\junain1707\\process\\edi_inv.php:\n   10  $ape = $_POST['ape'];\n   11  $fec_nac = $_POST['fec_nac'];\n   12: $des_gen = $_POST['des_gen'];\n   13  //participación\n   14  $cod_rol = 4;\n   ..\n   18  \n   19  \n   20: $query=mysqli_query($conexion, \"UPDATE `dat_per` SET `des_nac`='$des_nac',`ced`='$ced',`nom`='$nom',`ape`='$ape',`fec_nac`='$fec_nac',`des_gen`='$des_gen'WHERE cod_per=$cod_per\");\n   21  \n   22  \n\nC:\\UwAmp\\www\\junain1707\\process\\edi_per.php:\n   10  $ape = $_POST['ape'];\n   11  $fec_nac = $_POST['fec_nac'];\n   12: $des_gen = $_POST['des_gen'];\n   13  //participación\n   14  \n   ..\n   17  \n   18  \n   19: $query=mysqli_query($conexion, \"UPDATE `dat_per` SET `nac`='$nac',`ced`='$ced',`nom`='$nom',`ape`='$ape',`fec_nac`='$fec_nac',`des_gen`='$des_gen'WHERE cod_per=$cod_per\");\n   20  \n   21  \n\nC:\\UwAmp\\www\\junain1707\\process\\edi_tec.php:\n   10  $ape = $_POST['ape'];\n   11  $fec_nac = $_POST['fec_nac'];\n   12: $des_gen = $_POST['des_gen'];\n   13  //participación\n   14  $cod_perf = $_POST['cod_perf']; \n   ..\n   19  \n   20  \n   21: $query=mysqli_query($conexion, \"UPDATE `dat_per` SET `des_nac`='$des_nac',`ced`='$ced',`nom`='$nom',`ape`='$ape',`fec_nac`='$fec_nac',`des_gen`='$des_gen'WHERE cod_per=$cod_per\");\n   22  \n   23  $query2=mysqli_query($conexion, \"UPDATE `dat_par` SET `cod_perf`='$cod_perf' WHERE cod_per=$cod_per\"); \n\nC:\\UwAmp\\www\\junain1707\\process\\edit_med.php:\n    8  $ape = $_POST['ape'];\n    9  $fec_nac = $_POST['fec_nac'];\n   10: $des_gen = $_POST['des_gen'];\n   11  //participación\n   12  $cod_rol = 4;\n   13  $cod_even = 1;\n   14  //personal tecnico\n   15: $query=mysqli_query($conexion, \"UPDATE `dat_per` SET `des_nac`='$des_nac',`ced`='$ced',`nom`='$nom',`ape`='$ape',`fec_nac`='$fec_nac',`des_gen`='$des_gen'WHERE cod_per=$cod_per\");\n   16      if($query == true)\n   17      {            \n\nC:\\UwAmp\\www\\junain1707\\process\\medicoBasico.php:\n    7  \n    8    \n    9: if(isset($_POST['des_nac']) AND isset($_POST['ced']) AND isset($_POST['nom']) AND isset($_POST['ape']) AND isset($_POST['fec_nac']) AND isset($_POST['des_gen'])){\n   10  \n   11    $nac=$_POST['nac'];\n   ..\n   14    $ape=$_POST['ape'];\n   15    $fec_nac=$_POST['fec_nac'];\n   16:   $des_gen=$_POST['des_gen'];\n   17    //$cod_aud=$_POST['cod_aud'];\n   18    $_SESSION['ced'] = $_POST['ced'];\n   ..\n   22    \n   23    \n   24:   $insertar=\"insert into dat_per(des_nac,ced,nom,ape,fec_nac,des_gen)\n   25        values\n   26:       ('$des_nac','$ced','$nom','$ape','$fec_nac','$des_gen')\";\n   27    \n   28    \n\nC:\\UwAmp\\www\\junain1707\\process\\reg_bas2ajax1.php:\n   12  $ape=$_POST['ape'];\n   13  $fec_nac=$_POST['fec_nac'];\n   14: $des_gen=$_POST['des_gen'];\n   15  //$cod_aud=$_POST['cod_aud'];\n   16  $_SESSION['ced'] = $_POST['ced'];\n   ..\n   20  \n   21  \n   22: $insertar=\"insert into dat_per(des_nac,ced,nom,ape,fec_nac,des_gen)\n   23      values\n   24:     ('$des_nac','$ced','$nom','$ape','$fec_nac','$des_gen')\";\n   25  \n   26  \n\nC:\\UwAmp\\www\\junain1707\\process\\reg_bas2ajax2.php:\n   12  $ape=$_POST['ape'];\n   13  $fec_nac=$_POST['fec_nac'];\n   14: $des_gen=$_POST['des_gen'];\n   15  //$cod_aud=$_POST['cod_aud'];\n   16  $_SESSION['ced'] = $_POST['ced'];\n   ..\n   20  \n   21  \n   22: $insertar=\"insert into dat_per(des_nac,ced,nom,ape,fec_nac,des_gen)\n   23      values\n   24:     ('$des_nac','$ced','$nom','$ape','$fec_nac','$des_gen')\";\n   25  \n   26  \n\nC:\\UwAmp\\www\\junain1707\\process\\reg_dep.php:\n   13    $ape=$_POST['ape'];\n   14    $fec_nac=$_POST['fec_nac'];\n   15:   $des_gen=$_POST['des_gen'];\n   16    //$cod_aud=$_POST['cod_aud'];\n   17    $_SESSION['ced'] = $_POST['ced'];\n   ..\n   21    \n   22    \n   23:   $insertar=\"insert into dat_per(des_nac,ced,nom,ape,fec_nac,des_gen)\n   24        values\n   25:       ('$des_nac','$ced','$nom','$ape','$fec_nac','$des_gen')\";\n   26    \n   27    \n\nC:\\UwAmp\\www\\junain1707\\process\\reg_inv.php:\n    7  $ape = $_POST['ape'];\n    8  $fec_nac = $_POST['fec_nac'];\n    9: $des_gen = $_POST['des_gen'];\n   10  \n   11: $query1 = mysqli_query($conexion,\"INSERT INTO `dat_per`(`des_nac`, `ced`, `nom`, `ape`, `fec_nac`, `des_gen`, `cod_aud`) VALUES ('$des_nac','$ced','$nom','$ape','$fec_nac','$des_gen',1)\");\n   12  if ($query1 == true){    \n   13      $query2 = mysqli_query($conexion,\"SELECT cod_per FROM dat_per WHERE ced=$ced\");\n\nC:\\UwAmp\\www\\junain1707\\process\\reg_med.php:\n    7  $ape = $_POST['ape'];\n    8  $fec_nac = $_POST['fec_nac'];\n    9: $des_gen = $_POST['des_gen'];\n   10  \n   11: $query1 = mysqli_query($conexion,\"INSERT INTO `dat_per`(`nac`, `ced`, `nom`, `ape`, `fec_nac`, `des_gen`) VALUES ('$nac','$ced','$nom','$ape','$fec_nac','$des_gen')\");\n   12  if ($query1 == true){   \n   13      $query2 = mysqli_query($conexion,\"SELECT cod_per FROM dat_per WHERE ced=$ced\");\n\nC:\\UwAmp\\www\\junain1707\\process\\reg_tec.php:\n    9  $ape = $_POST['ape'];\n   10  $fec_nac = $_POST['fec_nac'];\n   11: $des_gen = $_POST['des_gen'];\n   12  //participación\n   13  $cod_perf = $_POST['cod_perf']; \n   ..\n   17  $des_ins = $_POST['des_ins'];\n   18  \n   19: $query1 = mysqli_query($conexion,\"INSERT INTO `dat_per`(`des_nac`, `ced`, `nom`, `ape`, `fec_nac`, `des_gen`, `cod_aud`) VALUES ('$des_nac','$ced','$nom','$ape','$fec_nac','$des_gen',1)\");\n   20  if ($query1 == true){    \n   21      $query2 = mysqli_query($conexion,\"SELECT cod_per FROM dat_per WHERE ced=$ced\");\n\n123 matches across 39 files\n",
-			"settings":
-			{
-				"buffer_size": 20060,
-				"line_ending": "Windows",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "/C/UwAmp/www/junain1707/app/reg_per.php",
-			"settings":
-			{
-				"buffer_size": 4954,
+				"buffer_size": 1376,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -478,12 +450,16 @@
 	},
 	"expanded_folders":
 	[
-		"/C/UwAmp/www/junain1707",
-		"/C/UwAmp/www/junain1707/app",
-		"/C/UwAmp/www/junain1707/process"
+		"/C/UwAmp/www/proyecto",
+		"/C/UwAmp/www/proyecto/models",
+		"/C/UwAmp/www/proyecto/views",
+		"/C/UwAmp/www/proyecto/views/contenidos"
 	],
 	"file_history":
 	[
+		"/C/UwAmp/www/junain1707/process/reg_per.php",
+		"/C/UwAmp/www/junain1707/app/persona.php",
+		"/C/UwAmp/www/junain1707/app/reg_per.php",
 		"/C/xampp/htdocs/junain1707/process/delegacionDeportista.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/tecnicos.php",
 		"/C/UwAmp/www/proyecto/models/personaModelo.php",
@@ -608,14 +584,11 @@
 		"/C/xampp/htdocs/Proyecto3107/controllers/deportistaControlador.php",
 		"/C/xampp/htdocs/Proyecto3107/controllers/personaControlador.php",
 		"/C/xampp/htdocs/Proyecto3107/views/contenidos/deportistas.php",
-		"/C/xampp/htdocs/Proyecto3107/models/deportistaModelo.php",
-		"/C/xampp/htdocs/Proyecto3107/models/personaModelo.php",
-		"/C/xampp/htdocs/proyecto/views/contenidos/persona.php",
-		"/C/xampp/htdocs/proyecto/views/contenidos/reg_inv.php"
+		"/C/xampp/htdocs/Proyecto3107/models/deportistaModelo.php"
 	],
 	"find":
 	{
-		"height": 34.0
+		"height": 31.0
 	},
 	"find_in_files":
 	{
@@ -661,24 +634,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/UwAmp/www/junain1707/process/reg_per.php",
+					"file": "models/vistasModelo.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1167,
+						"buffer_size": 1376,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								427,
-								427
+								469,
+								469
 							]
 						],
 						"settings":
@@ -707,31 +680,21 @@
 							},
 							"bracket_highlighter.clone_regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -742,26 +705,36 @@
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content"
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
 							],
 							"bracket_highlighter.locations":
 							{
@@ -769,24 +742,24 @@
 								{
 									"1":
 									[
-										431,
-										432
+										1369,
+										1370
 									]
 								},
 								"icon":
 								{
 									"1":
 									[
-										"Packages/BracketHighlighter/icons/round_bracket.png",
-										"region.yellowish"
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
 									]
 								},
 								"open":
 								{
 									"1":
 									[
-										399,
-										400
+										88,
+										89
 									]
 								},
 								"unmatched":
@@ -795,31 +768,21 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -830,1066 +793,46 @@
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/UwAmp/www/junain1707/app/persona.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3318,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"ASI_is_indentation_detected": true,
-							"ASI_result_sources":
-							[
-								"guessing"
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
+								"bh_regex_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
+								"bh_angle_content"
 							],
 							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 20060,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										196,
-										203
-									],
-									[
-										407,
-										414
-									],
-									[
-										710,
-										717
-									],
-									[
-										979,
-										986
-									],
-									[
-										1320,
-										1327
-									],
-									[
-										1589,
-										1596
-									],
-									[
-										1930,
-										1937
-									],
-									[
-										2199,
-										2206
-									],
-									[
-										2514,
-										2518
-									],
-									[
-										2681,
-										2685
-									],
-									[
-										2696,
-										2700
-									],
-									[
-										3054,
-										3058
-									],
-									[
-										3107,
-										3111
-									],
-									[
-										3203,
-										3207
-									],
-									[
-										3432,
-										3436
-									],
-									[
-										3718,
-										3722
-									],
-									[
-										3771,
-										3775
-									],
-									[
-										3867,
-										3871
-									],
-									[
-										4097,
-										4101
-									],
-									[
-										4412,
-										4416
-									],
-									[
-										4895,
-										4899
-									],
-									[
-										4910,
-										4914
-									],
-									[
-										5302,
-										5306
-									],
-									[
-										5317,
-										5321
-									],
-									[
-										5704,
-										5708
-									],
-									[
-										5719,
-										5723
-									],
-									[
-										5968,
-										5975
-									],
-									[
-										6132,
-										6139
-									],
-									[
-										6147,
-										6154
-									],
-									[
-										6510,
-										6517
-									],
-									[
-										6664,
-										6671
-									],
-									[
-										6704,
-										6711
-									],
-									[
-										6767,
-										6774
-									],
-									[
-										7021,
-										7028
-									],
-									[
-										7036,
-										7043
-									],
-									[
-										7290,
-										7297
-									],
-									[
-										7454,
-										7461
-									],
-									[
-										7469,
-										7476
-									],
-									[
-										7854,
-										7861
-									],
-									[
-										8049,
-										8056
-									],
-									[
-										8064,
-										8071
-									],
-									[
-										8504,
-										8511
-									],
-									[
-										9039,
-										9046
-									],
-									[
-										9054,
-										9061
-									],
-									[
-										9365,
-										9372
-									],
-									[
-										9669,
-										9676
-									],
-									[
-										9958,
-										9965
-									],
-									[
-										10011,
-										10018
-									],
-									[
-										10107,
-										10114
-									],
-									[
-										10338,
-										10345
-									],
-									[
-										10546,
-										10553
-									],
-									[
-										10561,
-										10568
-									],
-									[
-										10891,
-										10898
-									],
-									[
-										10906,
-										10913
-									],
-									[
-										11096,
-										11103
-									],
-									[
-										11106,
-										11113
-									],
-									[
-										11298,
-										11305
-									],
-									[
-										11313,
-										11320
-									],
-									[
-										11674,
-										11681
-									],
-									[
-										11689,
-										11696
-									],
-									[
-										12056,
-										12063
-									],
-									[
-										12071,
-										12078
-									],
-									[
-										12460,
-										12467
-									],
-									[
-										12475,
-										12482
-									],
-									[
-										12913,
-										12920
-									],
-									[
-										13014,
-										13021
-									],
-									[
-										13204,
-										13211
-									],
-									[
-										13217,
-										13224
-									],
-									[
-										13577,
-										13584
-									],
-									[
-										13709,
-										13716
-									],
-									[
-										13725,
-										13732
-									],
-									[
-										13908,
-										13915
-									],
-									[
-										13992,
-										13999
-									],
-									[
-										14250,
-										14257
-									],
-									[
-										14382,
-										14389
-									],
-									[
-										14398,
-										14405
-									],
-									[
-										14581,
-										14588
-									],
-									[
-										14665,
-										14672
-									],
-									[
-										14817,
-										14824
-									],
-									[
-										14835,
-										14842
-									],
-									[
-										15054,
-										15061
-									],
-									[
-										15065,
-										15072
-									],
-									[
-										15235,
-										15242
-									],
-									[
-										15253,
-										15260
-									],
-									[
-										15451,
-										15458
-									],
-									[
-										15462,
-										15469
-									],
-									[
-										15632,
-										15639
-									],
-									[
-										15650,
-										15657
-									],
-									[
-										15888,
-										15895
-									],
-									[
-										15899,
-										15906
-									],
-									[
-										16173,
-										16180
-									],
-									[
-										16191,
-										16198
-									],
-									[
-										16436,
-										16443
-									],
-									[
-										16447,
-										16454
-									],
-									[
-										16762,
-										16769
-									],
-									[
-										16894,
-										16901
-									],
-									[
-										16910,
-										16917
-									],
-									[
-										17097,
-										17104
-									],
-									[
-										17185,
-										17192
-									],
-									[
-										17339,
-										17346
-									],
-									[
-										17355,
-										17362
-									],
-									[
-										17532,
-										17539
-									],
-									[
-										17616,
-										17623
-									],
-									[
-										17766,
-										17773
-									],
-									[
-										17782,
-										17789
-									],
-									[
-										17959,
-										17966
-									],
-									[
-										18043,
-										18050
-									],
-									[
-										18193,
-										18200
-									],
-									[
-										18209,
-										18216
-									],
-									[
-										18396,
-										18403
-									],
-									[
-										18484,
-										18491
-									],
-									[
-										18636,
-										18643
-									],
-									[
-										18654,
-										18661
-									],
-									[
-										18780,
-										18787
-									],
-									[
-										18854,
-										18861
-									],
-									[
-										19113,
-										19120
-									],
-									[
-										19131,
-										19138
-									],
-									[
-										19253,
-										19260
-									],
-									[
-										19312,
-										19319
-									],
-									[
-										19568,
-										19575
-									],
-									[
-										19586,
-										19593
-									],
-									[
-										19818,
-										19825
-									],
-									[
-										19892,
-										19899
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								224,
-								224
-							]
-						],
-						"settings":
-						{
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-									"1":
-									[
-										232,
-										233
-									]
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"default_dir": "C:\\UwAmp\\www\\junain1707\\app",
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/C/UwAmp/www/junain1707/app/reg_per.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4954,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4533,
-								4533
-							],
-							[
-								4548,
-								4548
-							]
-						],
-						"settings":
-						{
-							"ASI_is_indentation_detected": true,
-							"ASI_result_sources":
-							[
-								"guessing"
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										4552,
-										4553
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/double_quote.png",
-										"region.greenish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										4544,
-										4545
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										4537,
-										4538
-									],
-									"2":
-									[
-										4552,
-										4553
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/double_quote.png",
-										"region.greenish"
-									],
-									"2":
-									[
-										"Packages/BracketHighlighter/icons/double_quote.png",
-										"region.greenish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										4529,
-										4530
-									],
-									"2":
-									[
-										4544,
-										4545
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2540.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
 					"type": "text"
 				}
 			]
