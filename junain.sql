@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2019 a las 05:59:32
+-- Tiempo de generación: 29-09-2019 a las 22:28:47
 -- Versión del servidor: 10.3.16-MariaDB
 -- Versión de PHP: 7.3.7
 
@@ -58,8 +58,7 @@ CREATE TABLE `dat_even` (
 
 INSERT INTO `dat_even` (`cod_even`, `des_even`, `fec_even`, `cod_edo`, `cod_tip_even`, `cod_estat`) VALUES
 (28, 'junain', '2020-12-08', 10, 1, 2),
-(29, 'pratica', '2019-12-08', 24, 3, 2),
-(30, 'PRUEBA', '2019-11-10', 6, 2, 2);
+(31, 'ZWAJIRA 2019', '2019-12-30', 23, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -71,6 +70,13 @@ CREATE TABLE `dat_inv` (
   `cod_inv` int(11) NOT NULL,
   `cod_par` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `dat_inv`
+--
+
+INSERT INTO `dat_inv` (`cod_inv`, `cod_par`) VALUES
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -85,6 +91,14 @@ CREATE TABLE `dat_par` (
   `cod_perf` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `dat_par`
+--
+
+INSERT INTO `dat_par` (`cod_par`, `cod_per`, `cod_even`, `cod_perf`) VALUES
+(1, 15, 28, 8),
+(2, 13, 28, 14);
+
 -- --------------------------------------------------------
 
 --
@@ -93,7 +107,7 @@ CREATE TABLE `dat_par` (
 
 CREATE TABLE `dat_per` (
   `cod_per` int(4) NOT NULL,
-  `nac` tinyint(1) NOT NULL,
+  `cod_nac` int(2) NOT NULL,
   `ced` int(8) NOT NULL,
   `nom` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `ape` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
@@ -105,24 +119,13 @@ CREATE TABLE `dat_per` (
 -- Volcado de datos para la tabla `dat_per`
 --
 
-INSERT INTO `dat_per` (`cod_per`, `nac`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`) VALUES
-(1, 1, 19885429, 'deifer', 'garanton', '1990-12-08', 1),
-(2, 1, 24217511, 'Emibell', 'Romero', '1995-08-15', 2),
-(3, 1, 24217510, 'jared', 'Romero', '1994-10-10', 2),
-(4, 1, 19885477, 'deifer', 'garanton', '1990-12-08', 1),
-(5, 0, 4815423, 'felix', 'restrepo', '1992-10-10', 2),
-(6, 1, 4855622, 'maria', 'gomez', '1990-10-10', 2),
-(7, 1, 15033015, 'julio', 'jaramillo', '1987-03-14', 1),
-(8, 1, 12457852, 'maria', 'tovar', '1995-06-12', 2),
-(9, 1, 20165895, 'Jose', 'Oportuno', '1985-08-14', 1),
-(10, 0, 6245120, 'ana', 'caliza', '1987-09-12', 2),
-(11, 1, 7841542, 'juanito', 'alimaña', '1983-10-16', 1),
-(12, 1, 25215452, 'jose', 'perez', '1995-10-10', 1),
-(13, 0, 24214556, 'deifer', 'garanton', '1990-12-08', 1),
-(14, 1, 24688795, 'DEIFER', 'GARANTON', '1990-12-08', 1),
-(15, 1, 25821244, 'deifer', 'deifer', '1990-12-08', 1),
-(16, 1, 19888888, 'DEIFER', 'GARANTON', '1990-12-08', 1),
-(17, 1, 19885436, 'PRUEBA', 'TEST', '1990-12-08', 1);
+INSERT INTO `dat_per` (`cod_per`, `cod_nac`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`) VALUES
+(13, 2, 24217518, 'ESPERANZA CLAHRIZ', 'GARANTON ROMERO', '1995-06-11', 2),
+(14, 1, 19885430, 'VICTOR', 'GARANTON', '1990-01-04', 1),
+(15, 1, 24217513, 'ELIZABETH', 'GARANTON', '1995-12-30', 2),
+(16, 1, 19885429, 'DEIFER', 'GARANTON', '1990-12-08', 1),
+(17, 1, 24217511, 'EMIBELL', 'ROMERO', '1995-08-15', 2),
+(18, 1, 24214445, 'AMITA', 'AMITA', '1995-08-15', 2);
 
 -- --------------------------------------------------------
 
@@ -145,11 +148,28 @@ CREATE TABLE `dat_per_tec` (
 
 CREATE TABLE `dat_usr` (
   `cod_usr` int(11) NOT NULL,
-  `cod_per` int(11) NOT NULL,
   `des_usr` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `clave` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `cod_perf` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='datos de usuario';
+
+--
+-- Volcado de datos para la tabla `dat_usr`
+--
+
+INSERT INTO `dat_usr` (`cod_usr`, `des_usr`, `clave`, `cod_perf`) VALUES
+(1, 'DGARANTON', '123456', 1),
+(3, 'DGARANTOAA', '123456', 1),
+(5, 'DGARANTOAAA', '123456', 1),
+(6, 'EROMERO', '123456', 1),
+(7, 'DGAR', '123', 1),
+(8, 'FALLLLL', '1', 1),
+(9, 'DDDDDDD', '12', 1),
+(10, 'BBBBBBBBBBBBBB', '1', 1),
+(11, 'QQQQQQ', '12', 1),
+(12, 'QWWWWWW', '12', 1),
+(13, 'RRRRRRRR', '12', 2),
+(15, 'DGARANTONH', '111', 1);
 
 -- --------------------------------------------------------
 
@@ -347,6 +367,25 @@ CREATE TABLE `tab_inst` (
 INSERT INTO `tab_inst` (`cod_inst`, `des_inst`, `siglas`) VALUES
 (1, 'Ministerio del Poder Popular Para los Pueblos Indí', 'MINPPPI'),
 (2, 'Ministerio de Juventud y Deporte', 'MINDEP');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tab_nac`
+--
+
+CREATE TABLE `tab_nac` (
+  `cod_nac` int(2) NOT NULL,
+  `des_nac` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tab_nac`
+--
+
+INSERT INTO `tab_nac` (`cod_nac`, `des_nac`) VALUES
+(1, 'Venezolana'),
+(2, 'Extranjera');
 
 -- --------------------------------------------------------
 
@@ -551,7 +590,8 @@ ALTER TABLE `dat_par`
 ALTER TABLE `dat_per`
   ADD PRIMARY KEY (`cod_per`),
   ADD UNIQUE KEY `ced` (`ced`),
-  ADD KEY `des_gen` (`cod_gen`);
+  ADD KEY `des_gen` (`cod_gen`),
+  ADD KEY `nac` (`cod_nac`);
 
 --
 -- Indices de la tabla `dat_per_tec`
@@ -568,7 +608,6 @@ ALTER TABLE `dat_per_tec`
 ALTER TABLE `dat_usr`
   ADD PRIMARY KEY (`cod_usr`),
   ADD UNIQUE KEY `des_usr` (`des_usr`),
-  ADD KEY `per_id` (`cod_per`),
   ADD KEY `cod_perf` (`cod_perf`);
 
 --
@@ -624,6 +663,12 @@ ALTER TABLE `tab_inst`
   ADD PRIMARY KEY (`cod_inst`);
 
 --
+-- Indices de la tabla `tab_nac`
+--
+ALTER TABLE `tab_nac`
+  ADD PRIMARY KEY (`cod_nac`);
+
+--
 -- Indices de la tabla `tab_perf`
 --
 ALTER TABLE `tab_perf`
@@ -663,31 +708,31 @@ ALTER TABLE `tab_tip_even`
 -- AUTO_INCREMENT de la tabla `dat_even`
 --
 ALTER TABLE `dat_even`
-  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_inv`
 --
 ALTER TABLE `dat_inv`
-  MODIFY `cod_inv` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_inv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_par`
 --
 ALTER TABLE `dat_par`
-  MODIFY `cod_par` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_par` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per`
 --
 ALTER TABLE `dat_per`
-  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_usr`
 --
 ALTER TABLE `dat_usr`
-  MODIFY `cod_usr` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_usr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_carg`
@@ -736,6 +781,12 @@ ALTER TABLE `tab_gen`
 --
 ALTER TABLE `tab_inst`
   MODIFY `cod_inst` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tab_nac`
+--
+ALTER TABLE `tab_nac`
+  MODIFY `cod_nac` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_perf`
@@ -807,7 +858,8 @@ ALTER TABLE `dat_par`
 -- Filtros para la tabla `dat_per`
 --
 ALTER TABLE `dat_per`
-  ADD CONSTRAINT `dat_per_ibfk_1` FOREIGN KEY (`cod_gen`) REFERENCES `tab_gen` (`cod_gen`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `dat_per_ibfk_1` FOREIGN KEY (`cod_gen`) REFERENCES `tab_gen` (`cod_gen`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `dat_per_ibfk_2` FOREIGN KEY (`cod_nac`) REFERENCES `tab_nac` (`cod_nac`);
 
 --
 -- Filtros para la tabla `dat_per_tec`
@@ -821,7 +873,6 @@ ALTER TABLE `dat_per_tec`
 -- Filtros para la tabla `dat_usr`
 --
 ALTER TABLE `dat_usr`
-  ADD CONSTRAINT `dat_usr_ibfk_1` FOREIGN KEY (`cod_per`) REFERENCES `dat_per` (`cod_per`),
   ADD CONSTRAINT `dat_usr_ibfk_2` FOREIGN KEY (`cod_perf`) REFERENCES `tab_perf` (`cod_perf`);
 
 --

@@ -12,7 +12,7 @@ require_once "./controllers/medicoControlador.php";
             <input class="form-control mr-sm-2" id="filtrar" type="text" placeholder="Buscar" aria-label="Buscar">
             <span class="navbar-brand" id="brand1">Medicos</span>
         </form>
-        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarMedico/'">Registrar</button>
+        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>regMedico/'">Registrar</button>
     </nav>
     <!-- Tabla -->
     <div class="table-wrapper-scroll-y my-custom-scrollbar" >
