@@ -158,3 +158,14 @@ th {
     background-color: #255b99;
     color: #ffffff;
 }
+
+
+
+ .tab-pane {
+    padding:20px;
+}
+
+
+ #regiration_form {fieldset:not(:first-of-type) {
+    display: none;}
+

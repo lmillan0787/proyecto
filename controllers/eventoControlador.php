@@ -65,7 +65,7 @@ class eventoControlador extends eventoModelo
             "cod_even" => $cod_even
         ];
         $eliminarEvento = eventoModelo::eliminar_evento($datosEvento);
-        if ($eliminarEvento->rowCount() >= 1) {
+        if ($eliminarEvento==1) {
             $alerta = [
                 "Alerta" => "simpleEventos",
                 "Titulo" => "Borrado Exitoso",
@@ -174,6 +174,7 @@ class eventoControlador extends eventoModelo
         }
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
     public function editar_evento()
     {
         $row = eventoModelo::consultar_evento();
@@ -182,4 +183,8 @@ class eventoControlador extends eventoModelo
          
         return $row;
     }
+=======
+
+>>>>>>> aeaf42768a76951059e9c19df36c5b7d192892c1
 }
+asfd
