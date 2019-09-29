@@ -10,7 +10,7 @@ class medicoControlador extends medicoModelo{
     
     public function agregar_deportista_controlador()
     {
-        $nac = mainModel::limpiar_cadena($_POST['nac']);
+        $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $nom = mainModel::limpiar_cadena($_POST['nom']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
@@ -27,7 +27,7 @@ class medicoControlador extends medicoModelo{
             ];
         } else {
             $datosDeportista = [
-                "nac" => $nac,
+                "cod_nac" => $cod_nac,
                 "ced" => $ced,
                 "nom" => $nom,
                 "ape" => $ape,
@@ -59,10 +59,10 @@ class medicoControlador extends medicoModelo{
         
         $row=medicoModelo::consultar_medico();
         foreach ($row as $row) {
-            if ($row['nac'] == 1) {
-                $row['nac'] = 'Venezolano';
+            if ($row['cod_nac'] == 1) {
+                $row['cod_nac'] = 'Venezolano';
             } else {
-                $row['nac'] = 'Extranjero';
+                $row['cod_nac'] = 'Extranjero';
             }
             echo '
             <tr>

@@ -8,10 +8,10 @@ require_once "./controllers/deportistaControlador.php";
    <!-- Barra de busqueda y boton -->
     <nav class="navbar navbar-dark unique-color">
         <form class="form-inline">            
-            <input class="form-control mr-sm-2" id="filtrar" type="text" placeholder="Buscar" aria-label="Buscar">
+            
             <span class="navbar-brand" id="brand1">Deportistas</span>
         </form>        
-        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>regDeportista/'">Registrar</button>
+        <button class="btn btn-info btn-md" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarDeportista/'">Registrar</button>
     </nav> 
     <!-- Tabla -->
     <div class="table-wrapper-scroll-y my-custom-scrollbar" >

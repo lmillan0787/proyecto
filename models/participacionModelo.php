@@ -30,7 +30,7 @@ class participacionModelo extends mainModel
     }
     protected function editar_participacion($datos){
         $editarParticipacion = mainModel::conectar()->prepare("UPDATE dat_par SET (nac=:nac, ced=:ced, nom=:nom, ape=:ape, fec_nac=:fec_nac, cod_gen=cod_gen) WHERE cod_per=:cod_per");
-       $editarParticipacion->bindParam(":nac", $datos['nac']);
+       $editarParticipacion->bindParam(":cod_nac", $datos['cod_nac']);
        $editarParticipacion->bindParam(":ced", $datos['ced']);
        $editarParticipacion->bindParam(":nom", $datos['nom']);
        $editarParticipacion->bindParam(":ape", $datos['ape']);

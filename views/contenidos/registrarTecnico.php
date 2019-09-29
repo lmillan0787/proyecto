@@ -2,7 +2,7 @@
 $peticionAjax = false;
 include "./controllers/tecnicoControlador.php";
 $insTecnico= new tecnicoControlador();
-session_start();
+
 ?>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
@@ -17,6 +17,7 @@ session_start();
     </li>
 </ul>
 <!-- Tab panes -->
+<header>  <Center><h1>Registro de Técnicos</h1></Center></header> 
 <div class="tab-content">
     <div class="tab-pane container active" id="basicos"><div class="card" id="form_ini">
         <h5 class="card-header info-color white-text text-center py-4">
@@ -99,11 +100,15 @@ session_start();
             <div class="card-body px-lg-5">
                 
                 <!-- Codigo de Perfil -->
+                
                 <div class="form-group">
+                <label for="textInput">Rol:</label>
                     <div class="col-sm-15">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-clipboard-list prefix grey-text"></i></span>
                         <?php $insTecnico->consultarPerfil(); ?>
                     </div>
-                    <div>
+                    
                     </div>
                 </div>
                 
@@ -117,17 +122,30 @@ session_start();
                     <!--Formulario de inicio-->
                     <div class="card-body px-lg-5">
                         
-                        <!-- Codigo de Perfil -->
+                        <!-- Codigo de Cargo -->
                         <div class="form-group">
+                        <label for="textInput">Cargo:</label>
                             <div class="col-sm-15">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-toolbox prefix grey-text"></i></span>
                                 <?php $insTecnico->consultarCargo(); ?>
                             </div>
-                            <div class="col-sm-15">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label for="textInput">Institución:</label>
+                        <div class="col-sm-15">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-university prefix grey-text"></i></span>
                                 <?php $insTecnico->consultarInstitucion(); ?>
                             </div>
-                            <div>
-                            </div>
                         </div>
+                      </div>
+                        <div>
                         <button class="btn btn-info btn-block" type="submit">Registrar</button>
+                        </div>
                         <div class="RespuestaAjax"></div>
-                    </div></div> </div>
+                    </div>
+                </div> 
+            </div>
+</form>

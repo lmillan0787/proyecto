@@ -24,10 +24,6 @@
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="<?php echo SERVERURL ?>tecnicos/">Personal Técnico</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="<?php echo SERVERURL ?>">Usuarios</a>
-      </li>
       <li class="nav-item ">
         <a class="nav-link" href="<?php echo SERVERURL ?>participacion/">Participación</a>
       </li>

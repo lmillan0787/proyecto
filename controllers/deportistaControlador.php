@@ -10,11 +10,11 @@ class deportistaControlador extends deportistaModelo
 {
     public function agregar_deportista_controlador()
     {
-        $nac = mainModel::limpiar_cadena($_POST['nac']);
+        $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $nom = mainModel::limpiar_cadena($_POST['nom']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
-        $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
+        $fec_cod_nac = mainModel::limpiar_cadena($_POST['fec_cod_nac']);
         $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
 
         $validarCedula = deportistaModelo::validar_cedula($ced);
@@ -27,11 +27,11 @@ class deportistaControlador extends deportistaModelo
             ];
         } else {
             $datosDeportista = [
-                "nac" => $nac,
+                "cod_nac" => $cod_nac,
                 "ced" => $ced,
                 "nom" => $nom,
                 "ape" => $ape,
-                "fec_nac" => $fec_nac,
+                "fec_cod_nac" => $fec_cod_nac,
                 "cod_gen" => $cod_gen
             ];
             $guardarDeportista = deportistaModelo::agregar_deportista($datosDeportista);
@@ -59,10 +59,10 @@ class deportistaControlador extends deportistaModelo
         
         $row=deportistaModelo::consultar_deportista();
         foreach ($row as $row) {
-            if ($row['nac'] == 1) {
-                $row['nac'] = 'Venezolano';
+            if ($row['cod_nac'] == 1) {
+                $row['cod_nac'] = 'Venezolano';
             } else {
-                $row['nac'] = 'Extranjero';
+                $row['cod_nac'] = 'Extranjero';
             }
             echo '
             <tr>

@@ -10,7 +10,7 @@ class tecnicoControlador extends tecnicoModelo
 {
     public function agregar_tecnico_controlador()
     {
-        $nac = mainModel::limpiar_cadena($_POST['cod_per']);
+        $cod_nac = mainModel::limpiar_cadena($_POST['cod_per']);
         $ced = mainModel::limpiar_cadena($_POST['cod_even']);
         $nom = mainModel::limpiar_cadena($_POST['cod_perf']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
@@ -55,11 +55,7 @@ class tecnicoControlador extends tecnicoModelo
         
         $row=tecnicoModelo::consultar_tecnico();
         foreach ($row as $row) {
-            if ($row['nac'] == 1) {
-                $row['nac'] = 'Venezolano';
-            } else {
-                $row['nac'] = 'Extranjero';
-            }
+           
             echo '
             <tr>
                 <td>'.$row['ced'].'</td>
@@ -69,9 +65,25 @@ class tecnicoControlador extends tecnicoModelo
                 <td>'.$row['fec_even'].'</td>
                 <td>'.$row['des_inst'].'</td>
                 <td>'.$row['des_even'].'</td>
-                <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="../regtecnico.php?nom='.$row['nom'].'">Ver</a></button></td>
-                <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit" ><a href="act_dep.php?cod_per='.$row['cod_per'].'">Editar</a></button></td>
-            </tr>';
+                <td><form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
+                <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                <button type="submit" class="btn btn-info btn-md">
+                    <i class="far fa-edit fa-2x"></i>
+                </button>
+            </form>    
+        </td>    
+    
+        <td>
+            <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
+                <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                <button type="submit" class="btn btn-danger btn-md">
+                    <i class="far fa-trash-alt fa-2x"></i>                            
+                </button>
+                <div class="RespuestaAjax"></div>
+            </form>
+        </td>                                                        
+        </tr>'
+            ;
         }
         return $row;
     }
