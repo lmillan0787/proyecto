@@ -68,15 +68,15 @@ class eventoControlador extends eventoModelo
         if ($eliminarEvento->rowCount() >= 1) {
             $alerta = [
                 "Alerta" => "simpleEventos",
-                "Titulo" => "Registro Exitoso",
-                "Texto" => "Evento Creado exitosamente",
+                "Titulo" => "Borrado Exitoso",
+                "Texto" => "Evento eliminado del sistema exitosamente",
                 "Tipo" => "success"
             ];
         } else {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrió un error inesperado",
-                "Texto" => "Error al crear evento",
+                "Texto" => "Error al eliminar el evento",
                 "Tipo" => "error"
             ];
         }
@@ -166,6 +166,7 @@ class eventoControlador extends eventoModelo
                     <button type="submit" class="btn btn-danger btn-md">
                         <i class="far fa-trash-alt fa-2x"></i>
                     </button>
+                    <div class="RespuestaAjax"></div>
                 </form>
             </td>
         </tr>   
@@ -178,7 +179,7 @@ class eventoControlador extends eventoModelo
         $row = eventoModelo::consultar_evento();
         $consultaEvento = mainModel::ejecutar_consulta_simple("SELECT * FROM dat_even WHERE cod_even='$cod_even'");
         $row = $consultaEvento->fetchAll(PDO::FETCH_ASSOC);
-        
+         
         return $row;
     }
 }

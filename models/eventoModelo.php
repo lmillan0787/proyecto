@@ -24,9 +24,9 @@
             return $row;
         }
         protected function eliminar_evento($datos){
-            $sqle=mainModel::conectar()->prepare("DELETE FROM dat_even WHERE cod_even=:cod_even");
-            $sqle->bindParam(":cod_even",$datos['cod_even']);
-            $sqle->execute();
-            return $sqle;
+            $sql=mainModel::conectar()->prepare("DELETE FROM dat_even WHERE cod_even=:cod_even");
+            $sql->bindParam(":cod_even",$datos['cod_even']);
+            $sql->execute();
+            return $sql;
         }
     }

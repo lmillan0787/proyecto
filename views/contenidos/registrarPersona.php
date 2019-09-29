@@ -34,10 +34,10 @@ $(document).ready(function() {
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
                 </div>
-                <select class="browser-default custom-select" id="inputGroupSelect01" name="nac" required>
+                <select class="browser-default custom-select" id="inputGroupSelect01" name="cod_nac" required>
                     <option value="">Nacionalidad</option>
-                    <option value="1">Venezolan@</option>
-                    <option value="0">Extrajer@</option>
+                    <option value="1">Venezolana</option>
+                    <option value="2">Extranjera</option>
                 </select>
             </div>
             <!-- Cédula-->

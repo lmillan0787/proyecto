@@ -22,8 +22,7 @@ require_once "./controllers/personaControlador.php";
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Genero</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Ver</th>
+                <th scope="col">Edad</th>                
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>

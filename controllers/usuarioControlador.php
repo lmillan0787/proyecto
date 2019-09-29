@@ -1,15 +1,15 @@
 <?php
 
 if ($peticionAjax) {
-    require_once "../models/personaModelo.php";
+    require_once "../models/usuarioModelo.php";
 } else {
-    require_once "./models/personaModelo.php";
+    require_once "./models/usuarioModelo.php";
 }
 
-class personaControlador extends personaModelo
+class usuarioControlador extends usuarioModelo
 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function agregar_persona_controlador()
+    public function agregar_usuario_controlador()
     {
         $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
         $ced = mainModel::limpiar_cadena($_POST['ced']);
@@ -18,7 +18,7 @@ class personaControlador extends personaModelo
         $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
         $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
 
-        $validarCedula = personaModelo::validar_cedula_modelo($ced);
+        $validarCedula = usuarioModelo::validar_cedula_modelo($ced);
         if ($validarCedula->rowCount() >= 1) {
             $alerta = [
                 "Alerta" => "simple",
@@ -27,7 +27,7 @@ class personaControlador extends personaModelo
                 "Tipo" => "error"
             ];
         } else {
-            $datosPersona = [
+            $datosUsuario = [
                 "cod_nac" => $cod_nac,
                 "ced" => $ced,
                 "nom" => $nom,
@@ -35,20 +35,20 @@ class personaControlador extends personaModelo
                 "fec_nac" => $fec_nac,
                 "cod_gen" => $cod_gen
             ];
-            $guardarPersona = personaModelo::agregar_persona_modelo($datosPersona);
+            $guardarUsuario = usuarioModelo::agregar_usuario_modelo($datosUsuario);
 
-            if ($guardarPersona->rowCount() >= 1) {
+            if ($guardarUsuario->rowCount() >= 1) {
                 $alerta = [
-                    "Alerta" => "simplePersona",
+                    "Alerta" => "simpleUsuario",
                     "Titulo" => "",
-                    "Texto" => "Persona registrada exitosamente",
+                    "Texto" => "Usuario registrada exitosamente",
                     "Tipo" => "success"
                 ];
             } else {
                 $alerta = [
                     "Alerta" => "simple",
                     "Titulo" => "Ocurrió un error inesperado",
-                    "Texto" => "Error al registrar persona",
+                    "Texto" => "Error al registrar usuario",
                     "Tipo" => "error"
                 ];
             }
@@ -56,9 +56,9 @@ class personaControlador extends personaModelo
         return mainModel::sweet_alert($alerta);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function tabla_persona()
+    public function tabla_usuario()
     {
-        $row = personaModelo::consultar_persona_modelo();
+        $row = usuarioModelo::consultar_usuario_modelo();
         foreach ($row as $row) {
             echo '
             <tr>
@@ -70,7 +70,7 @@ class personaControlador extends personaModelo
                 <td>' . $row['des_gen'] . '</td>
                 <td>' . $row['edad'] . '</td>                
                 <td>
-                    <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
+                    <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                         <button type="submit" class="btn btn-info btn-md">
                             <i class="far fa-edit fa-2x"></i>
@@ -79,7 +79,7 @@ class personaControlador extends personaModelo
                 </td>    
             
                 <td>
-                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
+                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarUsuarioAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                         <button type="submit" class="btn btn-danger btn-md">
                             <i class="far fa-trash-alt fa-2x"></i>                            
@@ -92,12 +92,12 @@ class personaControlador extends personaModelo
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function consultar_persona2()
+    public function consultar_usuario2()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
 
-        $consultaPersona = mainModel::ejecutar_consulta_simple("SELECT a.*, b.*, c.* FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac WHERE cod_per=$cod_per");
-        $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
+        $consultaUsuario = mainModel::ejecutar_consulta_simple("SELECT a.*, b.*, c.* FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac WHERE cod_per=$cod_per");
+        $row = $consultaUsuario->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($row as $row) {
 
@@ -110,7 +110,7 @@ class personaControlador extends personaModelo
             </h5>
             <!--Formulario de inicio-->
             <div class="card-body px-lg-5">
-                <form class="FormularioAjax" action="'.SERVERURL.'ajax/editarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+                <form class="FormularioAjax" action="'.SERVERURL.'ajax/editarUsuarioAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                     <div class="text-center">
                     </div>
@@ -180,7 +180,7 @@ class personaControlador extends personaModelo
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function editar_persona_controlador()
+    public function editar_usuario_controlador()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
         $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
@@ -190,7 +190,7 @@ class personaControlador extends personaModelo
         $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
         $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
 
-        $datosPersona = [
+        $datosUsuario = [
             "cod_per" => $cod_per,
             "cod_nac" => $cod_nac,
             "ced" => $ced,
@@ -199,50 +199,60 @@ class personaControlador extends personaModelo
             "fec_nac" => $fec_nac,
             "cod_gen" => $cod_gen
         ];
-        $editarPersona = personaModelo::editar_persona_modelo($datosPersona);
+        $editarUsuario = usuarioModelo::editar_usuario_modelo($datosUsuario);
         
-        if ($editarPersona->rowCount() >= 1) {
+        if ($editarUsuario->rowCount() >= 1) {
             $alerta = [
-                "Alerta" => "simplePersona",
+                "Alerta" => "simpleUsuario",
                 "Titulo" => "",
-                "Texto" => "Persona actualizada exitosamente",
+                "Texto" => "Usuario actualizada exitosamente",
                 "Tipo" => "success"
             ];
         } else {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrió un error inesperado",
-                "Texto" => "Error al actualizar persona",
+                "Texto" => "Error al actualizar usuario",
                 "Tipo" => "error"
             ];
         }
         return mainModel::sweet_alert($alerta);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function eliminar_persona_controlador()
+    public function eliminar_usuario_controlador()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
 
-        $datosPersona = [
+        $datosUsuario = [
             "cod_per" => $cod_per
         ];
-        $eliminarPersona = personaModelo::eliminar_persona_modelo($datosPersona);
+        $eliminarUsuario = usuarioModelo::eliminar_usuario_modelo($datosUsuario);
 
-        if ($eliminarPersona->rowCount() >= 1) {
+        if ($eliminarUsuario->rowCount() >= 1) {
             $alerta = [
-                "Alerta" => "simplePersona",
+                "Alerta" => "simpleUsuario",
                 "Titulo" => "",
-                "Texto" => "Persona eliminada del sistema exitosamente",
+                "Texto" => "Usuario eliminada del sistema exitosamente",
                 "Tipo" => "success"
             ];
         } else {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrió un error inesperado",
-                "Texto" => "Error al registrar persona",
+                "Texto" => "Error al registrar usuario",
                 "Tipo" => "error"
             ];
         }
         return mainModel::sweet_alert($alerta);
+    }
+    public function formulario_usuario()
+    {
+        $consultaEdo = mainModel::ejecutar_consulta_simple("SELECT * FROM tab_perf WHERE cod_rol='1'");
+        $row = $consultaEdo->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($row as $row) {
+
+            echo '<option value="' . $row['cod_perf'] . '">' . $row['des_perf'] . '</option>';
+        }
+        return $row;
     }
 }
