@@ -13,7 +13,7 @@ require_once "./controllers/invitadoControlador.php";
             <input class="form-control mr-sm-2" id="filtrar" type="text" placeholder="Buscar" aria-label="Buscar">
             <span class="navbar-brand" id="brand1">Invitados</span>
         </form>        
-        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>regInvitado/'">Registrar</button>
+        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarInvitado/'">Registrar</button>
     </nav> 
     
     <!-- Tabla -->
@@ -28,8 +28,8 @@ require_once "./controllers/invitadoControlador.php";
                     <th scope="col">Cédula</th>
                     <th scope="col">Genero</th>                   
                     <th scope="col">Edad</th>                    
-                    
                     <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody class="buscar">

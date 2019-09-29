@@ -2,7 +2,7 @@
 
     class vistasModelo{
         protected function obtener_vistas_modelo($vistas){
-            $listaBlanca = ["home","eventos","editarEvento","registrarEvento","registrarUsuario","deportistas","delegados","medicos","invitados","pertec","reg_usr","principal","personas","registrarPersona","editarPersona","usuarios","regDeportista","vistaPrueba","regDelegado","regMedico","regInvitado","regInvitadoE","participacion","regParticipacion","tecnicos","registrarTecnico"];
+            $listaBlanca = ["home","eventos","editarEvento","registrarEvento","registrarUsuario","deportistas","delegados","medicos","invitados","pertec","reg_usr","principal","personas","registrarPersona","editarPersona","usuarios","registrarDeportista","vistaPrueba","registrarDelegado","registrarMedico","registrarInvitado","regInvitadoE","participacion","registrarParticipacion","tecnicos","registrarTecnico"];
             if(in_array($vistas, $listaBlanca)){
                 if(is_file("./views/contenidos/".$vistas.".php")){
                     $contenido="./views/contenidos/".$vistas.".php";
