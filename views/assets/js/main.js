@@ -38,7 +38,7 @@ $('.FormularioAjax').submit(function(e) {
             data: formdata ? formdata : form.serialize(),
             cache: false,
             contentType: false,
-            processData: false,
+            processData: false,            
             xhr: function() {
                 var xhr = new window.XMLHttpRequest();
                 xhr.upload.addEventListener("progress", function(evt) {

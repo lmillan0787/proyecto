@@ -7,7 +7,8 @@ if ($peticionAjax) {
 class mainModel
 {
     //conexion a la base de datos
-    protected function conectar(){
+    protected function conectar()
+    {
 
         try {
             $enlace = new PDO(SGDB, USER, PASS);
@@ -17,17 +18,18 @@ class mainModel
         return $enlace;
     }
     //consulta simple
-    protected function ejecutar_consulta_simple($consulta){
+    protected function ejecutar_consulta_simple($consulta)
+    {
 
         $respuesta = self::conectar()->prepare($consulta);
         $respuesta->execute();
         return $respuesta;
-    }  
-    
+    }
+
 
     //encryptar datos
-    protected function encryption($string){
-
+    protected function encryption($string)
+    {
         $output = FALSE;
         $key = hash('sha256', SECRET_KEY);
         $iv = substr(hash('sha256', SECRET_IV), 0, 16);
@@ -35,7 +37,8 @@ class mainModel
         return $output;
     }
     //desencriptar datos
-    protected function description($string){
+    protected function description($string)
+    {
 
         $key = hash('sha256', SECRET_KEY);
         $iv = substr(hash('sha256', SECRET_IV), 0, 16);
@@ -43,7 +46,8 @@ class mainModel
         return $output;
     }
     //funcion para crear numero aleatorios
-    protected function generar_codigo_aleatorio($letra, $longitud, $num){
+    protected function generar_codigo_aleatorio($letra, $longitud, $num)
+    {
 
         for ($i = 1; $i <= $longitud; $i++) {
             $numero = rad(0, 9);
@@ -52,7 +56,8 @@ class mainModel
         return $letra . $num;
     }
     //proteger de iyecciones SQL
-    protected function limpiar_cadena($cadena){
+    protected function limpiar_cadena($cadena)
+    {
 
         $cadena = trim($cadena);
         $cadena = stripslashes($cadena);
@@ -72,7 +77,8 @@ class mainModel
         return $cadena;
     }
 
-    protected function sweet_alert($datos){
+    protected function sweet_alert($datos)
+    {
 
         if ($datos['Alerta'] == "simple") {
             $alerta = "
@@ -131,7 +137,21 @@ class mainModel
                             window.location='" . SERVERURL . "eventos/';
                         });
                     </script>
-                ";            
-        }return $alerta;
+                ";
+        } else if ($datos['Alerta'] == "simpleUsuarios") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "usuarios/';
+                        });
+                    </script>
+                ";
+            
+        }
+        return $alerta;
     }
 }

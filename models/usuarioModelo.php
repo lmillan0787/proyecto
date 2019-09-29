@@ -10,19 +10,16 @@ class usuarioModelo extends mainModel
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function agregar_usuario_modelo($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_per(cod_nac,ced,nom,ape,fec_nac,cod_gen) VALUES (:cod_nac,:ced,:nom,:ape,:fec_nac,:cod_gen)");
-        $sql->bindParam(":cod_nac", $datos['cod_nac']);
-        $sql->bindParam(":ced", $datos['ced']);
-        $sql->bindParam(":nom", $datos['nom']);
-        $sql->bindParam(":ape", $datos['ape']);
-        $sql->bindParam(":fec_nac", $datos['fec_nac']);
-        $sql->bindParam(":cod_gen", $datos['cod_gen']);
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_usr(des_usr,clave,cod_perf) VALUES (:des_usr,:clave,:cod_perf)");
+        $sql->bindParam(":des_usr", $datos['des_usr']);
+        $sql->bindParam(":clave", $datos['clave']);
+        $sql->bindParam(":cod_perf", $datos['cod_perf']);        
         $sql->execute();
         return $sql;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultar_usuario_modelo(){
-        $consultaUsuario = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac");
+        $consultaUsuario = mainModel::conectar()->prepare("SELECT * FROM dat_usr");
         $consultaUsuario->execute();
         $row = $consultaUsuario->fetchAll(PDO::FETCH_ASSOC);
         return $row;
@@ -53,5 +50,6 @@ class usuarioModelo extends mainModel
         $eliminarUsuario->execute();
         return $eliminarUsuario;
     }
+    
 
 }

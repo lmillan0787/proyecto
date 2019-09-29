@@ -1,7 +1,7 @@
 <?php
 
     $peticionAjax = false;
-    require_once "./controllers/personaControlador.php";
+    require_once "./controllers/usuarioControlador.php";
 
 ?>
 <!-- Barra de busqueda y boton -->

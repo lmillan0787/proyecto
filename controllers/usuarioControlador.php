@@ -11,35 +11,34 @@ class usuarioControlador extends usuarioModelo
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function agregar_usuario_controlador()
     {
-        $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
         $ced = mainModel::limpiar_cadena($_POST['ced']);
-        $nom = mainModel::limpiar_cadena($_POST['nom']);
-        $ape = mainModel::limpiar_cadena($_POST['ape']);
-        $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
-        $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
+        $des_usr = mainModel::limpiar_cadena($_POST['des_usr']);
+        $clave = mainModel::limpiar_cadena($_POST['clave']);
+        $repClave = mainModel::limpiar_cadena($_POST['repClave']);
+        $cod_rol = mainModel::limpiar_cadena($_POST['cod_rol']);
+        $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
+        
 
-        $validarCedula = usuarioModelo::validar_cedula_modelo($ced);
-        if ($validarCedula->rowCount() >= 1) {
+        /*$validarCedula = usuarioModelo::validar_cedula_modelo($ced);*/
+        
+        if ($clave != $repClave) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrio un error inesperado",
-                "Texto" => "La cédula que intenta ingresar ya se encuentra registrada en el sistema",
+                "Texto" => "Las claves que intenta ingresar no coinciden",
                 "Tipo" => "error"
             ];
         } else {
-            $datosUsuario = [
-                "cod_nac" => $cod_nac,
-                "ced" => $ced,
-                "nom" => $nom,
-                "ape" => $ape,
-                "fec_nac" => $fec_nac,
-                "cod_gen" => $cod_gen
+            $datosUsuario = [                              
+                "des_usr" => $des_usr,
+                "clave" => $clave,
+                "cod_perf" => $cod_perf
             ];
             $guardarUsuario = usuarioModelo::agregar_usuario_modelo($datosUsuario);
 
             if ($guardarUsuario->rowCount() >= 1) {
                 $alerta = [
-                    "Alerta" => "simpleUsuario",
+                    "Alerta" => "simpleUsuarios",
                     "Titulo" => "",
                     "Texto" => "Usuario registrada exitosamente",
                     "Tipo" => "success"
@@ -62,16 +61,12 @@ class usuarioControlador extends usuarioModelo
         foreach ($row as $row) {
             echo '
             <tr>
-                <td>' . $row['cod_per'] . '</td>
-                <td>' . $row['des_nac'] . '</td>
-                <td>' . $row['ced'] . '</td>
-                <td>' . $row['nom'] . '</td>
-                <td>' . $row['ape'] . '</td>
-                <td>' . $row['des_gen'] . '</td>
-                <td>' . $row['edad'] . '</td>                
+                <td>' . $row['cod_usr'] . '</td>
+                <td>' . $row['des_usr'] . '</td>
+                <td>' . $row['clave'] . '</td>                               
                 <td>
                     <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
                         <button type="submit" class="btn btn-info btn-md">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
@@ -80,7 +75,7 @@ class usuarioControlador extends usuarioModelo
             
                 <td>
                     <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarUsuarioAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
                         <button type="submit" class="btn btn-danger btn-md">
                             <i class="far fa-trash-alt fa-2x"></i>                            
                         </button>

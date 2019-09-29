@@ -201,7 +201,7 @@ class personaControlador extends personaModelo
         ];
         $editarPersona = personaModelo::editar_persona_modelo($datosPersona);
         
-        if ($editarPersona->rowCount() >= 1) {
+        if ($editarPersona = true) {
             $alerta = [
                 "Alerta" => "simplePersona",
                 "Titulo" => "",
