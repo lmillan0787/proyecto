@@ -10,7 +10,7 @@ class participacionControlador extends participacionModelo
 {
     public function agregar_participacion_controlador()
     {
-        $nac = mainModel::limpiar_cadena($_POST['cod_per']);
+        $cod_nac = mainModel::limpiar_cadena($_POST['cod_per']);
         $ced = mainModel::limpiar_cadena($_POST['cod_even']);
         $nom = mainModel::limpiar_cadena($_POST['cod_perf']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
@@ -26,7 +26,7 @@ class participacionControlador extends participacionModelo
             ];
         } else {
             $datosParticipacion = [
-                "nac" => $cod_per,
+                "cod_nac" => $cod_per,
                 "ced" => $cod_even,
                 "nom" => $cod_perf,
                 

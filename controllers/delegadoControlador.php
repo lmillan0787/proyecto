@@ -10,7 +10,7 @@ class delegadoControlador extends delegadoModelo
 {
     public function agregar_deportista_controlador()
     {
-        $nac = mainModel::limpiar_cadena($_POST['nac']);
+        $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $nom = mainModel::limpiar_cadena($_POST['nom']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
@@ -27,7 +27,7 @@ class delegadoControlador extends delegadoModelo
             ];
         } else {
             $datosDeportista = [
-                "nac" => $nac,
+                "cod_nac" => $cod_nac,
                 "ced" => $ced,
                 "nom" => $nom,
                 "ape" => $ape,
@@ -59,10 +59,10 @@ class delegadoControlador extends delegadoModelo
         
         $row=delegadoModelo::consultar_delegado();
         foreach ($row as $row) {
-            if ($row['nac'] == 1) {
-                $row['nac'] = 'Venezolano';
+            if ($row['cod_nac'] == 1) {
+                $row['cod_nac'] = 'Venezolano';
             } else {
-                $row['nac'] = 'Extranjero';
+                $row['cod_nac'] = 'Extranjero';
             }
             echo '
             <tr>
@@ -73,7 +73,24 @@ class delegadoControlador extends delegadoModelo
                     <td>'.$row['des_gen'].'</td>
                     <td>'.$row['des_reg'].'</td>
                     <td>'.$row['edad'].'</td>
-                    <td><button class="btn btn-success btn-md my-2 my-sm-0 ml-3" type="submit"><a href="act_dep.php?cod_per='.$row['cod_per'].'">Editar</a></button></td>                                                        
+                    <td>
+                    <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
+                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                        <button type="submit" class="btn btn-info btn-md">
+                            <i class="far fa-edit fa-2x"></i>
+                        </button>
+                    </form>    
+                </td>    
+            
+                <td>
+                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
+                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                        <button type="submit" class="btn btn-danger btn-md">
+                            <i class="far fa-trash-alt fa-2x"></i>                            
+                        </button>
+                        <div class="RespuestaAjax"></div>
+                    </form>
+                </td>                                                                
                 </tr>';
         }
         return $row;

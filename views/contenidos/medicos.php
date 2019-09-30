@@ -26,6 +26,7 @@ require_once "./controllers/medicoControlador.php";
                     <th scope="col">Apellido</th>
                     <th scope="col">Género</th>
                     <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody class="buscar">

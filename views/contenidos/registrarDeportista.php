@@ -3,21 +3,19 @@ $peticionAjax = false;
 include "./controllers/deportistaControlador.php";
 $insDeportista= new deportistaControlador();
 ?>
-<div>
-    <center><h1>Registro de Deportista</h1></center>
-</div>
-<form id="form" action="<?php echo SERVERURL ?>ajax/personaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
-    <div class="accordion" id="accordionExample">
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Datos Básicos
-                </button>
-                </h5>
-            </div>
-            
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos Básicos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Datos de Participación</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Datos de Delegación</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"> <div class="card">
                 <div class="card-body">
                     <div class="card" id="form_ini">
                         <h5 class="card-header info-color white-text text-center py-4">
@@ -81,24 +79,12 @@ $insDeportista= new deportistaControlador();
                                     <option value="2">Femenino</option>
                                 </select>
                             </div>
-                            <div>
-                                <center><input type="submit" class="btn btn-primary" value="Registrar"></center>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Datos de Participación
-                </button>
-                </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
+        
+        </div></div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div class="card-body">
                     <div class="card" id="form_ini">
                         <h5 class="card-header info-color white-text text-center py-4">
                         <strong>Datos de Participación</strong>
@@ -127,25 +113,11 @@ $insDeportista= new deportistaControlador();
                                 <div class="col-sm-15">
                                     <?php $insDeportista->consultarEvento();?>
                                 </div>
-                                <div>
-                                    <center><input type="submit" class="btn btn-primary" value="Registrar"></center>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Datos de Delegación/Disicplina
-                </button>
-                </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div class="card-body">
+                </div></div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"> <div class="card-body">
                     <div class="card" id="form_ini">
                         <h5 class="card-header info-color white-text text-center py-4">
                         <strong>Datos de Delegación/Disciplina</strong>
@@ -202,12 +174,5 @@ $insDeportista= new deportistaControlador();
                             </div>
                         </div>
                     </div>
-                </div>
-                
-            </div>
-        </div>
-        
-    </div>
-    
-</form>
+                </div></div>
 </div>

@@ -31,9 +31,9 @@ require_once "./controllers/delegadoControlador.php";
                     <th scope="col">Genero</th>
                     <th scope="col">Edad</th>
                     <th scope="col">Disciplina</th>                    
-                    <th scope="col">Ver</th>
                     <th scope="col">Editar</th>
-                    <th scope="col">Borrar</th>
+                    <th scope="col">Eliminar</th>
+                   
                 </tr>
             </thead>
             <tbody class="buscar">
