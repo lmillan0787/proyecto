@@ -19,7 +19,7 @@ class usuarioModelo extends mainModel
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultar_usuario_modelo(){
-        $consultaUsuario = mainModel::conectar()->prepare("SELECT * FROM dat_usr");
+        $consultaUsuario = mainModel::conectar()->prepare("SELECT * FROM dat_per a, dat_usr b WHERE a.cod_per=b.cod_per and cod_perf BETWEEN 1 and 3");
         $consultaUsuario->execute();
         $row = $consultaUsuario->fetchAll(PDO::FETCH_ASSOC);
         return $row;

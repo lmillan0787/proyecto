@@ -4,11 +4,11 @@
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark unique-color">
-    <button id="modalActivate" type="button" class="btn btn-info btn-md" onclick="location.href='<?php echo SERVERURL ?>registrarEvento/'">Crear evento</button>
+    
     <form class="form-inline">
-        <input class="form-control mr-sm-2" id="filtrar" type="text" placeholder="Buscar" aria-label="Buscar">
         <span class="navbar-brand" id="brand1">Eventos</span>
     </form>
+    <button id="modalActivate" type="button" class="btn btn-info btn-md" onclick="location.href='<?php echo SERVERURL ?>registrarEvento/'">Crear evento</button>
 </nav>
 <!-- Tabla -->
 <div class="" id="">

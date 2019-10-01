@@ -47,5 +47,38 @@ class puebloControlador extends puebloModelo
         }
         return mainModel::sweet_alert($alerta);
     }
+
+    public function tabla_pueblo()
+    {
+        $row = puebloModelo::consultar_pueblo();
+        foreach ($row as $row) {
+            echo '
+            <tr>
+                <td>' . $row['cod_pue'] . '</td>
+                <td>' . $row['des_pue'] . '</td>
+                <td>' . $row['nom'] . '</td>
+                </td>
+                <td>
+                    <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
+                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
+                        <button type="submit" class="btn btn-info btn-md">
+                            <i class="far fa-edit fa-2x"></i>
+                        </button>
+                    </form>    
+                </td>    
+            
+                <td>
+                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarUsuarioAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
+                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
+                        <button type="submit" class="btn btn-danger btn-md">
+                            <i class="far fa-trash-alt fa-2x"></i>                            
+                        </button>
+                        <div class="RespuestaAjax"></div>
+                    </form>
+                </td>
+            </tr>';
+        }
+        return $row;
+    }
     
 }

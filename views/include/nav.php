@@ -16,7 +16,7 @@
         <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
           <a class="dropdown-item" href="<?php echo SERVERURL ?>deportistas/">Deportistas</a>
           <a class="dropdown-item" href="<?php echo SERVERURL ?>delegados/">Delegados</a>
-          <a class="dropdown-item" href="<?php echo SERVERURL ?>medicos/">Medicos</a>          
+          <a class="dropdown-item" href="<?php echo SERVERURL ?>medicos/">Médicos</a>          
         </div>
       </li>
       <li class="nav-item ">
@@ -43,6 +43,8 @@
           <a class="dropdown-item" href="<?php echo SERVERURL ?>">Editar perfil</a>
           <a class="dropdown-item" href="<?php echo SERVERURL ?>usuarios">Usuarios</a>
           <a class="dropdown-item" href="<?php echo SERVERURL ?>eventos/">Eventos</a>
+          <a class="dropdown-item" href="<?php echo SERVERURL ?>pueblos/">Pueblos</a>
+          <a class="dropdown-item" href="<?php echo SERVERURL ?>disciplinas/">Disciplinas</a>
           <a class="dropdown-item" href="<?php echo SERVERURL ?>">Administrar</a>
           <a class="dropdown-item" href="../database/cerrar.php">Salir</a>
         </div>

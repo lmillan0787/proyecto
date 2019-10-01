@@ -14,4 +14,11 @@
             $sql->execute();
             return $sql;
         }
+
+        public function consultar_disciplina(){
+        $consultaDisciplina = mainModel::conectar()->prepare("SELECT * FROM tab_dis");
+        $consultaDisciplina->execute();
+        $row = $consultaDisciplina->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
     }

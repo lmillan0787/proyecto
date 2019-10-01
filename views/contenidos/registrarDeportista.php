@@ -15,7 +15,7 @@ $insDeportista= new deportistaControlador();
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"> <div class="card">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"> 
                 <div class="card-body">
                     <div class="card" id="form_ini">
                         <h5 class="card-header info-color white-text text-center py-4">
@@ -83,7 +83,7 @@ $insDeportista= new deportistaControlador();
                     </div>
                 </div>
         
-        </div></div>
+        </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div class="card-body">
                     <div class="card" id="form_ini">
                         <h5 class="card-header info-color white-text text-center py-4">

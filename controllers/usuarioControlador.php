@@ -62,8 +62,10 @@ class usuarioControlador extends usuarioModelo
             echo '
             <tr>
                 <td>' . $row['cod_usr'] . '</td>
+                <td>' . $row['ced'] . '</td>
+                <td>' . $row['nom'] . '</td>
+                <td>' . $row['ape'] . '</td>
                 <td>' . $row['des_usr'] . '</td>
-                <td>' . $row['clave'] . '</td>                               
                 <td>
                     <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
