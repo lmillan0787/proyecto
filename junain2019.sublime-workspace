@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"ins",
+				"insertarTecnico"
+			],
+			[
+				"c",
+				"credencial1.php"
+			],
+			[
 				"main",
 				"mainModel"
 			],
@@ -42,10 +50,6 @@
 			[
 				"cod_per",
 				"cod_perf"
-			],
-			[
-				"ins",
-				"insDeportista"
 			],
 			[
 				"cod_p",
@@ -331,15 +335,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "models/vistasModelo.php",
-			"settings":
-			{
-				"buffer_size": 1376,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -353,6 +348,14 @@
 		"selected_items":
 		[
 			[
+				"brac",
+				"BracketHighlighter: Toggle High Visibility Mode"
+			],
+			[
+				"bracket",
+				"BracketHighlighter: Toggle High Visibility Mode"
+			],
+			[
 				"bra",
 				"BracketHighlighter: Toggle High Visibility Mode"
 			],
@@ -363,14 +366,6 @@
 			[
 				"insta",
 				"Package Control: Install Package"
-			],
-			[
-				"brac",
-				"BracketHighlighter: Toggle High Visibility Mode"
-			],
-			[
-				"bracket",
-				"BracketHighlighter: Toggle High Visibility Mode"
 			],
 			[
 				"Package Control: ",
@@ -448,15 +443,47 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/C/UwAmp/www/proyecto",
-		"/C/UwAmp/www/proyecto/models",
-		"/C/UwAmp/www/proyecto/views",
-		"/C/UwAmp/www/proyecto/views/contenidos"
-	],
 	"file_history":
 	[
+		"/C/UwAmp/www/webcam/web.php",
+		"/C/UwAmp/www/foto/index.html",
+		"/C/UwAmp/www/proyecto/views/contenidos/registrarDisciplina.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/pueblos.php",
+		"/C/UwAmp/www/proyecto/models/puebloModelo.php",
+		"/C/UwAmp/www/proyecto/models/disciplinaModelo.php",
+		"/C/UwAmp/www/proyecto/controllers/disciplinaControlador.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/disciplinas.php",
+		"/C/UwAmp/www/proyecto/models/vistasModelo.php",
+		"/C/UwAmp/www/proyecto/models/usuarioModelo.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/eventos.php",
+		"/C/UwAmp/www/proyecto/views/include/nav.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/usuarios.php",
+		"/C/UwAmp/www/proyecto/controllers/puebloControlador.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/registrarParticipacion.php",
+		"/C/UwAmp/www/proyecto/controllers/usuarioControlador.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/registrarMedico.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/registrarPersona.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/registrarDeportista.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/registrarDelegado.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/delegados.php",
+		"/C/UwAmp/www/proyecto/models/tecnicoModelo.php",
+		"/C/UwAmp/www/proyecto/controllers/tecnicoControlador.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/credencial.php",
+		"/C/UwAmp/www/proyecto/views/contenidos/credencial1.php",
+		"/C/UwAmp/www/proyecto/.htaccess",
+		"/C/UwAmp/www/proyecto/core/configGeneral.php",
+		"/C/UwAmp/www/proyecto/fpdf/credencial1.php",
+		"/C/UwAmp/www/credencial/Prueba4.php",
+		"/C/UwAmp/www/proyecto/controllers/credencialControlador.php",
+		"/C/UwAmp/www/proyecto/models/credencialModelo.php",
+		"/C/UwAmp/www/proyecto/proyecto/views/contenidos/personas.php",
+		"/C/UwAmp/www/proyecto/proyecto/views/contenidos/vistaPrueba.php",
+		"/C/UwAmp/www/proyecto/proyecto/views/contenidos/cr.php",
+		"/C/UwAmp/www/proyecto/fpdf/credencial.php",
+		"/C/UwAmp/www/proyectoCI/app/Models/PersonaModel.php",
+		"/C/UwAmp/www/junain2019/routes/web.php",
+		"/C/UwAmp/www/proyectoCI/app/Views/vista.php",
+		"/C/UwAmp/www/proyectoCI/app/Controllers/Home.php",
 		"/C/UwAmp/www/junain1707/process/reg_per.php",
 		"/C/UwAmp/www/junain1707/app/persona.php",
 		"/C/UwAmp/www/junain1707/app/reg_per.php",
@@ -466,28 +493,21 @@
 		"/C/UwAmp/www/proyecto/views/contenidos/regDeportista.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/vistaPrueba.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/registrarTecnico.php",
-		"/C/UwAmp/www/proyecto/controllers/tecnicoControlador.php",
 		"/C/UwAmp/www/proyecto/core/mainModel.php",
-		"/C/UwAmp/www/proyecto/models/tecnicoModelo.php",
 		"/C/xampp/htdocs/junain1707/process/reg_tec.php",
 		"/C/xampp/htdocs/junain2606/junain12/app/reg_del.php",
 		"/C/xampp/htdocs/junain1707/process/participacionDeportista.php",
 		"/C/xampp/htdocs/junain1707/process/reg_dep.php",
 		"/C/xampp/htdocs/junain2606/junain12/process/edi_inv.php",
 		"/C/xampp/htdocs/junain2606/junain12/app/reg_bas2.php",
-		"/C/UwAmp/www/proyecto/views/include/nav.php",
 		"/C/xampp/htdocs/junain2606/junain12/process/reg_del.php",
 		"/C/UwAmp/www/proyecto/controllers/deportistaControlador.php",
-		"/C/UwAmp/www/proyecto/views/contenidos/registrarPersona.php",
-		"/C/UwAmp/www/proyecto/models/vistasModelo.php",
 		"/C/UwAmp/www/proyecto/views/assets/css/style.css",
 		"/C/UwAmp/www/proyecto/views/assets/css/tabs.css",
 		"/C/UwAmp/www/proyecto/views/plantilla.php",
 		"/C/UwAmp/www/proyecto/core/configAPP.php",
-		"/C/UwAmp/www/proyecto/core/configGeneral.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/participacion.php",
 		"/C/UwAmp/www/proyecto/controllers/participacionControlador.php",
-		"/C/UwAmp/www/credencial/Prueba4.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/personas.php",
 		"/C/UwAmp/www/proyecto - copia/views/contenidos/personas.php",
 		"/C/UwAmp/www/proyecto/.git/MERGE_MSG",
@@ -523,7 +543,6 @@
 		"/C/UwAmp/www/proyecto/controllers/invitadoControlador.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/regInvitado.php",
 		"/C/UwAmp/www/proyecto/ajax/invitadoAjax.php",
-		"/C/UwAmp/www/proyecto/.htaccess",
 		"/C/UwAmp/www/proyecto/views/contenidos/regParticipacion.php",
 		"/C/UwAmp/www/proyecto/models/participacionModelo.php",
 		"/C/UwAmp/www/proyecto/ajax/participacionAjax.php",
@@ -533,7 +552,6 @@
 		"/C/UwAmp/www/proyecto/views/contenidos/regMedico.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/medicos.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/deportistas.php",
-		"/C/UwAmp/www/proyecto/views/contenidos/delegados.php",
 		"/C/UwAmp/www/proyecto/controllers/medicoControlador.php",
 		"/C/UwAmp/www/proyecto/views/contenidos/regDelegado.php",
 		"/C/UwAmp/www/proyecto/proyecto/views/contenidos/regInvitado.php",
@@ -554,41 +572,11 @@
 		"/C/xampp/htdocs/proyecto/views/contenidos/validarusuario.php",
 		"/C/xampp/htdocs/proyecto/ajax/personaAjax.php",
 		"/C/xampp/htdocs/proyecto/views/plantilla.php",
-		"/C/xampp/htdocs/proyecto/models/deportistaModelo.php",
-		"/C/Users/HOGAR/AppData/Roaming/Sublime Text 3/Packages/HTMLBeautify/HTMLBeautify.sublime-settings",
-		"/C/xampp/htdocs/proyecto/controllers/deportistaControlador.php",
-		"/C/xampp/htdocs/proyecto/views/contenidos/reg_par.php",
-		"/C/xampp/htdocs/proyecto/core/configAPP.php",
-		"/C/xampp/htdocs/proyecto/views/contenidos/validar_cedula.php",
-		"/C/xampp/htdocs/proyecto/core/configGeneral.php",
-		"/C/xampp/htdocs/proyecto/core/mainModel.php",
-		"/C/xampp/htdocs/proyecto/models/disciplinaModelo.php",
-		"/C/xampp/htdocs/proyecto/controllers/eventoControlador.php",
-		"/C/xampp/htdocs/proyecto/models/adminModelo.php",
-		"/C/Windows/System32/drivers/etc/hosts",
-		"/C/xampp/htdocs/proyecto/views/contenidos/regPersona.php",
-		"/C/xampp/htdocs/proyecto/views/contenidos/regPer.php",
-		"/C/xampp/htdocs/proyecto/controllers/puebloControlador.php",
-		"/C/xampp/htdocs/proyecto/views/contenidos/pueblos.php",
-		"/C/xampp/htdocs/junain1707/app/desplegable.php",
-		"/C/xampp/htdocs/junain1707/app/datosDisciplina.php",
-		"/C/xampp/htdocs/proyecto/views/assets/css/bootstrap.min.css",
-		"/C/xampp/htdocs/proyecto/views/contenidos/regEvento.php",
-		"/C/xampp/htdocs/proyecto/models/eventoModelo.php",
-		"/C/xampp/htdocs/proyecto/views/contenidos/eventos.php",
-		"/C/xampp/htdocs/proyecto/models/puebloModelo.php",
-		"/C/xampp/htdocs/proyecto/models/personaModelo.php",
-		"/C/xampp/htdocs/proyecto/.htaccess",
-		"/C/xampp/htdocs/proyecto/views/contenidos/inicio.php",
-		"/C/xampp/htdocs/proyecto/views/contenidos/home.php",
-		"/C/xampp/htdocs/Proyecto3107/controllers/deportistaControlador.php",
-		"/C/xampp/htdocs/Proyecto3107/controllers/personaControlador.php",
-		"/C/xampp/htdocs/Proyecto3107/views/contenidos/deportistas.php",
-		"/C/xampp/htdocs/Proyecto3107/models/deportistaModelo.php"
+		"/C/xampp/htdocs/proyecto/models/deportistaModelo.php"
 	],
 	"find":
 	{
-		"height": 31.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -603,6 +591,18 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"pue",
+			"Pueblo",
+			"pueblo",
+			"Pueblo",
+			"Usuarios",
+			"usuario",
+			"Deportista",
+			"deportista",
+			"Persona",
+			"persona",
+			"Persona",
+			"persona",
 			"des_gen",
 			"query",
 			"consultaCargo",
@@ -628,213 +628,14 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "models/vistasModelo.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1376,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								469,
-								469
-							]
-						],
-						"settings":
-						{
-							"ASI_is_indentation_detected": true,
-							"ASI_result_sources":
-							[
-								"guessing"
-							],
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-									"1":
-									[
-										1369,
-										1370
-									]
-								},
-								"icon":
-								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/curly_bracket.png",
-										"region.purplish"
-									]
-								},
-								"open":
-								{
-									"1":
-									[
-										88,
-										89
-									]
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -891,16 +692,60 @@
 		"selected_items":
 		[
 			[
-				"persona",
-				"models\\personaModelo.php"
+				"eventos",
+				"views\\contenidos\\eventos.php"
 			],
 			[
-				"vista",
-				"views\\contenidos\\vistaPrueba.php"
+				"nav",
+				"views\\include\\nav.php"
 			],
 			[
 				"registrarP",
-				"views\\contenidos\\registrarPersona.php"
+				"views\\contenidos\\registrarPueblo.php"
+			],
+			[
+				"usu",
+				"views\\contenidos\\usuarios.php"
+			],
+			[
+				"pueblo",
+				"controllers\\puebloControlador.php"
+			],
+			[
+				"puebl",
+				"views\\contenidos\\pueblos.php"
+			],
+			[
+				"vista",
+				"models\\vistasModelo.php"
+			],
+			[
+				"usua",
+				"models\\usuarioModelo.php"
+			],
+			[
+				"usuario",
+				"views\\contenidos\\usuarios.php"
+			],
+			[
+				"ht",
+				".htaccess"
+			],
+			[
+				"vistasM",
+				"models\\vistasModelo.php"
+			],
+			[
+				"pers",
+				"controllers\\personaControlador.php"
+			],
+			[
+				"vi",
+				"models\\vistasModelo.php"
+			],
+			[
+				"persona",
+				"models\\personaModelo.php"
 			],
 			[
 				"par",
@@ -921,10 +766,6 @@
 			[
 				"participa",
 				"views\\contenidos\\participacion.php"
-			],
-			[
-				"usu",
-				"resources\\views\\usuarios.blade.php"
 			],
 			[
 				".env",

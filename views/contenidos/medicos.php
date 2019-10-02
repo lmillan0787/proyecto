@@ -20,11 +20,12 @@ require_once "./controllers/medicoControlador.php";
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nacionalidad</th>
+                    
                     <th scope="col">Cédula</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
                     <th scope="col">Género</th>
+                    <th scope="col">Región</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                 </tr>

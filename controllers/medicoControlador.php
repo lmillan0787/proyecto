@@ -67,9 +67,10 @@ class medicoControlador extends medicoModelo{
             echo '
             <tr>
                     <td>'.$row['cod_per'].'</td>
+                    <td>'.$row['ced'].'</td>
                     <td>'.$row['nom'].'</td>
                     <td>'.$row['ape'].'</td>
-                    <td>'.$row['ced'].'</td>
+                    
                     <td>'.$row['des_gen'].'</td>
                     <td>'.$row['des_reg'].'</td>
                      <td>
