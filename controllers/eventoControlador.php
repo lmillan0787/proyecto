@@ -75,8 +75,8 @@ class eventoControlador extends eventoModelo
         } else {
             $alerta = [
                 "Alerta" => "simple",
-                "Titulo" => "Ocurrió un error inesperado",
-                "Texto" => "Error al eliminar el evento",
+                "Titulo" => "Error al eliminar el evento",
+                "Texto" => "El evento que intenta eliminar posee participaciones y no puede ser eliminado",
                 "Tipo" => "error"
             ];
         }
