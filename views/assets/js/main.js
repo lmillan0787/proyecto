@@ -8,7 +8,7 @@ $('.FormularioAjax').submit(function(e) {
     var metodo = form.attr('method');
     var respuesta = form.children('.RespuestaAjax');
 
-    var msjError = "<script>swal.fire('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
+    var msjError = "<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
     var formdata = new FormData(this);
 
 
@@ -32,58 +32,42 @@ $('.FormularioAjax').submit(function(e) {
         confirmButtonText: "Aceptar",
         cancelButtonText: "Cancelar"
     }).then((result) => 
-        {if (result.value) {
-            $.ajax({
-                type: metodo,
-                url: accion,
-                data: formdata ? formdata : form.serialize(),
-                cache: false,
-                contentType: false,
-                processData: false,            
-                xhr: function() {
-                    var xhr = new window.XMLHttpRequest();
-                    xhr.upload.addEventListener("progress", function(evt) {
-                        if (evt.lengthComputable) {
-                            var percentComplete = evt.loaded / evt.total;
-                            percentComplete = parseInt(percentComplete * 100);
-                            if (percentComplete < 100) {
-                                respuesta.html('<p class="text-center">Procesado... (' + percentComplete + '%)</p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" style="width: ' + percentComplete + '%;"></div></div>');
-                            } else {
-                                respuesta.html('<p class="text-center"></p>');
-                            }
+    {if (result.value) {
+        $.ajax({
+            type: metodo,
+            url: accion,
+            data: formdata ? formdata : form.serialize(),
+            cache: false,
+            contentType: false,
+            processData: false,            
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function(evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = evt.loaded / evt.total;
+                        percentComplete = parseInt(percentComplete * 100);
+                        if (percentComplete < 100) {
+                            respuesta.html('<p class="text-center">Procesado... (' + percentComplete + '%)</p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" style="width: ' + percentComplete + '%;"></div></div>');
+                        } else {
+                            respuesta.html('<p class="text-center"></p>');
                         }
-                    }, false);
-                    return xhr;
-                },
-                success: function(data) {
-                    respuesta.html(data);
-                },
-                error: function() {
-                    respuesta.html(msjError);
-                }
-            });  
-        }
-      })
-        
-        
+                    }
+                }, false);
+                return xhr;
+            },
+            success: function(data) {
+                respuesta.html(data);
+            },
+            error: function() {
+                respuesta.html(msjError);
+            }
+        });  
+    }
+  })
+    
+    
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Tablas
-
-
-
 
 $(document).ready(function() {
     $('#tabla').DataTable({
@@ -97,7 +81,8 @@ $(document).ready(function() {
 
 
     });
-$('.dataTables_length').addClass('bs-select');
+
+    $('.dataTables_length').addClass('bs-select');
 
 });
 var idioma = {

@@ -22,10 +22,16 @@ session_start();
     <!-- Bootstrap core CSS -->
     <link href="<?php echo SERVERURL ?>views/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="<?php echo SERVERURL ?>views/assets/css/mdb.min.css" rel="stylesheet">    
+    <link href="<?php echo SERVERURL ?>views/assets/css/mdb.min.css" rel="stylesheet">
+    <!-- Sweetalert2 -->
+    <link href="<?php echo SERVERURL ?>views/assets/css/sweetalert2.css" rel="stylesheet">   
     <!-- Estilos personalizados -->
     <link href="<?php echo SERVERURL ?>views/assets/css/style.css" rel="stylesheet">
-  
+     <!-- Plugin Animate -->
+   
+     <link href="<?php echo SERVERURL ?>views/assets/css/animate.css" rel="stylesheet">
+
+    <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/jquery-3.4.1.min.js"></script>
 
 </head>
 

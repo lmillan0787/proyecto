@@ -159,3 +159,12 @@ th {
 }
 
 
+
+ .tab-pane {
+    padding:20px;
+}
+
+
+ #regiration_form {fieldset:not(:first-of-type) {
+    display: none;}
+
