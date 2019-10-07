@@ -26,13 +26,7 @@ class personaModelo extends mainModel
         $consultaPersona->execute();
         $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
         return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function validar_cedula_modelo($ced){
-        $validarCedula = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced='$ced'");
-        $validarCedula->execute();
-        return $validarCedula;
-    }
+    }   
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function editar_persona_modelo($datos){
        $editarPersona = mainModel::conectar()->prepare("UPDATE dat_per SET cod_nac=:cod_nac, ced=:ced, nom=:nom, ape=:ape, fec_nac=:fec_nac, cod_gen=:cod_gen WHERE cod_per=:cod_per");

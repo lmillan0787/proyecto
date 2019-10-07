@@ -68,21 +68,37 @@ $insEvento = new eventoControlador();
                     ?>
                 </select>
             </div>
+            <!-- Estatus-->
+            <label for="textInput">Estatus:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
+                </div>
+                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estar" name="cod_estat" required>
+                    <option selected disabled>Estatus</option>
+                    <?php
+                    $insEvento->formulario_evento_estatus();
+                    foreach ($row as $row) {
+                        echo '<option value="' . $row['cod_estat'] . '">' . $row['des_estat'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
             <!-- Tipo de evento-->
             <label for="textInput">Tipo de evento:</label><br>
             <!-- Group of default radios - option 1 -->
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input " id="aut" onclick="toggle(this)" name="cod_tip_even" value="1" required>
+                <input type="radio" class="custom-control-input " id="aut"  name="cod_tip_even" value="1" required>
                 <label class="custom-control-label" for="aut">Autóctono</label>
             </div>
             <!-- Group of default radios - option 2 -->
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input " id="con" onclick="toggle(this)" name="cod_tip_even" value="2" required>
+                <input type="radio" class="custom-control-input " id="con"  name="cod_tip_even" value="2" required>
                 <label class="custom-control-label" for="con">Convencional</label>
             </div>
             <!-- Group of default radios - option 3 -->
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input " id="mix" onclick="toggle(this)" name="cod_tip_even" value="3" required>
+                <input type="radio" class="custom-control-input " id="mix" name="cod_tip_even" value="3" required>
                 <label class="custom-control-label" for="mix">Mixto</label>
             </div>
             <p><button class="btn btn-info btn-block" type="submit">Registrar</button></p>

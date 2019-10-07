@@ -13,45 +13,61 @@ class usuarioControlador extends usuarioModelo
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $des_usr = mainModel::limpiar_cadena($_POST['des_usr']);
+        
         $clave = mainModel::limpiar_cadena($_POST['clave']);
         $repClave = mainModel::limpiar_cadena($_POST['repClave']);
         $cod_rol = mainModel::limpiar_cadena($_POST['cod_rol']);
         $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
         
+        $consultarPersona=mainModel::ejecutar_consulta_simple("SELECT * FROM dat_per WHERE ced='$ced'");
+        $row = $consultarPersona->fetchAll(PDO::FETCH_ASSOC);
+        $cod_per=$row['cod_per'];
 
-        /*$validarCedula = usuarioModelo::validar_cedula_modelo($ced);*/
-        
-        if ($clave != $repClave) {
+
+        $validarCedula = mainModel::validar_cedula_modelo($ced);
+         if ($validarCedula->rowCount()<= 1){
             $alerta = [
                 "Alerta" => "simple",
-                "Titulo" => "Ocurrio un error inesperado",
-                "Texto" => "Las claves que intenta ingresar no coinciden",
+                "Titulo" => "",
+                "Texto" => "Debe registrar primero a la persona",
                 "Tipo" => "error"
             ];
-        } else {
-            $datosUsuario = [                              
-                "des_usr" => $des_usr,
-                "clave" => $clave,
-                "cod_perf" => $cod_perf
-            ];
-            $guardarUsuario = usuarioModelo::agregar_usuario_modelo($datosUsuario);
 
-            if ($guardarUsuario->rowCount() >= 1) {
-                $alerta = [
-                    "Alerta" => "simpleUsuarios",
-                    "Titulo" => "",
-                    "Texto" => "Usuario registrada exitosamente",
-                    "Tipo" => "success"
-                ];
-            } else {
+        }else{
+            if ($clave != $repClave) {
                 $alerta = [
                     "Alerta" => "simple",
-                    "Titulo" => "Ocurrió un error inesperado",
-                    "Texto" => "Error al registrar usuario",
+                    "Titulo" => "Ocurrio un error inesperado",
+                    "Texto" => "Las claves que intenta ingresar no coinciden",
                     "Tipo" => "error"
                 ];
+            } else {
+                $datosUsuario = [
+                    "cod_per" => $cod_per,                            
+                    "des_usr" => $des_usr,
+                    "clave" => $clave,
+                    "cod_perf" => $cod_perf
+                ];
+                $guardarUsuario = usuarioModelo::agregar_usuario_modelo($datosUsuario);
+    
+                if ($guardarUsuario->rowCount() >= 1) {
+                    $alerta = [
+                        "Alerta" => "simpleUsuarios",
+                        "Titulo" => "",
+                        "Texto" => "Usuario registrada exitosamente",
+                        "Tipo" => "success"
+                    ];
+                } else {
+                    $alerta = [
+                        "Alerta" => "simple",
+                        "Titulo" => "Ocurrió un error inesperado",
+                        "Texto" => "Error al registrar usuario",
+                        "Tipo" => "error"
+                    ];
+                }
             }
-        }
+        } 
+          
         return mainModel::sweet_alert($alerta);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

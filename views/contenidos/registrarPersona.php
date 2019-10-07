@@ -1,22 +1,4 @@
-<script type="text/javascript">
-$(document).ready(function() {  
-    $('#ced').on('blur', function(){
-        $('#result-ced').html('<img src="../assets/img/loader.gif" />').fadeOut(1000);
 
-        var ced = $(this).val();   
-        var dataString = 'ced='+ced;
-
-        $.ajax({
-            type: "POST",
-            url: "./validar_cedula.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-ced').fadeIn(1000).html(data);
-            }
-        });
-    });              
-});    
-</script>
 <div class="card" id="form_ini">
 
     <h5 class="card-header info-color white-text text-center py-4">

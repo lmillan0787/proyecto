@@ -18,7 +18,7 @@ class personaControlador extends personaModelo
         $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
         $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
 
-        $validarCedula = personaModelo::validar_cedula_modelo($ced);
+        $validarCedula = mainModel::validar_cedula_modelo($ced);
         if ($validarCedula->rowCount() >= 1) {
             $alerta = [
                 "Alerta" => "simple",
@@ -199,9 +199,10 @@ class personaControlador extends personaModelo
             "fec_nac" => $fec_nac,
             "cod_gen" => $cod_gen
         ];
+
         $editarPersona = personaModelo::editar_persona_modelo($datosPersona);
         
-        if ($editarPersona = true) {
+        if ($editarPersona->rowCount() >= 1) {
             $alerta = [
                 "Alerta" => "simplePersona",
                 "Titulo" => "",
@@ -211,8 +212,8 @@ class personaControlador extends personaModelo
         } else {
             $alerta = [
                 "Alerta" => "simple",
-                "Titulo" => "Ocurrió un error inesperado",
-                "Texto" => "Error al actualizar persona",
+                "Titulo" => "Error al actualizar persona",
+                "Texto" => "La cédula que intenta ingresar pertenece a otra personas",
                 "Tipo" => "error"
             ];
         }

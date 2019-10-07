@@ -26,12 +26,11 @@ session_start();
     <!-- Sweetalert2 -->
     <link href="<?php echo SERVERURL ?>views/assets/css/sweetalert2.css" rel="stylesheet">   
     <!-- Estilos personalizados -->
-    <link href="<?php echo SERVERURL ?>views/assets/css/style.css" rel="stylesheet">
-     <!-- Plugin Animate -->
-   
-     <link href="<?php echo SERVERURL ?>views/assets/css/animate.css" rel="stylesheet">
+    <link href="<?php echo SERVERURL ?>views/assets/css/style.css" rel="stylesheet">   
 
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Data table -->
+    <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/webcam.min.js"></script>
 
 </head>
 
@@ -83,6 +82,7 @@ session_start();
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/all.js"></script>
     <!-- Data table -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/addons/datatables.min.js"></script>
+    
     <!-- main js -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/main.js"></script>
 </body>

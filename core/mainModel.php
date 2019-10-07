@@ -26,6 +26,13 @@ class mainModel
         return $respuesta;
     }
 
+    //validar cedula
+    public function validar_cedula_modelo($ced){
+        $validarCedula = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced='$ced'");
+        $validarCedula->execute();
+        return $validarCedula;
+    }
+
 
     //encryptar datos
     protected function encryption($string)
