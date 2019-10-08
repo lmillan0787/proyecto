@@ -5,27 +5,6 @@ require_once "./controllers/eventoControlador.php";
 $insEvento = new eventoControlador();
 
 ?>
-<!--<script type="text/javascript">
-    function toggle(elemento) {
-
-        if (elemento.value == "1") {
-            document.getElementById("autoctono").style.display = "block";
-            document.getElementById("convencional").style.display = "none";
-            document.getElementById("mixto").style.display = "none";
-
-        } else if (elemento.value == "2") {
-            document.getElementById("autoctono").style.display = "none";
-            document.getElementById("convencional").style.display = "block";
-            document.getElementById("mixto").style.display = "none";
-
-        } else if (elemento.value == "3") {
-            document.getElementById("autoctono").style.display = "none";
-            document.getElementById("convencional").style.display = "none";
-            document.getElementById("mixto").style.display = "block";
-
-        }
-    }
-</script>-->
 <div class="card" id="form_evento">
 
     <h5 class="card-header info-color white-text text-center py-4">
@@ -72,7 +51,7 @@ $insEvento = new eventoControlador();
             <label for="textInput">Estatus:</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-toggle-on prefix grey-text"></i></label>
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estar" name="cod_estat" required>
                     <option selected disabled>Estatus</option>
@@ -102,33 +81,6 @@ $insEvento = new eventoControlador();
                 <label class="custom-control-label" for="mix">Mixto</label>
             </div>
             <p><button class="btn btn-info btn-block" type="submit">Registrar</button></p>
-            <div id="autoctono" style="display:none">
-                <label for="textInput">Disciplinas Autoctonas:</label>
-
-                <?php
-                $insEvento->formulario_evento_disciplinas_autoctonas();
-                ?>
-
-                <button class="btn btn-info btn-block" type="submit">Registrar</button>
-            </div>
-            <div id="convencional" style="display:none">
-                <label for="textInput">Disciplinas Convencionales:</label>
-
-                <?php
-                $insEvento->formulario_evento_disciplinas_convencionales();
-                ?>
-
-                <button class="btn btn-info btn-block" type="submit">Registrar</button>
-            </div>
-            <div id="mixto" style="display:none">
-                <label for="textInput">Disciplinas:</label>
-
-                <?php
-                $insEvento->formulario_evento_disciplinas();
-                ?>
-
-                <button class="btn btn-info btn-block" type="submit">Registrar</button>
-            </div>
             <div class="RespuestaAjax"></div>
         </form>
     </div>

@@ -21,10 +21,11 @@ class personaModelo extends mainModel
         return $sql;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function consultar_persona_modelo(){
-        $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac");
-        $consultaPersona->execute();
-        $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
+    public function consultar_persona_modelo2($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced=:ced");
+        $sql->bindParam(":ced", $datos['ced']);
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }   
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

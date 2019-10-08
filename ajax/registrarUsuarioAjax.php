@@ -6,7 +6,7 @@
         require_once "../controllers/usuarioControlador.php";
         $insUsuario = new usuarioControlador();
 
-        if (isset($_POST['ced']) && isset($_POST['des_usr']) && isset($_POST['clave']) && isset($_POST['repClave']) && isset($_POST['cod_rol']) && isset($_POST['cod_perf'])) {
+        if (isset($_POST['ced']) && isset($_POST['des_usr']) && isset($_POST['clave']) && isset($_POST['repClave']) && isset($_POST['cod_perf'])) {
             echo $insUsuario->agregar_usuario_controlador();
         }
     } else {

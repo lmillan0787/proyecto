@@ -32,8 +32,13 @@ class mainModel
         $validarCedula->execute();
         return $validarCedula;
     }
-
-
+    //econsultar persona
+    public function consultar_persona_modelo(){
+        $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac");
+        $consultaPersona->execute();
+        $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    } 
     //encryptar datos
     protected function encryption($string)
     {
