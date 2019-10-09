@@ -164,6 +164,18 @@ class mainModel
                     </script>
                 ";
             
+        } else if ($datos['Alerta'] == "simpleLogin"){
+ $alerta = "<script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "home/';
+                        });
+                    </script>
+                ";
+
         }
         return $alerta;
     }
