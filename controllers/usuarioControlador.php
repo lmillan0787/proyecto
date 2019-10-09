@@ -12,31 +12,66 @@ class usuarioControlador extends usuarioModelo
     public function agregar_usuario_controlador()
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
-        $des_usr = mainModel::limpiar_cadena($_POST['des_usr']);        
+        $des_usr = mainModel::limpiar_cadena($_POST['des_usr']);
         $clave = mainModel::limpiar_cadena($_POST['clave']);
         $repClave = mainModel::limpiar_cadena($_POST['repClave']);
-        $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']); 
+        $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
+
+        $datosUsuario = [
+            "des_usr" => $des_usr,
+        ];
 
         $consultarCed = mainModel::ejecutar_consulta_simple("SELECT * FROM dat_per WHERE ced='$ced'");
-        if ($consultarCed -> rowCount()>=1){
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "",
-                "Texto" => "Todo ok",
-                "Tipo" => "success"
-            ];
-            if ($clave != $repClave) {
+        $row =$consultarCed->fetch(PDO::FETCH_ASSOC);
+        $cod_per = $row['cod_per'];
+       
+
+        if ($consultarCed->rowCount() >= 1) {
+
+            $consultarUsuarioNombre = usuarioModelo::consultar_usuario_nombre($datosUsuario);
+
+            if ($consultarUsuarioNombre->rowCount() >= 1) {
                 $alerta = [
                     "Alerta" => "simple",
-                    "Titulo" => "Ocurrio un error inesperado",
-                    "Texto" => "Las claves que intenta ingresar no coinciden",
+                    "Titulo" => "El nombre de usuario ya se encuentra en uso",
+                    "Texto" => "Utilice otro nombre de usuario",
                     "Tipo" => "error"
                 ];
             } else {
-                
-
+                if ($clave != $repClave) {
+                    $alerta = [
+                        "Alerta" => "simple",
+                        "Titulo" => "Ocurrio un error inesperado",
+                        "Texto" => "Las claves que intenta ingresar no coinciden",
+                        "Tipo" => "error"
+                    ];
+                } else {
+                    $clave = mainModel::encryption($clave);                    
+                    $datosUsuario = [
+                        "cod_per" => $cod_per,
+                        "des_usr" => $des_usr,
+                        "clave" => $clave,
+                        "cod_perf" => $cod_perf
+                    ];
+                    $registrarUsuario = usuarioModelo::agregar_usuario_modelo($datosUsuario);
+                    if ($registrarUsuario->rowCount() >= 1) {
+                        $alerta = [
+                            "Alerta" => "simpleUsuarios",
+                            "Titulo" => "",
+                            "Texto" => "Usuario registrada exitosamente",
+                            "Tipo" => "success"
+                        ];
+                    } else {
+                        $alerta = [
+                            "Alerta" => "simple",
+                            "Titulo" => "Ocurrió un error inesperado",
+                            "Texto" => "Error al registrar usuario",
+                            "Tipo" => "error"
+                        ];
+                    }
+                }
             }
-        }else{
+        } else {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Debe registrar primero a la persona",
@@ -44,37 +79,6 @@ class usuarioControlador extends usuarioModelo
                 "Tipo" => "error"
             ];
         }
-            /*if ($clave != $repClave) {
-                $alerta = [
-                    "Alerta" => "simple",
-                    "Titulo" => "Ocurrio un error inesperado",
-                    "Texto" => "Las claves que intenta ingresar no coinciden",
-                    "Tipo" => "error"
-                ];
-            } else {
-                $datosUsuario = [                                
-                    "des_usr" => $des_usr,
-                    "clave" => $clave,
-                    "cod_perf" => $cod_perf
-                ];
-                $guardarUsuario = usuarioModelo::agregar_usuario_modelo($datosUsuario);
-    
-                if ($guardarUsuario->rowCount() >= 1) {
-                    $alerta = [
-                        "Alerta" => "simpleUsuarios",
-                        "Titulo" => "",
-                        "Texto" => "Usuario registrada exitosamente",
-                        "Tipo" => "success"
-                    ];
-                } else {
-                    $alerta = [
-                        "Alerta" => "simple",
-                        "Titulo" => "Ocurrió un error inesperado",
-                        "Texto" => "Error al registrar usuario",
-                        "Tipo" => "error"
-                    ];
-                }
-            } */    
         return mainModel::sweet_alert($alerta);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,7 +134,7 @@ class usuarioControlador extends usuarioModelo
             </h5>
             <!--Formulario de inicio-->
             <div class="card-body px-lg-5">
-                <form class="FormularioAjax" action="'.SERVERURL.'ajax/editarUsuarioAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+                <form class="FormularioAjax" action="' . SERVERURL . 'ajax/editarUsuarioAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                     <div class="text-center">
                     </div>
@@ -220,7 +224,7 @@ class usuarioControlador extends usuarioModelo
             "cod_gen" => $cod_gen
         ];
         $editarUsuario = usuarioModelo::editar_usuario_modelo($datosUsuario);
-        
+
         if ($editarUsuario->rowCount() >= 1) {
             $alerta = [
                 "Alerta" => "simpleUsuario",

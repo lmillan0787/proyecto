@@ -45,7 +45,8 @@ class mainModel
         $output = FALSE;
         $key = hash('sha256', SECRET_KEY);
         $iv = substr(hash('sha256', SECRET_IV), 0, 16);
-        $output = onpenssl_encrypt($string, METHOD, $key, 0, $iv);
+        $output = openssl_encrypt($string, METHOD, $key, 0, $iv);
+        $output = base64_encode($output);
         return $output;
     }
     //desencriptar datos
@@ -54,7 +55,7 @@ class mainModel
 
         $key = hash('sha256', SECRET_KEY);
         $iv = substr(hash('sha256', SECRET_IV), 0, 16);
-        $output = onpenssl_descript(base64_decode($string), METHOD, $key, 0, $iv);
+        $output = onpenssl_descrypt(base64_decode($string), METHOD, $key, 0, $iv);
         return $output;
     }
     //funcion para crear numero aleatorios

@@ -10,7 +10,8 @@ class usuarioModelo extends mainModel
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function agregar_usuario_modelo($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_usr(des_usr,clave,cod_perf) VALUES (:des_usr,:clave,:cod_perf)");
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_usr(cod_per,des_usr,clave,cod_perf) VALUES (:cod_per,:des_usr,:clave,:cod_perf)");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
         $sql->bindParam(":des_usr", $datos['des_usr']);
         $sql->bindParam(":clave", $datos['clave']);
         $sql->bindParam(":cod_perf", $datos['cod_perf']);        
@@ -23,6 +24,13 @@ class usuarioModelo extends mainModel
         $consultaUsuario->execute();
         $row = $consultaUsuario->fetchAll(PDO::FETCH_ASSOC);
         return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function consultar_usuario_nombre($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_usr WHERE des_usr=:des_usr");
+        $sql->bindParam(":des_usr", $datos['des_usr']);
+        $sql->execute();        
+        return $sql;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function validar_cedula_modelo($ced){

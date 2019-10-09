@@ -39,7 +39,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-key prefix grey-text"></i></span>
                 </div>
-                <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="password" class="form-control" placeholder="Clave" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required name="clave">
+                <input type="password" class="form-control" placeholder="Clave" aria-describedby="addon-wrapping" minlength="6" maxlength="10" required name="clave">
             </div>
             <!-- clave-->
             <label for="textInput">Repetir clave:</label>
@@ -47,7 +47,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-key prefix grey-text"></i></span>
                 </div>
-                <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="password" class="form-control" placeholder="Repetir clave" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required  name="repClave">
+                <input type="password" class="form-control" placeholder="Repetir clave" aria-describedby="addon-wrapping" minlength="6" maxlength="10" required  name="repClave">
             </div>           
             <!-- Rol-->
             <input type="text" value="1" name="cod_rol" hidden required>
