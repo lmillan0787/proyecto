@@ -8,6 +8,61 @@ $insDeportista= new deportistaControlador();
 <div>
     <center><h1>Registro de Participación</h1></center>
 </div>
+<ul class="stepper parallel" id="custom-validation">
+  <li class="step active">
+    <div class="step-title waves-effect waves-dark">Step 1</div>
+    <div class="step-new-content">
+      <div class="row">
+        <div class="md-form col-12 ml-auto">
+          <input id="email-validation" type="email" class="validate form-control" placeholder="This field is not required">
+          <label for="email-validation">Your e-mail</label>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button class="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="validationFunction">CONTINUE</button>
+      </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="step-title waves-effect waves-dark">Step 2</div>
+    <div class="step-new-content">
+      <div class="row">
+        <div class="md-form col-12 ml-auto">
+          <input id="password-validation" type="password" class="validate form-control" required>
+          <label for="password-validation">Your password</label>
+        </div>
+      </div>
+      <div class="step-actions">
+        <button class="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="validationFunction">CONTINUE</button>
+        <button class="waves-effect waves-dark btn btn-sm btn-secondary previous-step">BACK</button>
+      </div>
+    </div>
+  </li>
+  <li class="step">
+    <div class="step-title waves-effect waves-dark">Step 3</div>
+    <div class="step-new-content">
+      Finish!
+      <div class="step-actions">
+        <button class="waves-effect waves-dark btn btn-sm btn-primary m-0 mt-4" type="button">SUBMIT</button>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<script>
+function validationFunction() {
+setTimeout(function () {
+$('#custom-validation').nextStep();
+}, 1600);
+}
+function someTrueFunction() {
+return true;
+}
+
+$(document).ready(function () {
+$('.stepper').mdbStepper();
+})
+</script>
 <form id="form" action="<?php echo SERVERURL ?>ajax/personaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
     
         
