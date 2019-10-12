@@ -4,10 +4,9 @@
     <h5 class="card-header info-color white-text text-center py-4">
         <strong>Datos Básicos</strong>
     </h5>
-    
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
-        <form class="FormularioAjax needs-validation" action="<?php echo SERVERURL ?>ajax/registrarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
 
             <div class="text-center">
             </div>
@@ -17,7 +16,7 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
                 </div>
-                <select class="browser-default custom-select" id="inputGroupSelect01 " name="cod_nac" required>
+                <select class="browser-default custom-select" id="inputGroupSelect01" name="cod_nac" required>
                     <option value="">Nacionalidad</option>
                     <option value="1">Venezolana</option>
                     <option value="2">Extranjera</option>

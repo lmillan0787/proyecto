@@ -1,6 +1,8 @@
+<?php $peticionAjax=false; ?>
+
 <div class="container elegant-color" id="conn1">
     <nav class="navbar navbar-dark elegant-color lighten-4" id="nav1">
-        <span class="navbar-brand" id="brand1"><?php echo PROYECT ?></span>
+        <span class="navbar-brand" id="brand1"><?php echo PROYECT ?></span> 
     </nav>
 </div>
 <!--card: formulario de inicio-->
@@ -10,7 +12,7 @@
             <strong>INICIO DE SESIÓN</strong>
         </h5>
         <div class="card-body px-lg-5 pt-0">
-            <form class="md-form needs validation" style="color: #757575;" action="../process/inicio.php" method="POST" id="loginForm" >
+            <form class="md-form needs validation" style="color: #757575;" action="" method="POST" id="loginForm" >
                 <!-- Usuario -->
                 <div class="md-form form-sm">
                     <i class="fa fa-user prefix"></i>
@@ -32,3 +34,9 @@
         </div>
     </div>
 </div>
+
+<?php if(isset($_POST['des_usr']) && isset($_POST['clave'])){
+require_once "./controllers/loginControlador.php";
+$login = new loginControlador();
+echo $login->iniciar_sesion_controlador();}
+ ?>

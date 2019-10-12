@@ -1,16 +1,14 @@
 <?php
 
-$peticionAjax = true;
-require_once "../core/configGeneral.php";
-if (isset($_POST['des_even'])) {
-    require_once "../controllers/eventoControlador.php";
-    $insEvento = new eventoControlador();
+    $peticionAjax = true;
 
-    if (isset($_POST['des_even']) && isset($_POST['fec_even']) && isset($_POST['cod_edo']) && isset($_POST['cod_tip_even'])) {
-        echo $insEvento->agregar_evento_controlador();
+    require_once "../core/configGeneral.php";
+    if (isset($_POST['des_usr']) && isset($_POST['clave'])) {
+        require_once "./controllers/loginControlador.php";
+        $login = new inicioControlador();
+        echo $login->iniciar_sesion_controlador();
+    } else {
+        session_start();
+        session_destroy();
+        echo '<script> window.location.href="' . SERVERURL . 'inicio/"</script>';
     }
-} else {
-    session_start();
-    session_destroy();
-    echo '<script> window.location.href="' . SERVERURL . 'inicio/"</script>';
-}

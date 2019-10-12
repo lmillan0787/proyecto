@@ -1,7 +1,8 @@
 <?php
 
 $peticionAjax = false;
-session_start();
+session_start(['name'=>'junain']);
+
 
 ?>
 
@@ -55,7 +56,7 @@ session_start();
     } else {
 
         require_once "include/nav.php";
-
+        
         ?>
 
         <div id="con_todo">
