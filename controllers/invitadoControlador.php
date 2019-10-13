@@ -8,33 +8,24 @@ if ($peticionAjax) {
 
 class invitadoControlador extends invitadoModelo{
     
-    public function agregar_deportista_controlador()
+    public function agregar_invitado_controlador()
     {
-        $nac = mainModel::limpiar_cadena($_POST['nac']);
-        $ced = mainModel::limpiar_cadena($_POST['ced']);
-        $nom = mainModel::limpiar_cadena($_POST['nom']);
-        $ape = mainModel::limpiar_cadena($_POST['ape']);
-        $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
-        $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
+        $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
+        $ced = mainModel::limpiar_cadena($_POST['ced']);       
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
 
-        $validarCedula = invitadoModelo::validar_cedula($ced);
-        if ($validarCedula->rowCount() >= 1) {
+        $validarCedula = mainModel::validar_cedula_modelo($ced);
+        if ($validarCedula->rowCount() <= 0) {
             $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "Ocurrio un error inesperado",
-                "Texto" => "La cédula que intenta ingresar ya se encuentra registrada en el sistema",
-                "Tipo" => "error"
+                "Alerta" => "confirmarCedula",                
             ];
         } else {
             $datosInvitado = [
-                "nac" => $nac,
-                "ced" => $ced,
-                "nom" => $nom,
-                "ape" => $ape,
-                "fec_nac" => $fec_nac,
-                "cod_gen" => $cod_gen
+                "cod_nac" => $cod_nac,
+                "ced" => $ced        
             ];
-            $guardarDeportista = invitadoModelo::agregar_invitado($datosInvitado);
+            $guardarInvitado = invitadoModelo::agregar_invitado($datosInvitado);
 
             if ($guardarInvitado->rowCount() >= 1) {
                 $alerta = [
@@ -108,10 +99,11 @@ class invitadoControlador extends invitadoModelo{
           }
 
           public function consultarPerfil(){
-            $consultarPerfil=mainModel::conectar()->prepare("SELECT cod_perf,des_perf from tab_perf where cod_rol=5 ");
-                $consultarPerfil->execute();
+            $consultarPerfil=mainModel::ejecutar_consulta_simple("SELECT cod_perf,des_perf FROM tab_perf where cod_rol=5 ");                
                 $row = $consultarPerfil->fetchAll(PDO::FETCH_ASSOC);
-                echo '<select name="cod_perf" id="cod_perf" class="form-control">';
+                echo '<select name="cod_perf" id="cod_perf" class="form-control" required>
+                            <option selected disabled value="">Perfil</option>
+                ';
                  foreach ($row as $row) {
                 echo '<option value="' . $row['cod_perf'] . '">' . $row['des_perf'] . '</option>';
             }
@@ -120,10 +112,12 @@ class invitadoControlador extends invitadoModelo{
                 }
 
                 public function consultarEvento(){
-                    $consultarEvento=mainModel::conectar()->prepare("SELECT cod_even,des_even from dat_even ");
-                        $consultarEvento->execute();
+                    $consultarEvento=mainModel::ejecutar_consulta_simple("SELECT cod_even,des_even from dat_even ");                        
                         $row = $consultarEvento->fetchAll(PDO::FETCH_ASSOC);
-                        echo '<select name="cod_even" id="cod_even" class="form-control">';
+                        echo '<select name="cod_even" id="cod_even" class="form-control" required>
+                                <option selected disabled value="">Eventos</option>
+                        ';
+                            
                          foreach ($row as $row) {
                         echo '<option value="' . $row['cod_even'] . '">' . $row['des_even'] . '</option>';
                     }

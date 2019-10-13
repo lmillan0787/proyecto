@@ -22,6 +22,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Usuario</th>
+                <th scope="col">Perfil</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>

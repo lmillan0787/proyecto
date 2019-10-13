@@ -115,16 +115,20 @@ class mainModel
                         )
                     </script>
                 ";
-        } else if ($datos['Alerta'] == "recargar") {
+        } else if ($datos['Alerta'] == "confirmarCedula") {
             $alerta = "
                     <script>
-                        Swal.fire(
-                            '" . $datos['Titulo'] . "',
-                            '" . $datos['Texto'] . "',
-                            '" . $datos['Tipo'] . "'
-                        ).then(function(){
-                            location.reload();
-                        });  
+                    Swal.fire({
+                        title: 'La Cédula no se encuentra registrada',
+                        text: 'Desea registrar a la persona?',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Registrar Persona'
+                      }).then((result) => {
+                        if (result.value) {
+                            window.location='" . SERVERURL . "registrarPersona/';
+                        }
+                      })  
                     </script>
                 ";
         } else if ($datos['Alerta'] == "simplePersona") {
@@ -133,7 +137,7 @@ class mainModel
                         Swal.fire(
                             '" . $datos['Titulo'] . "',
                             '" . $datos['Texto'] . "',
-                            '" . $datos['Tipo'] . "'
+                            '" . $datos['Tipo'] . "',
                         ).then(function(){
                             window.location='" . SERVERURL . "personas/';
                         });

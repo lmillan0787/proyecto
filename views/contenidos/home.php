@@ -27,11 +27,22 @@
 <!-- Configure a few settings and attach camera -->
 <script language="JavaScript">
     Webcam.set({
-        width: 490,
-        height: 390,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-    });
+			// live preview size
+			width: 320,
+			height: 240,
+			
+			// device capture size
+			dest_width: 320,
+			dest_height: 240,
+			
+			// final cropped size
+			crop_width: 240,
+			crop_height: 240,
+			
+			// format and quality
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
   
     Webcam.attach( '#my_camera' );
   
