@@ -35,10 +35,8 @@
     </div>
 </div>
 
-<?php 
-    if(isset($_POST['des_usr']) && isset($_POST['clave'])){
-        require_once "./controllers/loginControlador.php";
-        $login = new loginControlador();
-        echo $login->iniciar_sesion_controlador();
-    }
+<?php if(isset($_POST['des_usr']) && isset($_POST['clave'])){
+require_once "./controllers/loginControlador.php";
+$login = new loginControlador();
+echo $login->iniciar_sesion_controlador();}
  ?>
