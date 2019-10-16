@@ -105,7 +105,7 @@ class invitadoControlador extends invitadoModelo
     {
 
         $row = invitadoModelo::consultar_invitado();
-        foreach ($row as $row) {            
+        foreach ($row as $row) {
             echo '
             <tr>
                     <td>' . $row['cod_per'] . '</td>
@@ -114,6 +114,20 @@ class invitadoControlador extends invitadoModelo
                     <td>' . $row['ced'] . '</td>
                     <td>' . $row['des_gen'] . '</td>
                     <td>' . $row['edad'] . '</td>
+                    <td>' . $row['des_perf'] . '</td>
+                    <td>
+                        <form action="'.SERVERURL.'ajax/invitadoFpdfAjax.php" method="POST">                            
+                            <input type="text" name="cedula" value="' . $row['ced'] . '" hidden >                            
+                            <input type="text" name="perfil" value="' . $row['des_perf'] . '" hidden >
+                            <input type="text" name="nombre" value="' . $row['nom'] . '" hidden >
+                            <input type="text" name="apellido" value="' . $row['ape'] . '" hidden >
+                            <input type="text" name="edad" value="' . $row['edad'] . '" hidden >
+                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden >        
+                            <button type="submit" class="btn btn-warning btn-md">
+                                <i class="far fa-address-card fa-2x"></i>                            
+                            </button>
+                        </form>                    
+                    </td>
                     <td>
                     <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>

@@ -27,7 +27,9 @@ require_once "./controllers/invitadoControlador.php";
                     <th scope="col">Apellido</th>
                     <th scope="col">Cédula</th>
                     <th scope="col">Genero</th>                   
-                    <th scope="col">Edad</th>                    
+                    <th scope="col">Edad</th> 
+                    <th scope="col">Perfil</th>
+                    <th scope="col">Credencial</th>                  
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                 </tr>

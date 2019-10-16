@@ -52,11 +52,12 @@ $insInvitado = new invitadoControlador();
                 <div class="row">
                     <div class="col-md-6">
                         <div id="my_camera"></div>
-                        <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()">
-                        <input type="hidden" name="image" class="image-tag" required>
+                        <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
+                        
                     </div>
                     <div class="col-md-6">
                         <div id="results">La foto aparecerá aqui...</div>
+                        <input type="hidden" name="image" class="image-tag"">
                     </div>
                 </div>
             </center>

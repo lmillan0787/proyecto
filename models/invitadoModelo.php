@@ -17,7 +17,7 @@ class invitadoModelo extends mainModel
         return $sql;
     }
     public function consultar_invitado(){
-        $consultaInvitado = mainModel::conectar()->prepare("SELECT a.*, b.*,c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN tab_gen AS c ON a.cod_gen=c.cod_gen WHERE cod_perf BETWEEN 14 AND 15");
+        $consultaInvitado = mainModel::conectar()->prepare("SELECT a.*, b.*,c.*,d.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN tab_gen AS c ON a.cod_gen=c.cod_gen INNER JOIN tab_perf AS d ON b.cod_perf=d.cod_perf WHERE b.cod_perf BETWEEN 14 AND 15");
         $consultaInvitado->execute();
         $row = $consultaInvitado->fetchAll(PDO::FETCH_ASSOC);
         return $row;

@@ -32,7 +32,7 @@ function Footer()
      $this->SetXY(0,65);
      $this->Image('../views/assets/fpdf/img/fondo_cargo.png',0,80,100,17);
     //$this->Cell(90,45,'DEPORTISTA',0,1,'C');
-    $this->Cell(90,45,$_POST['rol'],0,1,'C');
+    $this->Cell(90,45,$_POST['perfil'],0,1,'C');
     $this->Image('../views/assets/fpdf/img/banner.jpg',0,95 ,100,5);
 }
 }
@@ -78,7 +78,7 @@ $pdf->Cell(40,5,'Territorio:',0);
 $pdf->Ln(0);
 $pdf->SetX(22);
 //$pdf->Cell(40,5,'Zonas Urbanas',0);
-$pdf->Cell(40,5,$_POST['territorio'],0);
+$pdf->Cell(40,5,$_POST['genero'],0);
 $pdf->Ln(5);
 
 /*$pdf->SetX(2);
@@ -89,12 +89,12 @@ $pdf->SetX(22);
 $pdf->Cell(40,5,$_POST['rol'],0);
 $pdf->Ln(5);*/
 
-$pdf->SetX(2);
+/*$pdf->SetX(2);
 $pdf->Cell(40,5,'Disciplina:',0);
 $pdf->Ln(0);
 $pdf->SetX(22);
 //$pdf->Cell(40,5,'Arco y Flecha',0);
-$pdf->Cell(40,5,$_POST['disciplina'],0);
+$pdf->Cell(40,5,$_POST['genero'],0);
 $pdf->SetY(-25);
-$pdf->Output('I');
+$pdf->Output('I');*/
 ?>
