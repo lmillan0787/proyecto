@@ -47,7 +47,7 @@ $insInvitado = new invitadoControlador();
                     $insInvitado->consultarPerfil();
                     ?>
                 </select>
-            </div>Evento
+            </div>
             <center>
                 <div class="row">
                     <div class="col-md-6">

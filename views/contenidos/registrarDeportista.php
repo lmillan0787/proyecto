@@ -4,7 +4,7 @@ include "./controllers/deportistaControlador.php";
 $insDeportista = new deportistaControlador();
 ?>
 
-<div class="card" id="form_ini">
+<div class="card" id="form_invi">
 
     <h5 class="card-header info-color white-text text-center py-4">
         <strong>Datos Básicos</strong>
@@ -76,9 +76,50 @@ $insDeportista = new deportistaControlador();
                 </div>
                         <?php $insDeportista->consultarCategoria(); ?>
                     </div>
+                    <br><center>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="my_camera"></div>
+                        <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div id="results">La foto aparecerá aqui...</div>
+                        <input type="hidden" name="image" class="image-tag"">
+                    </div>
+                </div>
+            </center>
                 
             <br><button class="btn btn-info btn-block" type="submit">Registrar</button>
             <div class="RespuestaAjax"></div>
         </form>
     </div>
 </div>
+<script language="JavaScript">
+    Webcam.set({
+        // live preview size
+        width: 320,
+        height: 240,
+
+        // device capture size
+        dest_width: 320,
+        dest_height: 240,
+
+        // final cropped size
+        crop_width: 240,
+        crop_height: 240,
+
+        // format and quality
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+    Webcam.attach('#my_camera');
+
+    function take_snapshot() {
+        Webcam.snap(function(data_uri) {
+            $(".image-tag").val(data_uri);
+            document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+        });
+    }
+</script>

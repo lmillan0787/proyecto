@@ -47,7 +47,11 @@ class deportistaControlador extends deportistaModelo
             $datosPart = [
                 'cod_per' => $cod_per,
                 'cod_even' => $cod_even,
-                'cod_perf' => $cod_perf
+                'cod_perf' => $cod_perf,
+                'cod_reg' => $cod_reg,
+                'cod_pue' => $cod_pue,
+                'cod_dis' => $cod_dis,
+                'cod_cat' => $cod_cat
             ];
             $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
             if ($validarParticipacion->rowCount() >= 1) {
@@ -60,9 +64,51 @@ class deportistaControlador extends deportistaModelo
                );  
                </script>
                ";
+            }else {
+                $registrarDeportista = deportistaModelo::agregar_deportista($datosPart);
+                $img = $_POST['image'];
+                $folderPath = "../views/assets/upload/";
+
+                $image_parts = explode(";base64,", $img);
+                $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type = $image_type_aux[1];
+
+                $image_base64 = base64_decode($image_parts[1]);
+                $fileName = $_POST['ced'] . '.jpg';
+
+                $file = $folderPath . $fileName;
+                file_put_contents($file, $image_base64);
+
+                print_r($fileName);
+                if ($registrarDeportista->rowCount() >= 1) {
+                    echo "
+               <script>
+               Swal.fire(
+                'Registro exitoso',
+                'Exito al agregar la participación',
+                'success'
+               ).then(function(){
+                window.location='" . SERVERURL . "deportistas/';
+            });     
+               
+               </script>
+               ";
+                } else {
+                    echo "
+               <script>
+               Swal.fire(
+                'Error inesperado',
+                'Recargue la pagina e intente de nuevo',
+                'error'
+               );     
+               
+               </script>
+               ";
+                }
             }
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function tabla_deportista()
     {
 

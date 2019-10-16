@@ -9,13 +9,15 @@ if ($peticionAjax) {
 class deportistaModelo extends mainModel
 {
     protected function agregar_deportista($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_per(nac,ced,nom,ape,fec_nac,cod_gen) VALUES (:nac,:ced,:nom,:ape,:fec_nac,:cod_gen)");
-        $sql->bindParam(":nac", $datos['nac']);
-        $sql->bindParam(":ced", $datos['ced']);
-        $sql->bindParam(":nom", $datos['nom']);
-        $sql->bindParam(":ape", $datos['ape']);
-        $sql->bindParam(":fec_nac", $datos['fec_nac']);
-        $sql->bindParam(":cod_gen", $datos['cod_gen']);
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_par (cod_per,cod_even,cod_perf) VALUES (:cod_per,:cod_even,:cod_perf);
+        INSERT INTO dat_del (cod_par,cod_reg,cod_pue,cod_dis,cod_cat) VALUES (LAST_insert_id(),:cod_reg,:cod_pue,:cod_dis,:cod_cat)");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->bindParam(":cod_perf", $datos['cod_perf']);
+        $sql->bindParam(":cod_reg", $datos['cod_reg']);
+        $sql->bindParam(":cod_pue", $datos['cod_pue']);
+        $sql->bindParam(":cod_dis", $datos['cod_dis']);
+        $sql->bindParam(":cod_cat", $datos['cod_cat']);
         $sql->execute();
         return $sql;
     }
