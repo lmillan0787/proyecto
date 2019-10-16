@@ -22,7 +22,7 @@ class deportistaModelo extends mainModel
         return $sql;
     }
     public function consultar_deportista(){
-        $consultaDeportista = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*,d.* ,e.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN dat_del AS c ON b.cod_par=c.cod_par INNER JOIN tab_gen as d  ON a.cod_gen=d.cod_gen INNER JOIN tab_reg as e on c.cod_reg=e.cod_reg where cod_perf=4  ORDER BY c.cod_par ASC");
+        $consultaDeportista = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*,d.* ,e.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN dat_del AS c ON b.cod_par=c.cod_par INNER JOIN tab_gen AS d  ON a.cod_gen=d.cod_gen INNER JOIN tab_reg AS e ON c.cod_reg=e.cod_reg WHERE cod_perf=4  ORDER BY c.cod_par ASC");
         $consultaDeportista->execute();
         $row = $consultaDeportista->fetchAll(PDO::FETCH_ASSOC);
         return $row;

@@ -121,13 +121,25 @@ class deportistaControlador extends deportistaModelo
             }
             echo '
             <tr>
-                    <td>' . $row['cod_per'] . '</td>
+                    <td>' . $row['cod_par'] . '</td>
                     <td>' . $row['nom'] . '</td>
                     <td>' . $row['ape'] . '</td>
                     <td>' . $row['ced'] . '</td>
                     <td>' . $row['des_gen'] . '</td>
                     <td>' . $row['des_reg'] . '</td>
                     <td>' . $row['edad'] . '</td>
+                    <td>
+                        <form action="'.SERVERURL.'ajax/deportistaFpdfAjax.php" method="POST">                            
+                            <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>           
+                            <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
+                            <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
+                            <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
+                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>        
+                            <button type="submit" class="btn btn-warning btn-md">
+                                <i class="far fa-address-card fa-2x"></i>                            
+                            </button>
+                        </form>                    
+                    </td>
                      <td>
                     <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
@@ -138,8 +150,8 @@ class deportistaControlador extends deportistaModelo
                 </td>    
             
                 <td>
-                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarParticipacionAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
+                        <input type="text" value="' . $row['cod_per'] . '" name="cod_par" hidden required>
                         <button type="submit" class="btn btn-danger btn-md">
                             <i class="far fa-trash-alt fa-2x"></i>                            
                         </button>
@@ -155,13 +167,12 @@ class deportistaControlador extends deportistaModelo
     {
         $consultaRegion = mainModel::conectar()->prepare("SELECT * FROM tab_reg ");
         $consultaRegion->execute();
-        $row = $consultaRegion->fetchAll(PDO::FETCH_ASSOC);
-        echo '<select name="cod_reg" id="selreg" class="form-control">';
+        $row = $consultaRegion->fetchAll(PDO::FETCH_ASSOC);        
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_reg'] . '">' . $row['des_reg'] . '</option>';
         }
 
-        echo '</select>';
+        return $row;
     }
 
     public function consultarPueblo()
@@ -169,11 +180,11 @@ class deportistaControlador extends deportistaModelo
         $consultarPueblo = mainModel::conectar()->prepare("SELECT * FROM tab_pue ");
         $consultarPueblo->execute();
         $row = $consultarPueblo->fetchAll(PDO::FETCH_ASSOC);
-        echo '<select name="cod_pue" id="selpue" class="form-control">';
+        
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_pue'] . '">' . $row['des_pue'] . '</option>';
         }
-        echo '</select>';
+        return $row;
     }
 
     public function consultarPerfil()
@@ -207,12 +218,11 @@ class deportistaControlador extends deportistaModelo
         $consultarEvento = mainModel::conectar()->prepare("SELECT cod_even,des_even FROM dat_even ");
         $consultarEvento->execute();
         $row = $consultarEvento->fetchAll(PDO::FETCH_ASSOC);
-        echo '<select name="cod_even" id="seleven" class="form-control">';
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_even'] . '">' . $row['des_even'] . '</option>';
         }
+        return $row;
 
-        echo '</select>';
     }
 
 
@@ -221,12 +231,12 @@ class deportistaControlador extends deportistaModelo
         $consultarDisciplina = mainModel::conectar()->prepare("SELECT cod_dis,des_dis FROM tab_dis ");
         $consultarDisciplina->execute();
         $row = $consultarDisciplina->fetchAll(PDO::FETCH_ASSOC);
-        echo '<select name="cod_dis" id="seldis" class="form-control">';
+        
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_dis'] . '">' . $row['des_dis'] . '</option>';
         }
+        return $row;
 
-        echo '</select>';
     }
 
 
@@ -235,11 +245,11 @@ class deportistaControlador extends deportistaModelo
         $consultarCategoria = mainModel::conectar()->prepare("SELECT cod_cat,des_cat FROM tab_cat ");
         $consultarCategoria->execute();
         $row = $consultarCategoria->fetchAll(PDO::FETCH_ASSOC);
-        echo '<select name="cod_cat" id="seldis" class="form-control">';
+        
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_cat'] . '">' . $row['des_cat'] . '</option>';
         }
 
-        echo '</select>';
+        return $row;
     }
 }
