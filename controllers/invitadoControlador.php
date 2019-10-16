@@ -66,7 +66,7 @@ class invitadoControlador extends invitadoModelo
                 $image_type = $image_type_aux[1];
 
                 $image_base64 = base64_decode($image_parts[1]);
-                $fileName = $_POST['ced'] . '.png';
+                $fileName = $_POST['ced'] . '.jpg';
 
                 $file = $folderPath . $fileName;
                 file_put_contents($file, $image_base64);
@@ -108,7 +108,7 @@ class invitadoControlador extends invitadoModelo
         foreach ($row as $row) {
             echo '
             <tr>
-                    <td>' . $row['cod_per'] . '</td>
+                    <td>' . $row['cod_par'] . '</td>
                     <td>' . $row['nom'] . '</td>
                     <td>' . $row['ape'] . '</td>
                     <td>' . $row['ced'] . '</td>
@@ -117,12 +117,12 @@ class invitadoControlador extends invitadoModelo
                     <td>' . $row['des_perf'] . '</td>
                     <td>
                         <form action="'.SERVERURL.'ajax/invitadoFpdfAjax.php" method="POST">                            
-                            <input type="text" name="cedula" value="' . $row['ced'] . '" hidden >                            
-                            <input type="text" name="perfil" value="' . $row['des_perf'] . '" hidden >
-                            <input type="text" name="nombre" value="' . $row['nom'] . '" hidden >
-                            <input type="text" name="apellido" value="' . $row['ape'] . '" hidden >
-                            <input type="text" name="edad" value="' . $row['edad'] . '" hidden >
-                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden >        
+                            <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>                            
+                            <input type="text" name="perfil" value="' . $row['des_perf'] . '"hidden>
+                            <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
+                            <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
+                            <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
+                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>        
                             <button type="submit" class="btn btn-warning btn-md">
                                 <i class="far fa-address-card fa-2x"></i>                            
                             </button>
