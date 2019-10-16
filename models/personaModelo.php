@@ -30,16 +30,16 @@ class personaModelo extends mainModel
     }   
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function editar_persona_modelo($datos){
-       $editarPersona = mainModel::conectar()->prepare("UPDATE dat_per SET cod_nac=:cod_nac, ced=:ced, nom=:nom, ape=:ape, fec_nac=:fec_nac, cod_gen=:cod_gen WHERE cod_per=:cod_per");
-       $editarPersona->bindParam(":cod_per", $datos['cod_per']);
-       $editarPersona->bindParam(":cod_nac", $datos['cod_nac']);
-       $editarPersona->bindParam(":ced", $datos['ced']);
-       $editarPersona->bindParam(":nom", $datos['nom']);
-       $editarPersona->bindParam(":ape", $datos['ape']);
-       $editarPersona->bindParam(":fec_nac", $datos['fec_nac']);
-       $editarPersona->bindParam(":cod_gen", $datos['cod_gen']);
-       $editarPersona->execute();
-       return $editarPersona;
+       $sql = mainModel::conectar()->prepare("UPDATE dat_per SET cod_nac=:cod_nac, ced=:ced, nom=:nom, ape=:ape, fec_nac=:fec_nac, cod_gen=:cod_gen WHERE cod_per=:cod_per");
+       $sql->bindParam(":cod_per", $datos['cod_per']);
+       $sql->bindParam(":cod_nac", $datos['cod_nac']);
+       $sql->bindParam(":ced", $datos['ced']);
+       $sql->bindParam(":nom", $datos['nom']);
+       $sql->bindParam(":ape", $datos['ape']);
+       $sql->bindParam(":fec_nac", $datos['fec_nac']);
+       $sql->bindParam(":cod_gen", $datos['cod_gen']);
+       $sql->execute();       
+       return $sql;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function eliminar_persona_modelo($datos){

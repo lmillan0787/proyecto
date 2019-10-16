@@ -32,13 +32,28 @@ class mainModel
         $validarCedula->execute();
         return $validarCedula;
     }
-    //econsultar persona
+    //consultar persona
     public function consultar_persona_modelo(){
         $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac");
         $consultaPersona->execute();
         $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     } 
+    //valdiar persona
+    public function validar_persona_modelo($ced){
+        $validarPersona = mainModel::ejecutar_consulta_simple("SELECT cod_per FROM dat_per WHERE ced='$ced'");
+        $validarPersona->execute();
+        $row = $validarPersona->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    //valdiar participación
+    public function validar_participacion_modelo($datos){
+        $validarParticipacion = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even");
+        $validarParticipacion->bindParam(":cod_per", $datos['cod_per']);
+        $validarParticipacion->bindParam(":cod_even", $datos['cod_even']);
+        $validarParticipacion->execute();        
+        return $validarParticipacion;
+    }
     //encryptar datos
     protected function encryption($string)
     {
@@ -115,29 +130,13 @@ class mainModel
                         )
                     </script>
                 ";
-        } else if ($datos['Alerta'] == "confirmarCedula") {
-            $alerta = "
-                    <script>
-                    Swal.fire({
-                        title: 'La Cédula no se encuentra registrada',
-                        text: 'Desea registrar a la persona?',
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Registrar Persona'
-                      }).then((result) => {
-                        if (result.value) {
-                            window.location='" . SERVERURL . "registrarPersona/';
-                        }
-                      })  
-                    </script>
-                ";
         } else if ($datos['Alerta'] == "simplePersona") {
             $alerta = "
                     <script>
                         Swal.fire(
                             '" . $datos['Titulo'] . "',
                             '" . $datos['Texto'] . "',
-                            '" . $datos['Tipo'] . "',
+                            '" . $datos['Tipo'] . "'
                         ).then(function(){
                             window.location='" . SERVERURL . "personas/';
                         });
@@ -168,19 +167,7 @@ class mainModel
                     </script>
                 ";
             
-        } else if ($datos['Alerta'] == "simpleLogin"){
- $alerta = "<script>
-                        Swal.fire(
-                            '" . $datos['Titulo'] . "',
-                            '" . $datos['Texto'] . "',
-                            '" . $datos['Tipo'] . "'
-                        ).then(function(){
-                            window.location='" . SERVERURL . "home/';
-                        });
-                    </script>
-                ";
-
-        }
+        } 
         return $alerta;
     }
 }

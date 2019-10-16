@@ -1,8 +1,7 @@
 <?php
-$peticionAjax = false;
-
-require_once "./controllers/personaControlador.php";
-
+    $peticionAjax = false;
+    require_once "./controllers/personaControlador.php";
+    $insPersona = new personaControlador();
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark unique-color">
@@ -28,11 +27,8 @@ require_once "./controllers/personaControlador.php";
             </tr>
         </thead>
         <tbody class="buscar">
-            <?php
-
-                $insPersona = new personaControlador();
+            <?php                
                 $insPersona->tabla_persona();
-
             ?>
         </tbody>
     </table>
