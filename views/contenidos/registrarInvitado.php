@@ -26,7 +26,7 @@ $insInvitado = new invitadoControlador();
             <br><label for="textInput">Evento:</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt prefix grey-text"></i></label>
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_even" name="cod_even" required>
                     <option selected disabled value="">Evento</option>
@@ -39,7 +39,7 @@ $insInvitado = new invitadoControlador();
             <label for="textInput">Perfil:</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-user-tag prefix grey-text"></i></label>
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_perf" name="cod_perf" required>
                     <option selected disabled value="">Perfil</option>
