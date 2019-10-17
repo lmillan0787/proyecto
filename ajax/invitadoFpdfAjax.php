@@ -59,7 +59,6 @@ $pdf->Line(29,21,29,53);
 $pdf->Line(29,53,61,53);
 $pdf->Line(61,21,61,53);
 $pdf->Image('../views/assets/upload/'.$_POST['cedula'].'.jpg',30,22,30,30,'JPG');
-$pdf->Ln(2);
 
 $pdf->SetX(2);
 $pdf->Cell(40,5,'Cedula:',0);
@@ -68,8 +67,6 @@ $pdf->SetX(22);
 $pdf->Cell(40,5,number_format($_POST['cedula'],0, ',', '.'),0);
 $pdf->Ln(5);
 //
-
-//
 $pdf->SetX(2);
 $pdf->Cell(40,5,'Nombres:',0);
 $pdf->Ln(0);
@@ -77,7 +74,6 @@ $pdf->SetX(22);
 //$pdf->Cell(40,5,'Luis',0,0,'L');
 $pdf->Cell(40,5,$_POST['nombre'],0);
 $pdf->Ln(5);
-
 $pdf->SetX(2);
 $pdf->Cell(40,5,'Apellidos:',0);
 $pdf->Ln(0);
@@ -85,7 +81,6 @@ $pdf->SetX(22);
 //$pdf->Cell(40,5,'Millan',0);
 $pdf->Cell(40,5,$_POST['apellido'],0);
 $pdf->Ln(5);
-
 $pdf->SetX(2);
 $pdf->Cell(40,5,'Edad:',0);
 $pdf->Ln(0);
@@ -93,7 +88,6 @@ $pdf->SetX(22);
 //$pdf->Cell(40,5,'31',0);
 $pdf->Cell(40,5,$_POST['edad'],0);
 $pdf->Ln(5);
-
 $pdf->SetX(2);
 $pdf->Cell(40,5,'Territorio:',0);
 $pdf->Ln(0);
@@ -109,7 +103,6 @@ $pdf->SetX(22);
 //$pdf->Cell(40,5,'Deportista',0);
 $pdf->Cell(40,5,$_POST['rol'],0);
 $pdf->Ln(5);*/
-
 /*$pdf->SetX(2);
 $pdf->Cell(40,5,'Disciplina:',0);
 $pdf->Ln(0);
