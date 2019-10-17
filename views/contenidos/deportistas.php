@@ -25,7 +25,8 @@ require_once "./controllers/deportistaControlador.php";
                     <th scope="col">Cédula</th>
                     <th scope="col">Genero</th>                    
                     <th scope="col">Disciplina</th>
-                    <th scope="col">Edad</th>                    
+                    <th scope="col">Edad</th>
+                    <th scope="col">Credencial</th>                    
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
 

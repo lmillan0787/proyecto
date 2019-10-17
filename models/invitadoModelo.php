@@ -9,18 +9,15 @@ if ($peticionAjax) {
 class invitadoModelo extends mainModel
 {
     protected function agregar_invitado($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_per(nac,ced,nom,ape,fec_nac,cod_gen) VALUES (:nac,:ced,:nom,:ape,:fec_nac,:cod_gen)");
-        $sql->bindParam(":nac", $datos['nac']);
-        $sql->bindParam(":ced", $datos['ced']);
-        $sql->bindParam(":nom", $datos['nom']);
-        $sql->bindParam(":ape", $datos['ape']);
-        $sql->bindParam(":fec_nac", $datos['fec_nac']);
-        $sql->bindParam(":cod_gen", $datos['cod_gen']);
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_par (cod_per,cod_even,cod_perf) VALUES (:cod_per,:cod_even,:cod_perf)");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->bindParam(":cod_perf", $datos['cod_perf']);    
         $sql->execute();
         return $sql;
     }
     public function consultar_invitado(){
-        $consultaInvitado = mainModel::conectar()->prepare("SELECT a.*, b.*,c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN tab_gen AS c ON a.cod_gen=c.cod_gen where cod_perf=14");
+        $consultaInvitado = mainModel::conectar()->prepare("SELECT a.*, b.*,c.*,d.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN tab_gen AS c ON a.cod_gen=c.cod_gen INNER JOIN tab_perf AS d ON b.cod_perf=d.cod_perf WHERE b.cod_perf BETWEEN 14 AND 15");
         $consultaInvitado->execute();
         $row = $consultaInvitado->fetchAll(PDO::FETCH_ASSOC);
         return $row;

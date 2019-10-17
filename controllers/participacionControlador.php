@@ -1,7 +1,7 @@
 <?php
 
 if ($peticionAjax) {
-    require_once "./models/participacionModelo.php";
+    require_once "../models/participacionModelo.php";
 } else {
     require_once "./models/participacionModelo.php";
 }
@@ -24,13 +24,7 @@ class participacionControlador extends participacionModelo
                 "Texto" => "La cédula que intenta ingresar ya se encuentra registrada en el sistema",
                 "Tipo" => "error"
             ];
-        } else {
-            $datosParticipacion = [
-                "cod_nac" => $cod_per,
-                "ced" => $cod_even,
-                "nom" => $cod_perf,
-                
-            ];
+        } else {            
             $guardarParticipacion = participacionModelo::agregar_participacion($datosParticipacion);
 
             if ($guardarParticipacion->rowCount() >= 1) {
@@ -86,6 +80,42 @@ class participacionControlador extends participacionModelo
             </tr>';
         }
         return $row;
+    }
+    public function eliminar_participacion_controlador(){
+
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datosPersona = [
+            "cod_par" => $cod_par
+        ];
+        $eliminarParticipacion = participacionModelo::eliminar_participacion_modelo($datosPersona);
+
+        if ($eliminarParticipacion->rowCount() >= 1) {
+            echo "
+               <script>
+               Swal.fire(
+                'Borrado exitoso',
+                'Exito al borrar la participación',
+                'success'
+               ).then(function(){
+                window.location='" . SERVERURL . "deportistas/';
+            });     
+               
+               </script>
+               ";
+        } else {
+            echo "
+               <script>
+               Swal.fire(
+                'Error al eliminar',
+                'recargue la pagina',
+                'error'
+               ).then(function(){
+                window.location='" . SERVERURL . "deportistas/';
+            });     
+               
+               </script>
+               ";
+        }
     }
 }
 

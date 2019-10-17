@@ -8,7 +8,7 @@ $('.FormularioAjax').submit(function(e) {
     var metodo = form.attr('method');
     var respuesta = form.children('.RespuestaAjax');
 
-    var msjError = "<script>swal('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
+    var msjError = "<script>swal.fire('Ocurrió un error inesperado','Por favor recargue la página','error');</script>";
     var formdata = new FormData(this);
 
 

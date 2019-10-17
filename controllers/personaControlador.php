@@ -19,6 +19,7 @@ class personaControlador extends personaModelo
         $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
 
         $validarCedula = mainModel::validar_cedula_modelo($ced);
+
         if ($validarCedula->rowCount() >= 1) {
             $alerta = [
                 "Alerta" => "simple",
@@ -203,21 +204,24 @@ class personaControlador extends personaModelo
         $editarPersona = personaModelo::editar_persona_modelo($datosPersona);
         
         if ($editarPersona->rowCount() >= 1) {
-            $alerta = [
-                "Alerta" => "simplePersona",
-                "Titulo" => "",
-                "Texto" => "Persona actualizada exitosamente",
-                "Tipo" => "success"
-            ];
+            echo"<script>
+            Swal.fire(
+                'Actualización exitosa',
+                'Persona actualizada exitosamente!',
+                'success'
+            ).then(function(){
+                window.location='" . SERVERURL . "personas/';
+            });            
+            </script>";
         } else {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "Error al actualizar persona",
-                "Texto" => "La cédula que intenta ingresar pertenece a otra personas",
-                "Tipo" => "error"
-            ];
-        }
-        return mainModel::sweet_alert($alerta);
+            echo"<script>
+            Swal.fire(
+                'Error al actualizar',
+                'El numero de Cédula pertenece a otra persona que ya se encuentra registrada en el sistema',
+                'error'
+            );            
+            </script>";
+        }        
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function eliminar_persona_controlador()

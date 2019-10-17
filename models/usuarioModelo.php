@@ -33,7 +33,7 @@ class usuarioModelo extends mainModel
         return $sql;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function validar_cedula_modelo($ced){
+    public function validar_cedula($ced){
         $validarCedula = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced='$ced'");
         $validarCedula->execute();
         return $validarCedula;

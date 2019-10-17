@@ -27,7 +27,9 @@ require_once "./controllers/invitadoControlador.php";
                     <th scope="col">Apellido</th>
                     <th scope="col">Cédula</th>
                     <th scope="col">Genero</th>                   
-                    <th scope="col">Edad</th>                    
+                    <th scope="col">Edad</th> 
+                    <th scope="col">Perfil</th>
+                    <th scope="col">Credencial</th>                  
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                 </tr>
@@ -42,18 +44,4 @@ require_once "./controllers/invitadoControlador.php";
     </div>
 </div>
 
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        (function($) {
-            $('#filtrar').keyup(function() {
-                var rex = new RegExp($(this).val(), 'i');
-                $('.buscar tr').hide();
-                $('.buscar tr').filter(function() {
-                    return rex.test($(this).text());
-                }).show();
-            })
-        }(jQuery));
-    });
-</script>
 

@@ -22,10 +22,11 @@ class participacionModelo extends mainModel
         $row = $consultaParticipacion->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
-    public function validar_cedula($ced){
-        $validarCedula = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced='$ced'");
-        $validarCedula->execute();
-        return $validarCedula;
+    public function eliminar_participacion_modelo($datos){
+        $eliminar = mainModel::conectar()->prepare("DELETE FROM dat_par WHERE cod_par=:cod_par");
+        $eliminar->bindParam(":cod_par", $datos['cod_par']);
+        $eliminar->execute();
+        return $eliminar;
 
     }
     protected function editar_participacion($datos){

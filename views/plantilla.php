@@ -32,6 +32,8 @@ session_start(['name'=>'junain']);
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/jquery-3.4.1.min.js"></script>
     <!-- Data table -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/webcam.min.js"></script>
+    <!-- Sweetalerts -->
+    <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/sweetalert2.all.js"></script>
 
 </head>
 
