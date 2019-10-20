@@ -4,11 +4,11 @@
     $insPersona = new personaControlador();
 ?>
 <!-- Barra de busqueda y boton -->
-<nav class="navbar navbar-dark unique-color">
+<nav class="navbar navbar-dark teal darken-1">
     <form class="form-inline">        
         <span class="navbar-brand" id="brand1">Personas</span>
     </form>
-    <button class="btn btn-info btn-md" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarPersona/'">Registrar</button>
+    <button class="btn btn-default btn-md" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarPersona/'">Registrar</button>
 </nav>
 <!-- Tabla -->
 <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tablaTodas">

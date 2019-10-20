@@ -111,7 +111,7 @@ class personaControlador extends personaModelo
             </h5>
             <!--Formulario de inicio-->
             <div class="card-body px-lg-5">
-                <form class="FormularioAjax" action="'.SERVERURL.'ajax/editarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+                <form class="FormularioAjax" action="' . SERVERURL . 'ajax/editarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                     <div class="text-center">
                     </div>
@@ -202,9 +202,9 @@ class personaControlador extends personaModelo
         ];
 
         $editarPersona = personaModelo::editar_persona_modelo($datosPersona);
-        
+
         if ($editarPersona->rowCount() >= 1) {
-            echo"<script>
+            echo "<script>
             Swal.fire(
                 'Actualización exitosa',
                 'Persona actualizada exitosamente!',
@@ -214,14 +214,14 @@ class personaControlador extends personaModelo
             });            
             </script>";
         } else {
-            echo"<script>
+            echo "<script>
             Swal.fire(
                 'Error al actualizar',
                 'El numero de Cédula pertenece a otra persona que ya se encuentra registrada en el sistema',
                 'error'
             );            
             </script>";
-        }        
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function eliminar_persona_controlador()
@@ -249,5 +249,17 @@ class personaControlador extends personaModelo
             ];
         }
         return mainModel::sweet_alert($alerta);
+    }
+    public function validar_cedula_controlador()
+    {
+        $ced = mainModel::limpiar_cadena($_POST['ced']);
+
+        $validarCedula = mainModel::validar_cedula_modelo($ced);
+
+        if ($validarCedula->rowCount() >= 1) {
+            echo '<div class="alert alert-danger"><strong>Error!</strong> Cedula registrada anteriormente.</div>';
+        } else {
+            echo '<div class="alert alert-success"><strong>Puedes Continuar el registro</strong> Continua.</div>';
+        }
     }
 }
