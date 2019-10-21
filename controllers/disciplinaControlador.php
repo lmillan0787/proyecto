@@ -8,6 +8,8 @@ if ($peticionAjax) {
 
 class disciplinaControlador extends disciplinaModelo
 {
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //cargar tabla de evento
     public function agregar_disciplina_controlador()
     {
         $des_pue = mainModel::limpiar_cadena($_POST['des_pue']);
@@ -47,7 +49,8 @@ class disciplinaControlador extends disciplinaModelo
         }
         return mainModel::sweet_alert($alerta);
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //cargar tabla de evento
     public function tabla_disciplina()
     {
         $row = disciplinaModelo::consultar_disciplina();
@@ -77,6 +80,45 @@ class disciplinaControlador extends disciplinaModelo
             </tr>';
         }
         return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar disciplinas autoctonas
+    public function consultar_disciplinas_autoctonas_controlador()
+    {
+        $disAutoctonas = disciplinaModelo::consultar_disciplinas_autoctonas_modelo();        
+        foreach ($disAutoctonas as $row) {
+            echo '
+                <div class="">                    
+                    <label class="" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
+                </div>
+                ';
+        }        
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar disciplinas convencionales
+    public function consultar_disciplinas_convencionales_controlador()
+    {
+        $disConvencionales = disciplinaModelo::consultar_disciplinas_convencionales_modelo();        
+        foreach ($disConvencionales as $row) {
+            echo '
+                <div class="">                    
+                    <label class="" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
+                </div>
+                ';
+        }        
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar disciplinas autoctonas
+    public function consultar_disciplinas_controlador()
+    {
+        $disciplinas = disciplinaModelo::consultar_disciplinas_modelo();        
+        foreach ($disciplinas as $row) {
+            echo '
+                <div class="">                    
+                    <label class="" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
+                </div>
+                ';
+        }        
     }
     
 }

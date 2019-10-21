@@ -6,10 +6,10 @@ if ($peticionAjax) {
 }
 class mainModel
 {
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //conexion a la base de datos
     protected function conectar()
     {
-
         try {
             $enlace = new PDO(SGDB, USER, PASS);
         } catch (PDOException $e) {
@@ -17,43 +17,47 @@ class mainModel
         }
         return $enlace;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consulta simple
     protected function ejecutar_consulta_simple($consulta)
     {
-
         $respuesta = self::conectar()->prepare($consulta);
         $respuesta->execute();
         return $respuesta;
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //validar cedula
-    public function validar_cedula_modelo($ced){
+    protected function validar_cedula_modelo($ced){
         $validarCedula = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced='$ced'");
         $validarCedula->execute();
         return $validarCedula;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar persona
-    public function consultar_persona_modelo(){
+    protected function consultar_persona_modelo(){
         $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac");
         $consultaPersona->execute();
         $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
         return $row;
-    } 
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     //valdiar persona
-    public function validar_persona_modelo($ced){
+    protected function validar_persona_modelo($ced){
         $validarPersona = mainModel::ejecutar_consulta_simple("SELECT cod_per FROM dat_per WHERE ced='$ced'");
         $validarPersona->execute();
         $row = $validarPersona->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //valdiar participación
-    public function validar_participacion_modelo($datos){
+    protected function validar_participacion_modelo($datos){
         $validarParticipacion = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even");
         $validarParticipacion->bindParam(":cod_per", $datos['cod_per']);
         $validarParticipacion->bindParam(":cod_even", $datos['cod_even']);
         $validarParticipacion->execute();        
         return $validarParticipacion;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //encryptar datos
     protected function encryption($string)
     {
@@ -64,6 +68,7 @@ class mainModel
         $output = base64_encode($output);
         return $output;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //desencriptar datos
     protected function description($string)
     {
@@ -73,6 +78,7 @@ class mainModel
         $output = onpenssl_descrypt(base64_decode($string), METHOD, $key, 0, $iv);
         return $output;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //funcion para crear numero aleatorios
     protected function generar_codigo_aleatorio($letra, $longitud, $num)
     {
@@ -83,6 +89,7 @@ class mainModel
         }
         return $letra . $num;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //proteger de iyecciones SQL
     protected function limpiar_cadena($cadena)
     {
@@ -104,7 +111,7 @@ class mainModel
         $cadena = str_ireplace(";", "", $cadena);
         return $cadena;
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function sweet_alert($datos)
     {
 

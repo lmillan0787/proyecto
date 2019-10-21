@@ -1,4 +1,4 @@
-$('.FormularioAjax').submit(function(e) {
+$('.FormularioAjax').submit(function (e) {
     e.preventDefault();
 
     var form = $(this);
@@ -24,52 +24,49 @@ $('.FormularioAjax').submit(function(e) {
     }
 
 
-    Swal.fire({
-        title: "¿Estás seguro?",
-        text: textoAlerta,
-        type: "question",
-        showCancelButton: true,
-        confirmButtonText: "Aceptar",
-        cancelButtonText: "Cancelar"
-    }).then((result) => 
-    {if (result.value) {
-        $.ajax({
-            type: metodo,
-            url: accion,
-            data: formdata ? formdata : form.serialize(),
-            cache: false,
-            contentType: false,
-            processData: false,            
-            xhr: function() {
-                var xhr = new window.XMLHttpRequest();
-                xhr.upload.addEventListener("progress", function(evt) {
-                    if (evt.lengthComputable) {
-                        var percentComplete = evt.loaded / evt.total;
-                        percentComplete = parseInt(percentComplete * 100);
-                        if (percentComplete < 100) {
-                            respuesta.html('<p class="text-center">Procesado... (' + percentComplete + '%)</p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" style="width: ' + percentComplete + '%;"></div></div>');
-                        } else {
-                            respuesta.html('<p class="text-center"></p>');
-                        }
+    //Swal.fire({
+    //    title: "¿Estás seguro?",
+    //    text: textoAlerta,
+    //    type: "question",
+    //    showCancelButton: true,
+    //    confirmButtonText: "Aceptar",
+    //    cancelButtonText: "Cancelar"
+    //}).then((result) => 
+    //{if (result.value) {
+    $.ajax({
+        type: metodo,
+        url: accion,
+        data: formdata ? formdata : form.serialize(),
+        cache: false,
+        contentType: false,
+        processData: false,
+        xhr: function () {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function (evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    if (percentComplete < 100) {
+                        respuesta.html('<p class="text-center">Procesado... (' + percentComplete + '%)</p><div class="progress progress-striped active"><div class="progress-bar progress-bar-info" style="width: ' + percentComplete + '%;"></div></div>');
+                    } else {
+                        respuesta.html('<p class="text-center"></p>');
                     }
-                }, false);
-                return xhr;
-            },
-            success: function(data) {
-                respuesta.html(data);
-            },
-            error: function() {
-                respuesta.html(msjError);
-            }
-        });  
-    }
-  })
-    
-    
+                }
+            }, false);
+            return xhr;
+        },
+        success: function (data) {
+            respuesta.html(data);
+        },
+        error: function () {
+            respuesta.html(msjError);
+        }
+    });
 });
+
 // Tablas
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('#tabla').DataTable({
         searching: true,
         ordering: true,
@@ -109,3 +106,20 @@ var idioma = {
         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
     }
 }
+/////////////////////////////////////////////////////////////////
+//formulario eventos
+    function toggle(elemento) {
+        if (elemento.value == "1") {
+            document.getElementById("autoctono").style.display = "block";
+            document.getElementById("convencional").style.display = "none";
+            document.getElementById("mixto").style.display = "none";
+        } else if (elemento.value == "2") {
+            document.getElementById("autoctono").style.display = "none";
+            document.getElementById("convencional").style.display = "block";
+            document.getElementById("mixto").style.display = "none";
+        } else if (elemento.value == "3") {
+            document.getElementById("autoctono").style.display = "none";
+            document.getElementById("convencional").style.display = "none";
+            document.getElementById("mixto").style.display = "block";
+        }
+    }

@@ -3,13 +3,13 @@ html {
     position: relative;
 }
 
-body {
+/*body {
     margin: 0px;
     padding: 0px;
     background: url('../img/fondo3.png') no-repeat center center;
     background-size: 100% 100%;
     background-size: contain;
-}
+}*/
 
 .container {
     display: grid;

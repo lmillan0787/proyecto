@@ -176,7 +176,7 @@ class invitadoControlador extends invitadoModelo
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultarEvento()
     {
-        $consultarEvento = mainModel::ejecutar_consulta_simple("SELECT * FROM dat_even");
+        $consultarEvento = mainModel::ejecutar_consulta_simple("SELECT * FROM dat_even WHERE cod_estat='1'");
         $row = $consultarEvento->fetchAll(PDO::FETCH_ASSOC);
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_even'] . '">' . $row['des_even'] . '</option>';
