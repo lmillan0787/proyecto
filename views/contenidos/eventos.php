@@ -5,11 +5,10 @@ $insEvento = new eventoControlador();
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">
-
-    <form class="form-inline">
-        <span class="navbar-brand" id="brand1">Eventos</span>
-    </form>
-    <button id="modalActivate" type="button" class="btn btn-cyan" onclick="location.href='<?php echo SERVERURL ?>registrarEvento/'">Crear evento</button>
+    <div id="titulo">
+        <h3>EVENTOS</h3>
+    </div>
+    <button id="botonCrear" type="button" class="btn btn-cyan" onclick="location.href='<?php echo SERVERURL ?>registrarEvento/'">Crear evento</button>
 </nav>
 <!-- Tabla -->
 <table id="tabla" class="table table-bordered table-striped">

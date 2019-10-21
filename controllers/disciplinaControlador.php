@@ -88,9 +88,7 @@ class disciplinaControlador extends disciplinaModelo
         $disAutoctonas = disciplinaModelo::consultar_disciplinas_autoctonas_modelo();        
         foreach ($disAutoctonas as $row) {
             echo '
-                <div class="">                    
-                    <label class="" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
-                </div>
+                <option disabled value="">'.$row['des_dis'].'</option>                
                 ';
         }        
     }
@@ -101,9 +99,7 @@ class disciplinaControlador extends disciplinaModelo
         $disConvencionales = disciplinaModelo::consultar_disciplinas_convencionales_modelo();        
         foreach ($disConvencionales as $row) {
             echo '
-                <div class="">                    
-                    <label class="" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
-                </div>
+            <option disabled value="">'.$row['des_dis'].'</option>
                 ';
         }        
     }
@@ -114,9 +110,7 @@ class disciplinaControlador extends disciplinaModelo
         $disciplinas = disciplinaModelo::consultar_disciplinas_modelo();        
         foreach ($disciplinas as $row) {
             echo '
-                <div class="">                    
-                    <label class="" for="' . $row['des_dis'] . '">' . $row['des_dis'] . '</label>
-                </div>
+            <option disabled value="">'.$row['des_dis'].'</option>
                 ';
         }        
     }

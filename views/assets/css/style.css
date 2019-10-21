@@ -68,16 +68,19 @@ html {
     max-width: 1200px;
     margin: auto;
 }
-
-#brand1 {
-    margin: auto;
-}
-
 #nav_menu {
     max-width: 1200px;
     margin: auto;
 }
-
+#titulo{
+    color: #ffffff;
+    text-align: center;
+    margin: auto;
+    position: relative;
+}
+#botonCrear{
+    position: relative;
+}
 
 /*Pié de pagina*/
 

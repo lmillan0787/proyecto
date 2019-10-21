@@ -5,7 +5,7 @@ require_once "./controllers/eventoControlador.php";
 require_once "./controllers/disciplinaControlador.php";
 $insEvento = new eventoControlador();
 $insDisciplina = new disciplinaControlador();
-$fecha_actual=date("Y/m/d");
+$fecha_actual = date("Y-m-d");
 ?>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -27,7 +27,7 @@ $fecha_actual=date("Y/m/d");
     });
 </script>
 <div class="card" id="form_evento">
-   
+
     <h5 class="card-header info-color white-text text-center py-4">
         <strong>Datos Básicos del Evento</strong>
     </h5>
@@ -88,20 +88,44 @@ $fecha_actual=date("Y/m/d");
                     <label class="custom-control-label" for="mix">Mixto</label>
                 </div>
             </center><br>
-            <div id="autoctono" style="display:none">                
-                <?php
-                $insDisciplina->consultar_disciplinas_autoctonas_controlador();
-                ?>
+            <div id="autoctono" style="display:none">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-feather prefix grey-text"></i></label>
+                    </div>
+                    <select class="browser-default custom-select" id="inputGroupSelect01" id="" name="" >
+                        <option selected disabled value="">Disciplinas autoctonas</option>
+                        <?php
+                        $insDisciplina->consultar_disciplinas_autoctonas_controlador();
+                        ?>
+                    </select>
+                </div>
             </div>
-            <div id="convencional" style="display:none">               
-            <?php
-                $insDisciplina->consultar_disciplinas_convencionales_controlador();
-                ?>
+            <div id="convencional" style="display:none">
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-futbol prefix grey-text"></i></label>
+                    </div>
+                    <select class="browser-default custom-select" id="inputGroupSelect01" id="" name="" >
+                        <option selected disabled value="">Disciplinas convencionales</option>
+                        <?php
+                        $insDisciplina->consultar_disciplinas_convencionales_controlador();
+                        ?>
+                    </select>
+                </div>
             </div>
             <div id="mixto" style="display:none">
-            <?php
-                $insDisciplina->consultar_disciplinas_controlador();
-                ?>
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-futbol prefix grey-text"></i><i class="fas fa-feather prefix grey-text"></i></label>
+                    </div>
+                    <select class="browser-default custom-select" id="inputGroupSelect01" id="" name="" >
+                        <option selected disabled value="">Disciplinas</option>
+                        <?php
+                        $insDisciplina->consultar_disciplinas_controlador();
+                        ?>
+                    </select>
+                </div>
             </div>
             <br><button class="btn btn-info btn-block" type="submit">Registrar</button>
             <div class="RespuestaAjax"></div>
