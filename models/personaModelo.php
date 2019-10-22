@@ -48,5 +48,12 @@ class personaModelo extends mainModel
         $eliminarPersona->execute();
         return $eliminarPersona;
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function validar_persona_distinta_modelo($datos){
+        $sql = mainModel::conectar()->prepare("SELECT *  FROM dat_per WHERE cod_per!=:cod_per AND ced=:ced");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->bindParam(":ced", $datos['ced']);
+        $sql->execute();
+        return $sql;
+    }
 }

@@ -9,6 +9,7 @@ if ($peticionAjax) {
 class personaControlador extends personaModelo
 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //agregas persona
     public function agregar_persona_controlador()
     {
         $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
@@ -57,6 +58,7 @@ class personaControlador extends personaModelo
         return mainModel::sweet_alert($alerta);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //tabla persona
     public function tabla_persona()
     {
         $row = personaModelo::consultar_persona_modelo();
@@ -92,8 +94,8 @@ class personaControlador extends personaModelo
         }
         return $row;
     }
-    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consulatr persona
     public function consultar_persona2()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
@@ -182,6 +184,7 @@ class personaControlador extends personaModelo
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //
     public function editar_persona_controlador()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
@@ -202,10 +205,19 @@ class personaControlador extends personaModelo
             "cod_gen" => $cod_gen
         ];
 
-        $editarPersona = personaModelo::editar_persona_modelo($datosPersona);
-
-        if ($editarPersona->rowCount() >= 1) {
+        $validarPersona = personaModelo::validar_persona_distinta_modelo($datosPersona);
+        if ($validarPersona->rowCount() >= 1) {
             echo "<script>
+            Swal.fire(
+                'Error al actualizar',
+                'El numero de Cédula pertenece a otra persona que ya se encuentra registrada en el sistema',
+                'error'
+            );            
+            </script>";
+        } else {
+            $editarPersona = personaModelo::editar_persona_modelo($datosPersona);
+            if ($editarPersona->rowCount() >= 1) {
+                echo "<script>
             Swal.fire(
                 'Actualización exitosa',
                 'Persona actualizada exitosamente!',
@@ -214,14 +226,15 @@ class personaControlador extends personaModelo
                 window.location='" . SERVERURL . "personas/';
             });            
             </script>";
-        } else {
-            echo "<script>
+            }else{
+                echo "<script>
             Swal.fire(
-                'Error al actualizar',
-                'El numero de Cédula pertenece a otra persona que ya se encuentra registrada en el sistema',
+                'Error',
+                'Error al actualizar persona',
                 'error'
             );            
             </script>";
+            }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
