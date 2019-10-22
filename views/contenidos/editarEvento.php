@@ -5,6 +5,7 @@ require_once "./controllers/eventoControlador.php";
 require_once "./controllers/disciplinaControlador.php";
 $insEvento = new eventoControlador();
 $insDisciplina = new disciplinaControlador();
+$insEvento->formulario_editar_evento_controlador();
 ?>
 <!-- Validar Cedula -->
 <script type="text/javascript">
@@ -26,10 +27,82 @@ $insDisciplina = new disciplinaControlador();
         });
     });
 </script>
-<?php
-$insEvento->formulario_editar_evento_controlador();
-?>
-</center><br>
+<div class="card" id="form_evento">
+                <h5 class="card-header info-color white-text text-center py-4">
+                    <strong>Datos Básicos del Evento</strong>
+                </h5>
+                <!--Formulario de inicio-->
+                <div class="card-body px-lg-5">
+                    <form class="FormularioAjax" action="'.SERVERURL.'ajax/registrarEventoAjax.php" method="POST"
+                        data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+                        <div class="text-center">
+                        </div>
+                        <!-- Nombre del Evento-->
+                        <label for="textInput">Nombre del evento:</label>
+                        <div class="input-group flex-nowrap">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
+                            </div>
+                            <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control"
+                                placeholder="Nombre del Evento" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required
+                                pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s0-9]+" name="des_even" required id="des_even" value="'.$row['des_even'].'">
+                        </div>
+                        <div id="result-even"></div>
+                        <!-- Fecha del evento-->
+                        <label for="textInput">Fecha del evento:</label>
+                        <div class="input-group flex-nowrap">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="addon-wrapping"><i
+                                        class="far fa-calendar-alt prefix grey-text"></i></span>
+                            </div>
+                            <input type="date" class="form-control" placeholder="Fecha del evento" aria-label="Username"
+                                aria-describedby="addon-wrapping" min="'.$row['fec_even'].'" max="2050-01-01" step="1" name="fec_even" required value="'.$row['fec_even'].'">
+                        </div>
+                        <!-- Estado-->
+                        <label for="textInput">Estado:</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01"><i
+                                        class="fas fa-globe-americas prefix grey-text"></i></label>
+                            </div>
+                            <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_edo" name="cod_edo" required>                      
+                                <option value="'.$row['cod_edo'].'" selected>'.$row['des_edo'].'</option>                              
+                            </select>
+                        </div>
+                        <!-- Estatus-->
+                        <label for="textInput">Estatus:</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01"><i
+                                        class="fas fa-toggle-on prefix grey-text"></i></label>
+                            </div>
+                            <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estar" name="cod_estat"
+                                required>
+                                <option value="'.$row['cod_estat'].'" selected>'.$row['des_estat'].'</option>
+                            </select>
+                        </div>
+                        <!-- Tipo de evento-->
+                        <br><b><label for="textInput">Tipo de evento:</label></b><br>
+                        <center>
+                            <!-- Group of default radios - option 1 -->
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input " id="aut" onclick="toggle(this)" name="cod_tip_even"
+                                    value="1" required>
+                                <label class="custom-control-label" for="aut">Autóctono</label>
+                            </div>
+                            <!-- Group of default radios - option 2 -->
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input " id="con" onclick="toggle(this)" name="cod_tip_even"
+                                    value="2" required>
+                                <label class="custom-control-label" for="con">Convencional</label>
+                            </div>
+                            <!-- Group of default radios - option 3 -->
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input " id="mix" onclick="toggle(this)" name="cod_tip_even"
+                                    value="3" required>
+                                <label class="custom-control-label" for="mix">Mixto</label>
+                            </div>
+                            </center><br>
                         <div id="autoctono" style="display:none">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
