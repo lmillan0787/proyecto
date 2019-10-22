@@ -8,19 +8,21 @@ if ($peticionAjax) {
 
 class delegadoModelo extends mainModel
 {
-    protected function agregar_deportista($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_per(nac,ced,nom,ape,fec_nac,cod_gen) VALUES (:nac,:ced,:nom,:ape,:fec_nac,:cod_gen)");
-        $sql->bindParam(":nac", $datos['nac']);
-        $sql->bindParam(":ced", $datos['ced']);
-        $sql->bindParam(":nom", $datos['nom']);
-        $sql->bindParam(":ape", $datos['ape']);
-        $sql->bindParam(":fec_nac", $datos['fec_nac']);
-        $sql->bindParam(":cod_gen", $datos['cod_gen']);
+    protected function agregar_delegado($datos){
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_par (cod_per,cod_even,cod_perf) VALUES (:cod_per,:cod_even,:cod_perf);
+        INSERT INTO dat_del (cod_par,cod_reg,cod_pue,cod_dis,cod_cat) VALUES (LAST_insert_id(),:cod_reg,:cod_pue,:cod_dis,:cod_cat)");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->bindParam(":cod_perf", $datos['cod_perf']);
+        $sql->bindParam(":cod_reg", $datos['cod_reg']);
+        $sql->bindParam(":cod_pue", $datos['cod_pue']);
+        $sql->bindParam(":cod_dis", $datos['cod_dis']);
+        $sql->bindParam(":cod_cat", $datos['cod_cat']);
         $sql->execute();
         return $sql;
     }
     public function consultar_delegado(){
-        $consultaDelegado = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*,d.* ,e.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN dat_del AS c ON b.cod_par=c.cod_par INNER JOIN tab_gen as d  ON a.cod_gen=d.cod_gen INNER JOIN tab_reg as e on c.cod_reg=e.cod_reg   where cod_perf=5 ORDER BY c.cod_par ASC");
+        $consultaDelegado = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*,d.* ,e.*,f.*,g.*,h.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN dat_del AS c ON b.cod_par=c.cod_par INNER JOIN tab_gen AS d  ON a.cod_gen=d.cod_gen INNER JOIN tab_reg AS e ON c.cod_reg=e.cod_reg INNER JOIN tab_dis as f ON c.cod_dis=f.cod_dis INNER JOIN  tab_cat as g ON c.cod_cat=g.cod_cat INNER JOIN tab_pue as h  on c.cod_pue=h.cod_pue WHERE cod_perf=5  ORDER BY c.cod_par ASC");
         $consultaDelegado->execute();
         $row = $consultaDelegado->fetchAll(PDO::FETCH_ASSOC);
         return $row;

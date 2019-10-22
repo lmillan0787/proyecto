@@ -96,7 +96,7 @@ $pdf->SetX(2);
 $pdf->Cell(40, 5, 'Territorio:', 0);
 $pdf->Ln(0);
 $pdf->SetX(20);
-$pdf->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['des_reg'], 'UTF-8')), 0);
+$pdf->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['alias'], 'UTF-8')), 0);
 $pdf->Ln(5);
 
 $pdf->SetY(69);

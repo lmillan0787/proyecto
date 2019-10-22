@@ -198,3 +198,11 @@ th {
 #tabla_filter{
     margin: auto;
 }
+
+td{
+   margin-top: 5px;
+   margin-bottom: 5px;
+   }
+.btn-sm{
+    margin: 0;
+}

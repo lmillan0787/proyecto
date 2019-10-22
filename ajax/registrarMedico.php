@@ -1,15 +1,17 @@
 <?php
 $peticionAjax = false;
-include "./controllers/delegadoControlador.php";
-$insDelegado= new delegadoControlador();
+include "./controllers/medicoControlador.php";
+$insMedico= new medicoControlador();
 ?>
+
+
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Registro de Delegado</strong>
+        <strong>Registro de Medico</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
-        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarDelegadoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarMedicoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
             <div class="text-center">
             </div>
             <!-- Cédula-->
@@ -29,7 +31,7 @@ $insDelegado= new delegadoControlador();
                 </div>
             </div>
             <!--Perfil-->
-            <input type="text" name="cod_perf" value="5" hidden="">
+            <input type="text" name="cod_perf" value="6" hidden="">
             <!--Evento-->
             <label for="textInput">Evento:</label>
             <div class="input-group flex-nowrap">
@@ -39,7 +41,7 @@ $insDelegado= new delegadoControlador();
                 <select name="cod_even" id="seleven" class="form-control">
                     <option disabled selected>Evento</option>
                     <?php
-                    $insDelegado->consultarEvento();
+                    $insMedico->consultarEvento();
                     ?>
                 </select>
             </div>
@@ -52,7 +54,7 @@ $insDelegado= new delegadoControlador();
                 <select name="cod_reg" id="selreg" class="form-control" required>
                     <option disabled selected>Región</option>
                     <?php
-                    $insDelegado->consultarRegion();
+                    $insMedico->consultarRegion();
                     ?>
                 </select>
             </div>
@@ -65,35 +67,21 @@ $insDelegado= new delegadoControlador();
                 <select name="cod_pue" id="selpue" class="form-control" required>
                     <option disabled selected>Pueblo</option>
                     <?php
-                    $insDelegado->consultarPueblo();
+                    $insMedico->consultarPueblo();
                     ?>
                 </select>
             </div>
             <!-- Select Disciplina -->
-            <label for="textInput">Disciplina:</label>
+          
             <div class="input-group flex-nowrap">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
-                </div>
-                <select name="cod_dis" id="seldis" class="form-control">
-                    <option disabled selected>Disciplina</option>
-                    <?php
-                    $insDelegado->consultarDisciplina();
-                    ?>
-                </select>
+               
+                
+                    <!--Disciplina -->
+                <input type="text" name="cod_dis" hidden="" value="1">
             </div>
             <!-- Select Categoria -->
-            <label for="textInput">Categoria:</label>
-            <div class="input-group flex-nowrap">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
-                </div>
-                <select name="cod_cat" id="seldis" class="form-control">
-                    <option disabled selected>Categoria</option>
-                    <?php
-                    $insDelegado->consultarCategoria();
-                    ?>
-                </select>
+               <div> 
+                <input type="text" name="cod_cat"  value="1" hidden="">
             </div>
             <br>
             <center>
@@ -105,7 +93,7 @@ $insDelegado= new delegadoControlador();
                     </div>
                     <div class="col-md-6">
                         <div id="results">La foto aparecerá aqui...</div>
-                        <input type="hidden" name="image" class="image-tag"">
+                        <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>
             </center>                

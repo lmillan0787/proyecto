@@ -37,7 +37,7 @@ function Footer()
     // Número de página
     $this->SetTextColor(248,246,249);
      $this->SetXY(0,65);
-     $this->Image('../views/assets/img/fondo_deportista.jpg',1.5,80,87,17,'JPG');
+     $this->Image('../views/assets/img/'.$_POST['cod_reg'].'.jpg',1.5,80,87,17,'JPG');
      $this->Image('../views/assets/img/coach.png',1.5,82,10,10,'png');
     //$this->Cell(90,45,'DEPORTISTA',0,1,'C');
     $this->Cell(95,45,'DELEGADO',0,1,'C');

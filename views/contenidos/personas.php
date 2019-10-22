@@ -5,9 +5,9 @@ $insPersona = new personaControlador();
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">
-    <form class="form-inline">
-        <span class="navbar-brand" id="brand1">Personas</span>
-    </form>
+<div id="titulo">
+        <h3>PERSONAS</h3>
+    </div>
     <button class="btn btn-cyan" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarPersona/'">Registrar</button>
 </nav>
 <!-- Tabla -->

@@ -195,6 +195,7 @@ class personaControlador extends personaModelo
         ];
 
         $validarPersona = personaModelo::validar_persona_distinta_modelo($datosPersona);
+        
         if ($validarPersona->rowCount() >= 1) {
             echo "<script>
             Swal.fire(

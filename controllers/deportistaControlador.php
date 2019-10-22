@@ -137,7 +137,7 @@ class deportistaControlador extends deportistaModelo
                             <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>
                             <input type="text" name="des_pue"  value="' . $row['des_pue'] . '" hidden> 
                             <input type="text" name="cod_reg"  value="' . $row['cod_reg'] . '" hidden>
-                            <input type="text" name="des_reg"  value="' . $row['des_reg'] . '" hidden> 
+                            <input type="text" name="alias"  value="' . $row['alias'] . '" hidden> 
                             <input type="text" name="des_dis"  value="' . $row['des_dis'] . '" hidden>       
                             <button type="submit" class="btn btn-warning btn-md">
                                 <i class="far fa-address-card fa-2x"></i>                            

@@ -16,17 +16,17 @@ class eventoControlador extends eventoModelo
         foreach ($row as $row) {
             echo '
         <tr>
-            <td>' . $row['cod_even'] . '</td>
-            <td>' . $row['des_even'] . '</td>
-            <td>' . $row['fec_even'] . '</td>
-            <td>' . $row['des_tip_even'] . '</td>
-            <td>' . $row['des_edo'] . '</td>            
+            <td id="">' . $row['cod_even'] . '</td>
+            <td id="">' . $row['des_even'] . '</td>
+            <td id="">' . $row['fec_even'] . '</td>
+            <td id="">' . $row['des_tip_even'] . '</td>
+            <td id="">' . $row['des_edo'] . '</td>            
             <td id="estatus' . $row['cod_estat'] . '">' . $row['des_estat'] . '</td>
-            <td><button id="modalActivate" type="button" class="btn btn-warning btn-md" data-toggle="modal"><i class="fas fa-eye fa-2x"></i></button></td>            
+            <td><button id="modalActivate" type="button" class="btn btn-warning btn-sm" data-toggle="modal"><i class="fas fa-eye fa-2x"></i></button></td>            
             <td>
                 <form class="" action="' . SERVERURL . 'editarEvento/" method="POST" data-form="" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
-                    <button type="submit" class="btn btn-default btn-md">
+                    <button type="submit" class="btn btn-default btn-sm">
                         <i class="far fa-edit fa-2x"></i>
                     </button>
                 </form>
