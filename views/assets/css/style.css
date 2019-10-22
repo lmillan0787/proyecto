@@ -99,7 +99,23 @@ html {
     margin: auto;
     padding: 0px;
 }
-
+#estatus1{
+    background-color: #00897b;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+#estatus2{
+    background-color: #e53935;
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
 
 /*inicio*/
 

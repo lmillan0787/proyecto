@@ -28,9 +28,18 @@ class eventoModelo extends mainModel
         return $sql;
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected function consultar_evento_modelo()
+    protected function consultar_tabla_evento_modelo()
     {
         $sql = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_edo AS b ON a.cod_edo=b.cod_edo INNER JOIN tab_estat AS c ON      a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even ORDER BY cod_even DESC ");
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function consultar_editar_evento_modelo($datos)
+    {
+        $sql = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_edo AS b ON a.cod_edo=b.cod_edo INNER JOIN tab_estat AS c ON      a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even WHERE cod_even=:cod_even ");
+        $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
