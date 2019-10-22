@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2019 a las 13:38:49
--- Versión del servidor: 10.3.16-MariaDB
--- Versión de PHP: 7.3.7
+-- Tiempo de generación: 22-10-2019 a las 23:18:20
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -52,15 +52,6 @@ CREATE TABLE `dat_even` (
   `cod_estat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Eventos';
 
---
--- Volcado de datos para la tabla `dat_even`
---
-
-INSERT INTO `dat_even` (`cod_even`, `des_even`, `fec_even`, `cod_edo`, `cod_tip_even`, `cod_estat`) VALUES
-(2, 'BOLIVAR 2020', '2020-10-18', 6, 2, 2),
-(3, 'JUNAIN', '2019-10-15', 10, 1, 2),
-(5, 'GUAJIRA 2019', '2019-10-16', 23, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -85,15 +76,6 @@ CREATE TABLE `dat_par` (
   `cod_perf` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `dat_par`
---
-
-INSERT INTO `dat_par` (`cod_par`, `cod_per`, `cod_even`, `cod_perf`) VALUES
-(1, 1, 3, 15),
-(2, 1, 2, 15),
-(3, 1, 5, 15);
-
 -- --------------------------------------------------------
 
 --
@@ -109,19 +91,6 @@ CREATE TABLE `dat_per` (
   `fec_nac` date NOT NULL,
   `cod_gen` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `dat_per`
---
-
-INSERT INTO `dat_per` (`cod_per`, `cod_nac`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`) VALUES
-(1, 1, 19885429, 'DEIFER', 'GARANTON', '1990-12-08', 1),
-(2, 1, 24217511, 'EMIBELL', 'ROMERO', '1995-08-15', 2),
-(10, 1, 25417809, 'LUIS', 'ORTIZ', '1996-12-10', 1),
-(11, 1, 10223559, 'TEST', 'TEST', '1992-10-10', 1),
-(12, 1, 10223552, 'PRUEBA', 'PRUEBITAS', '1992-10-10', 1),
-(13, 1, 10203040, 'PRUEBA', 'PRUEBA', '1990-05-10', 1),
-(14, 1, 19885499, 'DEIFER', 'GARANTON', '1990-12-08', 1);
 
 -- --------------------------------------------------------
 
@@ -149,15 +118,6 @@ CREATE TABLE `dat_usr` (
   `clave` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `cod_perf` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='datos de usuario';
-
---
--- Volcado de datos para la tabla `dat_usr`
---
-
-INSERT INTO `dat_usr` (`cod_usr`, `cod_per`, `des_usr`, `clave`, `cod_perf`) VALUES
-(1, 1, 'DGARANTON', 'dUg2RytPUnRXYjFwVUNOWDVRb3Zldz09', 1),
-(2, 2, 'EROMERO', 'UFFUQTdINGNVT0ZocnNkVXljWnJLdz09', 2),
-(3, 10, 'LORTIZ', 'dUg2RytPUnRXYjFwVUNOWDVRb3Zldz09', 2);
 
 -- --------------------------------------------------------
 
@@ -473,22 +433,23 @@ INSERT INTO `tab_pue` (`cod_pue`, `des_pue`) VALUES
 CREATE TABLE `tab_reg` (
   `cod_reg` int(2) NOT NULL,
   `des_reg` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `color` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+  `color` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `alias` varchar(200) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tab_reg`
 --
 
-INSERT INTO `tab_reg` (`cod_reg`, `des_reg`, `color`) VALUES
-(1, 'Valles, Sabanas y Tepuyes', 'Rosa'),
-(2, 'Sierra de Perija y Cordillera Andina', 'Carne'),
-(3, 'Costas y Montañas', 'Rojo'),
-(4, 'Deltas, Caños y Manglares', 'Verde'),
-(5, 'Sabanas y Morichales Llaneros', 'Naranja'),
-(6, 'Peninsula, Desiertos y Aguas', 'Azul claro'),
-(7, 'Rios, Sierras y Bosques de la Selva Amazonica', 'Amarillo'),
-(8, 'Zonas Urbanas', 'Vinotinto');
+INSERT INTO `tab_reg` (`cod_reg`, `des_reg`, `color`, `alias`) VALUES
+(1, 'Valles, Sabanas y Tepuyes', 'Rosa', 'Valles, Sabanas y Tepuyes'),
+(2, 'Sierra de Perija y Cordillera Andina', 'Carne', 'Sierra de Perija y Cordillera'),
+(3, 'Costas y Montañas', 'Rojo', 'Sierra de Perija y Cordillera'),
+(4, 'Deltas, Caños y Manglares', 'Verde', 'Deltas, Caños y Manglares'),
+(5, 'Sabanas y Morichales Llaneros', 'Naranja', 'Sabanas y Morichales Llaneros'),
+(6, 'Peninsula, Desiertos y Aguas', 'Azul claro', 'Peninsula, Desiertos y Aguas'),
+(7, 'Rios, Sierras y Bosques de la Selva Amazonica', 'Amarillo', 'Rios, Sierras y Bosques'),
+(8, 'Zonas Urbanas', 'Vinotinto', 'Zonas Urbanas');
 
 -- --------------------------------------------------------
 
@@ -704,7 +665,7 @@ ALTER TABLE `dat_del`
 -- AUTO_INCREMENT de la tabla `dat_even`
 --
 ALTER TABLE `dat_even`
-  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_inv`
@@ -716,25 +677,25 @@ ALTER TABLE `dat_inv`
 -- AUTO_INCREMENT de la tabla `dat_par`
 --
 ALTER TABLE `dat_par`
-  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per`
 --
 ALTER TABLE `dat_per`
-  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per_tec`
 --
 ALTER TABLE `dat_per_tec`
-  MODIFY `cod_equ_tec` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cod_equ_tec` int(4) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_usr`
 --
 ALTER TABLE `dat_usr`
-  MODIFY `cod_usr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cod_usr` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_carg`
@@ -812,7 +773,7 @@ ALTER TABLE `tab_rol`
 -- AUTO_INCREMENT de la tabla `tab_tip_even`
 --
 ALTER TABLE `tab_tip_even`
-  MODIFY `cod_tip_even` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cod_tip_even` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
