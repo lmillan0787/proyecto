@@ -1,5 +1,5 @@
  <!-- Validar Cedula -->
- <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function() {  
     $('#ced').on('blur', function(){
         $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
@@ -26,7 +26,6 @@ $(document).ready(function() {
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
         <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
-
             <div class="text-center">
             </div>
             <!-- Nacionalidad-->

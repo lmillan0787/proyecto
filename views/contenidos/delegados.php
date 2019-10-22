@@ -8,12 +8,12 @@ require_once "./controllers/delegadoControlador.php";
 <div id="con_todo">
 
     <!-- Barra de busqueda y boton -->
-    <nav class="navbar navbar-dark unique-color">
+    <nav class="navbar navbar-dark teal darken-1">
         <form class="form-inline">            
             <input class="form-control mr-sm-2" id="filtrar" type="text" placeholder="Buscar" aria-label="Buscar">
             <span class="navbar-brand" id="brand1">Delegados</span>
         </form>        
-        <button class="btn btn-info btn-md" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarDelegado/'">Registrar</button>
+        <button class="btn btn-cyan" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarDelegado/'">Registrar</button>
     </nav> 
     
     <!-- Tabla -->

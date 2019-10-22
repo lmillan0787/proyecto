@@ -3,6 +3,26 @@ $peticionAjax = false;
 include "./controllers/invitadoControlador.php";
 $insInvitado = new invitadoControlador();
 ?>
+<!-- Validar Cedula -->
+<script type="text/javascript">
+$(document).ready(function() {  
+    $('#ced').on('blur', function(){
+        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+        var ced = $(this).val();   
+        var dataString = 'ced='+ced;
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
+            data: dataString,
+            success: function(data) {
+                $('#result-ced').fadeIn(1000).html(data);
+            }
+        });
+    });              
+});    
+</script>
 <div class="card" id="form_invi">
 
     <h5 class="card-header info-color white-text text-center py-4">
@@ -21,7 +41,8 @@ $insInvitado = new invitadoControlador();
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">
-            </div>            
+            </div> 
+            <div id="result-ced"></div>           
             <!-- Género-->
             <br><label for="textInput">Evento:</label>
             <div class="input-group mb-3">

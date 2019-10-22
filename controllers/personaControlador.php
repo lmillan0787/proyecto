@@ -64,8 +64,7 @@ class personaControlador extends personaModelo
         $row = personaModelo::consultar_persona_modelo();
         foreach ($row as $row) {
             echo '
-            <tr>
-                <td>' . $row['cod_per'] . '</td>
+            <tr>                
                 <td>' . $row['des_nac'] . '</td>
                 <td>' . $row['ced'] . '</td>
                 <td>' . $row['nom'] . '</td>
@@ -75,21 +74,11 @@ class personaControlador extends personaModelo
                 <td>
                     <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                        <button type="submit" class="btn btn-info btn-md">
+                        <button type="submit" class="btn btn-info btn-sm">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
                     </form>    
-                </td>    
-            
-                <td>
-                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                        <button type="submit" class="btn btn-danger btn-md">
-                            <i class="far fa-trash-alt fa-2x"></i>                            
-                        </button>
-                        <div class="RespuestaAjax"></div>
-                    </form>
-                </td>
+                </td>               
             </tr>';
         }
         return $row;
@@ -264,6 +253,8 @@ class personaControlador extends personaModelo
         }
         return mainModel::sweet_alert($alerta);
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //validar cedula
     public function validar_cedula_controlador()
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
@@ -274,6 +265,20 @@ class personaControlador extends personaModelo
             echo '<div class="alert alert-danger"><strong>Error!</strong> Cedula registrada anteriormente.</div>';
         } else {
             echo '<div class="alert alert-success"><strong>Puedes Continuar el registro</strong> Continua.</div>';
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //validar participacion
+    public function validar_cedula_participacion_controlador()
+    {
+        $ced = mainModel::limpiar_cadena($_POST['ced']);
+
+        $validarCedula = mainModel::validar_cedula_modelo($ced);
+
+        if ($validarCedula->rowCount() >= 1) {
+            echo '<div class="alert alert-success"><strong>Puedes Continuar el registro</strong> Continua.</div>';
+        } else {
+            echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema.</div>';
         }
     }
 }

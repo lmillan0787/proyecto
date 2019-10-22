@@ -129,12 +129,16 @@ class deportistaControlador extends deportistaModelo
                     <td>' . $row['des_reg'] . '</td>
                     <td>' . $row['edad'] . '</td>
                     <td>
-                        <form action="'.SERVERURL.'ajax/deportistaFpdfAjax.php" method="POST">                            
+                        <form action="'.SERVERURL.'ajax/deportistaFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
                             <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>           
                             <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
                             <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
                             <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
-                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>        
+                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>
+                            <input type="text" name="des_pue"  value="' . $row['des_pue'] . '" hidden> 
+                            <input type="text" name="cod_reg"  value="' . $row['cod_reg'] . '" hidden>
+                            <input type="text" name="des_reg"  value="' . $row['des_reg'] . '" hidden> 
+                            <input type="text" name="des_dis"  value="' . $row['des_dis'] . '" hidden>       
                             <button type="submit" class="btn btn-warning btn-md">
                                 <i class="far fa-address-card fa-2x"></i>                            
                             </button>

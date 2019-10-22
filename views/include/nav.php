@@ -25,9 +25,9 @@
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="<?php echo SERVERURL ?>tecnicos/">Personal Técnico</a>
-      <li class="nav-item ">
+      <!--<li class="nav-item ">
         <a class="nav-link" href="<?php echo SERVERURL ?>participacion/">Participación</a>
-      </li>
+      </li>-->
       <li class="nav-item ">
         <a class="nav-link" href="<?php echo SERVERURL ?>personas/">Personas</a>
       </li>

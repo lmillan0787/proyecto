@@ -195,3 +195,6 @@ th {
     opacity: 0;
     width: 0;
 }
+#tabla_filter{
+    margin: auto;
+}
