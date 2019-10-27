@@ -1,29 +1,60 @@
 <?php
+
+////////////////////////////////////////QR/////////////////////////
+$msg = $_POST['cedula'];
+$err = 'H';
+
+
+require ('../views/assets/qrcode/qrcode.class.php');
+
+
+$qrcode = new QRcode(utf8_encode($msg), $err);
+$qrcode->disableBorder();
+
+
+//////////////////////////////////////QR//////////////////////////////////////////////////////////
+
+
 require('../views/assets/fpdf/fpdf.php');
 
-$ruta = '../views/assets/upload/';
+//$ruta = '../views/assets/upload/';
 
 class PDF extends FPDF
 {
     // Cabecera de página
     function Header()
     {
+///////////////////////////////////Agregar Fuente Evento
         // Imagenes de Cabecera
+$this->AddFont('bamboo','','bamboo.php');
+$this->SetFont('bamboo', '', 15);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+        
         $this->Image('../views/assets/img/fondo4.png', 2, 0, 95, 90);
+        
+        ///////Nombre del Evento//////////
+        $this->SetY(5);
+        $this->SetX(2);
+        $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['des_even'])) , 0);
+        ////////////////////////////////////////////////////////////////////////
+
         $this->Line(1, 1, 89, 1);
         $this->Line(1, 1, 1, 99);
         $this->Line(1, 79.5, 89, 79.5);
         $this->Line(89, 1, 89, 99);
         $this->Line(1, 99, 89, 99);
-        $this->Image('../views/assets/fpdf/img/minppi.png', 3, 2, 10, 20);
-        $this->Image('../views/assets/fpdf/img/jyd.png', 35, 2, 15, 18);
-        $this->Image('../views/assets/img/mascota19.jpg', 73, 2, 15, 20);
+         $this->Image('../views/assets/fpdf/img/minppi.png', 45, 18, 30, 30);
+        $this->Image('../views/assets/fpdf/img/jyd.png', 50, 2, 10, 15);
+        $this->Image('../views/assets/img/mascota19.jpg', 65, 2, 10, 15);
 
 
         $this->Ln(22);
+        
         // Arial bold 15
-        $this->SetFont('helvetica', 'B', 10);
+       
         // Movernos a la derecha
     }
     
@@ -51,33 +82,43 @@ $pdf->AddPage();
 $pdf->SetFont('Times', '', 12);
 $pdf->SetLineWidth(.5);
 
-$pdf->Ln(20);
-$pdf->Line(29, 21, 61, 21);
-$pdf->Line(29, 21, 29, 53);
-$pdf->Line(29, 53, 61, 53);
-$pdf->Line(61, 21, 61, 53);
-$pdf->Image('../views/assets/upload/' . $_POST['cedula'] . '.jpg', 30, 22, 30, 30, 'JPG');
+////////////////////////////////////////////////////////////QR/////////////////////////////
+$qrcode->displayFPDF($pdf, 60, 48, 15);
+////////////////////////////////////////////////////////////QR/////////////////////////////
 
+$pdf->Ln(20);
+$pdf->Ln(20);
+$pdf->Line(4, 14, 35, 14);
+$pdf->Line(4, 14, 4, 45);
+$pdf->Line(4, 46, 35, 46);
+$pdf->Line(35.6, 14, 35.6, 46);
+$pdf->Image('../views/assets/upload/' . $_POST['cedula'] . '.jpg', 5, 15, 30, 30, 'JPG');
+
+$pdf->SetY(49);
 $pdf->SetX(2);
 $pdf->Cell(40, 5, 'Cedula:', 0);
-$pdf->Ln(0);
-$pdf->SetX(22);
-$pdf->Cell(40, 5, number_format($_POST['cedula'], 0, ',', '.'), 0);
+//$pdf->Ln(0);
+$pdf->SetX(20);
+$pdf->Cell(45, 5, number_format($_POST['cedula'], 0, ',', '.'), 0);
 $pdf->Ln(5);
+
 //
+$pdf->SetY(54);
 $pdf->SetX(2);
 $pdf->Cell(40, 5, 'Nombres:', 0);
 $pdf->Ln(0);
-$pdf->SetX(22);
-//$pdf->Cell(40,5,'Luis',0,0,'L');
-$pdf->Cell(40, 5, $_POST['nombre'], 0);
+$pdf->SetX(20);
+$pdf->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['nombre'])), 0);
 $pdf->Ln(5);
+
+
+
+$pdf->SetY(59);
 $pdf->SetX(2);
 $pdf->Cell(40, 5, 'Apellidos:', 0);
 $pdf->Ln(0);
-$pdf->SetX(22);
-//$pdf->Cell(40,5,'Millan',0);
-$pdf->Cell(40, 5, $_POST['apellido'], 0);
+$pdf->SetX(20);
+$pdf->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['apellido'])), 0);
 $pdf->Ln(5);
 $pdf->SetX(2);
 $pdf->Cell(40, 5, 'Edad:', 0);

@@ -124,13 +124,12 @@ class delegadoControlador extends delegadoModelo
             }
             echo '
             <tr>
-                    <td>' . $row['cod_per'] . '</td>
+                   <td>' . $row['ced'] . '</td>
                     <td>' . $row['nom'] . '</td>
                     <td>' . $row['ape'] . '</td>
-                    <td>' . $row['ced'] . '</td>
-                    <td>' . $row['des_gen'] . '</td>
                     <td>' . $row['des_reg'] . '</td>
-                    <td>' . $row['edad'] . '</td>
+                    <td>' . $row['des_pue'] . '</td>
+                    <td>' . $row['des_dis'] . '</td>
                      <td>
                         <form action="' . SERVERURL . 'ajax/delegadoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
                         <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>           
@@ -143,6 +142,7 @@ class delegadoControlador extends delegadoModelo
                         <input type="text" name="des_dis"  value="' . $row['des_dis'] . '" hidden>
                         <input type="text" name="cod_reg"  value="' . $row['cod_reg'] . '" hidden>        
                         <input type="text" name="des_cat"  value="' . $row['des_cat'] . '" hidden>         
+                        <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>         
                             <button type="submit" class="btn btn-warning btn-md">
                                 <i class="far fa-address-card fa-2x"></i>                            
                             </button>

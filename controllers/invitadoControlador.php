@@ -122,7 +122,8 @@ class invitadoControlador extends invitadoModelo
                             <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
                             <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
                             <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
-                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>        
+                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>    
+                            <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>        
                             <button type="submit" class="btn btn-warning btn-md">
                                 <i class="far fa-address-card fa-2x"></i>                            
                             </button>
