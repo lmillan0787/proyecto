@@ -22,7 +22,7 @@ class delegadoModelo extends mainModel
         return $sql;
     }
     public function consultar_delegado(){
-        $consultaDelegado = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*,d.* ,e.*,f.*,g.*,h.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN dat_del AS c ON b.cod_par=c.cod_par INNER JOIN tab_gen AS d  ON a.cod_gen=d.cod_gen INNER JOIN tab_reg AS e ON c.cod_reg=e.cod_reg INNER JOIN tab_dis as f ON c.cod_dis=f.cod_dis INNER JOIN  tab_cat as g ON c.cod_cat=g.cod_cat INNER JOIN tab_pue as h  on c.cod_pue=h.cod_pue WHERE cod_perf=5  ORDER BY c.cod_par ASC");
+        $consultaDelegado = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*,d.* ,e.*,f.*,g.*,h.*,i.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN dat_del AS c ON b.cod_par=c.cod_par INNER JOIN tab_gen AS d  ON a.cod_gen=d.cod_gen INNER JOIN tab_reg AS e ON c.cod_reg=e.cod_reg INNER JOIN tab_dis as f ON c.cod_dis=f.cod_dis INNER JOIN  tab_cat AS g ON c.cod_cat=g.cod_cat INNER JOIN tab_pue as h  on c.cod_pue=h.cod_pue INNER JOIN dat_even AS i ON b.cod_even=i.cod_even WHERE cod_perf=5  ORDER BY c.cod_par ASC");
         $consultaDelegado->execute();
         $row = $consultaDelegado->fetchAll(PDO::FETCH_ASSOC);
         return $row;

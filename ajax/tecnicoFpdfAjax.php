@@ -1,4 +1,18 @@
 <?php
+////////////////////////////////////////QR/////////////////////////
+$msg = $_POST['cedula'];
+$err = 'H';
+
+
+require ('../views/assets/qrcode/qrcode.class.php');
+
+
+$qrcode = new QRcode(utf8_encode($msg), $err);
+$qrcode->disableBorder();
+
+
+//////////////////////////////////////QR//////////////////////////////////////////////////////////
+
 require('../views/assets/fpdf/fpdf.php');
 
 class PDF extends FPDF
@@ -8,7 +22,19 @@ function Header()
 {
     // Imagenes de Cabecera
    
-   $this->Image('../views/assets/img/fondo4.png',2,0,95,90);
+    ///////////////////////////////////Agregar Fuente Evento
+       
+$this->AddFont('bamboo','','bamboo.php');
+$this->SetFont('bamboo', '', 15);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        $this->Image('../views/assets/img/fondo4.png', 2, 0, 95, 90);
+        
+        ///////Nombre del Evento//////////
+        $this->SetY(5);
+        $this->SetX(2);
+        $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['des_even'])) , 0);
+        ////////////////////////////////////////////////////////////////////////
    $this->Line(1,1,89,1);
    $this->Line(1,1,1,99);
    $this->Line(1,79.5,89,79.5);
@@ -61,6 +87,11 @@ $pdf->Line(4,46,35,46);
 $pdf->Line(35.6,14,35.6,46);
 $pdf->Image('../views/assets/upload/'.$_POST['cedula'].'.jpg',5,15,30,30,'JPG');
 //$pdf->Ln(2);
+
+
+////////////////////////////////////////////////////////////QR/////////////////////////////
+$qrcode->displayFPDF($pdf, 60, 48, 15);
+////////////////////////////////////////////////////////////QR/////////////////////////////
 
 
 //

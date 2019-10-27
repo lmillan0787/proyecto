@@ -24,6 +24,7 @@ require_once "./controllers/tecnicoControlador.php";
                 <th scope="col">Fecha</th>
                 <th scope="col">Institución</th>
                 <th scope="col">Evento</th>
+                <th scope="col">Credencial</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
             </tr>

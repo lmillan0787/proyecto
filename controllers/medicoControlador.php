@@ -121,11 +121,10 @@ class medicoControlador extends medicoModelo{
             }
             echo '
             <tr>
-                    <td>'.$row['cod_per'].'</td>
+                   
                     <td>'.$row['ced'].'</td>
                     <td>'.$row['nom'].'</td>
                     <td>'.$row['ape'].'</td>
-                    
                     <td>'.$row['des_gen'].'</td>
                     <td>'.$row['des_reg'].'</td>
                     <td>'.$row['des_pue'].'</td>
@@ -138,6 +137,7 @@ class medicoControlador extends medicoModelo{
                             <input type="text" name="genero" value="' . $row['des_gen'] . '" hidden>
                             <input type="text" name="des_reg"  value="' . $row['des_reg'] . '" hidden>        
                             <input type="text" name="des_pue"  value="' . $row['des_pue'] . '" hidden>        
+                            <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>        
                             <button type="submit" class="btn btn-warning btn-md">
                                 <i class="far fa-address-card fa-2x"></i>                            
                             </button>

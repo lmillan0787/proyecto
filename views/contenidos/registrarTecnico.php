@@ -4,148 +4,131 @@ include "./controllers/tecnicoControlador.php";
 $insTecnico= new tecnicoControlador();
 
 ?>
-<!-- Nav tabs -->
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#basicos">Datos Básicos</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu1">Datos de Participación</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu2">Datos de Institución</a>
-    </li>
-</ul>
-<!-- Tab panes -->
-<header>  <Center><h1>Registro de Técnicos</h1></Center></header> 
-<div class="tab-content">
-    <div class="tab-pane container active" id="basicos"><div class="card" id="form_ini">
-        <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Datos Básicos</strong>
-        </h5>
-        <!--Formulario de inicio-->
-        
-        <div class="card-body px-lg-5">
-            <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
-                <div class="text-center">
+<div class="card" id="form_invi">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Registro de Técnicos</strong>
+    </h5>
+    <!--Formulario de inicio-->
+    <div class="card-body px-lg-5">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarTecnicoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+            <div class="text-center">
+            </div>
+            <!-- Cédula-->
+            <label for="textInput">Cédula:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <!-- Nacionalidad-->
-                <label for="textInput">Nacionalidad:</label>
-                <div class="input-group mb-3">
+                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">
+            </div>
+            <!--Rol-->
+            <div class="form-group">
+                <div class="col-sm-15">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
+                        <input type="text" name="cod_rol" value="4" hidden>
                     </div>
-                    <select class="browser-default custom-select" id="inputGroupSelect01" name="nac" required>
-                        <option value="">Nacionalidad</option>
-                        <option value="1">Venezolan@</option>
-                        <option value="0">Extrajer@</option>
-                    </select>
-                </div>
-                <!-- Cédula-->
-                <label for="textInput">Cédula:</label>
-                <div class="input-group flex-nowrap">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
-                    </div>
-                    <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">
-                </div>
-                <div id="result-ced"></div>
-                <!-- Nombre-->
-                <label for=" textInput">Nombre:</label>
-                <div class="input-group flex-nowrap">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
-                    </div>
-                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Nombre" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="nom">
-                </div>
-                <!-- Apellido-->
-                <label for="textInput">Apellido:</label>
-                <div class="input-group flex-nowrap">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
-                    </div>
-                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Apellido" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="ape">
-                </div>
-                <!-- Fecha de nacimiento-->
-                <label for="textInput">Fecha de nacimiento:</label>
-                <div class="input-group flex-nowrap">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
-                    </div>
-                    <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1930-01-01" max="2010-01-01" step="1" name="fec_nac">
-                </div>
-                <!-- Género-->
-                <label for="textInput">Género:</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>
-                    </div>
-                    <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_gen" name="cod_gen" required>
-                        <option value="">Género</option>
-                        <option value="1">Masculino</option>
-                        <option value="2">Femenino</option>
-                    </select>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Datos de Participación  -->
-    <div class="tab-pane container fade" id="menu1">
-        <!-- Codigo de persona -->
-        <div class="card" id="form_ini">
-            <h5 class="card-header info-color white-text text-center py-4">
-            <strong>Datos de Participación</strong>
-            </h5>
-            <!--Formulario de inicio-->
-            <div class="card-body px-lg-5">
-                
-                <!-- Codigo de Perfil -->
-                
-                <div class="form-group">
-                <label for="textInput">Rol:</label>
-                    <div class="col-sm-15">
-                    <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-clipboard-list prefix grey-text"></i></span>
-                        <?php $insTecnico->consultarPerfil(); ?>
+            <!--Perfil-->
+           <label for="textInput">Perfil:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_perf" id="cod_perf" class="form-control">
+                    <option disabled selected>Perfil</option>
+                    <?php
+                    $insTecnico->consultarPerfil();
+                    ?>
+                </select>
+            </div>
+            <!--Evento-->
+            <label for="textInput">Evento:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_even" id="seleven" class="form-control">
+                    <option disabled selected>Evento</option>
+                    <?php
+                    $insTecnico->consultarEvento();
+                    ?>
+                </select>
+            </div>
+            <!-- Region -->
+            <label for="textInput">Cargo:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_carg" id="cod_carg" class="form-control" required>
+                    <option disabled selected>Cargo</option>
+                    <?php
+                    $insTecnico->consultarCargo();
+                    ?>
+                </select>
+            </div>
+            <!-- Select Pueblo -->
+            <label for="textInput">Institución:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_inst" id="selpue" class="form-control" required>
+                    <option disabled selected>Institución</option>
+                    <?php
+                    $insTecnico->consultarInstitucion();
+                    ?>
+                </select>
+            </div>
+            <!-- Select Disciplina -->
+           
+            <!-- Select Categoria -->
+           
+            <br>
+            <center>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="my_camera"></div>
+                        <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
+
                     </div>
-                    
+                    <div class="col-md-6">
+                        <div id="results">La foto aparecerá aqui...</div>
+                        <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>
-                
-            </div></div></div>
-            <div class="tab-pane container fade" id="menu2">
-                <!-- Datos de Institución  -->
-                <div class="card" id="form_ini">
-                    <h5 class="card-header info-color white-text text-center py-4">
-                    <strong>Datos de Institución</strong>
-                    </h5>
-                    <!--Formulario de inicio-->
-                    <div class="card-body px-lg-5">
-                        
-                        <!-- Codigo de Cargo -->
-                        <div class="form-group">
-                        <label for="textInput">Cargo:</label>
-                            <div class="col-sm-15">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-toolbox prefix grey-text"></i></span>
-                                <?php $insTecnico->consultarCargo(); ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                    <label for="textInput">Institución:</label>
-                        <div class="col-sm-15">
-                            <div class="input-group-prepend">
-                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-university prefix grey-text"></i></span>
-                                <?php $insTecnico->consultarInstitucion(); ?>
-                            </div>
-                        </div>
-                      </div>
-                        <div>
-                        <button class="btn btn-info btn-block" type="submit">Registrar</button>
-                        </div>
+            </center>                
+            <br><button class=" btn btn-info btn-block" type="submit">Registrar</button>
                         <div class="RespuestaAjax"></div>
-                    </div>
-                </div> 
-            </div>
-</form>
+        </form>
+    </div>
+</div>
+<script language="JavaScript">
+    Webcam.set({
+        // live preview size
+        width: 320,
+        height: 240,
+
+        // device capture size
+        dest_width: 320,
+        dest_height: 240,
+
+        // final cropped size
+        crop_width: 240,
+        crop_height: 240,
+
+        // format and quality
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+    Webcam.attach('#my_camera');
+
+    function take_snapshot() {
+        Webcam.snap(function(data_uri) {
+            $(".image-tag").val(data_uri);
+            document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+        });
+    }
+</script>

@@ -1,7 +1,7 @@
 <?php
 
 if ($peticionAjax) {
-    require_once "./models/tecnicoModelo.php";
+    require_once "../models/tecnicoModelo.php";
 } else {
     require_once "./models/tecnicoModelo.php";
 }
@@ -10,47 +10,107 @@ class tecnicoControlador extends tecnicoModelo
 {
     public function agregar_tecnico_controlador()
     {
-        $cod_nac = mainModel::limpiar_cadena($_POST['cod_per']);
-        $ced = mainModel::limpiar_cadena($_POST['cod_even']);
-        $nom = mainModel::limpiar_cadena($_POST['cod_perf']);
-        $ape = mainModel::limpiar_cadena($_POST['ape']);
+       
+        $ced = mainModel::limpiar_cadena($_POST['ced']);
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
+         $cod_carg = mainModel::limpiar_cadena($_POST['cod_carg']);
+         $cod_inst = mainModel::limpiar_cadena($_POST['cod_inst']);
+         
+        ;
        
 
-        $validarCedula = tecnicoModelo::validar_cedula($ced);
-        if ($validarCedula->rowCount() >= 1) {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "Ocurrio un error inesperado",
-                "Texto" => "La cédula que intenta ingresar ya se encuentra registrada en el sistema",
-                "Tipo" => "error"
-            ];
-        } else {
-            $datostecnico = [
-                "nac" => $cod_per,
-                "ced" => $cod_even,
-                "nom" => $cod_perf,
+        $validarCedula = mainModel::validar_cedula_modelo($ced);
+       $validarCedula = mainModel::validar_cedula_modelo($ced);
+
+        if ($validarCedula->rowCount() == 0) {
+            echo "<script>
+            Swal.fire({
+                title: 'La cédula que intenta ingresar no existe',
+                text: '¿Desea registrar a la persona?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si Registrar'
+              }).then((result) => {
+                if (result.value) {
+                    window.location='" . SERVERURL . "registrarPersona/';
+                }
+              })
+            
+            </script>";
+        }else{
+            $row = mainModel::validar_persona_modelo($ced);
+            foreach ($row as $row) {
+                $cod_per = $row['cod_per'];
+            }
+            $datosPart = [
+                'cod_per' => $cod_per,
+                'cod_even' => $cod_even,
+                'cod_perf' => $cod_perf,
+                'cod_inst' => $cod_inst,
+                'cod_carg' => $cod_carg
                 
             ];
-            $guardartecnico = tecnicoModelo::agregar_tecnico($datostecnico);
+            $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
+            if ($validarParticipacion->rowCount() >= 1) {
+                echo "
+               <script>
+               Swal.fire(
+                'La persona ya posee participacion para este evento',
+                'Dirijase al módulo de participaciones para editar o seleccione otro evento disponible',
+                'error'
+               );  
+               </script>
+               ";
+            }else {
+                $registrarTecnico = tecnicoModelo::agregar_tecnico($datosPart);
+                $img = $_POST['image'];
+                $folderPath = "../views/assets/upload/";
 
-            if ($guardartecnico->rowCount() >= 1) {
-                $alerta = [
-                    "Alerta" => "simpletecnico",
-                    "Titulo" => "",
-                    "Texto" => "tecnico registrada exitosamente",
-                    "Tipo" => "success"
-                ];
-            } else {
-                $alerta = [
-                    "Alerta" => "simple",
-                    "Titulo" => "Ocurrió un error inesperado",
-                    "Texto" => "Error al registrar tecnico",
-                    "Tipo" => "error"
-                ];
+                $image_parts = explode(";base64,", $img);
+                $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type = $image_type_aux[1];
+
+                $image_base64 = base64_decode($image_parts[1]);
+                $fileName = $_POST['ced'] . '.jpg';
+
+                $file = $folderPath . $fileName;
+                file_put_contents($file, $image_base64);
+
+                print_r($fileName);
+                if ($registrarTecnico->rowCount() >= 1) {
+                    echo "
+               <script>
+               Swal.fire(
+                'Registro exitoso',
+                'Exito al agregar la participación',
+                'success'
+               ).then(function(){
+                window.location='" . SERVERURL . "tecnicos/';
+            });     
+               
+               </script>
+               ";
+                } else {
+                    echo "
+               <script>
+               Swal.fire(
+                'Error inesperado',
+                'Recargue la pagina e intente de nuevo',
+                'error'
+               );     
+               
+               </script>
+               ";
+                }
             }
         }
-        return mainModel::sweet_alert($alerta);
     }
+        
+    
+    
     public function tabla_tecnico(){
         
         $row=tecnicoModelo::consultar_tecnico();
@@ -65,6 +125,21 @@ class tecnicoControlador extends tecnicoModelo
                 <td>'.$row['fec_even'].'</td>
                 <td>'.$row['des_inst'].'</td>
                 <td>'.$row['des_even'].'</td>
+                <td>
+                        <form action="'.SERVERURL.'ajax/tecnicoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+                            <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>           
+                            <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
+                            <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
+                            <input type="text" name="des_carg" value="' . $row['des_carg'] . '" hidden>
+                            <input type="text" name="fec_even"  value="' . $row['fec_even'] . '" hidden>
+                            <input type="text" name="des_inst"  value="' . $row['des_inst'] . '" hidden> 
+                            <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>       
+                            <input type="text" name="siglas"  value="' . $row['siglas'] . '" hidden>       
+                            <button type="submit" class="btn btn-warning btn-md">
+                                <i class="far fa-address-card fa-2x"></i>                            
+                            </button>
+                        </form>                    
+                    </td>
                 <td><form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                 <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                 <button type="submit" class="btn btn-info btn-md">
@@ -93,13 +168,13 @@ class tecnicoControlador extends tecnicoModelo
         $consultarPerfil=mainModel::conectar()->prepare("SELECT cod_perf,des_perf from tab_perf where cod_rol=4 ");
             $consultarPerfil->execute();
             $row = $consultarPerfil->fetchAll(PDO::FETCH_ASSOC);
-            echo '<select name="cod_perf" id="cod_perf" class="form-control">';
+           
              foreach ($row as $row) {
             echo '<option value="' . $row['cod_perf'] . '">' . $row['des_perf'] . '</option>';
         }
         
-            echo '</select>';
-          
+            
+         return $row; 
 
 }
 
@@ -108,50 +183,45 @@ class tecnicoControlador extends tecnicoModelo
 
 
 
-public function imprimirId(){
 
-    $row=tecnicoModelo::id();
-        foreach  
-          ($row as $row){
-        
-            echo $row['cod_per'];
-            
-         }}
-
-         public function imprimirNombre(){
-
-    $row=tecnicoModelo::id();
-        foreach  
-          ($row as $row){
-        
-            
-            echo $row['nom'];
-         }
-     }
         
 public function consultarCargo(){
 
     $row=tecnicoModelo::consultaCargo();
-        echo '<select name="cod_carg" id="cod_carg" class="form-control">';
+       
         foreach  ($row as $row){
         
 echo '<option  value="'.$row['cod_carg'].'" >'.$row['des_carg'].'</option>'
             ;}
 
-            echo '</select>';
+            return $row;
 }
 
 public function consultarInstitucion(){
 
-    $row=tecnicoModelo::consultaInstitucion();
-        echo '<select name="cod_inst" id="cod_inst" class="form-control">';
+   $consultaInstitucion = mainModel::conectar()->prepare("SELECT * FROM tab_inst");
+        $consultaInstitucion->execute();
+        $row = $consultaInstitucion->fetchAll(PDO::FETCH_ASSOC);
         foreach  ($row as $row){
         
 echo '<option  value="'.$row['cod_inst'].'" >'.$row['des_inst'].'</option>'
             ;}
 
-            echo '</select>';
+           return $row;
 }
+
+
+public function consultarEvento()
+    {
+        $consultarEvento = mainModel::conectar()->prepare("SELECT cod_even,des_even FROM dat_even ");
+        $consultarEvento->execute();
+        $row = $consultarEvento->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($row as $row) {
+            echo '<option value="' . $row['cod_even'] . '">' . $row['des_even'] . '</option>';
+        }
+        return $row;
+
+    }
 
 }
 
