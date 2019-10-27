@@ -1,7 +1,6 @@
 <?php
 $peticionAjax = false;
-include "./controllers/tecnicoControlador.php";
-$insTecnico= new tecnicoControlador();
+
 
 
 ?>
@@ -20,24 +19,24 @@ $insTecnico= new tecnicoControlador();
     <title>Document</title>
 </head>
 <body>
-    <form action="<?php echo SERVERURL ?>ajax/fpdfAjax.php" method="post">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-50" src="../views/assets/img/indi1.jpg" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-50" src="../views/assets/img/indi2.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-50" src="../views/assets/img/indi3.jpg" alt="Third slide">
+    </div>
+     <div class="carousel-item">
+      <img class="d-block w-50" src="../views/assets/img/indi4.jpg" alt="Third slide">
+    </div>
+  </div>
+</div>
 
-         <label for="" class="form-control">Cedula</label>
-        <input type="number" name="cedula"  class="form-control">
-        <label for="" class="form-control">Rol</label>
-        <input type="text" name="rol" class="form-control" >
-        <label for="" class="form-control">Nombre</label>
-        <input type="text" name="nombre"  class="form-control">
-        <label for="">Apellido</label>
-        <input type="text" name="apellido"  class="form-control">
-        <label for="">Territorio</label>
-        <input type="text" name="territorio"  class="form-control">
-        <label for="" class="form-control">Edad</label>
-        <input type="text" name="edad" >
-        <label for="" class="form-control">Disciplina</label>
-        <input type="text" name="disciplina"  class="form-control">
-        
-        <input type="submit" value="Enviar" >
-    </form>
+<img src="../assets/img/cre_jaguar_juegos.png" alt="">
+
 </body>
 </html>
