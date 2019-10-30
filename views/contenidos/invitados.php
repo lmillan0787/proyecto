@@ -7,10 +7,9 @@ require_once "./controllers/invitadoControlador.php";
 <!--tabla Invitado-->
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">
-    <form class="form-inline">
-
-        <span class="navbar-brand" id="brand1">Invitados</span>
-    </form>
+    <div id="titulo">
+        <h3>INVITADOS</h3>
+    </div>
     <button class="btn btn-cyan" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarInvitado/'">Registrar</button>
 </nav>
 

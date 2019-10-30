@@ -6,10 +6,9 @@ require_once "./controllers/tecnicoControlador.php";
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">
-    <form class="form-inline">
-       
-        <span class="navbar-brand" id="brand1">Personal Técnico</span>
-    </form>
+    <div id="titulo">
+        <h3>PERSONAL TÉCNICO</h3>
+    </div>
     <button class="btn btn-cyan" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarTecnico/'">Registrar</button>
 </nav>
 <!-- Tabla -->

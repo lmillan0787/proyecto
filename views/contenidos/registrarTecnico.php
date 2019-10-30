@@ -21,6 +21,7 @@ $insTecnico= new tecnicoControlador();
                 </div>
                 <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">
             </div>
+            <div id="result-ced"></div
             <!--Rol-->
             <div class="form-group">
                 <div class="col-sm-15">

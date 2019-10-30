@@ -220,7 +220,7 @@ class deportistaControlador extends deportistaModelo
 
     public function consultarEvento()
     {
-        $consultarEvento = mainModel::conectar()->prepare("SELECT cod_even,des_even FROM dat_even ");
+        $consultarEvento = mainModel::conectar()->prepare("SELECT * FROM dat_even WHERE cod_estat=1");
         $consultarEvento->execute();
         $row = $consultarEvento->fetchAll(PDO::FETCH_ASSOC);
         foreach ($row as $row) {

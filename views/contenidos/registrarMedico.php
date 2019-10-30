@@ -4,178 +4,145 @@ include "./controllers/medicoControlador.php";
 $insMedico= new medicoControlador();
 ?>
 
+<script type="text/javascript">
+$(document).ready(function() {  
+    $('#ced').on('blur', function(){
+        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos Básicos</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Datos de Participación</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Datos de Delegación</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-<center>
-    <h1>
-        Registro de Médicos
-    </h1>
-</center>
-<form id="form" action="<?php echo SERVERURL ?>ajax/personaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        var ced = $(this).val();   
+        var dataString = 'ced='+ced;
 
- <div class="card-body">
-                    <div class="card" id="form_ini">
-                        <h5 class="card-header info-color white-text text-center py-4">
-                        <strong>Datos Básicos</strong>
-                        </h5>
-                        <div class="card-body px-lg-5" >
-                            <!-- Nacionalidad-->
-                            <label for="textInput">Nacionalidad:</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
-                                </div>
-                                <select class="browser-default custom-select" id="inputGroupSelect01" name="nac">
-                                    <option selected disabled>Nacionalidad</option>
-                                    <option value="1">Venezolan@</option>
-                                    <option value="0">Extrajer@</option>
-                                </select>
-                            </div>
-                            <!-- Cédula-->
-                            <label for="textInput">Cédula:</label>
-                            <div class="input-group flex-nowrap">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
-                                </div>
-                                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">
-                            </div>
-                            <div id="result-ced"></div>
-                            <!-- Nombre-->
-                            <label for=" textInput">Nombre:</label>
-                            <div class="input-group flex-nowrap">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Nombre" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="nom">
-                            </div>
-                            <!-- Apellido-->
-                            <label for="textInput">Apellido:</label>
-                            <div class="input-group flex-nowrap">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Apellido" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="ape">
-                            </div>
-                            <!-- Fecha de nacimiento-->
-                            <label for="textInput">Fecha de nacimiento:</label>
-                            <div class="input-group flex-nowrap">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
-                                </div>
-                                <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1930-01-01" max="2010-01-01" step="1" name="fec_nac">
-                            </div>
-                            <!-- Género-->
-                            <label for="textInput">Género:</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>
-                                </div>
-                                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_gen" name="cod_gen">
-                                    <option selected disabled>Género</option>
-                                    <option value="1">Masculino</option>
-                                    <option value="2">Femenino</option>
-                                </select>
-                            </div>
-                            
-                        </div>
+        $.ajax({
+            type: "POST",
+            url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
+            data: dataString,
+            success: function(data) {
+                $('#result-ced').fadeIn(1000).html(data);
+            }
+        });
+    });              
+});    
+</script>
+<div class="card" id="form_invi">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Registro de Mèdico</strong>
+    </h5>
+    <!--Formulario de inicio-->
+    <div class="card-body px-lg-5">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarMedicoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+            <div class="text-center">
+            </div>
+            <!-- Cédula-->
+            <label for="textInput">Cédula:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">
+            </div>
+            <div id="result-ced"></div
+            <!--Rol-->
+            <div class="form-group">
+                <div class="col-sm-15">
+                    <div class="input-group-prepend">
+                        <input type="text" name="cod_rol" value="2" hidden>
                     </div>
                 </div>
+            </div>
+            <!--Perfil-->
+            <input type="text" name="cod_perf" value="6" hidden="">
+            <!--Evento-->
+            <label for="textInput">Evento:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_even" id="seleven" class="form-control">
+                    <option disabled selected>Evento</option>
+                    <?php
+                    $insMedico->consultarEvento();
+                    ?>
+                </select>
+            </div>
+            <!-- Region -->
+            <label for="textInput">Región:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_reg" id="selreg" class="form-control" required>
+                    <option disabled selected>Región</option>
+                    <?php
+                    $insMedico->consultarRegion();
+                    ?>
+                </select>
+            </div>
+            <!-- Select Pueblo -->
+            <label for="textInput">Pueblo:</label>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_pue" id="selpue" class="form-control" required>
+                    <option disabled selected>Pueblo</option>
+                    <?php
+                    $insMedico->consultarPueblo();
+                    ?>
+                </select>
+            </div>
+            <!-- Select Disciplina -->
+            
+                <input hidden type="text" name="cod_dis" id="seldis" class="form-control" value="1">
+                   
+          
+            <!-- Select Categoria -->
+           
+                <input type="text" hidden name="cod_cat" id="seldis" class="form-control" value="1"><br>
+                   
+           
+            <center>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="my_camera"></div>
+                        <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
 
-
-  </div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-<div class="card-body">
-                    <div class="card" id="form_ini">
-                        <h5 class="card-header info-color white-text text-center py-4">
-                        <strong>Datos de Participación</strong>
-                        </h5>
-                        <!--Formulario de inicio-->
-                        <div class="card-body px-lg-5" >
-                            
-                           <!--Rol-->
-                            <div class="form-group">
-                                <div class="col-sm-15">
-                                    <div class="input-group-prepend">
-                                       <input type="text" name="cod_rol" value="2" hidden>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Perfil-->
-                            <div class="form-group">
-                                <div class="col-sm-15">
-                                    <div class="input-group-prepend">
-                                      <input type="text" name="cod_perf" value="6" hidden=""> 
-                                    </div>
-                                </div>
-                            </div>
-                            Evento:
-                            <div class="form-group">
-                                <div class="col-sm-15">
-                                    <?php $insMedico->consultarEvento();?>
-                                </div>
-                                <div>
-                                    <center><input type="submit" class="btn btn-primary" value="Registrar"></center>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="results">La foto aparecerá aqui...</div>
+                        <input type="hidden" name="image" class="image-tag"">
                     </div>
                 </div>
-  </div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
-    <div class="card-body">
-                    <div class="card" id="form_ini">
-                        <h5 class="card-header info-color white-text text-center py-4">
-                        <strong>Datos de Delegación/Disciplina</strong>
-                        </h5>
-                        
-                        <!--Formulario de inicio-->
-                        <div class="card-body px-lg-5" >
-                            <!-- Codigo Persona/Nombre -->
-                            <div class="form-group">
-                                <div class="col-sm-15">
-                                    <label class="col-md-4 control-label" for="cod_reg">Nombre</label>
-                                    <div class="input-group-prepend">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Region -->
-                            <div class="form-group">
-                                <div class="col-sm-15">
-                                    <label class="col-md-4 control-label" for="cod_reg">Región</label>
-                                    <div class="input-group-prepend">
-                                        <?php $insMedico->consultarRegion(); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Select Pueblo -->
-                            <div class="form-group">
-                                <div class="col-sm-15">
-                                    <label class="col-md-4 control-label" for="cod_reg">Pueblo</label>
-                                    <div class="input-group-prepend">
-                                        <?php $insMedico->consultarPueblo(); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <center><input type="submit" class="btn btn-primary" value="Registrar"></center>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
+            </center>                
+            <br><button class=" btn btn-info btn-block" type="submit">Registrar</button>
+                        <div class="RespuestaAjax"></div>
+        </form>
     </div>
 </div>
+<script language="JavaScript">
+    Webcam.set({
+        // live preview size
+        width: 320,
+        height: 240,
+
+        // device capture size
+        dest_width: 320,
+        dest_height: 240,
+
+        // final cropped size
+        crop_width: 240,
+        crop_height: 240,
+
+        // format and quality
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+    Webcam.attach('#my_camera');
+
+    function take_snapshot() {
+        Webcam.snap(function(data_uri) {
+            $(".image-tag").val(data_uri);
+            document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+        });
+    }
+</script>

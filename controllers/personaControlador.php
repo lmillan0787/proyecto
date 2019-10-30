@@ -273,13 +273,23 @@ class personaControlador extends personaModelo
     public function validar_cedula_participacion_controlador()
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
+        $datosPersona = [
+            "ced" => $ced
+        ];
 
+        
         $validarCedula = mainModel::validar_cedula_modelo($ced);
 
         if ($validarCedula->rowCount() >= 1) {
-            echo '<div class="alert alert-success"><strong>Puedes Continuar el registro</strong> Continua.</div>';
+            $consultaPersona = personaModelo::consultar_persona_modelo2($datosPersona);
+            foreach($consultaPersona as $row){
+
+                echo '<div class="alert alert-success"><strong>'.$row['nom'].' '.$row['ape'].' Puedes Continuar el registro</strong></div>';
+
+            }
+            
         } else {
-            echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema.</div>';
+            echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema dirijase al registro de persona.</div>';
         }
     }
 }
