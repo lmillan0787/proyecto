@@ -3,13 +3,12 @@ html {
     position: relative;
 }
 
-/*body {
+body {
     margin: 0px;
     padding: 0px;
-    background: url('../img/fondo3.png') no-repeat center center;
     background-size: 100% 100%;
     background-size: contain;
-}*/
+}
 
 .container {
     display: grid;
@@ -99,27 +98,6 @@ html {
     margin: auto;
     padding: 0px;
 }
-#estatus1{
-    background-color: #00897b;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-}
-#estatus2{
-    background-color: #e53935;
-    color: #ffffff;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-}
-
-/*inicio*/
-
-
 /*****************************************************/
 
 #form_ini {
@@ -152,19 +130,6 @@ html {
     margin-bottom: 1%;
 }
 
-#form_bas1 {
-    margin: auto;
-    margin-top: 60px;
-    margin-bottom: 30px;
-}
-
-.formPer {
-    max-width: 500px;
-    margin: 1%;
-    background-color: #ffffffe3;
-}
-
-
 /************************************************************/
 
 #tabla {
@@ -177,13 +142,6 @@ th {
     background-color: #255b99;
     color: #ffffff;
 }
-
-
-
- .tab-pane {
-    padding:20px;
-}
-
 
 #form_invi{
     width: 800px;
@@ -205,4 +163,11 @@ td{
    }
 .btn-sm{
     margin: 0;
+}
+.alert{
+    margin-bottom: 0px;
+}
+#tabla_wrapper{
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

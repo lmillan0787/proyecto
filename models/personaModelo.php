@@ -10,7 +10,7 @@ class personaModelo extends mainModel
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function agregar_persona_modelo($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_per(cod_nac,ced,nom,ape,fec_nac,cod_gen) VALUES (:cod_nac,:ced,:nom,:ape,:fec_nac,:cod_gen)");
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_per(cod_nac,ced,nom,ape,fec_nac,cod_gen,cod_estat) VALUES (:cod_nac,:ced,:nom,:ape,:fec_nac,:cod_gen,1)");
         $sql->bindParam(":cod_nac", $datos['cod_nac']);
         $sql->bindParam(":ced", $datos['ced']);
         $sql->bindParam(":nom", $datos['nom']);

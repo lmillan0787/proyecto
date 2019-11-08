@@ -73,11 +73,15 @@ $(document).ready(function () {
         paging: true,
         language: idioma,
         deferRender: true,
-        scroller: false,
-        responsive: true,
+        buttons: [
+            'print', 'excel', 'pdf'
+        ]
+    
 
 
     });
+    table.buttons().container()
+    .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 
     $('.dataTables_length').addClass('bs-select');
 

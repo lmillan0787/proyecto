@@ -6,7 +6,15 @@ if (isset($_POST['des_even'])) {
     require_once "../controllers/eventoControlador.php";
     $insEvento = new eventoControlador();
     echo $insEvento->validar_evento_controlador();
-    
+} else if (isset($_POST['fec_even'])) {
+    require_once "../controllers/eventoControlador.php";
+    $insEvento = new eventoControlador();
+    echo $insEvento->validar_fecha_controlador();
+
+} else if (isset($_POST['cod_reg'])) {
+    require_once "../controllers/eventoControlador.php";
+    $insEvento = new eventoControlador();
+    echo $insEvento->validar_region_controlador();
 } else {
     session_start();
     session_destroy();

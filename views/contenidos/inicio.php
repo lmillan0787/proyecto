@@ -12,11 +12,11 @@
             <strong>INICIO DE SESIÓN</strong>
         </h5>
         <div class="card-body px-lg-5 pt-0">
-            <form class="md-form needs validation" style="color: #757575;" action="" method="POST" id="loginForm" >
+            <form class="md-form needs validation" style="color: #757575;" action="" method="POST" id="loginForm" autocomplete="off" >
                 <!-- Usuario -->
                 <div class="md-form form-sm">
                     <i class="fa fa-user prefix"></i>
-                    <input type="text" id="materialFormNameModalEx1" name="des_usr" autocomplete="off" class="form-control form-control-sm" minlength="6" maxlength="15" required>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" id="materialFormNameModalEx1" name="des_usr" autocomplete="off" class="form-control form-control-sm" minlength="6" maxlength="15" required>
                     <label for="materialFormNameModalEx1">Usuario</label>
                 </div>
                 <!-- Clave -->

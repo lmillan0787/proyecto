@@ -6,7 +6,7 @@ if (isset($_POST['des_even'])) {
     require_once "../controllers/eventoControlador.php";
     $insEvento = new eventoControlador();
 
-    if (isset($_POST['des_even']) && isset($_POST['fec_even']) && isset($_POST['cod_edo']) && isset($_POST['cod_tip_even'])) {
+    if (isset($_POST['des_even']) && isset($_POST['fec_even']) && isset($_POST['cod_reg']) && isset($_POST['cod_tip_even'])) {
         echo $insEvento->agregar_evento_controlador();
     }
 } else {

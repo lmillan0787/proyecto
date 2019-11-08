@@ -1,9 +1,5 @@
 <?php
-
 $peticionAjax = false;
-session_start(['name'=>'junain']);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -25,9 +21,21 @@ session_start(['name'=>'junain']);
     <!-- Material Design Bootstrap -->
     <link href="<?php echo SERVERURL ?>views/assets/css/mdb.min.css" rel="stylesheet">
     <!-- Sweetalert2 -->
-    <link href="<?php echo SERVERURL ?>views/assets/css/sweetalert2.css" rel="stylesheet">   
+    <link href="<?php echo SERVERURL ?>views/assets/css/sweetalert2.css" rel="stylesheet">  
+    <!-- datatable -->
+    <link href="<?php echo SERVERURL ?>views/assets/css/datatables.min.css" rel="stylesheet"> 
+    <!-- datatable bootstrap -->
+    <link href="<?php echo SERVERURL ?>views/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet"> 
     <!-- Estilos personalizados -->
-    <link href="<?php echo SERVERURL ?>views/assets/css/style.css" rel="stylesheet">   
+    <link href="<?php echo SERVERURL ?>views/assets/css/style.css" rel="stylesheet"> 
+    
+    
+
+
+
+
+
+
 
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/jquery-3.4.1.min.js"></script>
     <!-- Data table -->
@@ -45,7 +53,6 @@ session_start(['name'=>'junain']);
     </div>
     <?php
 
-
     require_once "controllers/vistasControlador.php";
     $vt = new vistasControlador();
     $vistasR = $vt->obtener_vistas_controlador();
@@ -56,10 +63,15 @@ session_start(['name'=>'junain']);
             require_once "./views/contenidos/404.php";
         }
     } else {
-
+        session_start(['name'=>'junain']);
+        require_once "./controllers/loginControlador.php";
+        $insLogin = new loginControlador();
+        if(!isset($_SESSION['token_junain']) || !isset($_SESSION['cod_usr_junain'])){
+            $insLogin->forzar_cierre_sesion_controlador();
+        }
         require_once "include/nav.php";
-        
-        ?>
+
+    ?>
 
         <div id="con_todo">
             <?php require_once $vistasR; ?>
@@ -71,6 +83,7 @@ session_start(['name'=>'junain']);
         <img src="<?php echo SERVERURL ?>views/assets/img/pie_pagina1.jpg" id="pie">
     </div>
 
+    
     <!-- Sweetalerts -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/sweetalert2.all.js"></script>
     <!-- JQuery -->
@@ -84,8 +97,7 @@ session_start(['name'=>'junain']);
     <!-- Font Awesome -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/all.js"></script>
     <!-- Data table -->
-    <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/addons/datatables.min.js"></script>
-    
+    <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/datatables.min.js"></script>
     <!-- main js -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/main.js"></script>
 </body>

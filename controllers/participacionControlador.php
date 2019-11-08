@@ -14,7 +14,7 @@ class participacionControlador extends participacionModelo
         $ced = mainModel::limpiar_cadena($_POST['cod_even']);
         $nom = mainModel::limpiar_cadena($_POST['cod_perf']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
-       
+
 
         $validarCedula = participacionModelo::validar_cedula($ced);
         if ($validarCedula->rowCount() >= 1) {
@@ -24,7 +24,7 @@ class participacionControlador extends participacionModelo
                 "Texto" => "La cédula que intenta ingresar ya se encuentra registrada en el sistema",
                 "Tipo" => "error"
             ];
-        } else {            
+        } else {
             $guardarParticipacion = participacionModelo::agregar_participacion($datosParticipacion);
 
             if ($guardarParticipacion->rowCount() >= 1) {
@@ -45,20 +45,29 @@ class participacionControlador extends participacionModelo
         }
         return mainModel::sweet_alert($alerta);
     }
-    public function tabla_participacion(){
-        
-        $row=participacionModelo::consultar_participacion();
+    ///////////////////////////////////////////////////////////////////////////////
+    public function tabla_participacion()
+    {
+
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+
+        $datos = [
+            "cod_even" => $cod_even
+        ];
+
+        $row = participacionModelo::consultar_participacion_modelo($datos);
+
         foreach ($row as $row) {
-            
+
             echo '
             <tr>
-                <td>'.$row['ced'].'</td>
-                <td>'.$row['nom'].'</td>
-                <td>'.$row['ape'].'</td>
-                <td>'.$row['des_perf'].'</td>
-                <td>'.$row['edad'].'</td>
-                <td>'.$row['des_gen'].'</td>
-                <td>'.$row['des_even'].'</td>
+                <td>' . $row['ced'] . '</td>
+                <td>' . $row['nom'] . '</td>
+                <td>' . $row['ape'] . '</td>
+                <td>' . $row['des_perf'] . '</td>
+                <td>' . $row['edad'] . '</td>
+                <td>' . $row['des_gen'] . '</td>
+                <td>' . $row['des_even'] . '</td>
                 <td>
                 <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
@@ -81,7 +90,8 @@ class participacionControlador extends participacionModelo
         }
         return $row;
     }
-    public function eliminar_participacion_controlador(){
+    public function eliminar_participacion_controlador()
+    {
 
         $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
         $datosPersona = [
@@ -117,6 +127,26 @@ class participacionControlador extends participacionModelo
                ";
         }
     }
+    /////////////////////////////////////
+    public function generar_credenciales_controlador()
+    {
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+
+        $datos = [
+            "cod_even" => $cod_even
+        ];
+
+        $row = participacionModelo::consultar_participacion_modelo($datos);
+
+        foreach ($row as $row) {
+            $datos = [
+                "cod_even" => $cod_even,
+                "ced" => $row['ced'],
+                "nom" => $row['nom'],
+                "ape" => $row['ape'],
+            ];
+            
+        }
+        return $row;
+    }
 }
-
-

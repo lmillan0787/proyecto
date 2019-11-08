@@ -49,7 +49,16 @@ class mainModel
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar estatua
+    //consultar región
+    protected function consultar_region_modelo(){
+        $consultaEstado = mainModel::conectar()->prepare("SELECT * FROM tab_reg");
+        $consultaEstado->execute();
+        $row = $consultaEstado->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar estatus
     protected function consultar_estatus_modelo(){
         $consultaEstado = mainModel::conectar()->prepare("SELECT * FROM tab_estat");
         $consultaEstado->execute();

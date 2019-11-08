@@ -61,7 +61,7 @@ class disciplinaControlador extends disciplinaModelo
                 <td>' . $row['des_dis'] . '</td>
                 <td>
                     <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
+                        <input type="text" value="" name="cod_usr" hidden required>
                         <button type="submit" class="btn btn-info btn-md">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
@@ -70,7 +70,7 @@ class disciplinaControlador extends disciplinaModelo
             
                 <td>
                     <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarUsuarioAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
+                        <input type="text" value="" name="cod_usr" hidden required>
                         <button type="submit" class="btn btn-danger btn-md">
                             <i class="far fa-trash-alt fa-2x"></i>                            
                         </button>

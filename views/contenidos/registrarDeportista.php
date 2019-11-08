@@ -4,23 +4,23 @@ include "./controllers/deportistaControlador.php";
 $insDeportista = new deportistaControlador();
 ?>
 <script type="text/javascript">
-$(document).ready(function() {  
-    $('#ced').on('blur', function(){
-        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+    $(document).ready(function() {
+        $('#ced').on('blur', function() {
+            $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 
-        var ced = $(this).val();   
-        var dataString = 'ced='+ced;
+            var ced = $(this).val();
+            var dataString = 'ced=' + ced;
 
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-ced').fadeIn(1000).html(data);
-            }
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-ced').fadeIn(1000).html(data);
+                }
+            });
         });
-    });              
-});    
+    });
 </script>
 
 <div class="card" id="form_invi">
