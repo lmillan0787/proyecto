@@ -46,10 +46,9 @@ class participacionControlador extends participacionModelo
         return mainModel::sweet_alert($alerta);
     }
     ///////////////////////////////////////////////////////////////////////////////
-    public function tabla_participacion()
+    public function tabla_participacion($datos)
     {
-
-        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
 
         $datos = [
             "cod_even" => $cod_even

@@ -195,7 +195,7 @@ class personaControlador extends personaModelo
         ];
 
         $validarPersona = personaModelo::validar_persona_distinta_modelo($datosPersona);
-        
+
         if ($validarPersona->rowCount() >= 1) {
             echo "<script>
             Swal.fire(
@@ -216,7 +216,7 @@ class personaControlador extends personaModelo
                 window.location='" . SERVERURL . "personas/';
             });            
             </script>";
-            }else{
+            } else {
                 echo "<script>
             Swal.fire(
                 'Error',
@@ -259,13 +259,12 @@ class personaControlador extends personaModelo
     public function validar_cedula_controlador()
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
+        if ($ced == "") { } else {
+            $validarCedula = mainModel::validar_cedula_modelo($ced);
 
-        $validarCedula = mainModel::validar_cedula_modelo($ced);
-
-        if ($validarCedula->rowCount() >= 1) {
-            echo '<div class="alert alert-danger"><strong>Error!</strong> Cedula registrada anteriormente.</div>';
-        } else {
-            echo '<div class="alert alert-success"><strong>Puedes Continuar el registro</strong> Continua.</div>';
+            if ($validarCedula->rowCount() >= 1) {
+                echo '<div class="alert alert-danger"><strong>Error!</strong> Cedula registrada anteriormente.</div>';
+            } else { }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -277,17 +276,15 @@ class personaControlador extends personaModelo
             "ced" => $ced
         ];
 
-        
+
         $validarCedula = mainModel::validar_cedula_modelo($ced);
 
         if ($validarCedula->rowCount() >= 1) {
             $consultaPersona = personaModelo::consultar_persona_modelo2($datosPersona);
-            foreach($consultaPersona as $row){
+            foreach ($consultaPersona as $row) {
 
-                echo '<div class="alert alert-success"><strong>'.$row['nom'].' '.$row['ape'].' Puedes Continuar el registro</strong></div>';
-
+                echo '<div class="alert alert-success"><strong>' . $row['nom'] . ' ' . $row['ape'] . ' Puedes Continuar el registro</strong></div>';
             }
-            
         } else {
             echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema dirijase al registro de persona.</div>';
         }

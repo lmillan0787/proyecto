@@ -42,7 +42,7 @@ $fechaValidacion = date("d-m-Y");
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
                 </div>
                 <select class="browser-default custom-select" id="cod_reg" name="cod_reg" required>
-                    <option selected disabled></option>
+                    <option selected disabled>Región</option>
                     <?php $insEvento->formulario_evento_region() ?>
                 </select>
             </div>
@@ -54,7 +54,7 @@ $fechaValidacion = date("d-m-Y");
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
                 </div>
                 <select class="browser-default custom-select" id="cod_tip_even" name="cod_tip_even" required>
-                    <option selected disabled></option>
+                    <option selected disabled>Tipo de evento</option>
                     <?php $insEvento->formulario_evento_tipo() ?>
                 </select>
             </div>

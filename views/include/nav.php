@@ -1,3 +1,7 @@
+<?php
+require_once "./controllers/eventoControlador.php";
+$insEvento = new eventoControlador();
+?>
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark unique-color-dark sticky-top">
   <div class="container">
@@ -25,13 +29,18 @@
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="<?php echo SERVERURL ?>tecnicos/">Personal Técnico</a>
-        <li class="nav-item ">
-          <a class="nav-link" href="<?php echo SERVERURL ?>participacion/">Participación</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Participación
+          </a>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          
+          <?php $insEvento->consultar_evento_activo() ?>
+          
+          </div>
         </li>
         <li class="nav-item ">
           <a class="nav-link" href="<?php echo SERVERURL ?>personas/">Personas</a>
         </li>
-        <?php echo $_SESSION['des_usr_junain'] ?>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item active nav-link">
@@ -42,7 +51,7 @@
             <?php echo $_SESSION['des_usr_junain'] ?>
             <i class="fas fa-user"></i>
           </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+          <div class="dropdown-menu dropdown-menu-center dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <a class="dropdown-item" href="<?php echo SERVERURL ?>">Editar perfil</a>
             <a class="dropdown-item" href="<?php echo SERVERURL ?>usuarios">Usuarios</a>
             <a class="dropdown-item" href="<?php echo SERVERURL ?>eventos/">Eventos</a>

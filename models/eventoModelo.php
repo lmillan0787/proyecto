@@ -27,6 +27,7 @@ class eventoModelo extends mainModel
         $sql->execute();
         return $sql;
     }
+    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function validar_evento_distinto_modelo($datos)
     {
@@ -39,7 +40,7 @@ class eventoModelo extends mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function consultar_tabla_evento_modelo()
     {
-        $sql = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_reg AS b ON a.cod_reg=b.cod_reg INNER JOIN tab_estat AS c ON      a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even ORDER BY cod_even DESC ");
+        $sql = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.* FROM dat_even AS a INNER JOIN tab_reg AS b ON a.cod_reg=b.cod_reg INNER JOIN tab_estat AS c ON      a.cod_estat=c.cod_estat INNER JOIN tab_tip_even AS d ON a.cod_tip_even=d.cod_tip_even ORDER BY a.cod_even DESC ");
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
@@ -54,7 +55,7 @@ class eventoModelo extends mainModel
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected function eliminar_evento($datos)
+    protected function eliminar_evento_modelo($datos)
     {
         $sql = mainModel::conectar()->prepare("DELETE FROM dat_even WHERE cod_even=:cod_even");
         $sql->bindParam(":cod_even", $datos['cod_even']);
@@ -64,12 +65,11 @@ class eventoModelo extends mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function editar_evento_modelo($datos)
     {
-        $sql = mainModel::conectar()->prepare("UPDATE dat_even SET des_even=:des_even, fec_even=:fec_even, cod_reg=:cod_reg, cod_tip_even=:cod_tip_even, cod_estat=:cod_estat WHERE cod_even=:cod_even");
+        $sql = mainModel::conectar()->prepare("UPDATE dat_even SET des_even=:des_even, fec_even=:fec_even, cod_reg=:cod_reg, cod_tip_even=:cod_tip_even WHERE cod_even=:cod_even");
         $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->bindParam(":des_even", $datos['des_even']);
         $sql->bindParam(":fec_even", $datos['fec_even']);
         $sql->bindParam(":cod_reg", $datos['cod_reg']);
-        $sql->bindParam(":cod_estat", $datos['cod_estat']); 
         $sql->bindParam(":cod_tip_even", $datos['cod_tip_even']);        
         $sql->execute();
         return $sql;
@@ -90,4 +90,23 @@ class eventoModelo extends mainModel
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function consultar_tipo_evento_modelo()
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_tip_even");
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function consultar_tipo_evento_distinto_modelo($datos)
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_tip_even WHERE cod_tip_even!=:cod_tip_even");
+        $sql->bindParam(":cod_tip_even", $datos['cod_tip_even']);
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    
 }

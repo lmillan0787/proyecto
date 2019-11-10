@@ -35,7 +35,7 @@ class mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar persona
     protected function consultar_persona_modelo(){
-        $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac");
+        $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac ORDER BY cod_per DESC");
         $consultaPersona->execute();
         $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
         return $row;
@@ -52,17 +52,35 @@ class mainModel
     //consultar región
     protected function consultar_region_modelo(){
         $consultaEstado = mainModel::conectar()->prepare("SELECT * FROM tab_reg");
+        
         $consultaEstado->execute();
         $row = $consultaEstado->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar región distinta
+    protected function consultar_region_distinta_modelo($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_reg WHERE cod_reg!=:cod_reg");
+        $sql->bindParam(":cod_reg", $datos['cod_reg']);
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar estatus
     protected function consultar_estatus_modelo(){
         $consultaEstado = mainModel::conectar()->prepare("SELECT * FROM tab_estat");
         $consultaEstado->execute();
         $row = $consultaEstado->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar estatus
+    protected function consultar_estatus_distinto($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_estat WHERE cod_estat!=:cod_estat");
+        $sql->bindParam(":cod_estat", $datos['cod_estat']);
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 

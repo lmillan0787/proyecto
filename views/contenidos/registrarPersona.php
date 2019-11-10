@@ -18,8 +18,7 @@ $(document).ready(function() {
     });              
 });    
 </script>
-<div class="card" id="form_ini">
-
+<div class="card" id="form_evento">
     <h5 class="card-header info-color white-text text-center py-4">
         <strong>Datos Básicos</strong>
     </h5>
@@ -29,8 +28,8 @@ $(document).ready(function() {
             <div class="text-center">
             </div>
             <!-- Nacionalidad-->
-            <label for="textInput">Nacionalidad:</label>
-            <div class="input-group mb-3">
+            <b><label for="textInput">Nacionalidad:</label></b>
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
                 </div>
@@ -41,7 +40,7 @@ $(document).ready(function() {
                 </select>
             </div>
             <!-- Cédula-->
-            <label for="textInput">Cédula:</label>
+            <br><b><label for="textInput">Cédula:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -50,7 +49,7 @@ $(document).ready(function() {
             </div>
             <div id="result-ced"></div>            
             <!-- Nombre-->
-            <label for=" textInput">Nombre:</label>
+            <br><b><label for=" textInput">Nombre:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
@@ -58,7 +57,7 @@ $(document).ready(function() {
                 <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Nombre" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="nom">
             </div>
             <!-- Apellido-->
-            <label for="textInput">Apellido:</label>
+            <br><b><label for="textInput">Apellido:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
@@ -66,7 +65,7 @@ $(document).ready(function() {
                 <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Apellido" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="ape">
             </div>
             <!-- Fecha de nacimiento-->
-            <label for="textInput">Fecha de nacimiento:</label>
+            <br><b><label for="textInput">Fecha de nacimiento:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
@@ -74,7 +73,7 @@ $(document).ready(function() {
                 <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1930-01-01" max="2010-01-01" step="1" name="fec_nac">
             </div>
             <!-- Género-->
-            <label for="textInput">Género:</label>
+            <br><b><label for="textInput">Género:</label></b>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>

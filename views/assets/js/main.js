@@ -66,26 +66,10 @@ $('.FormularioAjax').submit(function (e) {
 
 // Tablas
 
-$(document).ready(function () {
-    $('#tabla').DataTable({
-        searching: true,
-        ordering: true,
-        paging: true,
-        language: idioma,
-        deferRender: true,
-        buttons: [
-            'print', 'excel', 'pdf'
-        ]
-    
+$(document).ready(function() {
+    $('#tabla').DataTable();
+} );
 
-
-    });
-    table.buttons().container()
-    .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
-
-    $('.dataTables_length').addClass('bs-select');
-
-});
 var idioma = {
     "sProcessing": "Procesando...",
     "sLengthMenu": "Mostrar _MENU_ registros",
@@ -110,20 +94,3 @@ var idioma = {
         "sSortDescending": ": Activar para ordenar la columna de manera descendente"
     }
 }
-/////////////////////////////////////////////////////////////////
-//formulario eventos
-    function toggle(elemento) {
-        if (elemento.value == "1") {
-            document.getElementById("autoctono").style.display = "block";
-            document.getElementById("convencional").style.display = "none";
-            document.getElementById("mixto").style.display = "none";
-        } else if (elemento.value == "2") {
-            document.getElementById("autoctono").style.display = "none";
-            document.getElementById("convencional").style.display = "block";
-            document.getElementById("mixto").style.display = "none";
-        } else if (elemento.value == "3") {
-            document.getElementById("autoctono").style.display = "none";
-            document.getElementById("convencional").style.display = "none";
-            document.getElementById("mixto").style.display = "block";
-        }
-    }

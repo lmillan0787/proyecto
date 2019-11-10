@@ -22,7 +22,7 @@ class personaModelo extends mainModel
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultar_persona_modelo2($datos){
-        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced=:ced");
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced=:ced  ORDER BY cod_per DESC");
         $sql->bindParam(":ced", $datos['ced']);
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);

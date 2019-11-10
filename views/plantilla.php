@@ -29,14 +29,6 @@ $peticionAjax = false;
     <!-- Estilos personalizados -->
     <link href="<?php echo SERVERURL ?>views/assets/css/style.css" rel="stylesheet"> 
     
-    
-
-
-
-
-
-
-
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/jquery-3.4.1.min.js"></script>
     <!-- Data table -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/webcam.min.js"></script>
@@ -97,7 +89,7 @@ $peticionAjax = false;
     <!-- Font Awesome -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/all.js"></script>
     <!-- Data table -->
-    <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/datatables.min.js"></script>
+    <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/addons/DataTables/datatables.min.js"></script>
     <!-- main js -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/main.js"></script>
 </body>
