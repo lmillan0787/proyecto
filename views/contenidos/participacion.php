@@ -16,7 +16,7 @@ $datos = [
     <div id="titulo">
         <h3>PARTICIPACIÓN <?php $insEvento->cabecera_nombre_evento_controlador($datos) ?></h3>
     </div>
-
+    <?php $insEvento->boton_credenciales($datos) ?>
     <button class="btn btn-info" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarParticipacion/'">Registrar</button>
 </nav>
 <!-- Tabla -->

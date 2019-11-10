@@ -148,4 +148,5 @@ class participacionControlador extends participacionModelo
         }
         return $row;
     }
+    ///////////////////////////////////////////////////
 }

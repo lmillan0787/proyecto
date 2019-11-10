@@ -242,13 +242,9 @@ class eventoControlador extends eventoModelo
             "cod_reg" => $cod_reg,
         ];
         $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
-        foreach($row as $row){
+        foreach ($row as $row) {
             $cod_estat = $row['cod_estat'];
-            if ($cod_estat == 1) {
-            
-            } else {
-               
-            }
+            if ($cod_estat == 1) { } else { }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -443,9 +439,9 @@ class eventoControlador extends eventoModelo
         $row = eventoModelo::consultar_evento_activo_modelo();
         foreach ($row as $row) {
             echo '
-                <form class="dropdown-item" action="'.SERVERURL.'participacion/" method="POST" data-form="" enctype="multipart/form-data">
+                <form class="dropdown-item" action="' . SERVERURL . 'participacion/" method="POST" data-form="" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
-                    <button  type="submit" class="btn btn-default value="">'.$row['des_even'].'</button>
+                    <button  type="submit" class="btn btn-default value="">' . $row['des_even'] . '</button>
                 </form>
             ';
         }
@@ -490,5 +486,15 @@ class eventoControlador extends eventoModelo
             echo $row['des_even'];
         }
         return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar eventos activos
+    public function boton_credenciales($datos)
+    {
+        $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
+        echo '<form action="'.SERVERURL.'ajax/credencialesFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+                <input type="text" name="cod_even" value="' . $cod_even . '" hidden>                 
+                <button type="submit" class="btn btn-warning ">Credenciales</button>
+            </form>';
     }
 }
