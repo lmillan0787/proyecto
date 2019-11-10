@@ -115,6 +115,7 @@ class invitadoControlador extends invitadoModelo
                     <td>' . $row['des_gen'] . '</td>
                     <td>' . $row['edad'] . '</td>
                     <td>' . $row['des_perf'] . '</td>
+                    <td>' . $row['des_even'] . '</td>
                     <td>
                         <form action="'.SERVERURL.'ajax/invitadoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
                             <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>                            
@@ -138,15 +139,7 @@ class invitadoControlador extends invitadoModelo
                     </form>    
                 </td>    
             
-                <td>
-                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                        <button type="submit" class="btn btn-danger btn-md">
-                            <i class="far fa-trash-alt fa-2x"></i>                            
-                        </button>
-                        <div class="RespuestaAjax"></div>
-                    </form>
-                </td>                                                        
+                                                                     
                 </tr>';
         }
         return $row;
