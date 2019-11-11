@@ -86,7 +86,7 @@ class PDF extends FPDF
         if ($_POST['cod_perf'] == 14 || $_POST['cod_perf'] == 15) {
             $this->AliasNbPages();
             $this->AddPage();
-            $this->SetFont('Times', '', 12);
+            $this->SetFont('Times', '', 10);
             $this->SetLineWidth(.5);
             ////////////////////////////////////////////////////////////QR/////////////////////////////
             $qrcode->displayFPDF($this, 60, 48, 15);
@@ -144,14 +144,14 @@ class PDF extends FPDF
         } else if ($_POST['cod_perf'] == 4) {
             $this->AliasNbPages();
             $this->AddPage();
-            $this->SetFont('Times', '', 11);
+            $this->SetFont('Times', '', 10);
             $this->SetLineWidth(.5);
 
             $this->Ln(20);
-            $this->Line(4, 14, 35, 14);
-            $this->Line(4, 14, 4, 45);
-            $this->Line(4, 46, 35, 46);
-            $this->Line(35.6, 14, 35.6, 46);
+            $this->Line(4, 14, 36, 14);
+            $this->Line(4, 14, 4, 46);
+            $this->Line(4, 46, 36, 46);
+            $this->Line(36, 14, 36, 46);
             $this->Image('../views/assets/upload/' . $_POST['ced'] . '.jpg', 5, 15, 30, 30, 'JPG');
             //$this->Ln(2);
             ////////////////////////////////////////////////////////////QR/////////////////////////////
@@ -197,14 +197,14 @@ class PDF extends FPDF
             $this->SetX(2);
             $this->Cell(40, 5, 'Pueblo:', 0);
             $this->Ln(0);
-            $this->SetX(16);
-            $this->Cell(30, 5, utf8_decode(mb_strtoupper($_POST['des_pue'])), 0);
+            $this->SetX(20);
+            $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['des_pue'])), 0);
 
             $this->SetY(74);
             $this->SetX(2);
             $this->Cell(40, 5, 'Disciplina:', 0);
             $this->Ln(0);
-            $this->SetX(22);
+            $this->SetX(20);
             $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['des_dis'])), 0);
 
             $this->Ln(5);
@@ -217,7 +217,7 @@ class PDF extends FPDF
         } else if ($_POST['cod_perf'] == 5) {
             $this->AliasNbPages();
             $this->AddPage();
-            $this->SetFont('Times', '', 11);
+            $this->SetFont('Times', '', 10);
             $this->SetLineWidth(.5);
 
 
@@ -294,7 +294,7 @@ class PDF extends FPDF
         } else if ($_POST['cod_perf'] == 6) {
             $this->AliasNbPages();
             $this->AddPage();
-            $this->SetFont('Times', '', 12);
+            $this->SetFont('Times', '', 10);
             $this->SetLineWidth(.5);
 
             ////////////////////////////////////////////////////////////QR/////////////////////////////
@@ -373,7 +373,7 @@ $this->Ln(5);*/
         } else if ($_POST['cod_rol'] == 4) {
             $this->AliasNbPages();
             $this->AddPage();
-            $this->SetFont('Times', '', 11);
+            $this->SetFont('Times', '', 10);
             $this->SetLineWidth(.5);
 
             $this->Ln(20);

@@ -81,7 +81,26 @@ class participacionControlador extends participacionModelo
                 </form>
                 ';
             } else if ($row['cod_rol'] == 4){
-                $form = '';
+                $form = '
+                <form action="'.SERVERURL.'ajax/participacionFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+                    <input type="text" name="ced" value="' . $row['ced'] . '" hidden>           
+                    <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
+                    <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
+                    <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
+                    <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>
+                    <input type="text" name="cod_reg"  value="' . $row['cod_reg'] . '" hidden> 
+                    <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>
+                    <input type="text" name="cod_rol"  value="' . $row['cod_rol'] . '" hidden>
+                    <input type="text" name="cod_perf"  value="' . $row['cod_perf'] . '" hidden>
+                    <input type="text" name="des_perf"  value="' . $row['des_perf'] . '" hidden> 
+                    <input type="text" name="fec_even"  value="' . $row['fec_even'] . '" hidden>
+                    <input type="text" name="des_carg"  value="' . $row['des_carg'] . '" hidden> 
+                    <input type="text" name="siglas"  value="' . $row['siglas'] . '" hidden>     
+                    <button type="submit" class="btn btn-warning btn-md">
+                        <i class="far fa-address-card fa-2x"></i>                            
+                    </button>
+                </form>
+                ';
             } else if ($row['cod_rol'] == 5){
                 $form = '
                 <form action="'.SERVERURL.'ajax/participacionFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
