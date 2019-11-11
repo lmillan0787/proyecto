@@ -40,9 +40,9 @@ $this->SetFont('bamboo', '', 15);
    $this->Line(1,79.5,89,79.5);
    $this->Line(89,1,89,99);
    $this->Line(1,99,89,99);
-    $this->Image('../views/assets/fpdf/img/minppi.png',45,18,30,30);
-    $this->Image('../views/assets/fpdf/img/jyd.png',50,2,10,15);
-    $this->Image('../views/assets/img/mascota19.jpg',65,2,10,15);
+   $this->Image('../views/assets/fpdf/img/minppi.png',45,18,30,30);
+   $this->Image('../views/assets/fpdf/img/jyd.png',50,2,10,15);
+   $this->Image('../views/assets/img/mascota19.jpg',65,2,10,15);
     
 
     $this->Ln(22);
@@ -147,4 +147,3 @@ $pdf->Ln(5);
 
 
 $pdf->Output('I');
-?>

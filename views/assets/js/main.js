@@ -67,7 +67,11 @@ $('.FormularioAjax').submit(function (e) {
 // Tablas
 
 $(document).ready(function() {
-    $('#tabla').DataTable();
+    $('#tabla').DataTable({
+            select: true,
+            language: idioma
+        
+    });
 } );
 
 var idioma = {

@@ -55,18 +55,61 @@ class participacionControlador extends participacionModelo
         ];
 
         $row = participacionModelo::consultar_participacion_modelo($datos);
-
+        $n = 0;
         foreach ($row as $row) {
-
+            $n++;
+            if  ($row['cod_rol'] == 2){
+                $form = '
+                <form action="'.SERVERURL.'ajax/participacionFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+                    <input type="text" name="ced" value="' . $row['ced'] . '" hidden>           
+                    <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
+                    <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
+                    <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
+                    <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>
+                    <input type="text" name="cod_reg"  value="' . $row['cod_reg'] . '" hidden> 
+                    <input type="text" name="des_reg"  value="' . $row['des_reg'] . '" hidden>
+                    <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>
+                    <input type="text" name="cod_rol"  value="' . $row['cod_rol'] . '" hidden>
+                    <input type="text" name="cod_perf"  value="' . $row['cod_perf'] . '" hidden>
+                    <input type="text" name="des_perf"  value="' . $row['des_perf'] . '" hidden>  
+                    <input type="text" name="des_pue"  value="' . $row['des_pue'] . '" hidden>
+                    <input type="text" name="alias"  value="' . $row['alias'] . '" hidden>
+                    <input type="text" name="des_dis"  value="' . $row['des_dis'] . '" hidden>
+                    <button type="submit" class="btn btn-warning btn-md">
+                        <i class="far fa-address-card fa-2x"></i>                            
+                    </button>
+                </form>
+                ';
+            } else if ($row['cod_rol'] == 4){
+                $form = '';
+            } else if ($row['cod_rol'] == 5){
+                $form = '
+                <form action="'.SERVERURL.'ajax/participacionFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+                    <input type="text" name="ced" value="' . $row['ced'] . '" hidden>           
+                    <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
+                    <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
+                    <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
+                    <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>
+                    <input type="text" name="cod_reg"  value="' . $row['cod_reg'] . '" hidden> 
+                    <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>
+                    <input type="text" name="cod_rol"  value="' . $row['cod_rol'] . '" hidden>
+                    <input type="text" name="cod_perf"  value="' . $row['cod_perf'] . '" hidden>
+                    <input type="text" name="des_perf"  value="' . $row['des_perf'] . '" hidden>      
+                    <button type="submit" class="btn btn-warning btn-md">
+                        <i class="far fa-address-card fa-2x"></i>                            
+                    </button>
+                </form>
+                ';
+            }
             echo '
             <tr>
+                <td>' . $n . '</td>
                 <td>' . $row['ced'] . '</td>
                 <td>' . $row['nom'] . '</td>
                 <td>' . $row['ape'] . '</td>
                 <td>' . $row['des_perf'] . '</td>
-                <td>' . $row['edad'] . '</td>
-                <td>' . $row['des_gen'] . '</td>
                 <td>' . $row['des_even'] . '</td>
+                <td>' . $form . '</td>
                 <td>
                 <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
@@ -74,17 +117,7 @@ class participacionControlador extends participacionModelo
                         <i class="far fa-edit fa-2x"></i>
                     </button>
                 </form>    
-            </td>    
-        
-            <td>
-                <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                    <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                    <button type="submit" class="btn btn-danger btn-md">
-                        <i class="far fa-trash-alt fa-2x"></i>                            
-                    </button>
-                    <div class="RespuestaAjax"></div>
-                </form>
-            </td>   
+                </td>    
             </tr>';
         }
         return $row;
@@ -127,25 +160,13 @@ class participacionControlador extends participacionModelo
         }
     }
     /////////////////////////////////////
-    public function generar_credenciales_controlador()
+    public function datos_credenciales_controlador()
     {
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
-
         $datos = [
             "cod_even" => $cod_even
         ];
-
         $row = participacionModelo::consultar_participacion_modelo($datos);
-
-        foreach ($row as $row) {
-            $datos = [
-                "cod_even" => $cod_even,
-                "ced" => $row['ced'],
-                "nom" => $row['nom'],
-                "ape" => $row['ape'],
-            ];
-            
-        }
         return $row;
     }
     ///////////////////////////////////////////////////

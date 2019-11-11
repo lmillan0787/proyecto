@@ -111,9 +111,10 @@ class deportistaControlador extends deportistaModelo
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function tabla_deportista()
     {
-
+        $n = 0;
         $row = deportistaModelo::consultar_deportista();
         foreach ($row as $row) {
+            $n++;
             if ($row['cod_nac'] == 1) {
                 $row['cod_nac'] = 'Venezolano';
             } else {
@@ -121,48 +122,23 @@ class deportistaControlador extends deportistaModelo
             }
             echo '
             <tr>
+                    <td>' . $n . '</td>
                     <td>' . $row['ced'] . '</td> 
                     <td>' . $row['nom'] . '</td>
                     <td>' . $row['ape'] . '</td>
-                    <td>' . $row['des_gen'] . '</td>
+                    <td>' . $row['des_even'] . '</td>
                     <td>' . $row['des_reg'] . '</td>
                     <td>' . $row['des_pue'] . '</td>
                     <td>' . $row['des_dis'] . '</td>
+                    <td>' . $row['des_cat'] . '</td>
                     <td>
-                        <form action="'.SERVERURL.'ajax/deportistaFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
-                            <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>           
-                            <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
-                            <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
-                            <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
-                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>
-                            <input type="text" name="des_pue"  value="' . $row['des_pue'] . '" hidden> 
-                            <input type="text" name="cod_reg"  value="' . $row['cod_reg'] . '" hidden>
-                            <input type="text" name="alias"  value="' . $row['alias'] . '" hidden> 
-                            <input type="text" name="des_dis"  value="' . $row['des_dis'] . '" hidden>       
-                            <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>       
-                            <button type="submit" class="btn btn-warning btn-md">
-                                <i class="far fa-address-card fa-2x"></i>                            
-                            </button>
-                        </form>                    
-                    </td>
-                     <td>
                     <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                         <button type="submit" class="btn btn-info btn-md">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
                     </form>    
-                </td>    
-            
-                <td>
-                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarParticipacionAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_par" hidden required>
-                        <button type="submit" class="btn btn-danger btn-md">
-                            <i class="far fa-trash-alt fa-2x"></i>                            
-                        </button>
-                        <div class="RespuestaAjax"></div>
-                    </form>
-                </td>                                                                 
+                    </td>                                            
                 </tr>';
         }
         return $row;

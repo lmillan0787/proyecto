@@ -18,17 +18,16 @@ require_once "./controllers/deportistaControlador.php";
     <table class="table table-bordered table-striped" id="tabla">
         <thead>
             <tr>
+                <th scope="col">#</th>
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">Genero</th>
+                <th scope="col">Evento</th>
                 <th scope="col">Región</th>
                 <th scope="col">Pueblo</th>
                 <th scope="col">Disciplina</th>
-                <th scope="col">Credencial</th>
+                <th scope="col">Categoría</th>
                 <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
-
             </tr>
         </thead>
         <tbody class="buscar">
