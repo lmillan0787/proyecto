@@ -5,6 +5,8 @@ require_once "./controllers/invitadoControlador.php";
 $insInvitado = new invitadoControlador();
 
 ?>
+
+
 <!--tabla Invitado-->
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">
@@ -17,9 +19,13 @@ $insInvitado = new invitadoControlador();
 <table class="table table-bordered table-striped" id="tabla">
     <thead>
         <tr>
+            <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Cédula</th>
+            <th scope="col">Género</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Rol</th>
             <th scope="col">Evento</th>
             <th scope="col">Credencial</th>
             <th scope="col">Editar</th>
@@ -30,9 +36,13 @@ $insInvitado = new invitadoControlador();
     </tbody>
     <tfoot>
         <tr>
+            <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Cédula</th>
+            <th scope="col">Género</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Rol</th>
             <th scope="col">Evento</th>
             <th scope="col">Credencial</th>
             <th scope="col">Editar</th>

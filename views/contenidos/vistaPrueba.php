@@ -4,6 +4,11 @@ $peticionAjax = false;
 
 
 <style>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a47ed2d9f86d52f55b953e049fe7cf3c30d16b7c
   .carousel-inner{
     width: 100%;
     height: 70%;
@@ -14,6 +19,11 @@ $peticionAjax = false;
     margin: 120px;
     margin-top: 30px;
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a47ed2d9f86d52f55b953e049fe7cf3c30d16b7c
 </style>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -45,4 +55,20 @@ $peticionAjax = false;
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Siguiente</span>
   </a>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+
+
+
+
+
+
+
+
+  
+
+
+
+>>>>>>> a47ed2d9f86d52f55b953e049fe7cf3c30d16b7c
