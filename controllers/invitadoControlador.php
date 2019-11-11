@@ -58,22 +58,22 @@ class invitadoControlador extends invitadoModelo
                ";
             } else {
                 $registrarInvitado = invitadoModelo::agregar_invitado($datosPart);
-                $img = $_POST['image'];
-                $folderPath = "../views/assets/upload/";
+                if ($_POST['image'] != "") {
+                    $img = $_POST['image'];
+                    $folderPath = "../views/assets/upload/";
 
-                $image_parts = explode(";base64,", $img);
-                $image_type_aux = explode("image/", $image_parts[0]);
-                $image_type = $image_type_aux[1];
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
 
-                $image_base64 = base64_decode($image_parts[1]);
-                $fileName = $_POST['ced'] . '.jpg';
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $fileName = $_POST['ced'] . '.jpg';
 
-                $file = $folderPath . $fileName;
-                file_put_contents($file, $image_base64);
-
-                print_r($fileName);
-                if ($registrarInvitado->rowCount() >= 1) {
-                    echo "
+                    $file = $folderPath . $fileName;
+                    file_put_contents($file, $image_base64);
+                    
+                    if ($registrarInvitado->rowCount() >= 1) {
+                        echo "
                <script>
                Swal.fire(
                 'Registro exitoso',
@@ -85,8 +85,8 @@ class invitadoControlador extends invitadoModelo
                
                </script>
                ";
-                } else {
-                    echo "
+                    } else {
+                        echo "
                <script>
                Swal.fire(
                 'Error inesperado',
@@ -96,6 +96,18 @@ class invitadoControlador extends invitadoModelo
                
                </script>
                ";
+                    }
+                } else {
+                    echo "
+                   <script>
+                   Swal.fire(
+                    'Falta capturar la foto',
+                    'Debe capturar la foto del participante ',
+                    'error'
+                   );     
+                   
+                   </script>
+                   ";
                 }
             }
         }
@@ -117,7 +129,7 @@ class invitadoControlador extends invitadoModelo
                     <td>' . $row['des_perf'] . '</td>
                     <td>' . $row['des_even'] . '</td>
                     <td>
-                        <form action="'.SERVERURL.'ajax/invitadoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+                        <form action="' . SERVERURL . 'ajax/invitadoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
                             <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>                            
                             <input type="text" name="perfil" value="' . $row['des_perf'] . '"hidden>
                             <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>

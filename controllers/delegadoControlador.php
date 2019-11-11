@@ -66,21 +66,21 @@ class delegadoControlador extends delegadoModelo
                ";
             } else {
                 $registrarDelegado = delegadoModelo::agregar_delegado($datosPart);
-                $img = $_POST['image'];
-                $folderPath = "../views/assets/upload/";
-                $image_parts = explode(";base64,", $img);
-                $image_type_aux = explode("image/", $image_parts[0]);
-                $image_type = $image_type_aux[1];
+                if ($_POST['image'] != "") {
+                    $img = $_POST['image'];
+                    $folderPath = "../views/assets/upload/";
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
 
-                $image_base64 = base64_decode($image_parts[1]);
-                $fileName = $_POST['ced'] . '.jpg';
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $fileName = $_POST['ced'] . '.jpg';
 
-                $file = $folderPath . $fileName;
-                file_put_contents($file, $image_base64);
+                    $file = $folderPath . $fileName;
+                    file_put_contents($file, $image_base64);
 
-                print_r($fileName);
-                if ($registrarDelegado->rowCount() >= 1) {
-                    echo "
+                    if ($registrarDelegado->rowCount() >= 1) {
+                        echo "
                 <script>
                 Swal.fire(
                 'Registro exitoso',
@@ -92,14 +92,26 @@ class delegadoControlador extends delegadoModelo
                
                </script>
                ";
-                } else {
+                    } else {
 
 
-                    echo "
+                        echo "
                <script>
                Swal.fire(
                 'Error inesperado',
                 'Recargue la pagina e intente de nuevo',
+                'error'
+               );     
+               
+               </script>
+               ";
+                    }
+                } else {
+                    echo "
+               <script>
+               Swal.fire(
+                'Falta capturar la foto',
+                'Debe capturar la foto del participante ',
                 'error'
                );     
                

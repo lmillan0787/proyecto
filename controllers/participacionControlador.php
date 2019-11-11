@@ -186,6 +186,13 @@ class participacionControlador extends participacionModelo
             "cod_even" => $cod_even
         ];
         $row = participacionModelo::consultar_participacion_modelo($datos);
+        foreach($row as $row){
+            require_once "../controllers/pdfControlador.php";
+            $insCredencial = new PDF('p', 'mm', array(100, 90));
+            $insCredencial->generar_credencial_controlador1();
+        }
+        
+
         return $row;
     }
     ///////////////////////////////////////////////////

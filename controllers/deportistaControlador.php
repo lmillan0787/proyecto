@@ -24,22 +24,22 @@ class deportistaControlador extends deportistaModelo
 
         if ($validarCedula->rowCount() == 0) {
             echo "<script>
-            Swal.fire({
-                title: 'La cédula que intenta ingresar no existe',
-                text: '¿Desea registrar a la persona?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si Registrar'
-              }).then((result) => {
-                if (result.value) {
-                    window.location='" . SERVERURL . "registrarPersona/';
-                }
-              })
-            
-            </script>";
-        }else{
+                Swal.fire({
+                    title: 'La cédula que intenta ingresar no existe',
+                    text: '¿Desea registrar a la persona?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si Registrar'
+                  }).then((result) => {
+                    if (result.value) {
+                        window.location='" . SERVERURL . "registrarPersona/';
+                    }
+                  })
+                
+                </script>";
+        } else {
             $row = mainModel::validar_persona_modelo($ced);
             foreach ($row as $row) {
                 $cod_per = $row['cod_per'];
@@ -56,54 +56,66 @@ class deportistaControlador extends deportistaModelo
             $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
             if ($validarParticipacion->rowCount() >= 1) {
                 echo "
-               <script>
-               Swal.fire(
-                'La persona ya posee participacion para este evento',
-                'Dirijase al módulo de participaciones para editar o seleccione otro evento disponible',
-                'error'
-               );  
-               </script>
-               ";
-            }else {
+                   <script>
+                   Swal.fire(
+                    'La persona ya posee participacion para este evento',
+                    'Dirijase al módulo de participaciones para editar o seleccione otro evento disponible',
+                    'error'
+                   );  
+                   </script>
+                   ";
+            } else {
                 $registrarDeportista = deportistaModelo::agregar_deportista($datosPart);
-                $img = $_POST['image'];
-                $folderPath = "../views/assets/upload/";
+                if ($_POST['image'] != "") {
+                    $img = $_POST['image'];
+                    $folderPath = "../views/assets/upload/";
 
-                $image_parts = explode(";base64,", $img);
-                $image_type_aux = explode("image/", $image_parts[0]);
-                $image_type = $image_type_aux[1];
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
 
-                $image_base64 = base64_decode($image_parts[1]);
-                $fileName = $_POST['ced'] . '.jpg';
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $fileName = $_POST['ced'] . '.jpg';
 
-                $file = $folderPath . $fileName;
-                file_put_contents($file, $image_base64);
+                    $file = $folderPath . $fileName;
+                    file_put_contents($file, $image_base64);
 
-                print_r($fileName);
-                if ($registrarDeportista->rowCount() >= 1) {
+                    if ($registrarDeportista->rowCount() >= 1) {
+                        echo "
+                   <script>
+                   Swal.fire(
+                    'Registro exitoso',
+                    'Exito al agregar la participación',
+                    'success'
+                   ).then(function(){
+                    window.location='" . SERVERURL . "deportistas/';
+                });     
+                   
+                   </script>
+                   ";
+                    } else {
+                        echo "
+                   <script>
+                   Swal.fire(
+                    'Error inesperado',
+                    'Recargue la pagina e intente de nuevo',
+                    'error'
+                   );     
+                   
+                   </script>
+                   ";
+                    }
+                }else{
                     echo "
-               <script>
-               Swal.fire(
-                'Registro exitoso',
-                'Exito al agregar la participación',
-                'success'
-               ).then(function(){
-                window.location='" . SERVERURL . "deportistas/';
-            });     
-               
-               </script>
-               ";
-                } else {
-                    echo "
-               <script>
-               Swal.fire(
-                'Error inesperado',
-                'Recargue la pagina e intente de nuevo',
-                'error'
-               );     
-               
-               </script>
-               ";
+                   <script>
+                   Swal.fire(
+                    'Falta capturar la foto',
+                    'Debe capturar la foto del participante ',
+                    'error'
+                   );     
+                   
+                   </script>
+                   ";
                 }
             }
         }
@@ -148,7 +160,7 @@ class deportistaControlador extends deportistaModelo
     {
         $consultaRegion = mainModel::conectar()->prepare("SELECT * FROM tab_reg ");
         $consultaRegion->execute();
-        $row = $consultaRegion->fetchAll(PDO::FETCH_ASSOC);        
+        $row = $consultaRegion->fetchAll(PDO::FETCH_ASSOC);
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_reg'] . '">' . $row['des_reg'] . '</option>';
         }
@@ -161,7 +173,7 @@ class deportistaControlador extends deportistaModelo
         $consultarPueblo = mainModel::conectar()->prepare("SELECT * FROM tab_pue ");
         $consultarPueblo->execute();
         $row = $consultarPueblo->fetchAll(PDO::FETCH_ASSOC);
-        
+
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_pue'] . '">' . $row['des_pue'] . '</option>';
         }
@@ -203,7 +215,6 @@ class deportistaControlador extends deportistaModelo
             echo '<option value="' . $row['cod_even'] . '">' . $row['des_even'] . '</option>';
         }
         return $row;
-
     }
 
 
@@ -212,12 +223,11 @@ class deportistaControlador extends deportistaModelo
         $consultarDisciplina = mainModel::conectar()->prepare("SELECT cod_dis,des_dis FROM tab_dis ");
         $consultarDisciplina->execute();
         $row = $consultarDisciplina->fetchAll(PDO::FETCH_ASSOC);
-        
+
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_dis'] . '">' . $row['des_dis'] . '</option>';
         }
         return $row;
-
     }
 
 
@@ -226,7 +236,7 @@ class deportistaControlador extends deportistaModelo
         $consultarCategoria = mainModel::conectar()->prepare("SELECT cod_cat,des_cat FROM tab_cat ");
         $consultarCategoria->execute();
         $row = $consultarCategoria->fetchAll(PDO::FETCH_ASSOC);
-        
+
         foreach ($row as $row) {
             echo '<option value="' . $row['cod_cat'] . '">' . $row['des_cat'] . '</option>';
         }

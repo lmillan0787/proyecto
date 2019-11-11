@@ -125,8 +125,8 @@ $insDeportista = new deportistaControlador();
 
                     </div>
                     <div class="col-md-6">
-                        <div id="results">La foto aparecerá aqui...</div>
-                        <input type="hidden" name="image" class="image-tag"">
+                        <div id="results"></div>
+                        <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>
             </center>                

@@ -27,8 +27,8 @@ $datos = [
             <th scope="col">Cédula</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
-            <th scope="col">Perfil</th>
-            <th scope="col">Evento</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Estatus</th>
             <th scope="col">Credencial</th>
             <th scope="col">Editar</th>
         </tr>

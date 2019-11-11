@@ -10,18 +10,16 @@ class tecnicoControlador extends tecnicoModelo
 {
     public function agregar_tecnico_controlador()
     {
-       
+
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
-         $cod_carg = mainModel::limpiar_cadena($_POST['cod_carg']);
-         $cod_inst = mainModel::limpiar_cadena($_POST['cod_inst']);
-         
-        ;
-       
+        $cod_carg = mainModel::limpiar_cadena($_POST['cod_carg']);
+        $cod_inst = mainModel::limpiar_cadena($_POST['cod_inst']);;
+
 
         $validarCedula = mainModel::validar_cedula_modelo($ced);
-       $validarCedula = mainModel::validar_cedula_modelo($ced);
+        $validarCedula = mainModel::validar_cedula_modelo($ced);
 
         if ($validarCedula->rowCount() == 0) {
             echo "<script>
@@ -40,7 +38,7 @@ class tecnicoControlador extends tecnicoModelo
               })
             
             </script>";
-        }else{
+        } else {
             $row = mainModel::validar_persona_modelo($ced);
             foreach ($row as $row) {
                 $cod_per = $row['cod_per'];
@@ -51,7 +49,7 @@ class tecnicoControlador extends tecnicoModelo
                 'cod_perf' => $cod_perf,
                 'cod_inst' => $cod_inst,
                 'cod_carg' => $cod_carg
-                
+
             ];
             $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
             if ($validarParticipacion->rowCount() >= 1) {
@@ -64,24 +62,24 @@ class tecnicoControlador extends tecnicoModelo
                );  
                </script>
                ";
-            }else {
+            } else {
                 $registrarTecnico = tecnicoModelo::agregar_tecnico($datosPart);
-                $img = $_POST['image'];
-                $folderPath = "../views/assets/upload/";
+                if ($_POST['image'] != "") {
+                    $img = $_POST['image'];
+                    $folderPath = "../views/assets/upload/";
 
-                $image_parts = explode(";base64,", $img);
-                $image_type_aux = explode("image/", $image_parts[0]);
-                $image_type = $image_type_aux[1];
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
 
-                $image_base64 = base64_decode($image_parts[1]);
-                $fileName = $_POST['ced'] . '.jpg';
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $fileName = $_POST['ced'] . '.jpg';
 
-                $file = $folderPath . $fileName;
-                file_put_contents($file, $image_base64);
+                    $file = $folderPath . $fileName;
+                    file_put_contents($file, $image_base64);
 
-                print_r($fileName);
-                if ($registrarTecnico->rowCount() >= 1) {
-                    echo "
+                    if ($registrarTecnico->rowCount() >= 1) {
+                        echo "
                <script>
                Swal.fire(
                 'Registro exitoso',
@@ -93,8 +91,8 @@ class tecnicoControlador extends tecnicoModelo
                
                </script>
                ";
-                } else {
-                    echo "
+                    } else {
+                        echo "
                <script>
                Swal.fire(
                 'Error inesperado',
@@ -104,29 +102,42 @@ class tecnicoControlador extends tecnicoModelo
                
                </script>
                ";
+                    }
+                } else {
+                    echo "
+               <script>
+               Swal.fire(
+                'Falta capturar la foto',
+                'Debe capturar la foto del participante ',
+                'error'
+               );     
+               
+               </script>
+               ";
                 }
             }
         }
     }
-        
-    
-    
-    public function tabla_tecnico(){
-        
-        $row=tecnicoModelo::consultar_tecnico();
+
+
+
+    public function tabla_tecnico()
+    {
+
+        $row = tecnicoModelo::consultar_tecnico();
         foreach ($row as $row) {
-           
+
             echo '
             <tr>
-                <td>'.$row['ced'].'</td>
-                <td>'.$row['nom'].'</td>
-                <td>'.$row['ape'].'</td>
-                <td>'.$row['des_carg'].'</td>
-                <td>'.$row['fec_even'].'</td>
-                <td>'.$row['des_inst'].'</td>
-                <td>'.$row['des_even'].'</td>
+                <td>' . $row['ced'] . '</td>
+                <td>' . $row['nom'] . '</td>
+                <td>' . $row['ape'] . '</td>
+                <td>' . $row['des_carg'] . '</td>
+                <td>' . $row['fec_even'] . '</td>
+                <td>' . $row['des_inst'] . '</td>
+                <td>' . $row['des_even'] . '</td>
                 <td>
-                        <form action="'.SERVERURL.'ajax/tecnicoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+                        <form action="' . SERVERURL . 'ajax/tecnicoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
                             <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>           
                             <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
                             <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
@@ -157,61 +168,62 @@ class tecnicoControlador extends tecnicoModelo
                 <div class="RespuestaAjax"></div>
             </form>
         </td>                                                        
-        </tr>'
-            ;
+        </tr>';
         }
         return $row;
     }
 
 
-     public function consultarPerfil(){
-        $consultarPerfil=mainModel::conectar()->prepare("SELECT cod_perf,des_perf from tab_perf where cod_rol=4 ");
-            $consultarPerfil->execute();
-            $row = $consultarPerfil->fetchAll(PDO::FETCH_ASSOC);
-           
-             foreach ($row as $row) {
+    public function consultarPerfil()
+    {
+        $consultarPerfil = mainModel::conectar()->prepare("SELECT cod_perf,des_perf from tab_perf where cod_rol=4 ");
+        $consultarPerfil->execute();
+        $row = $consultarPerfil->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($row as $row) {
             echo '<option value="' . $row['cod_perf'] . '">' . $row['des_perf'] . '</option>';
         }
-        
-            
-         return $row; 
 
-}
 
+        return $row;
+    }
 
 
 
 
 
 
-        
-public function consultarCargo(){
 
-    $row=tecnicoModelo::consultaCargo();
-       
-        foreach  ($row as $row){
-        
-echo '<option  value="'.$row['cod_carg'].'" >'.$row['des_carg'].'</option>'
-            ;}
 
-            return $row;
-}
+    public function consultarCargo()
+    {
 
-public function consultarInstitucion(){
+        $row = tecnicoModelo::consultaCargo();
 
-   $consultaInstitucion = mainModel::conectar()->prepare("SELECT * FROM tab_inst");
+        foreach ($row as $row) {
+
+            echo '<option  value="' . $row['cod_carg'] . '" >' . $row['des_carg'] . '</option>';
+        }
+
+        return $row;
+    }
+
+    public function consultarInstitucion()
+    {
+
+        $consultaInstitucion = mainModel::conectar()->prepare("SELECT * FROM tab_inst");
         $consultaInstitucion->execute();
         $row = $consultaInstitucion->fetchAll(PDO::FETCH_ASSOC);
-        foreach  ($row as $row){
-        
-echo '<option  value="'.$row['cod_inst'].'" >'.$row['des_inst'].'</option>'
-            ;}
+        foreach ($row as $row) {
 
-           return $row;
-}
+            echo '<option  value="' . $row['cod_inst'] . '" >' . $row['des_inst'] . '</option>';
+        }
+
+        return $row;
+    }
 
 
-public function consultarEvento()
+    public function consultarEvento()
     {
         $consultarEvento = mainModel::conectar()->prepare("SELECT * FROM dat_even WHERE cod_estat=1");
         $consultarEvento->execute();
@@ -220,9 +232,5 @@ public function consultarEvento()
             echo '<option value="' . $row['cod_even'] . '">' . $row['des_even'] . '</option>';
         }
         return $row;
-
     }
-
 }
-
-

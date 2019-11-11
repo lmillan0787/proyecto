@@ -6,11 +6,12 @@ if ($peticionAjax) {
     require_once "./models/medicoModelo.php";
 }
 
-class medicoControlador extends medicoModelo{
-    
+class medicoControlador extends medicoModelo
+{
+
     public function agregar_medico_controlador()
     {
-          $ced = mainModel::limpiar_cadena($_POST['ced']);
+        $ced = mainModel::limpiar_cadena($_POST['ced']);
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
         $cod_pue = mainModel::limpiar_cadena($_POST['cod_pue']);
@@ -38,7 +39,7 @@ class medicoControlador extends medicoModelo{
               })
             
             </script>";
-        }else{
+        } else {
             $row = mainModel::validar_persona_modelo($ced);
             foreach ($row as $row) {
                 $cod_per = $row['cod_per'];
@@ -63,24 +64,24 @@ class medicoControlador extends medicoModelo{
                );  
                </script>
                ";
-            }else {
+            } else {
                 $registrarMedico = medicoModelo::agregar_medico($datosPart);
-                $img = $_POST['image'];
-                $folderPath = "../views/assets/upload/";
+                if ($_POST['image'] != "") {
+                    $img = $_POST['image'];
+                    $folderPath = "../views/assets/upload/";
 
-                $image_parts = explode(";base64,", $img);
-                $image_type_aux = explode("image/", $image_parts[0]);
-                $image_type = $image_type_aux[1];
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
 
-                $image_base64 = base64_decode($image_parts[1]);
-                $fileName = $_POST['ced'] . '.jpg';
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $fileName = $_POST['ced'] . '.jpg';
 
-                $file = $folderPath . $fileName;
-                file_put_contents($file, $image_base64);
+                    $file = $folderPath . $fileName;
+                    file_put_contents($file, $image_base64);
 
-                print_r($fileName);
-                if ($registrarMedico->rowCount() >= 1) {
-                    echo "
+                    if ($registrarMedico->rowCount() >= 1) {
+                        echo "
                <script>
                Swal.fire(
                 'Registro exitoso',
@@ -92,8 +93,8 @@ class medicoControlador extends medicoModelo{
                
                </script>
                ";
-                } else {
-                    echo "
+                    } else {
+                        echo "
                <script>
                Swal.fire(
                 'Error inesperado',
@@ -103,16 +104,27 @@ class medicoControlador extends medicoModelo{
                
                </script>
                ";
+                    }
+                } else {
+                    echo "
+               <script>
+               Swal.fire(
+                'Falta capturar la foto',
+                'Debe capturar la foto del participante ',
+                'error'
+               );     
+               
+               </script>
+               ";
                 }
             }
         }
-    
     }
-   
+
     public function tabla_medico()
     {
-        
-        $row=medicoModelo::consultar_medico();
+
+        $row = medicoModelo::consultar_medico();
         foreach ($row as $row) {
             if ($row['cod_nac'] == 1) {
                 $row['cod_nac'] = 'Venezolano';
@@ -122,15 +134,15 @@ class medicoControlador extends medicoModelo{
             echo '
             <tr>
                    
-                    <td>'.$row['ced'].'</td>
-                    <td>'.$row['nom'].'</td>
-                    <td>'.$row['ape'].'</td>
-                    <td>'.$row['des_gen'].'</td>
-                    <td>'.$row['des_reg'].'</td>
-                    <td>'.$row['des_pue'].'</td>
+                    <td>' . $row['ced'] . '</td>
+                    <td>' . $row['nom'] . '</td>
+                    <td>' . $row['ape'] . '</td>
+                    <td>' . $row['des_gen'] . '</td>
+                    <td>' . $row['des_reg'] . '</td>
+                    <td>' . $row['des_pue'] . '</td>
 
                     <td>
-<form action="'.SERVERURL.'ajax/medicoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+<form action="' . SERVERURL . 'ajax/medicoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
                             <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>           
                             <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
                             <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
@@ -166,72 +178,67 @@ class medicoControlador extends medicoModelo{
         return $row;
     }
 
-      public function consultarRegion(){
-        $consultaRegion=mainModel::conectar()->prepare("SELECT * from tab_reg ");
-            $consultaRegion->execute();
-            $row = $consultaRegion->fetchAll(PDO::FETCH_ASSOC);
-           
-             foreach ($row as $row) {
+    public function consultarRegion()
+    {
+        $consultaRegion = mainModel::conectar()->prepare("SELECT * from tab_reg ");
+        $consultaRegion->execute();
+        $row = $consultaRegion->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($row as $row) {
             echo '<option value="' . $row['cod_reg'] . '">' . $row['des_reg'] . '</option>';
         }
-        
-            return $row;
-          }
 
-     public function consultarPueblo(){
-        $consultarPueblo=mainModel::conectar()->prepare("SELECT * from tab_pue ");
-            $consultarPueblo->execute();
-            $row = $consultarPueblo->fetchAll(PDO::FETCH_ASSOC);
-          
-             foreach ($row as $row) {
+        return $row;
+    }
+
+    public function consultarPueblo()
+    {
+        $consultarPueblo = mainModel::conectar()->prepare("SELECT * from tab_pue ");
+        $consultarPueblo->execute();
+        $row = $consultarPueblo->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($row as $row) {
             echo '<option value="' . $row['cod_pue'] . '">' . $row['des_pue'] . '</option>';
-            
         }
-       return $row;
-            
-          }
+        return $row;
+    }
 
- public function consultarPerfil(){
-        $consultarPerfil=mainModel::conectar()->prepare("SELECT cod_perf,des_perf from tab_perf ");
-            $consultarPerfil->execute();
-            $row = $consultarPerfil->fetchAll(PDO::FETCH_ASSOC);
-           
-             foreach ($row as $row) {
+    public function consultarPerfil()
+    {
+        $consultarPerfil = mainModel::conectar()->prepare("SELECT cod_perf,des_perf from tab_perf ");
+        $consultarPerfil->execute();
+        $row = $consultarPerfil->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($row as $row) {
             echo '<option value="' . $row['cod_perf'] . '">' . $row['des_perf'] . '</option>';
         }
-        
-           return $row;
-          
 
-}
+        return $row;
+    }
 
- public function consultarRol(){
-        $consultarRol=mainModel::conectar()->prepare("SELECT cod_rol,des_rol from tab_rol ");
-            $consultarRol->execute();
-            $row = $consultarRol->fetchAll(PDO::FETCH_ASSOC);
-           
-             foreach ($row as $row) {
+    public function consultarRol()
+    {
+        $consultarRol = mainModel::conectar()->prepare("SELECT cod_rol,des_rol from tab_rol ");
+        $consultarRol->execute();
+        $row = $consultarRol->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($row as $row) {
             echo '<option value="' . $row['cod_rol'] . '">' . $row['des_rol'] . '</option>';
         }
-        
-            return $row;
-          
 
-}
+        return $row;
+    }
 
-public function consultarEvento(){
-        $consultarEvento=mainModel::conectar()->prepare("SELECT * FROM dat_even WHERE cod_estat=1");
-            $consultarEvento->execute();
-            $row = $consultarEvento->fetchAll(PDO::FETCH_ASSOC);
-          
-             foreach ($row as $row) {
+    public function consultarEvento()
+    {
+        $consultarEvento = mainModel::conectar()->prepare("SELECT * FROM dat_even WHERE cod_estat=1");
+        $consultarEvento->execute();
+        $row = $consultarEvento->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($row as $row) {
             echo '<option value="' . $row['cod_even'] . '">' . $row['des_even'] . '</option>';
         }
-        
-            return $row;
-          
 
-}
-
-
+        return $row;
+    }
 }
