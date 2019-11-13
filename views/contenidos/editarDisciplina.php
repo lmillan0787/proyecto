@@ -1,10 +1,3 @@
-<?php
-
-    $peticionAjax = false;
-    require_once "./controllers/eventoControlador.php";
-    $insEvento 
-
-?>
 <div class="card" id="form_evento">
     <h5 class="card-header info-color white-text text-center py-4">
         <strong>Datos Básicos de la Disciplina</strong>

@@ -140,27 +140,61 @@ class eventoControlador extends eventoModelo
         if ($validarEvento->rowCount() >= 1) {
             $alerta = [
                 "Alerta" => "simple",
-                "Titulo" => "Ocurrio un error inesperado",
+                "Titulo" => "Ocurrio un error",
                 "Texto" => "El nombre del evento que intenta ingresar ya se encuentra utilizado por otro evento",
                 "Tipo" => "error"
             ];
         } else {
-            $editarEvento = eventoModelo::editar_evento_modelo($datosEvento);
-
-            if ($editarEvento->rowCount() >= 1) {
-                $alerta = [
-                    "Alerta" => "simpleEventos",
-                    "Titulo" => "Actualización Exitosa",
-                    "Texto" => "Evento actualizado exitosamente",
-                    "Tipo" => "success"
-                ];
-            } else {
+            $validarEvento = eventoModelo::consultar_region_disponible_modelo($datosEvento);
+            if ($validarEvento->rowCount() >= 1) {
                 $alerta = [
                     "Alerta" => "simple",
-                    "Titulo" => "Ocurrió un error inesperado",
-                    "Texto" => "Error al editar evento",
+                    "Titulo" => "Ocurrio un error",
+                    "Texto" => "Ya existe un evento activo en esta región",
                     "Tipo" => "error"
                 ];
+            } else {
+                $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
+                $fec_form = $datosEvento['fec_even'];
+                $fecha_actual = date("d-m-Y");
+                if ($fec_form < $fecha_actual) {
+                    $fecha_minima = $fec_even;
+                } else {
+                    $fecha_minima = date("Y-m-d");
+                }
+                if ($fec_even < $fecha_minima) {
+                    $alerta = [
+                        "Alerta" => "simple",
+                        "Titulo" => "Ocurrio un error",
+                        "Texto" => " La fecha mínima para registrar el evento es ' . $fecha_minima . '",
+                        "Tipo" => "error"
+                    ];
+                } else if ($fec_even > '2051-01-01') {
+                    $alerta = [
+                        "Alerta" => "simple",
+                        "Titulo" => "Ocurrio un error",
+                        "Texto" => "La fecha maxima para registrar el evento es 01-01-2051",
+                        "Tipo" => "error"
+                    ];
+                } else {
+                    $editarEvento = eventoModelo::editar_evento_modelo($datosEvento);
+
+                    if ($editarEvento->rowCount() >= 1) {
+                        $alerta = [
+                            "Alerta" => "simpleEventos",
+                            "Titulo" => "Actualización Exitosa",
+                            "Texto" => "Evento actualizado exitosamente",
+                            "Tipo" => "success"
+                        ];
+                    } else {
+                        $alerta = [
+                            "Alerta" => "simple",
+                            "Titulo" => "No realizó ningun cambio",
+                            "Texto" => "",
+                            "Tipo" => "error"
+                        ];
+                    }
+                }
             }
         }
         return mainModel::sweet_alert($alerta);
@@ -206,6 +240,37 @@ class eventoControlador extends eventoModelo
             echo '<div class="alert alert-danger"><strong>Error!</strong> La fecha maxima para registrar el evento es 01-01-2051</div>';
         } else { }
     }
+    //validar fdisciplinas evento
+    public function validar_disciplinas_evento_controlador()
+    {
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $datosEvento = [
+            "cod_even" => $cod_even
+        ];
+        $sql = mainModel::validar_disciplinas_evento_modelo($datosEvento);
+        foreach ($sql as $row) {
+            $cod_tip_even = $row['cod_tip_even'];
+            $datosEvento = [
+                "cod_tip_even" => $cod_tip_even
+            ];
+            $sql = mainModel::consultar_disciplinas_tipo_modelo($datosEvento);
+            echo '<br><b><label for="textInput">Disciplina:</label></b>
+                <div class="input-group flex-nowrap">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                    </div>
+                    <select name="cod_dis" id="seldis" class="form-control">
+                        <option disabled selected>Disciplina</option>';
+            foreach ($sql as $row) {
+                echo '
+                        <option value="' . $row['cod_dis'] . '">' . $row['des_dis'] . '</option>
+                    ';
+            }
+            echo  '  
+            </select>
+        </div>';
+        }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //validar fecha evento
     public function validar_fecha_distinta_controlador()
@@ -245,19 +310,49 @@ class eventoControlador extends eventoModelo
         } else { }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //validar región evento
+    public function validar_evento_participacion_controlador()
+    {
+
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $ced = mainModel::limpiar_cadena($_POST['ced']);
+        $persona = mainModel::validar_persona_modelo($ced);
+        foreach ($persona as $row) {
+            $cod_per = $row['cod_per'];
+
+            $datosEvento = [
+                "cod_even" => $cod_even,
+                "cod_per" => $cod_per
+            ];
+            $validarEvento = eventoModelo::validar_participacion_modelo($datosEvento);
+            if ($validarEvento->rowCount() >= 1) {
+                echo '<div class="alert alert-danger"><strong>Error!</strong> La persona ya posee participación para este evento</div>';
+            } else { }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //validar region editar
     public function validar_region_estatus_controlador()
     {
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $cod_reg = mainModel::limpiar_cadena($_POST['cod_reg']);
+        $cod_estat = mainModel::limpiar_cadena($_POST['cod_estat']);
         $datosEvento = [
             "cod_even" => $cod_even,
             "cod_reg" => $cod_reg,
+            "cod_estat" => $cod_estat
         ];
-        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
-        foreach ($row as $row) {
-            $cod_estat = $row['cod_estat'];
-            if ($cod_estat == 1) { } else { }
+        switch ($cod_estat) {
+            case '1':
+                $sql = eventoModelo::consultar_region_disponible_modelo($datosEvento);
+                if ($sql->rowCount() >= 1) {
+                    echo '<div class="alert alert-danger"><strong>Error!</strong> Ya existe un evento activo en esta región</div>';
+                    break;
+                } else {
+                    break;
+                }
+            default:
+                break;
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -395,7 +490,7 @@ class eventoControlador extends eventoModelo
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar estatus distinta
-    public function formulario_evento_estatus_distinta()
+    public function formulario_evento_estatus_distinto()
     {
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $datosEvento = [
@@ -419,6 +514,16 @@ class eventoControlador extends eventoModelo
     public function formulario_evento_tipo()
     {
         $Reg = eventoModelo::consultar_tipo_evento_modelo();
+        foreach ($Reg as $row) {
+            echo '<option value="' . $row['cod_tip_even'] . '">' . $row['des_tip_even'] . '</option>';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar evento tipo
+    public function formulario_evento_tipo_no_mix()
+    {
+        $Reg = eventoModelo::consultar_tipo_evento_modelo_no_mix();
         foreach ($Reg as $row) {
             echo '<option value="' . $row['cod_tip_even'] . '">' . $row['des_tip_even'] . '</option>';
         }
@@ -505,7 +610,7 @@ class eventoControlador extends eventoModelo
     public function boton_credenciales($datos)
     {
         $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
-        echo '<form action="'.SERVERURL.'ajax/credencialesFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+        echo '<form action="' . SERVERURL . 'ajax/credencialesFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
                 <input type="text" name="cod_even" value="' . $cod_even . '" hidden>                 
                 <button type="submit" class="btn btn-warning ">Credenciales</button>
             </form>';

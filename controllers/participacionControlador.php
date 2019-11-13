@@ -127,7 +127,7 @@ class participacionControlador extends participacionModelo
                 <td>' . $row['nom'] . '</td>
                 <td>' . $row['ape'] . '</td>
                 <td>' . $row['des_perf'] . '</td>
-                <td>' . $row['des_even'] . '</td>
+                <td>' . $row['des_estat'] . '</td>
                 <td>' . $form . '</td>
                 <td>
                 <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">

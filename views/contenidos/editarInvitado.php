@@ -30,14 +30,13 @@ $insInvitado = new invitadoControlador();
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt prefix grey-text"></i></label>
                 </div>
-                <select class="browser-default custom-select" id="cod_even" name="cod_even" required>
+                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_even" name="cod_even" required>
                     <option selected disabled value="">Evento</option>
                     <?php
                     $insInvitado->consultarEvento();
                     ?>
                 </select>
             </div>
-            <div id="result-even"></div>
             <!-- Género-->
             <br><b><label for="textInput">Perfil:</label></b>
             <div class="input-group ">
@@ -116,25 +115,4 @@ $(document).ready(function() {
         });
     });              
 });    
-$(document).ready(function() {  
-    $('#cod_even').on('blur', function(){
-        $('#result-even').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
-
-        var cod_even = $(this).val();
-        var ced = $('#ced').val();  
-        var dataString = {
-            'cod_even': cod_even,
-            'ced': ced
-            };
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarEventoParticipacionAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-even').fadeIn(1000).html(data);
-            }
-        });
-    });              
-});  
 </script>

@@ -8,7 +8,7 @@
 ?>
 <div class="card" id="form_evento">
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Datos Básicos</strong>
+        <strong>Editar Datos Básicos de Persona</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
@@ -51,7 +51,7 @@
             </div>
             <!-- Género-->
             <br><b><label for="textInput">Género:</label></b>
-            <div class="input-group mb-3">
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>
                 </div>

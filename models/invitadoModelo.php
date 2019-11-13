@@ -9,7 +9,7 @@ if ($peticionAjax) {
 class invitadoModelo extends mainModel
 {
     protected function agregar_invitado($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_par (cod_per,cod_even,cod_perf) VALUES (:cod_per,:cod_even,:cod_perf)");
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_par (cod_per,cod_even,cod_perf,cod_estat) VALUES (:cod_per,:cod_even,:cod_perf,1)");
         $sql->bindParam(":cod_per", $datos['cod_per']);
         $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->bindParam(":cod_perf", $datos['cod_perf']);    

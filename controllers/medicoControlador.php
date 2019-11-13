@@ -133,9 +133,10 @@ class medicoControlador extends medicoModelo
                     <td>' . $row['ced'] . '</td>
                     <td>' . $row['nom'] . '</td>
                     <td>' . $row['ape'] . '</td>
+                    <td>' . $row['des_even'] . '</td>
                     <td>' . $row['des_reg'] . '</td>
                     <td>
-                        <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
+                        <form class="" action="' . SERVERURL . 'editarMedico" method="POST" enctype="multipart/form-data">
                             <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                             <button type="submit" class="btn btn-info btn-md">
                                 <i class="far fa-edit fa-2x"></i>

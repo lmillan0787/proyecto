@@ -95,7 +95,7 @@ class mainModel
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     //valdiar persona
     protected function validar_persona_modelo($ced){
-        $validarPersona = mainModel::ejecutar_consulta_simple("SELECT cod_per FROM dat_per WHERE ced='$ced'");
+        $validarPersona = mainModel::ejecutar_consulta_simple("SELECT * FROM dat_per WHERE ced='$ced'");
         $validarPersona->execute();
         $row = $validarPersona->fetchAll(PDO::FETCH_ASSOC);
         return $row;
@@ -108,6 +108,24 @@ class mainModel
         $validarParticipacion->bindParam(":cod_even", $datos['cod_even']);
         $validarParticipacion->execute();        
         return $validarParticipacion;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //valdiar participación
+    protected function validar_disciplinas_evento_modelo($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_even WHERE cod_even=:cod_even");
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->execute();        
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //valdiar participación
+    protected function consultar_disciplinas_tipo_modelo($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_dis WHERE cod_tip_even=:cod_tip_even");
+        $sql->bindParam(":cod_tip_even", $datos['cod_tip_even']);
+        $sql->execute();        
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //encryptar datos
@@ -210,6 +228,18 @@ class mainModel
                             '" . $datos['Tipo'] . "'
                         ).then(function(){
                             window.location='" . SERVERURL . "eventos/';
+                        });
+                    </script>
+                ";
+        }else if ($datos['Alerta'] == "simpleDisciplina") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "disciplinas/';
                         });
                     </script>
                 ";

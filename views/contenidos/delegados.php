@@ -21,12 +21,10 @@ require_once "./controllers/delegadoControlador.php";
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
+                <th scope="col">Evento</th>
                 <th scope="col">Región</th>
-                <th scope="col">Pueblo</th>
                 <th scope="col">Disciplina</th>
-                <th scope="col">Credencial</th>
                 <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody class="buscar">

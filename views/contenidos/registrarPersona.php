@@ -1,23 +1,9 @@
- <!-- Validar Cedula -->
-<script type="text/javascript">
-$(document).ready(function() {  
-    $('#ced').on('blur', function(){
-        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+<?php 
+ 
+ $año=date('Y')-15;
+ $fec=date('m-d');
 
-        var ced = $(this).val();   
-        var dataString = 'ced='+ced;
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarCedulaAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-ced').fadeIn(1000).html(data);
-            }
-        });
-    });              
-});    
-</script>
+?>
 <div class="card" id="form_evento">
     <h5 class="card-header info-color white-text text-center py-4">
         <strong>Datos Básicos</strong>
@@ -28,7 +14,7 @@ $(document).ready(function() {
             <div class="text-center">
             </div>
             <!-- Cédula-->
-            <br><b><label for="textInput">Cédula:</label></b>
+            <b><label for="textInput">Cédula:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -58,8 +44,9 @@ $(document).ready(function() {
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
                 </div>
-                <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1930-01-01" max="2010-01-01" step="1" name="fec_nac">
+                <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1919-01-01" max="<?php echo $año.'-'.$fec ?>" step="1" name="fec_nac" id="fec_nac">
             </div>
+            <div id="result-fec"></div>  
             <!-- Género-->
             <br><b><label for="textInput">Género:</label></b>
             <div class="input-group mb-3">
@@ -77,3 +64,41 @@ $(document).ready(function() {
         </form>
     </div>
 </div>
+ <!-- Validar Cedula -->
+<script type="text/javascript">
+$(document).ready(function() {  
+    $('#ced').on('blur', function(){
+        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+        var ced = $(this).val();   
+        var dataString = 'ced='+ced;
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo SERVERURL ?>ajax/validarPersonaAjax.php",
+            data: dataString,
+            success: function(data) {
+                $('#result-ced').fadeIn(1000).html(data);
+            }
+        });
+    });              
+});   
+///////////////////////////////////#ced<script type="text/javascript">
+$(document).ready(function() {  
+    $('#fec_nac').on('blur', function(){
+        $('#result-fec').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+        var fec_nac = $(this).val();   
+        var dataString = 'fec_nac='+fec_nac;
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo SERVERURL ?>ajax/validarPersonaAjax.php",
+            data: dataString,
+            success: function(data) {
+                $('#result-fec').fadeIn(1000).html(data);
+            }
+        });
+    });              
+}); 
+</script>

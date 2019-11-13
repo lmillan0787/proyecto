@@ -12,7 +12,8 @@ class disciplinaControlador extends disciplinaModelo
     //cargar tabla de evento
     public function agregar_disciplina_controlador()
     {
-        $des_pue = mainModel::limpiar_cadena($_POST['des_pue']);
+        $des_dis = mainModel::limpiar_cadena($_POST['des_dis']);
+        $cod_tip_even = mainModel::limpiar_cadena($_POST['cod_tip_even']);
         $consulta1 = mainModel::ejecutar_consulta_simple("SELECT * FROM tab_dis WHERE des_dis='$des_dis'");
                   
         
@@ -26,15 +27,16 @@ class disciplinaControlador extends disciplinaModelo
         } else {
 
             $datosDisciplina = [
-                "des_pue" => $des_pue    
+                "des_dis" => $des_dis,
+                "cod_tip_even" => $cod_tip_even    
             ];
 
             $guardarDisciplina = disciplinaModelo::agregar_disciplina($datosDisciplina);
             if ($guardarDisciplina->rowCount() >= 1) {
                 $alerta = [
-                    "Alerta" => "simple",
+                    "Alerta" => "simpleDisciplina",
                     "Titulo" => "Registro Exitoso",
-                    "Texto" => "Disciplina Registrado Exitosamente",
+                    "Texto" => "Disciplina Registrada Exitosamente",
                     "Tipo" => "success"
                 ];
             } else {                
@@ -53,30 +55,23 @@ class disciplinaControlador extends disciplinaModelo
     //cargar tabla de evento
     public function tabla_disciplina()
     {
+        $n = 0;
         $row = disciplinaModelo::consultar_disciplina();
         foreach ($row as $row) {
+            $n++;
             echo '
             <tr>
-                <td>' . $row['cod_dis'] . '</td>
+                <td>' . $n . '</td>
                 <td>' . $row['des_dis'] . '</td>
+                <td>' . $row['des_tip_even'] . '</td>
                 <td>
-                    <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
+                    <form class="" action="' . SERVERURL . 'editarDisciplina" method="POST" enctype="multipart/form-data">
                         <input type="text" value="" name="cod_usr" hidden required>
                         <button type="submit" class="btn btn-info btn-md">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
                     </form>    
                 </td>    
-            
-                <td>
-                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarUsuarioAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="" name="cod_usr" hidden required>
-                        <button type="submit" class="btn btn-danger btn-md">
-                            <i class="far fa-trash-alt fa-2x"></i>                            
-                        </button>
-                        <div class="RespuestaAjax"></div>
-                    </form>
-                </td>
             </tr>';
         }
         return $row;

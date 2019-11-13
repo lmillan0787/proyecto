@@ -59,7 +59,7 @@ $insEvento = new eventoControlador();
             
             <a class="dropdown-item" href="<?php echo SERVERURL ?>pueblos/">Pueblos</a>
             <a class="dropdown-item" href="<?php echo SERVERURL ?>disciplinas/">Disciplinas</a>
-            <a class="dropdown-item" href="<?php echo SERVERURL ?>../database/cerrar.php">Salir</a>
+            <a class="dropdown-item" href="<?php echo SERVERURL ?>ajax/salirAjax.php">Salir</a>
           </div>
         </li>
       </ul>

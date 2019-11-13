@@ -10,7 +10,7 @@ if (isset($_POST['des_even'])) {
     require_once "../controllers/eventoControlador.php";
     $insEvento = new eventoControlador();
     echo $insEvento->validar_fecha_distinta_controlador();
-} else if (isset($_POST['cod_reg'])) {
+} else if (isset($_POST['cod_reg']) && isset($_POST['cod_estat'])) {
     require_once "../controllers/eventoControlador.php";
     $insEvento = new eventoControlador();
     echo $insEvento->validar_region_estatus_controlador();

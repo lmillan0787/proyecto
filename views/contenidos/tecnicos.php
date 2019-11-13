@@ -20,13 +20,11 @@ require_once "./controllers/tecnicoControlador.php";
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">Cargo</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Institución</th>
                 <th scope="col">Evento</th>
-                <th scope="col">Credencial</th>
+                <th scope="col">Institución</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Comisión</th>
                 <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody class="buscar">

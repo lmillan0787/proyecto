@@ -2,26 +2,9 @@
 $peticionAjax = false;
 include "./controllers/deportistaControlador.php";
 $insDeportista = new deportistaControlador();
+
 ?>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#ced').on('blur', function() {
-            $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 
-            var ced = $(this).val();
-            var dataString = 'ced=' + ced;
-
-            $.ajax({
-                type: "POST",
-                url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
-                data: dataString,
-                success: function(data) {
-                    $('#result-ced').fadeIn(1000).html(data);
-                }
-            });
-        });
-    });
-</script>
 
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
@@ -33,7 +16,7 @@ $insDeportista = new deportistaControlador();
             <div class="text-center">
             </div>
             <!-- Cédula-->
-            <label for="textInput">Cédula:</label>
+            <b><label for="textInput">Cédula:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -42,30 +25,26 @@ $insDeportista = new deportistaControlador();
             </div>
             <div id="result-ced"></div>
             <!--Rol-->
-            <div class="form-group">
-                <div class="col-sm-15">
-                    <div class="input-group-prepend">
-                        <input type="text" name="cod_rol" value="2" hidden>
-                    </div>
-                </div>
-            </div>
+            <input type="text" name="cod_rol" value="2" hidden>
             <!--Perfil-->
             <input type="text" name="cod_perf" value="4" hidden="">
             <!--Evento-->
-            <label for="textInput">Evento:</label>
+            <br><b><label for="textInput">Evento:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <select name="cod_even" id="seleven" class="form-control">
+                <select name="cod_even" id="cod_even" class="form-control">
                     <option disabled selected>Evento</option>
                     <?php
                     $insDeportista->consultarEvento();
                     ?>
                 </select>
             </div>
+            <div id="result-even"></div>
+
             <!-- Region -->
-            <label for="textInput">Región:</label>
+            <br><b><label for="textInput">Región:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -78,7 +57,7 @@ $insDeportista = new deportistaControlador();
                 </select>
             </div>
             <!-- Select Pueblo -->
-            <label for="textInput">Pueblo:</label>
+            <br><b><label for="textInput">Pueblo:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -91,20 +70,9 @@ $insDeportista = new deportistaControlador();
                 </select>
             </div>
             <!-- Select Disciplina -->
-            <label for="textInput">Disciplina:</label>
-            <div class="input-group flex-nowrap">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
-                </div>
-                <select name="cod_dis" id="seldis" class="form-control">
-                    <option disabled selected>Disciplina</option>
-                    <?php
-                    $insDeportista->consultarDisciplina();
-                    ?>
-                </select>
-            </div>
+            <div id="select2lista"></div>
             <!-- Select Categoria -->
-            <label for="textInput">Categoria:</label>
+            <br><b><label for="textInput">Categoria:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -129,9 +97,9 @@ $insDeportista = new deportistaControlador();
                         <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>
-            </center>                
+            </center>
             <br><button class=" btn btn-info btn-block" type="submit">Registrar</button>
-                        <div class="RespuestaAjax"></div>
+            <div class="RespuestaAjax"></div>
         </form>
     </div>
 </div>
@@ -162,4 +130,66 @@ $insDeportista = new deportistaControlador();
             document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
         });
     }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#cod_even').val(1);
+        recargarLista();
+
+        $('#cod_even').change(function() {
+            recargarLista();
+        });
+    })
+</script>
+<script type="text/javascript">
+    function recargarLista() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo SERVERURL ?>ajax/disciplinasEventoAjax.php",
+            data: "cod_even=" + $('#cod_even').val(),
+            success: function(r) {
+                $('#select2lista').html(r);
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#ced').on('blur', function() {
+            $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+            var ced = $(this).val();
+            var dataString = 'ced=' + ced;
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-ced').fadeIn(1000).html(data);
+                }
+            });
+        });
+    });
+    $(document).ready(function() {
+        $('#cod_even').on('blur', function() {
+            $('#result-even').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+            var cod_even = $(this).val();
+            var ced = $('#ced').val();
+            var dataString = {
+                'cod_even': cod_even,
+                'ced': ced
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarEventoParticipacionAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-even').fadeIn(1000).html(data);
+                }
+            });
+        });
+    });
 </script>

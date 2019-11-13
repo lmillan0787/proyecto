@@ -39,14 +39,16 @@ class invitadoControlador extends invitadoModelo
             foreach ($row as $row) {
                 $cod_per = $row['cod_per'];
             }
-            $datosPart = [
-                'cod_per' => $cod_per,
-                'cod_even' => $cod_even,
-                'cod_perf' => $cod_perf
-            ];
-            $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
-            if ($validarParticipacion->rowCount() >= 1) {
-                echo "
+            if ($row['cod_estat'] == 1) {
+                
+                $datosPart = [
+                    'cod_per' => $cod_per,
+                    'cod_even' => $cod_even,
+                    'cod_perf' => $cod_perf
+                ];
+                $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
+                if ($validarParticipacion->rowCount() >= 1) {
+                    echo "
                <script>
                Swal.fire(
                 'La persona ya posee participacion para este evento',
@@ -56,24 +58,24 @@ class invitadoControlador extends invitadoModelo
                
                </script>
                ";
-            } else {
-                $registrarInvitado = invitadoModelo::agregar_invitado($datosPart);
-                if ($_POST['image'] != "") {
-                    $img = $_POST['image'];
-                    $folderPath = "../views/assets/upload/";
+                } else {
+                    $registrarInvitado = invitadoModelo::agregar_invitado($datosPart);
+                    if ($_POST['image'] != "") {
+                        $img = $_POST['image'];
+                        $folderPath = "../views/assets/upload/";
 
-                    $image_parts = explode(";base64,", $img);
-                    $image_type_aux = explode("image/", $image_parts[0]);
-                    $image_type = $image_type_aux[1];
+                        $image_parts = explode(";base64,", $img);
+                        $image_type_aux = explode("image/", $image_parts[0]);
+                        $image_type = $image_type_aux[1];
 
-                    $image_base64 = base64_decode($image_parts[1]);
-                    $fileName = $_POST['ced'] . '.jpg';
+                        $image_base64 = base64_decode($image_parts[1]);
+                        $fileName = $_POST['ced'] . '.jpg';
 
-                    $file = $folderPath . $fileName;
-                    file_put_contents($file, $image_base64);
-                    
-                    if ($registrarInvitado->rowCount() >= 1) {
-                        echo "
+                        $file = $folderPath . $fileName;
+                        file_put_contents($file, $image_base64);
+
+                        if ($registrarInvitado->rowCount() >= 1) {
+                            echo "
                <script>
                Swal.fire(
                 'Registro exitoso',
@@ -85,8 +87,8 @@ class invitadoControlador extends invitadoModelo
                
                </script>
                ";
-                    } else {
-                        echo "
+                        } else {
+                            echo "
                <script>
                Swal.fire(
                 'Error inesperado',
@@ -96,9 +98,9 @@ class invitadoControlador extends invitadoModelo
                
                </script>
                ";
-                    }
-                } else {
-                    echo "
+                        }
+                    } else {
+                        echo "
                    <script>
                    Swal.fire(
                     'Falta capturar la foto',
@@ -108,14 +110,26 @@ class invitadoControlador extends invitadoModelo
                    
                    </script>
                    ";
+                    }
                 }
+            }else{
+                echo "
+                       <script>
+                       Swal.fire(
+                        'Error ',
+                        'Persona deshabilitada para participar',
+                        'error'
+                       );     
+                       
+                       </script>
+                       ";
             }
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function tabla_invitado()
     {
-        $n=0;
+        $n = 0;
         $row = invitadoModelo::consultar_invitado();
         foreach ($row as $row) {
             $n++;
@@ -126,25 +140,10 @@ class invitadoControlador extends invitadoModelo
                     <td>' . $row['nom'] . '</td>
                     <td>' . $row['ape'] . '</td>
                     <td>' . $row['des_gen'] . '</td>
-                    <td>' . $row['edad'] . '</td>
                     <td>' . $row['des_perf'] . '</td>
                     <td>' . $row['des_even'] . '</td>
                     <td>
-                        <form action="' . SERVERURL . 'ajax/invitadoFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
-                            <input type="text" name="cedula" value="' . $row['ced'] . '" hidden>                            
-                            <input type="text" name="perfil" value="' . $row['des_perf'] . '"hidden>
-                            <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
-                            <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
-                            <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
-                            <input type="text" name="genero"  value="' . $row['des_gen'] . '" hidden>    
-                            <input type="text" name="des_even"  value="' . $row['des_even'] . '" hidden>        
-                            <button type="submit" class="btn btn-warning btn-md">
-                                <i class="far fa-address-card fa-2x"></i>                            
-                            </button>
-                        </form>                    
-                    </td>
-                    <td>
-                    <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
+                    <form class="" action="' . SERVERURL . 'editarInvitado" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
                         <button type="submit" class="btn btn-info btn-md">
                             <i class="far fa-edit fa-2x"></i>

@@ -43,79 +43,92 @@ class deportistaControlador extends deportistaModelo
             $row = mainModel::validar_persona_modelo($ced);
             foreach ($row as $row) {
                 $cod_per = $row['cod_per'];
-            }
-            $datosPart = [
-                'cod_per' => $cod_per,
-                'cod_even' => $cod_even,
-                'cod_perf' => $cod_perf,
-                'cod_reg' => $cod_reg,
-                'cod_pue' => $cod_pue,
-                'cod_dis' => $cod_dis,
-                'cod_cat' => $cod_cat
-            ];
-            $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
-            if ($validarParticipacion->rowCount() >= 1) {
-                echo "
-                   <script>
-                   Swal.fire(
-                    'La persona ya posee participacion para este evento',
-                    'Dirijase al módulo de participaciones para editar o seleccione otro evento disponible',
-                    'error'
-                   );  
-                   </script>
-                   ";
-            } else {
-                $registrarDeportista = deportistaModelo::agregar_deportista($datosPart);
-                if ($_POST['image'] != "") {
-                    $img = $_POST['image'];
-                    $folderPath = "../views/assets/upload/";
-
-                    $image_parts = explode(";base64,", $img);
-                    $image_type_aux = explode("image/", $image_parts[0]);
-                    $image_type = $image_type_aux[1];
-
-                    $image_base64 = base64_decode($image_parts[1]);
-                    $fileName = $_POST['ced'] . '.jpg';
-
-                    $file = $folderPath . $fileName;
-                    file_put_contents($file, $image_base64);
-
-                    if ($registrarDeportista->rowCount() >= 1) {
+                if ($row['cod_estat'] == 1) {
+                    $datosPart = [
+                        'cod_per' => $cod_per,
+                        'cod_even' => $cod_even,
+                        'cod_perf' => $cod_perf,
+                        'cod_reg' => $cod_reg,
+                        'cod_pue' => $cod_pue,
+                        'cod_dis' => $cod_dis,
+                        'cod_cat' => $cod_cat
+                    ];
+                    $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
+                    if ($validarParticipacion->rowCount() >= 1) {
                         echo "
-                   <script>
-                   Swal.fire(
-                    'Registro exitoso',
-                    'Exito al agregar la participación',
-                    'success'
-                   ).then(function(){
-                    window.location='" . SERVERURL . "deportistas/';
-                });     
-                   
-                   </script>
-                   ";
+                           <script>
+                           Swal.fire(
+                            'La persona ya posee participacion para este evento',
+                            'Dirijase al módulo de participaciones para editar o seleccione otro evento disponible',
+                            'error'
+                           );  
+                           </script>
+                           ";
                     } else {
-                        echo "
-                   <script>
-                   Swal.fire(
-                    'Error inesperado',
-                    'Recargue la pagina e intente de nuevo',
-                    'error'
-                   );     
-                   
-                   </script>
-                   ";
+                        $registrarDeportista = deportistaModelo::agregar_deportista($datosPart);
+                        if ($_POST['image'] != "") {
+                            $img = $_POST['image'];
+                            $folderPath = "../views/assets/upload/";
+
+                            $image_parts = explode(";base64,", $img);
+                            $image_type_aux = explode("image/", $image_parts[0]);
+                            $image_type = $image_type_aux[1];
+
+                            $image_base64 = base64_decode($image_parts[1]);
+                            $fileName = $_POST['ced'] . '.jpg';
+
+                            $file = $folderPath . $fileName;
+                            file_put_contents($file, $image_base64);
+
+                            if ($registrarDeportista->rowCount() >= 1) {
+                                echo "
+                           <script>
+                           Swal.fire(
+                            'Registro exitoso',
+                            'Exito al agregar la participación',
+                            'success'
+                           ).then(function(){
+                            window.location='" . SERVERURL . "deportistas/';
+                        });     
+                           
+                           </script>
+                           ";
+                            } else {
+                                echo "
+                           <script>
+                           Swal.fire(
+                            'Error inesperado',
+                            'Recargue la pagina e intente de nuevo',
+                            'error'
+                           );     
+                           
+                           </script>
+                           ";
+                            }
+                        } else {
+                            echo "
+                           <script>
+                           Swal.fire(
+                            'Falta capturar la foto',
+                            'Debe capturar la foto del participante ',
+                            'error'
+                           );     
+                           
+                           </script>
+                           ";
+                        }
                     }
                 }else{
                     echo "
-                   <script>
-                   Swal.fire(
-                    'Falta capturar la foto',
-                    'Debe capturar la foto del participante ',
-                    'error'
-                   );     
-                   
-                   </script>
-                   ";
+                       <script>
+                       Swal.fire(
+                        'Error ',
+                        'Persona deshabilitada para participar',
+                        'error'
+                       );     
+                       
+                       </script>
+                       ";
                 }
             }
         }

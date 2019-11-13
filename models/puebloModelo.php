@@ -15,7 +15,7 @@
         }
 
  public function consultar_pueblo(){
-        $consultaPueblo = mainModel::conectar()->prepare("SELECT * FROM tab_pue");
+        $consultaPueblo = mainModel::conectar()->prepare("SELECT * FROM tab_pue ORDER BY des_pue ASC");
         $consultaPueblo->execute();
         $row = $consultaPueblo->fetchAll(PDO::FETCH_ASSOC);
         return $row;

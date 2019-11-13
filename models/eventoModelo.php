@@ -55,6 +55,17 @@ class eventoModelo extends mainModel
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function consultar_region_disponible_modelo($datos)
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_even WHERE cod_estat=:cod_estat AND cod_reg=:cod_reg AND cod_even!=:cod_even");
+        $sql->bindParam(":cod_estat", $datos['cod_estat']);
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->bindParam(":cod_reg", $datos['cod_reg']);
+        $sql->execute();
+        return $sql;
+    }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function eliminar_evento_modelo($datos)
     {
         $sql = mainModel::conectar()->prepare("DELETE FROM dat_even WHERE cod_even=:cod_even");
@@ -100,6 +111,14 @@ class eventoModelo extends mainModel
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function consultar_tipo_evento_modelo_no_mix()
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_tip_even WHERE cod_tip_even!=3");
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function consultar_tipo_evento_distinto_modelo($datos)
     {
         $sql = mainModel::conectar()->prepare("SELECT * FROM tab_tip_even WHERE cod_tip_even!=:cod_tip_even");
@@ -107,6 +126,15 @@ class eventoModelo extends mainModel
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function validar_participacion_modelo($datos)
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->execute();
+        return $sql;
     }
 
     

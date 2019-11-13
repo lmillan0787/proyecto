@@ -9,7 +9,7 @@ if ($peticionAjax) {
 class delegadoModelo extends mainModel
 {
     protected function agregar_delegado($datos){
-        $sql = mainModel::conectar()->prepare("INSERT INTO dat_par (cod_per,cod_even,cod_perf) VALUES (:cod_per,:cod_even,:cod_perf);
+        $sql = mainModel::conectar()->prepare("INSERT INTO dat_par (cod_per,cod_even,cod_perf,cod_estat) VALUES (:cod_per,:cod_even,:cod_perf,1);
         INSERT INTO dat_del (cod_par,cod_reg,cod_pue,cod_dis,cod_cat) VALUES (LAST_insert_id(),:cod_reg,:cod_pue,:cod_dis,:cod_cat)");
         $sql->bindParam(":cod_per", $datos['cod_per']);
         $sql->bindParam(":cod_even", $datos['cod_even']);

@@ -119,6 +119,7 @@ class personaControlador extends personaModelo
             </script>";
         } else {
             $editarPersona = personaModelo::editar_persona_modelo($datosPersona);
+
             if ($editarPersona->rowCount() >= 1) {
                 echo "<script>
             Swal.fire(
@@ -181,6 +182,18 @@ class personaControlador extends personaModelo
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //validar cedula
+    public function validar_fecha_nacimiento_controlador()
+    {
+        $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
+        $año=date('Y')-15;
+        $fec=date('m-d');
+        $fecha_minima = $año.'-'.$fec;
+        if ($fec_nac > $fecha_minima) {
+            echo '<div class="alert alert-danger"><strong>Error!</strong> La fecha mínima permitida es ' . $fecha_minima . '</div>';
+        } else { }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //validar participacion
     public function validar_cedula_participacion_controlador()
     {
@@ -189,18 +202,25 @@ class personaControlador extends personaModelo
             "ced" => $ced
         ];
 
+        if($ced == ""){
+            
+        }else{
+            $validarCedula = mainModel::validar_cedula_modelo($ced);
 
-        $validarCedula = mainModel::validar_cedula_modelo($ced);
-
-        if ($validarCedula->rowCount() >= 1) {
-            $consultaPersona = personaModelo::consultar_persona_modelo2($datosPersona);
-            foreach ($consultaPersona as $row) {
-
-                echo '<div class="alert alert-success"><strong>' . $row['nom'] . ' ' . $row['ape'] . ' Puedes Continuar el registro</strong></div>';
+            if ($validarCedula->rowCount() >= 1) {
+                $consultaPersona = personaModelo::consultar_persona_modelo2($datosPersona);
+                foreach ($consultaPersona as $row) {
+                    if($row['cod_estat'] == 1){
+                        echo '<div class="alert alert-success"><strong>' . $row['nom'] . ' ' . $row['ape'] . ' Puedes Continuar el registro</strong></div>';
+                    }else{
+                        echo '<div class="alert alert-danger"><strong>' . $row['nom'] . ' ' . $row['ape'] . ' Persona deshabilitada para participar</strong></div>';
+                    }
+                }
+            } else {
+                echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema dirijase al registro de persona.</div>';
             }
-        } else {
-            echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema dirijase al registro de persona.</div>';
         }
+        
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //editar persona formulario
@@ -258,10 +278,13 @@ class personaControlador extends personaModelo
         $datos = [
             "cod_per" => $cod_per
         ];
+        $año=date('Y')-15;
+        $fec=date('m-d');
+        $fecha_minima = $año.'-'.$fec;
         $row = personaModelo::consultar_persona_modelo1($datos);
         foreach ($row as $row) {
             echo '
-            <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1930-01-01" max="2010-01-01" step="1" name="fec_nac" value="'.$row['fec_nac'].'">
+            <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1919-01-01" max="'.$fecha_minima.'" step="1" name="fec_nac" value="'.$row['fec_nac'].'">
             ';
         }
         return $row;
