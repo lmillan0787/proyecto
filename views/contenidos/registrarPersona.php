@@ -27,25 +27,13 @@ $(document).ready(function() {
         <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
             <div class="text-center">
             </div>
-            <!-- Nacionalidad-->
-            <b><label for="textInput">Nacionalidad:</label></b>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
-                </div>
-                <select class="browser-default custom-select" id="inputGroupSelect01" name="cod_nac" required>
-                    <option value="">Nacionalidad</option>
-                    <option value="1">Venezolana</option>
-                    <option value="2">Extranjera</option>
-                </select>
-            </div>
             <!-- Cédula-->
             <br><b><label for="textInput">Cédula:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">                
+                <input type="text" id="ced" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" name="ced" value="V">                
             </div>
             <div id="result-ced"></div>            
             <!-- Nombre-->

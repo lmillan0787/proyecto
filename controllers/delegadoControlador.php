@@ -126,17 +126,15 @@ class delegadoControlador extends delegadoModelo
 
     public function tabla_delegado()
     {
-
+        $n=0;
         $row = delegadoModelo::consultar_delegado();
         foreach ($row as $row) {
-            if ($row['cod_nac'] == 1) {
-                $row['cod_nac'] = 'Venezolano';
-            } else {
-                $row['cod_nac'] = 'Extranjero';
-            }
+            $n++;
+        
             echo '
-            <tr>
-                   <td>' . $row['ced'] . '</td>
+            <tr>    
+                    <td>' . $n . '</td>
+                    <td>' . $row['ced'] . '</td>
                     <td>' . $row['nom'] . '</td>
                     <td>' . $row['ape'] . '</td>
                     <td>' . $row['des_reg'] . '</td>
@@ -167,17 +165,7 @@ class delegadoControlador extends delegadoModelo
                             <i class="far fa-edit fa-2x"></i>
                         </button>
                     </form>    
-                </td>    
-            
-                <td>
-                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarPersonaAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                        <button type="submit" class="btn btn-danger btn-md">
-                            <i class="far fa-trash-alt fa-2x"></i>                            
-                        </button>
-                        <div class="RespuestaAjax"></div>
-                    </form>
-                </td>                                                                
+                </td>                                                                   
                 </tr>';
         }
         return $row;

@@ -20,7 +20,7 @@ class usuarioModelo extends mainModel
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultar_usuario_modelo(){
-        $consultaUsuario = mainModel::conectar()->prepare("SELECT a.*,b.*,c.* FROM dat_usr AS a INNER JOIN dat_per AS b ON a.cod_per=b.cod_per INNER JOIN tab_perf AS c ON c.cod_perf=a.cod_perf");
+        $consultaUsuario = mainModel::conectar()->prepare("SELECT a.*,b.*,c.* FROM dat_usr AS a INNER JOIN dat_per AS b ON a.cod_per=b.cod_per INNER JOIN tab_perf AS c ON c.cod_perf=a.cod_perf WHERE cod_usr!=1");
         $consultaUsuario->execute();
         $row = $consultaUsuario->fetchAll(PDO::FETCH_ASSOC);
         return $row;

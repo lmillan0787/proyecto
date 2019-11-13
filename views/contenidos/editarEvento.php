@@ -83,6 +83,19 @@ $fecha_actual = date("Y-m-d");
                     ?>
                 </select>
             </div>
+            <!-- Estatus-->
+            <br><b><label for="textInput">Estatus:</label></b>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-toggle-on prefix grey-text"></i></label>
+                </div>
+                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estat" name="cod_estat" required>
+                    <?php 
+                    $insEvento->formulario_evento_estatus();
+                    $insEvento->formulario_editar_estatus_evento_controlador();
+                    ?>   
+                </select>
+            </div>
             <input type="text" hidden required name="cod_even" id="cod_even" value="<?php echo $cod_even ?>">
             <br><button class="btn btn-info btn-block" type="submit">Aceptar</button>
             <div class="RespuestaAjax"></div>

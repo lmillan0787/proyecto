@@ -41,6 +41,9 @@ $insEvento = new eventoControlador();
         <li class="nav-item ">
           <a class="nav-link" href="<?php echo SERVERURL ?>personas/">Personas</a>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="<?php echo SERVERURL ?>eventos/">Eventos</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item active nav-link">
@@ -52,12 +55,10 @@ $insEvento = new eventoControlador();
             <i class="fas fa-user"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-center dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="<?php echo SERVERURL ?>">Editar perfil</a>
-            <a class="dropdown-item" href="<?php echo SERVERURL ?>usuarios">Usuarios</a>
-            <a class="dropdown-item" href="<?php echo SERVERURL ?>eventos/">Eventos</a>
+            <a class="dropdown-item" href="<?php echo SERVERURL ?>usuarios/">Usuarios</a>
+            
             <a class="dropdown-item" href="<?php echo SERVERURL ?>pueblos/">Pueblos</a>
             <a class="dropdown-item" href="<?php echo SERVERURL ?>disciplinas/">Disciplinas</a>
-            <a class="dropdown-item" href="<?php echo SERVERURL ?>">Administrar</a>
             <a class="dropdown-item" href="<?php echo SERVERURL ?>../database/cerrar.php">Salir</a>
           </div>
         </li>

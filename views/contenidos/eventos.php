@@ -14,12 +14,13 @@ $insEvento = new eventoControlador();
 <table id="tabla" class="table table-bordered table-striped">
     <thead>
         <tr>
+            <th scope="col">#</th>
             <th scope="col">Nombre del Evento</th>
             <th scope="col">Fecha</th>
             <th scope="col">Tipo</th>
             <th scope="col">Región</th>
             <th scope="col">Estatus</th>
-            <th scope="col">Ver</th>
+            <th scope="col">Estadisticas</th>
             <th scope="col">Editar</th>
         </tr>
     </thead>
@@ -28,15 +29,4 @@ $insEvento = new eventoControlador();
         $insEvento->tabla_evento_controlador();
         ?>
     </tbody>
-    <tfoot>
-        <tr>
-            <th scope="col">Nombre del Evento</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Región</th>
-            <th scope="col">Estatus</th>
-            <th scope="col">Ver</th>
-            <th scope="col">Editar</th>
-        </tr>
-    </tfoot>
 </table>

@@ -20,9 +20,9 @@ $insInvitado = new invitadoControlador();
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Cédula</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
-            <th scope="col">Cédula</th>
             <th scope="col">Género</th>
             <th scope="col">Edad</th>
             <th scope="col">Rol</th>
@@ -34,18 +34,4 @@ $insInvitado = new invitadoControlador();
     <tbody class="buscar">
         <?php $insInvitado->tabla_invitado(); ?>
     </tbody>
-    <tfoot>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Cédula</th>
-            <th scope="col">Género</th>
-            <th scope="col">Edad</th>
-            <th scope="col">Rol</th>
-            <th scope="col">Evento</th>
-            <th scope="col">Credencial</th>
-            <th scope="col">Editar</th>
-        </tr>
-    </tfoot>
 </table>

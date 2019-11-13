@@ -110,7 +110,7 @@ $this->Output();
             $this->Cell(40, 5, 'Cedula:', 0);
             //$this->Ln(0);
             $this->SetX(20);
-            $this->Cell(45, 5, number_format($_POST['ced'], 0, ',', '.'), 0);
+            $this->Cell(45, 5, $_POST['ced'], 0);
             $this->Ln(5);
 
             //
@@ -169,7 +169,7 @@ $this->Output();
             $this->Cell(40, 5, 'Cedula:', 0);
             //$this->Ln(0);
             $this->SetX(20);
-            $this->Cell(45, 5, number_format($_POST['ced'], 0, ',', '.'), 0);
+            $this->Cell(45, 5, $_POST['ced'], 0);
             $this->Ln(5);
 
             //
@@ -246,7 +246,7 @@ $this->Output();
             $this->Cell(40, 5, 'Cedula:', 0);
             //$this->Ln(0);
             $this->SetX(20);
-            $this->Cell(45, 5, number_format($_POST['ced'], 0, ',', '.'), 0);
+            $this->Cell(45, 5, $_POST['ced'], 0);
             $this->Ln(5);
 
             //
@@ -320,7 +320,7 @@ $this->Output();
             $this->Cell(40, 5, 'Cedula:', 0);
             $this->Ln(0);
             $this->SetX(20);
-            $this->Cell(40, 5, number_format($_POST['ced'], 0, ',', '.'), 0);
+            $this->Cell(40, 5, $_POST['ced'], 0);
             $this->Ln(5);
             //
 
@@ -400,7 +400,7 @@ $this->Ln(5);*/
             $this->Cell(40, 5, 'Cedula:', 0);
             //$this->Ln(0);
             $this->SetX(20);
-            $this->Cell(45, 5, number_format($_POST['ced'], 0, ',', '.'), 0);
+            $this->Cell(45, 5, $_POST['ced'], 0);
             $this->Ln(5);
 
             //

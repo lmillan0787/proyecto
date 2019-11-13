@@ -15,12 +15,13 @@ $insPersona = new personaControlador();
     <table class="table table-bordered table-striped" id="tabla">
         <thead>
             <tr>                
-                <th scope="col">Nacionalidad</th>
+                <th scope="col">#</th>
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Genero</th>
                 <th scope="col">Edad</th>
+                <th scope="col">Estatus</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>
@@ -29,16 +30,5 @@ $insPersona = new personaControlador();
             $insPersona->tabla_persona();
             ?>
         </tbody>
-        <tfoot>
-            <tr>                
-                <th scope="col">Nacionalidad</th>
-                <th scope="col">Cédula</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Genero</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Editar</th>
-            </tr>
-        </tfoot>
     </table>
 </div>

@@ -35,7 +35,7 @@ class mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar persona
     protected function consultar_persona_modelo(){
-        $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac ORDER BY cod_per DESC");
+        $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, d.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen  INNER JOIN tab_estat AS d ON a.cod_estat=d.cod_estat ORDER BY cod_per DESC");
         $consultaPersona->execute();
         $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
         return $row;
@@ -62,6 +62,15 @@ class mainModel
     protected function consultar_region_distinta_modelo($datos){
         $sql = mainModel::conectar()->prepare("SELECT * FROM tab_reg WHERE cod_reg!=:cod_reg");
         $sql->bindParam(":cod_reg", $datos['cod_reg']);
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar genero distinta
+    protected function consultar_genero_distinto_modelo($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_gen WHERE cod_gen!=:cod_gen AND cod_gen!=3");
+        $sql->bindParam(":cod_gen", $datos['cod_gen']);
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;

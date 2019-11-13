@@ -123,12 +123,13 @@ class tecnicoControlador extends tecnicoModelo
 
     public function tabla_tecnico()
     {
-
+        $n=0;
         $row = tecnicoModelo::consultar_tecnico();
         foreach ($row as $row) {
-
+            $n++;
             echo '
             <tr>
+                <td>' . $n . '</td>
                 <td>' . $row['ced'] . '</td>
                 <td>' . $row['nom'] . '</td>
                 <td>' . $row['ape'] . '</td>

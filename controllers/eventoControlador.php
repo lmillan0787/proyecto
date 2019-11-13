@@ -12,16 +12,27 @@ class eventoControlador extends eventoModelo
     //cargar tabla de evento
     public function tabla_evento_controlador()
     {
+        $n = 0;
         $row = eventoModelo::consultar_tabla_evento_modelo();
         foreach ($row as $row) {
+            $n++;
             echo '
         <tr>
+            <td>' . $n . '</td>
             <td id="">' . $row['des_even'] . '</td>
             <td id="">' . $row['fec_even'] . '</td>
             <td id="">' . $row['des_tip_even'] . '</td>
             <td id="">' . $row['des_reg'] . '</td>            
             <td id="estatus' . $row['cod_estat'] . '">' . $row['des_estat'] . '</td>
-            <td><button id="modalActivate" type="button" class="btn btn-warning btn-sm" data-toggle="modal"><i class="fas fa-eye fa-2x"></i></button></td>            
+            <td>
+                <form class="" action="' . SERVERURL . 'estadisticas/" method="POST" data-form="" enctype="multipart/form-data">
+                    <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
+                    <input type="text" value="' . $row['des_even'] . '" name="des_even" hidden required>
+                    <button type="submit" class="btn btn-warning btn-sm">
+                    <i class="fas fa-chart-bar fa-2x"></i>
+                    </button>
+                </form>
+            </td>
             <td>
                 <form class="" action="' . SERVERURL . 'editarEvento/" method="POST" data-form="" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
@@ -115,6 +126,7 @@ class eventoControlador extends eventoModelo
         $fec_even = mainModel::limpiar_cadena($_POST['fec_even']);
         $cod_reg = mainModel::limpiar_cadena($_POST['cod_reg']);
         $cod_tip_even = mainModel::limpiar_cadena($_POST['cod_tip_even']);
+        $cod_estat = mainModel::limpiar_cadena($_POST['cod_estat']);
         /*echo $cod_even . ' ' . $des_even . ' ' . $fec_even . ' ' . $cod_reg . ' ' . $cod_estat . ' ' . $cod_tip_even;*/
         $datosEvento = [
             "cod_even" => $cod_even,
@@ -122,6 +134,7 @@ class eventoControlador extends eventoModelo
             "fec_even" => $fec_even,
             "cod_reg" => $cod_reg,
             "cod_tip_even" => $cod_tip_even,
+            "cod_estat" => $cod_estat
         ];
         $validarEvento = eventoModelo::validar_evento_distinto_modelo($datosEvento);
         if ($validarEvento->rowCount() >= 1) {
@@ -441,7 +454,7 @@ class eventoControlador extends eventoModelo
             echo '
                 <form class="dropdown-item" action="' . SERVERURL . 'participacion/" method="POST" data-form="" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
-                    <button  type="submit" class="btn btn-default value="">' . $row['des_even'] . '</button>
+                    <button  type="submit" class="btn btn-default even" value="">' . $row['des_even'] . '</button>
                 </form>
             ';
         }

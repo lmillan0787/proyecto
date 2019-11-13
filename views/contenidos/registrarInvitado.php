@@ -40,7 +40,7 @@ $(document).ready(function() {
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">
+                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" name="ced" onkeyup="javascript:this.value=this.value.toUpperCase();" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" value="V">
             </div> 
             <div id="result-ced"></div>           
             <!-- Género-->

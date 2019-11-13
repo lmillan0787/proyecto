@@ -12,7 +12,6 @@ class personaControlador extends personaModelo
     //agregas persona
     public function agregar_persona_controlador()
     {
-        $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $nom = mainModel::limpiar_cadena($_POST['nom']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
@@ -30,7 +29,6 @@ class personaControlador extends personaModelo
             ];
         } else {
             $datosPersona = [
-                "cod_nac" => $cod_nac,
                 "ced" => $ced,
                 "nom" => $nom,
                 "ape" => $ape,
@@ -61,16 +59,19 @@ class personaControlador extends personaModelo
     //tabla persona
     public function tabla_persona()
     {
-        $row = personaModelo::consultar_persona_modelo();
+        $n = 0;
+        $row = mainModel::consultar_persona_modelo();
         foreach ($row as $row) {
+            $n++;
             echo '
-            <tr>                
-                <td>' . $row['des_nac'] . '</td>
+            <tr>    
+                <td>' . $n . '</td>
                 <td>' . $row['ced'] . '</td>
                 <td>' . $row['nom'] . '</td>
                 <td>' . $row['ape'] . '</td>
                 <td>' . $row['des_gen'] . '</td>
-                <td>' . $row['edad'] . '</td>                
+                <td>' . $row['edad'] . '</td> 
+                <td>' . $row['des_estat'] . '</td>               
                 <td>
                     <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
@@ -83,119 +84,31 @@ class personaControlador extends personaModelo
         }
         return $row;
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consulatr persona
-    public function consultar_persona2()
-    {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
-
-        $consultaPersona = mainModel::ejecutar_consulta_simple("SELECT a.*, b.*, c.* FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen INNER JOIN tab_nac AS c ON a.cod_nac=c.cod_nac WHERE cod_per=$cod_per");
-        $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($row as $row) {
-
-            echo '    
-            
-            <div class="card" id="form_ini">
-
-            <h5 class="card-header info-color white-text text-center py-4">
-                <strong>Datos Básicos</strong>
-            </h5>
-            <!--Formulario de inicio-->
-            <div class="card-body px-lg-5">
-                <form class="FormularioAjax" action="' . SERVERURL . 'ajax/editarPersonaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
-                    <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                    <div class="text-center">
-                    </div>
-                    <!-- Nacionalidad-->
-                    <label for="textInput">Nacionalidad:</label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-globe-americas prefix grey-text"></i></label>
-                        </div>
-                        <select class="browser-default custom-select" id="inputGroupSelect01" name="cod_nac" required>
-                            <option value="' . $row['cod_nac'] . '">' . $row['des_nac'] . '</option>
-                            <option value="1">Venezolana</option>
-                            <option value="2">Extranjera</option>
-                        </select>
-                    </div>
-                    <!-- Cédula-->
-                    <label for="textInput">Cédula:</label>
-                    <div class="input-group flex-nowrap">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
-                        </div>
-                        <input value="' . $row['ced'] . '" type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">                
-                    </div>
-                    <div id="result-ced"></div>
-                    <!-- Nombre-->
-                    <label for=" textInput">Nombre:</label>
-                    <div class="input-group flex-nowrap">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
-                        </div>
-                        <input value="' . $row['nom'] . '" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Nombre" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="nom">
-                    </div>
-                    <!-- Apellido-->
-                    <label for="textInput">Apellido:</label>
-                    <div class="input-group flex-nowrap">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
-                        </div>
-                        <input value="' . $row['ape'] . '" onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Apellido" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="ape">
-                    </div>
-                    <!-- Fecha de nacimiento-->
-                    <label for="textInput">Fecha de nacimiento:</label>
-                    <div class="input-group flex-nowrap">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
-                        </div>
-                        <input value="' . $row['fec_nac'] . '" type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1930-01-01" max="2010-01-01" step="1" name="fec_nac">
-                    </div>
-                    <!-- Género-->
-                    <label for="textInput">Género:</label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>
-                        </div>
-                        <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_gen" name="cod_gen" required>
-                            <option value="' . $row['cod_gen'] . '">' . $row['des_gen'] . '</option>
-                            <option value="1">Masculino</option>
-                            <option value="2">Femenino</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-info btn-block" type="submit">Editar</button>
-                    <div class="RespuestaAjax"></div>                    
-                </form>
-            </div>
-        </div>';
-        }
-        return $row;
-    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     public function editar_persona_controlador()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
-        $cod_nac = mainModel::limpiar_cadena($_POST['cod_nac']);
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $nom = mainModel::limpiar_cadena($_POST['nom']);
         $ape = mainModel::limpiar_cadena($_POST['ape']);
         $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
         $cod_gen = mainModel::limpiar_cadena($_POST['cod_gen']);
+        $cod_estat = mainModel::limpiar_cadena($_POST['cod_estat']);
+
+        //echo $cod_per.' '.$ced.' '.$nom.' '.$ape.' '.$fec_nac.' '.$cod_gen.' '.$cod_estat;
 
         $datosPersona = [
             "cod_per" => $cod_per,
-            "cod_nac" => $cod_nac,
             "ced" => $ced,
             "nom" => $nom,
             "ape" => $ape,
             "fec_nac" => $fec_nac,
-            "cod_gen" => $cod_gen
+            "cod_gen" => $cod_gen,
+            "cod_estat" => $cod_estat
         ];
 
         $validarPersona = personaModelo::validar_persona_distinta_modelo($datosPersona);
-
         if ($validarPersona->rowCount() >= 1) {
             echo "<script>
             Swal.fire(
@@ -288,5 +201,159 @@ class personaControlador extends personaModelo
         } else {
             echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema dirijase al registro de persona.</div>';
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar persona formulario
+    public function formulario_editar_nombre_persona_controlador()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            echo '
+            <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Nombre" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="nom" value="'.$row['nom'].'">
+            ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar persona formulario
+    public function formulario_editar_apellido_persona_controlador()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            echo '
+            <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Apellido" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="ape" value="'.$row['ape'].'">
+            ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar persona formulario
+    public function formulario_editar_cedula_persona_controlador()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            echo '
+            <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" name="ced" value="'.$row['ced'].'" onkeyup="javascript:this.value=this.value.toUpperCase();">                
+            ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar persona formulario
+    public function formulario_editar_fecha_persona_controlador()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            echo '
+            <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1930-01-01" max="2010-01-01" step="1" name="fec_nac" value="'.$row['fec_nac'].'">
+            ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar persona formulario
+    public function formulario_editar_genero_persona_controlador()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            echo '
+            <option value="'.$row['cod_gen'].'">'.$row['des_gen'].'</option>               
+            ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar persona formulario
+    public function formulario_editar_estatus_persona_controlador()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            echo '
+            <option value="'.$row['cod_estat'].'">'.$row['des_estat'].'</option>               
+            ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar persona formulario
+    public function formulario_editar_nacionalidad_persona_controlador()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            echo '
+            <option value="'.$row['cod_estat'].'">'.$row['des_estat'].'</option>               
+            ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar genero distinto
+    public function formulario_genero_distinto()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            $cod_gen = $row['cod_gen'];
+            $datos= [
+                "cod_gen" => $cod_gen
+            ];
+            $row = mainModel::consultar_genero_distinto_modelo($datos);
+            foreach ($row as $row) {
+                echo '<option value="' . $row['cod_gen'] . '">' . $row['des_gen'] . '</option>';
+            }
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar genero distinto
+    public function formulario_estatus_distinto()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo1($datos);
+        foreach ($row as $row) {
+            $cod_estat = $row['cod_estat'];
+            $datos= [
+                "cod_estat" => $cod_estat
+            ];
+            $row = mainModel::consultar_estatus_distinto($datos);
+            foreach ($row as $row) {
+                echo '<option value="' . $row['cod_estat'] . '">' . $row['des_estat'] . '</option>';
+            }
+        }
+        return $row;
     }
 }

@@ -100,7 +100,7 @@ $pdf->SetX(2);
 $pdf->Cell(40,5,'Cedula:',0);
 //$pdf->Ln(0);
 $pdf->SetX(20);
-$pdf->Cell(45,5,number_format($_POST['cedula'],0, ',', '.'),0);
+$pdf->Cell(45,5,$_POST['cedula'],0);
 $pdf->Ln(5);
 
 //

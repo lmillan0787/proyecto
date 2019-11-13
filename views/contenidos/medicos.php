@@ -18,15 +18,12 @@ require_once "./controllers/medicoControlador.php";
     <table class="table table-bordered table-striped" id="tabla">
         <thead>
             <tr>
+                <th scope="col">#</th>
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">Género</th>
                 <th scope="col">Región</th>
-                <th scope="col">Pueblo</th>
-                <th scope="col">Credencial</th>
                 <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
             </tr>
         </thead>
         <tbody class="buscar">

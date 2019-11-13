@@ -115,15 +115,16 @@ class invitadoControlador extends invitadoModelo
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function tabla_invitado()
     {
-
+        $n=0;
         $row = invitadoModelo::consultar_invitado();
         foreach ($row as $row) {
+            $n++;
             echo '
             <tr>
-                    <td>' . $row['cod_par'] . '</td>
+                    <td>' . $n . '</td>
+                    <td>' . $row['ced'] . '</td>
                     <td>' . $row['nom'] . '</td>
                     <td>' . $row['ape'] . '</td>
-                    <td>' . $row['ced'] . '</td>
                     <td>' . $row['des_gen'] . '</td>
                     <td>' . $row['edad'] . '</td>
                     <td>' . $row['des_perf'] . '</td>

@@ -31,7 +31,7 @@ class eventoModelo extends mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function validar_evento_distinto_modelo($datos)
     {
-        $sql = mainModel::conectar()->prepare("SELECT *  FROM dat_even WHERE cod_even!=:cod_even AND des_even=:des_even ");
+        $sql = mainModel::conectar()->prepare("SELECT *  FROM dat_even WHERE cod_even!=:cod_even AND des_even=:des_even");
         $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->bindParam(":des_even", $datos['des_even']);
         $sql->execute();
@@ -65,12 +65,13 @@ class eventoModelo extends mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function editar_evento_modelo($datos)
     {
-        $sql = mainModel::conectar()->prepare("UPDATE dat_even SET des_even=:des_even, fec_even=:fec_even, cod_reg=:cod_reg, cod_tip_even=:cod_tip_even WHERE cod_even=:cod_even");
+        $sql = mainModel::conectar()->prepare("UPDATE dat_even SET des_even=:des_even, fec_even=:fec_even, cod_reg=:cod_reg, cod_tip_even=:cod_tip_even,cod_estat=:cod_estat WHERE cod_even=:cod_even");
         $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->bindParam(":des_even", $datos['des_even']);
         $sql->bindParam(":fec_even", $datos['fec_even']);
         $sql->bindParam(":cod_reg", $datos['cod_reg']);
-        $sql->bindParam(":cod_tip_even", $datos['cod_tip_even']);        
+        $sql->bindParam(":cod_tip_even", $datos['cod_tip_even']);
+        $sql->bindParam(":cod_estat", $datos['cod_estat']);     
         $sql->execute();
         return $sql;
     }

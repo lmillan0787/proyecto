@@ -22,7 +22,7 @@ $insDeportista = new deportistaControlador();
                       <?php foreach ($row as $r): 
                       ?>,
                       "<?php echo $r->des_reg; ?>",
-                  <? endforeach; ?>
+                  <?php endforeach; ?>
                       ],
                       datasets: [{
                           label: 'Groups',

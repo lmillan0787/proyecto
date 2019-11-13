@@ -17,7 +17,7 @@ require_once "./controllers/delegadoControlador.php";
     <table class="table table-bordered table-striped" id="tabla">
         <thead>
             <tr>
-                
+                <th scope="col">#</th>
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>

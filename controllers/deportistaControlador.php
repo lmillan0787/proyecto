@@ -127,11 +127,6 @@ class deportistaControlador extends deportistaModelo
         $row = deportistaModelo::consultar_deportista();
         foreach ($row as $row) {
             $n++;
-            if ($row['cod_nac'] == 1) {
-                $row['cod_nac'] = 'Venezolano';
-            } else {
-                $row['cod_nac'] = 'Extranjero';
-            }
             echo '
             <tr>
                     <td>' . $n . '</td>
