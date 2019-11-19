@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-11-2019 a las 23:54:37
+-- Tiempo de generación: 13-11-2019 a las 20:19:10
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
 
@@ -37,6 +37,19 @@ CREATE TABLE `dat_del` (
   `cod_cat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `dat_del`
+--
+
+INSERT INTO `dat_del` (`cod_del`, `cod_par`, `cod_reg`, `cod_pue`, `cod_dis`, `cod_cat`) VALUES
+(1, 2, 2, 35, 4, 2),
+(2, 3, 3, 19, 11, 2),
+(3, 4, 5, 13, 8, 1),
+(4, 5, 7, 4, 6, 1),
+(5, 6, 8, 14, 8, 1),
+(6, 7, 7, 17, 20, 1),
+(7, 8, 3, 10, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -52,16 +65,12 @@ CREATE TABLE `dat_even` (
   `cod_estat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Eventos';
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `dat_inv`
+-- Volcado de datos para la tabla `dat_even`
 --
 
-CREATE TABLE `dat_inv` (
-  `cod_inv` int(11) NOT NULL,
-  `cod_par` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+INSERT INTO `dat_even` (`cod_even`, `des_even`, `fec_even`, `cod_reg`, `cod_tip_even`, `cod_estat`) VALUES
+(1, 'GUAJIRA 2019', '2019-12-08', 6, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -73,8 +82,23 @@ CREATE TABLE `dat_par` (
   `cod_par` int(11) NOT NULL,
   `cod_per` int(11) NOT NULL,
   `cod_even` int(11) NOT NULL,
-  `cod_perf` int(11) NOT NULL
+  `cod_perf` int(11) NOT NULL,
+  `cod_estat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `dat_par`
+--
+
+INSERT INTO `dat_par` (`cod_par`, `cod_per`, `cod_even`, `cod_perf`, `cod_estat`) VALUES
+(1, 1, 1, 7, 1),
+(2, 10, 1, 4, 1),
+(3, 30, 1, 4, 1),
+(4, 5, 1, 4, 1),
+(5, 2, 1, 4, 1),
+(6, 6, 1, 4, 1),
+(7, 7, 1, 4, 1),
+(8, 31, 1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -97,20 +121,25 @@ CREATE TABLE `dat_per` (
 --
 
 INSERT INTO `dat_per` (`cod_per`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`, `cod_estat`) VALUES
-(1, 'v19885429', 'DEIER GABRIEL', 'GARANTON GOYO', '1990-12-08', 1, 1),
+(1, 'v19885429', 'DEIFER GABRIEL', 'GARANTON GOYO', '1990-12-08', 1, 2),
 (2, 'V20139377', 'GERALDO', 'GONZALEZ', '1989-07-22', 1, 1),
 (3, 'V14224513', 'ANDERSON', 'RUIZ', '1979-12-10', 1, 1),
-(4, 'V19885427', 'DEIFER', 'EQWEQW', '1990-12-08', 1, 1),
+(4, 'V19885427', 'AMILKAR', 'LOPEZ', '1990-12-08', 1, 1),
 (5, 'V15439055', 'JOSE', 'MORENO', '1980-09-12', 1, 1),
 (6, 'V24501094', 'BRYAN', 'GRANADO', '1993-06-27', 1, 1),
 (7, 'V26131809', 'SIMON', 'RODRIGUEZ', '1997-05-19', 1, 1),
 (8, 'V24217511', 'EMIBELL', 'ROMERO', '1995-08-15', 2, 1),
-(9, 'V24217549', 'DEIFER', 'GARANTON', '1989-12-08', 1, 1),
+(9, 'V24217549', 'JOSE', 'ROJAS', '1989-12-08', 1, 1),
 (10, 'V10747258', 'GIOVANNY', 'URBINA', '1973-01-01', 1, 1),
 (16, 'E26704514', 'MARCOS', 'ROJAS', '1986-04-22', 1, 1),
 (17, 'V8349014', 'JUANA', 'LEWUIS', '1994-09-14', 2, 1),
-(25, 'E24217511', 'EMIBELL', 'EXTRANJERA', '1995-08-15', 2, 1),
-(26, 'V18530418', 'LUIS', 'MILLAN', '1987-07-25', 1, 1);
+(25, 'V15684123', 'LUZ', 'ORTIZ', '1995-08-15', 2, 1),
+(26, 'V18530418', 'LUIS', 'MILLAN', '1987-07-25', 1, 2),
+(27, 'V24217510', 'JARED', 'ROMERO', '1994-05-05', 2, 1),
+(28, 'V24217518', 'JESUS', 'PEREZ', '2004-11-13', 1, 1),
+(29, 'V24218996', 'LUIS', 'LOPEZ', '1984-01-01', 1, 1),
+(30, 'V11690653', 'XIOEMIL', 'PINEDA', '1975-09-08', 1, 1),
+(31, 'V27569093', 'CARLOS', 'MORENO', '2003-07-10', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -124,6 +153,13 @@ CREATE TABLE `dat_per_tec` (
   `cod_inst` int(11) NOT NULL,
   `cod_carg` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `dat_per_tec`
+--
+
+INSERT INTO `dat_per_tec` (`cod_equ_tec`, `cod_par`, `cod_inst`, `cod_carg`) VALUES
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -218,13 +254,15 @@ INSERT INTO `tab_dis` (`cod_dis`, `des_dis`, `cod_tip_even`) VALUES
 (9, 'Carrera de relevo con tronco', 1),
 (10, 'Prueba de fuerza', 1),
 (11, 'Lanza', 1),
-(12, 'Atletismo', 1),
+(12, 'Atletismo', 2),
 (13, 'Baloncesto', 2),
 (14, 'Futbol', 2),
 (15, 'Voleibol', 2),
 (16, 'Kickingball', 2),
 (17, 'Boxeo', 2),
-(18, 'Tenis de mesa', 2);
+(18, 'Tenis de mesa', 2),
+(19, 'Pelotica de goma', 2),
+(20, 'Tronco encebao', 1);
 
 -- --------------------------------------------------------
 
@@ -523,20 +561,14 @@ ALTER TABLE `dat_even`
   ADD KEY `cod_estat` (`cod_estat`);
 
 --
--- Indices de la tabla `dat_inv`
---
-ALTER TABLE `dat_inv`
-  ADD PRIMARY KEY (`cod_inv`),
-  ADD KEY `cod_par` (`cod_par`);
-
---
 -- Indices de la tabla `dat_par`
 --
 ALTER TABLE `dat_par`
   ADD PRIMARY KEY (`cod_par`),
   ADD KEY `per_id` (`cod_per`),
   ADD KEY `cod_even` (`cod_even`),
-  ADD KEY `cod_perf` (`cod_perf`);
+  ADD KEY `cod_perf` (`cod_perf`),
+  ADD KEY `cod_estat` (`cod_estat`);
 
 --
 -- Indices de la tabla `dat_per`
@@ -658,37 +690,31 @@ ALTER TABLE `tab_tip_even`
 -- AUTO_INCREMENT de la tabla `dat_del`
 --
 ALTER TABLE `dat_del`
-  MODIFY `cod_del` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_del` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_even`
 --
 ALTER TABLE `dat_even`
-  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `dat_inv`
---
-ALTER TABLE `dat_inv`
-  MODIFY `cod_inv` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_par`
 --
 ALTER TABLE `dat_par`
-  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per`
 --
 ALTER TABLE `dat_per`
-  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per_tec`
 --
 ALTER TABLE `dat_per_tec`
-  MODIFY `cod_equ_tec` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_equ_tec` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_usr`
@@ -712,7 +738,7 @@ ALTER TABLE `tab_cat`
 -- AUTO_INCREMENT de la tabla `tab_dis`
 --
 ALTER TABLE `tab_dis`
-  MODIFY `cod_dis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `cod_dis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_edo`
@@ -795,7 +821,7 @@ ALTER TABLE `dat_even`
 ALTER TABLE `dat_par`
   ADD CONSTRAINT `dat_par_ibfk_5` FOREIGN KEY (`cod_per`) REFERENCES `dat_per` (`cod_per`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `dat_par_ibfk_6` FOREIGN KEY (`cod_even`) REFERENCES `dat_even` (`cod_even`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `dat_par_ibfk_7` FOREIGN KEY (`cod_perf`) REFERENCES `tab_perf` (`cod_perf`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `estatus_cod_per` FOREIGN KEY (`cod_estat`) REFERENCES `tab_estat` (`cod_estat`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `dat_per`

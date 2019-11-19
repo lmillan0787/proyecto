@@ -54,13 +54,12 @@ class puebloControlador extends puebloModelo
         foreach ($row as $row) {
             echo '
             <tr>
-                <td>' . $row['cod_pue'] . '</td>
-                <td>' . $row['des_pue'] . '</td
-                </td>
-                <td>
+                <td class="text-center">' . $row['cod_pue'] . '</td>
+                <td class="text-center">' . $row['des_pue'] . '</td>
+                <td class="text-center">
                     <form class="" action="' . SERVERURL . 'editarPueblo" method="POST" enctype="multipart/form-data">
                         <input type="text" value="" name="cod_usr" hidden required>
-                        <button type="submit" class="btn btn-info btn-md">
+                        <button type="submit" class="btn btn-default btn-sm">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
                     </form>    

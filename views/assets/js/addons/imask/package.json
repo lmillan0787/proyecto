@@ -1,0 +1,36 @@
+{
+  "name": "imask",
+  "version": "5.2.1",
+  "author": "Alexey Kryazhev",
+  "license": "MIT",
+  "bugs": "https://github.com/uNmAnNeR/imaskjs/issues",
+  "homepage": "https://imask.js.org/",
+  "description": "vanilla javascript input mask",
+  "main": "dist/imask.js",
+  "module": "dist/imask.esm.js",
+  "repository": "https://github.com/uNmAnNeR/imaskjs",
+  "types": "index.d.ts",
+  "engines": {
+    "npm": ">=4.0.0"
+  },
+  "scripts": {
+    "test": "cross-env NODE_ENV=test nyc mocha --exit --recursive",
+    "pretest": "flow check",
+    "watch": "rollup -c -w",
+    "build": "npm run build:umd && npm run build:es && npm run build:esm",
+    "build:umd": "rollup -c",
+    "build:es": "cross-env BABEL_ENV=es rollup -c",
+    "build:esm": "cross-env BABEL_ENV=esm rollup -c",
+    "flow": "flow",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "keywords": [
+    "javascript",
+    "jquery",
+    "input",
+    "mask"
+  ],
+  "devDependencies": {
+    "core-js": "^3.1.4"
+  }
+}

@@ -69,7 +69,7 @@ $('.FormularioAjax').submit(function (e) {
 $(document).ready(function() {
     $('#tabla').DataTable({
             select: true,
-            language: idioma
+            language: idioma,
         
     });
 } );

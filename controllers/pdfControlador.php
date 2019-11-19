@@ -83,7 +83,7 @@ $this->Output();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //QR
         require('../views/assets/qrcode/qrcode.class.php');
-        $msg = $_POST['ced'];
+        $msg = "https://judenain.000webhostapp.com/prueba/";
         $err = 'H';
         $qrcode = new QRcode(utf8_encode($msg), $err);
         $qrcode->disableBorder();

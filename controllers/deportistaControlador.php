@@ -142,19 +142,19 @@ class deportistaControlador extends deportistaModelo
             $n++;
             echo '
             <tr>
-                    <td>' . $n . '</td>
-                    <td>' . $row['ced'] . '</td> 
-                    <td>' . $row['nom'] . '</td>
-                    <td>' . $row['ape'] . '</td>
-                    <td>' . $row['des_even'] . '</td>
-                    <td>' . $row['des_reg'] . '</td>
-                    <td>' . $row['des_pue'] . '</td>
-                    <td>' . $row['des_dis'] . '</td>
-                    <td>' . $row['des_cat'] . '</td>
-                    <td>
+                    <td class="text-center">' . $n . '</td>
+                    <td class="text-center">' . $row['ced'] . '</td> 
+                    <td class="text-center">' . $row['nom'] . '</td>
+                    <td class="text-center">' . $row['ape'] . '</td>
+                    <td class="text-center">' . $row['des_even'] . '</td>
+                    <td class="text-center">' . $row['des_reg'] . '</td>
+                    <td class="text-center">' . $row['des_pue'] . '</td>
+                    <td class="text-center">' . $row['des_dis'] . '</td>
+                    <td class="text-center">' . $row['des_cat'] . '</td>
+                    <td class="text-center">
                     <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                        <button type="submit" class="btn btn-info btn-md">
+                        <button type="submit" class="btn btn-default btn-sm">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
                     </form>    

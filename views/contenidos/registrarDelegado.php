@@ -28,7 +28,7 @@ $insDeportista = new deportistaControlador();
             <!--Perfil-->
             <input type="text" name="cod_perf" value="5" hidden="">
             <!--Evento-->
-            <br><b><label for="textInput">Evento:</label></b>
+            <br><b><label for="textInput">Comisión:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>

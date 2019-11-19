@@ -1,7 +1,7 @@
 <?php $peticionAjax=false; ?>
 
 <div class="container elegant-color" id="conn1">
-    <nav class="navbar navbar-dark elegant-color lighten-4" id="nav1">
+    <nav class="navbar navbar-dark elegant-color lighten-4 z-depth-0" id="nav1">
         <span class="navbar-brand" id="brand1"><?php echo PROYECT ?></span> 
     </nav>
 </div>

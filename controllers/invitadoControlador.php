@@ -8,16 +8,49 @@ if ($peticionAjax) {
 
 class invitadoControlador extends invitadoModelo
 {
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //inviados tabla
+    public function tabla_invitado_controlador()
+    {
+        $n = 0;
+        $row = invitadoModelo::consultar_invitado_modelo();
+        foreach ($row as $row) {
+            $n++;
+            echo '
+                <tr>
+                    <td class="text-center">' . $n . '</td>
+                    <td class="text-center">' . $row['ced'] . '</td>
+                    <td class="text-center">' . $row['nom'] . '</td>
+                    <td class="text-center">' . $row['ape'] . '</td>
+                    <td class="text-center">' . $row['des_gen'] . '</td>
+                    <td class="text-center">' . $row['des_perf'] . '</td>
+                    <td class="text-center">' . $row['des_even'] . '</td>
+                    <td class="text-center">
+                        <form class="" action="' . SERVERURL . 'editarInvitado" method="POST" enctype="multipart/form-data">
+                            <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <i class="far fa-edit fa-2x"></i>
+                            </button>
+                        </form>    
+                    </td>                                                      
+                </tr>';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //registrar invitado
     public function agregar_invitado_controlador()
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
-
-        $validarCedula = mainModel::validar_cedula_modelo($ced);
-
-        if ($validarCedula->rowCount() == 0) {
+        $datosInvitado = [
+            "ced" => $ced,
+            "cod_eeven" => $cod_even,
+            "cod_perf" => $cod_perf
+        ];
+        $sql = personaModelo::validar_cedula_participacion_modelo($datosInvitado);
+        if ($sql->rowCount() == 0) {
             echo "<script>
             Swal.fire({
                 title: 'La cédula que intenta ingresar no existe',
@@ -32,10 +65,9 @@ class invitadoControlador extends invitadoModelo
                     window.location='" . SERVERURL . "registrarPersona/';
                 }
               })
-            
             </script>";
         } else {
-            $row = mainModel::validar_persona_modelo($ced);
+            $row = personaModelo::validar_persona_modelo($ced);
             foreach ($row as $row) {
                 $cod_per = $row['cod_per'];
             }
@@ -125,36 +157,6 @@ class invitadoControlador extends invitadoModelo
                        ";
             }
         }
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function tabla_invitado()
-    {
-        $n = 0;
-        $row = invitadoModelo::consultar_invitado();
-        foreach ($row as $row) {
-            $n++;
-            echo '
-            <tr>
-                    <td>' . $n . '</td>
-                    <td>' . $row['ced'] . '</td>
-                    <td>' . $row['nom'] . '</td>
-                    <td>' . $row['ape'] . '</td>
-                    <td>' . $row['des_gen'] . '</td>
-                    <td>' . $row['des_perf'] . '</td>
-                    <td>' . $row['des_even'] . '</td>
-                    <td>
-                    <form class="" action="' . SERVERURL . 'editarInvitado" method="POST" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                        <button type="submit" class="btn btn-info btn-md">
-                            <i class="far fa-edit fa-2x"></i>
-                        </button>
-                    </form>    
-                </td>    
-            
-                                                                     
-                </tr>';
-        }
-        return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultarRegion()

@@ -1,15 +1,4 @@
-<style>
-  .carousel-inner{
-    width: 100%;
-    height: 70%;
-}
-.carousel-inner img{
-    width: 80%;
-    height: 100%;
-    margin: 120px;
-    margin-top: 30px;
 
-</style>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">

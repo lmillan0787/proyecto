@@ -1,0 +1,24 @@
+<html>
+<head></head>
+
+<body>
+  <h1>IMask Core Demo</h1>
+  <input type="text" id="input">
+
+  <script src="dist/imask.js"></script>
+  <script type="text/javascript">
+    var imask = new IMask(document.getElementById('input'), {
+      mask: 'dw',
+      lazy: false,
+      blocks: {
+        d: {
+          mask: '00',
+        },
+        w: {
+          mask: 'aa',
+        },
+      }
+    });
+  </script>
+</body>
+</html>

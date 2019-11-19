@@ -21,7 +21,7 @@ $insInvitado = new invitadoControlador();
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" name="ced" onkeyup="javascript:this.value=this.value.toUpperCase();" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" value="V">
+                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="">
             </div> 
             <div id="result-ced"></div>           
             <!-- Género-->
@@ -99,7 +99,21 @@ $insInvitado = new invitadoControlador();
 </script>
 <!-- Validar Cedula -->
 <script type="text/javascript">
-$(document).ready(function() {  
+    $(document).ready(function() {
+        $('.ced').mask('N-Z0000000', {
+            translation: {
+                'N': {
+                    pattern: /[vVeE]/
+
+                },
+                'Z': {
+                    pattern: /[0-9]/,
+                    optional: true
+                },
+            }
+        });
+    });
+    $(document).ready(function() {  
     $('#ced').on('blur', function(){
         $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 
@@ -115,8 +129,8 @@ $(document).ready(function() {
             }
         });
     });              
-});    
-$(document).ready(function() {  
+    });    
+    $(document).ready(function() {  
     $('#cod_even').on('blur', function(){
         $('#result-even').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 

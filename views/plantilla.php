@@ -67,7 +67,7 @@ $peticionAjax = false;
 
         ?>
 
-        <div id="con_todo">
+        <div id="con_todo" class="z-depth-5">
             <?php require_once $vistasR; ?>
         </div>
 
@@ -98,6 +98,8 @@ $peticionAjax = false;
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/hc/js/highcharts-3d.js"></script>
     <!-- main js -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/hc/js/modules/exporting.js"></script>
+    <!-- main js -->
+    <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/jquery.mask.js"></script>
     <!-- main js -->
     <script type="text/javascript" src="<?php echo SERVERURL ?>views/assets/js/main.js"></script>
 </body>

@@ -6,11 +6,6 @@ if (isset($_POST['cod_even'])) {
     require_once "../controllers/participacionControlador.php";
     $insParticipacion = new participacionControlador();
     $insParticipacion->datos_credenciales_controlador();
-   
-    
-  
-
-
 
 } else {
     session_start();

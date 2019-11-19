@@ -1,7 +1,7 @@
 <?php
 $peticionAjax = false;
 include "./controllers/tecnicoControlador.php";
-$insTecnico= new tecnicoControlador();
+$insTecnico = new tecnicoControlador();
 
 ?>
 <div class="card" id="form_invi">
@@ -19,7 +19,7 @@ $insTecnico= new tecnicoControlador();
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" name="ced" onkeyup="javascript:this.value=this.value.toUpperCase();" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" value="V">
+                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="">
             </div>
             <div id="result-ced"></div>
             <!--Rol-->
@@ -78,9 +78,9 @@ $insTecnico= new tecnicoControlador();
                 </select>
             </div>
             <!-- Select Disciplina -->
-           
+
             <!-- Select Categoria -->
-           
+
             <br>
             <center>
                 <div class="row">
@@ -89,13 +89,13 @@ $insTecnico= new tecnicoControlador();
                         <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
                     </div>
                     <div class="col-md-6">
-                        <div id="results" ></div>
+                        <div id="results"></div>
                         <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>
-            </center>                
+            </center>
             <br><button class=" btn btn-info btn-block" type="submit">Registrar</button>
-                        <div class="RespuestaAjax"></div>
+            <div class="RespuestaAjax"></div>
         </form>
     </div>
 </div>
@@ -128,42 +128,56 @@ $insTecnico= new tecnicoControlador();
     }
 </script>
 <script type="text/javascript">
-$(document).ready(function() {  
-    $('#ced').on('blur', function(){
-        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+    $(document).ready(function() {
+        $('.ced').mask('N-Z0000000', {
+            translation: {
+                'N': {
+                    pattern: /[vVeE]/
 
-        var ced = $(this).val();   
-        var dataString = 'ced='+ced;
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-ced').fadeIn(1000).html(data);
+                },
+                'Z': {
+                    pattern: /[0-9]/,
+                    optional: true
+                },
             }
         });
-    });              
-});    
-$(document).ready(function() {  
-    $('#cod_even').on('blur', function(){
-        $('#result-even').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+    });
+    $(document).ready(function() {
+        $('#ced').on('blur', function() {
+            $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 
-        var cod_even = $(this).val();
-        var ced = $('#ced').val();  
-        var dataString = {
-            'cod_even': cod_even,
-            'ced': ced
+            var ced = $(this).val();
+            var dataString = 'ced=' + ced;
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-ced').fadeIn(1000).html(data);
+                }
+            });
+        });
+    });
+    $(document).ready(function() {
+        $('#cod_even').on('blur', function() {
+            $('#result-even').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+            var cod_even = $(this).val();
+            var ced = $('#ced').val();
+            var dataString = {
+                'cod_even': cod_even,
+                'ced': ced
             };
 
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarEventoParticipacionAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-even').fadeIn(1000).html(data);
-            }
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarEventoParticipacionAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-even').fadeIn(1000).html(data);
+                }
+            });
         });
-    });              
-});  
+    });
 </script>

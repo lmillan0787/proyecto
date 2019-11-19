@@ -8,36 +8,63 @@ if ($peticionAjax) {
 
 class tecnicoControlador extends tecnicoModelo
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //tabla personal técnico
+    public function tabla_tecnico()
+    {
+        $n=0;
+        $row = tecnicoModelo::consultar_tecnico();
+        foreach ($row as $row) {
+            $n++;
+            echo '
+            <tr>
+                <td class="text-center">' . $n . '</td>
+                <td class="text-center">' . $row['ced'] . '</td>
+                <td class="text-center">' . $row['nom'] . '</td>
+                <td class="text-center">' . $row['ape'] . '</td>
+                <td class="text-center">' . $row['des_even'] . '</td>
+                <td class="text-center">' . $row['siglas'] . '</td>
+                <td class="text-center">' . $row['des_carg'] . '</td>
+                <td class="text-center">' . $row['des_perf'] . '</td>            
+                <td class="text-center">
+                    <form class="" action="' . SERVERURL . 'editarTecnico" method="POST" enctype="multipart/form-data">
+                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <i class="far fa-edit fa-2x"></i>
+                        </button>
+                    </form>    
+                </td>                                                  
+            </tr>';
+        }
+        return $row;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //registrar personal técnico
     public function agregar_tecnico_controlador()
     {
-
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
         $cod_carg = mainModel::limpiar_cadena($_POST['cod_carg']);
         $cod_inst = mainModel::limpiar_cadena($_POST['cod_inst']);
 
-
         $validarCedula = mainModel::validar_cedula_modelo($ced);
         $validarCedula = mainModel::validar_cedula_modelo($ced);
 
         if ($validarCedula->rowCount() == 0) {
             echo "<script>
-            Swal.fire({
-                title: 'La cédula que intenta ingresar no existe',
-                text: '¿Desea registrar a la persona?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si Registrar'
-              }).then((result) => {
-                if (result.value) {
-                    window.location='" . SERVERURL . "registrarPersona/';
-                }
-              })
-            
-            </script>";
+                    Swal.fire({
+                        title: 'La cédula que intenta ingresar no existe',
+                        text: '¿Desea registrar a la persona?',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si Registrar'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location='" . SERVERURL . "registrarPersona/';
+                        }
+                    })            
+                </script>";
         } else {
             $row = mainModel::validar_persona_modelo($ced);
             foreach ($row as $row) {
@@ -133,39 +160,7 @@ class tecnicoControlador extends tecnicoModelo
             
         }
     }
-
-
-
-    public function tabla_tecnico()
-    {
-        $n=0;
-        $row = tecnicoModelo::consultar_tecnico();
-        foreach ($row as $row) {
-            $n++;
-            echo '
-            <tr>
-                <td>' . $n . '</td>
-                <td>' . $row['ced'] . '</td>
-                <td>' . $row['nom'] . '</td>
-                <td>' . $row['ape'] . '</td>
-                <td>' . $row['des_even'] . '</td>
-                <td>' . $row['siglas'] . '</td>
-                <td>' . $row['des_carg'] . '</td>
-                <td>' . $row['des_perf'] . '</td>            
-                <td><form class="" action="' . SERVERURL . 'editarTecnico" method="POST" enctype="multipart/form-data">
-                <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                <button type="submit" class="btn btn-info btn-md">
-                    <i class="far fa-edit fa-2x"></i>
-                </button>
-            </form>    
-        </td>    
-                                                            
-        </tr>';
-        }
-        return $row;
-    }
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //validar participacion
     public function consultarPerfil()
     {
         $consultarPerfil = mainModel::conectar()->prepare("SELECT cod_perf,des_perf from tab_perf where cod_rol=4 ");
@@ -185,7 +180,7 @@ class tecnicoControlador extends tecnicoModelo
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //validar participacion
 
     public function consultarCargo()
     {
@@ -199,7 +194,7 @@ class tecnicoControlador extends tecnicoModelo
 
         return $row;
     }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //validar participacion
     public function consultarInstitucion()
     {
 
@@ -214,7 +209,7 @@ class tecnicoControlador extends tecnicoModelo
         return $row;
     }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //validar participacion
     public function consultarEvento()
     {
         $consultarEvento = mainModel::conectar()->prepare("SELECT * FROM dat_even WHERE cod_estat=1");
@@ -225,6 +220,7 @@ class tecnicoControlador extends tecnicoModelo
         }
         return $row;
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //validar participacion
     public function formulario_editar_cedula_persona_controlador()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
@@ -239,6 +235,7 @@ class tecnicoControlador extends tecnicoModelo
         }
         return $row;
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //validar participacion
     public function formulario_editar_perfil_tecnico_controlador()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);

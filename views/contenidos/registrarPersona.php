@@ -1,7 +1,7 @@
-<?php 
- 
- $año=date('Y')-15;
- $fec=date('m-d');
+<?php
+
+$año = date('Y') - 15;
+$fec = date('m-d');
 
 ?>
 <div class="card" id="form_evento">
@@ -19,16 +19,16 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" name="ced" value="V">                
+                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="">
             </div>
-            <div id="result-ced"></div>            
+            <div id="result-ced"></div>
             <!-- Nombre-->
             <br><b><label for=" textInput">Nombre:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Nombre" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="nom">
+                <input type="text" class="nom text-capitalize form-control" placeholder="Nombre" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="nom">
             </div>
             <!-- Apellido-->
             <br><b><label for="textInput">Apellido:</label></b>
@@ -36,7 +36,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Apellido" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="ape">
+                <input type="text" class="ape text-capitalize form-control" placeholder="Apellido" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="ape">
             </div>
             <!-- Fecha de nacimiento-->
             <br><b><label for="textInput">Fecha de nacimiento:</label></b>
@@ -44,9 +44,9 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
                 </div>
-                <input type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1919-01-01" max="<?php echo $año.'-'.$fec ?>" step="1" name="fec_nac" id="fec_nac">
+                <input type="date" class="fec_nac form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1919-01-01" max="<?php echo $año . '-' . $fec ?>" step="1" name="fec_nac" id="fec_nac">
             </div>
-            <div id="result-fec"></div>  
+            <div id="result-fec"></div>
             <!-- Género-->
             <br><b><label for="textInput">Género:</label></b>
             <div class="input-group mb-3">
@@ -64,41 +64,69 @@
         </form>
     </div>
 </div>
- <!-- Validar Cedula -->
+<!-- Validar Cedula -->
 <script type="text/javascript">
-$(document).ready(function() {  
-    $('#ced').on('blur', function(){
-        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+    $(document).ready(function() {
+        $('.ced').mask('N-Z0000000', {
+            translation: {
+                'N': {
+                    pattern: /[vVeE]/
 
-        var ced = $(this).val();   
-        var dataString = 'ced='+ced;
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarPersonaAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-ced').fadeIn(1000).html(data);
+                },
+                'Z': {
+                    pattern: /[0-9]/,
+                    optional: true
+                },
             }
         });
-    });              
-});   
-///////////////////////////////////#ced<script type="text/javascript">
-$(document).ready(function() {  
-    $('#fec_nac').on('blur', function(){
-        $('#result-fec').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
-
-        var fec_nac = $(this).val();   
-        var dataString = 'fec_nac='+fec_nac;
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarPersonaAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-fec').fadeIn(1000).html(data);
+        $('.nom').mask('NNNNNNNNNNNNNNNNNNNN', {
+            translation: {
+                'N': {
+                    pattern: /[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]/
+                }
             }
         });
-    });              
-}); 
+        $('.ape').mask('NNNNNNNNNNNNNNNNNNNN', {
+            translation: {
+                'N': {
+                    pattern: /[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]/
+                }
+            }
+        });
+    });
+    $(document).ready(function() {
+        $('#ced').on('blur', function() {
+            $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+            var ced = $(this).val();
+            var dataString = 'ced=' + ced;
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarPersonaAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-ced').fadeIn(1000).html(data);
+                }
+            });
+        });
+    });
+    ///////////////////////////////////#ced<script type="text/javascript">
+    $(document).ready(function() {
+        $('#fec_nac').on('blur', function() {
+            $('#result-fec').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+            var fec_nac = $(this).val();
+            var dataString = 'fec_nac=' + fec_nac;
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarPersonaAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-fec').fadeIn(1000).html(data);
+                }
+            });
+        });
+    });
 </script>

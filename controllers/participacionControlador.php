@@ -75,7 +75,7 @@ class participacionControlador extends participacionModelo
                     <input type="text" name="des_pue"  value="' . $row['des_pue'] . '" hidden>
                     <input type="text" name="alias"  value="' . $row['alias'] . '" hidden>
                     <input type="text" name="des_dis"  value="' . $row['des_dis'] . '" hidden>
-                    <button type="submit" class="btn btn-warning btn-md">
+                    <button type="submit" class="btn btn-warning btn-sm">
                         <i class="far fa-address-card fa-2x"></i>                            
                     </button>
                 </form>
@@ -96,7 +96,7 @@ class participacionControlador extends participacionModelo
                     <input type="text" name="fec_even"  value="' . $row['fec_even'] . '" hidden>
                     <input type="text" name="des_carg"  value="' . $row['des_carg'] . '" hidden> 
                     <input type="text" name="siglas"  value="' . $row['siglas'] . '" hidden>     
-                    <button type="submit" class="btn btn-warning btn-md">
+                    <button type="submit" class="btn btn-warning btn-sm">
                         <i class="far fa-address-card fa-2x"></i>                            
                     </button>
                 </form>
@@ -114,7 +114,7 @@ class participacionControlador extends participacionModelo
                     <input type="text" name="cod_rol"  value="' . $row['cod_rol'] . '" hidden>
                     <input type="text" name="cod_perf"  value="' . $row['cod_perf'] . '" hidden>
                     <input type="text" name="des_perf"  value="' . $row['des_perf'] . '" hidden>      
-                    <button type="submit" class="btn btn-warning btn-md">
+                    <button type="submit" class="btn btn-warning btn-sm">
                         <i class="far fa-address-card fa-2x"></i>                            
                     </button>
                 </form>
@@ -122,17 +122,17 @@ class participacionControlador extends participacionModelo
             }
             echo '
             <tr>
-                <td>' . $n . '</td>
-                <td>' . $row['ced'] . '</td>
-                <td>' . $row['nom'] . '</td>
-                <td>' . $row['ape'] . '</td>
-                <td>' . $row['des_perf'] . '</td>
-                <td>' . $row['des_estat'] . '</td>
-                <td>' . $form . '</td>
-                <td>
+                <td class="text-center">' . $n . '</td>
+                <td class="text-center">' . $row['ced'] . '</td>
+                <td class="text-center">' . $row['nom'] . '</td>
+                <td class="text-center">' . $row['ape'] . '</td>
+                <td class="text-center">' . $row['des_perf'] . '</td>
+                <td class="text-center">' . $row['des_estat'] . '</td>
+                <td class="text-center">' . $form . '</td>
+                <td class="text-center">
                 <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
                     <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
-                    <button type="submit" class="btn btn-info btn-md">
+                    <button type="submit" class="btn btn-default btn-sm">
                         <i class="far fa-edit fa-2x"></i>
                     </button>
                 </form>    

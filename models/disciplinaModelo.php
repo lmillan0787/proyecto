@@ -54,4 +54,34 @@ class disciplinaModelo extends mainModel
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar disciplinas autoctonas
+    protected function consultar_disciplinas_distintas_modelo($datos)
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_dis WHERE des_dis=:des_dis");
+        $sql->bindParam(":des_dis", $datos['des_dis']);
+        $sql->execute();
+        return $sql;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar disciplinas autoctonas
+    protected function consultar_disciplina_editar($datos)
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_dis WHERE cod_dis=:cod_dis");
+        $sql->bindParam(":cod_dis", $datos['cod_dis']);
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //cargar tabla de evento
+    protected function editar_disciplina_modelo($datos)
+    {
+        $sql = mainModel::conectar()->prepare("UPDATE tab_dis SET des_dis=:des_dis, cod_tip_even=:cod_tip_even WHERE cod_dis=:cod_dis ");
+        $sql->bindParam(":cod_dis", $datos['cod_dis']);
+        $sql->bindParam(":des_dis", $datos['des_dis']);
+        $sql->bindParam(":cod_tip_even", $datos['cod_tip_even']);
+        $sql->execute();
+        return $sql;
+    }
 }

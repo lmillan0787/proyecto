@@ -26,51 +26,18 @@ class mainModel
         return $respuesta;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //validar cedula
-    protected function validar_cedula_modelo($ced){
-        $validarCedula = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced='$ced'");
-        $validarCedula->execute();
-        return $validarCedula;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar persona
-    protected function consultar_persona_modelo(){
-        $consultaPersona = mainModel::conectar()->prepare("SELECT a.*, b.*, d.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN tab_gen AS b ON a.cod_gen=b.cod_gen  INNER JOIN tab_estat AS d ON a.cod_estat=d.cod_estat ORDER BY cod_per DESC");
-        $consultaPersona->execute();
-        $row = $consultaPersona->fetchAll(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar estado
-    protected function consultar_estado_modelo(){
-        $consultaEstado = mainModel::conectar()->prepare("SELECT * FROM tab_edo ORDER BY des_edo ASC");
-        $consultaEstado->execute();
-        $row = $consultaEstado->fetchAll(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar región
+    //consultar region
     protected function consultar_region_modelo(){
-        $consultaEstado = mainModel::conectar()->prepare("SELECT * FROM tab_reg");
-        
-        $consultaEstado->execute();
-        $row = $consultaEstado->fetchAll(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar región distinta
-    protected function consultar_region_distinta_modelo($datos){
-        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_reg WHERE cod_reg!=:cod_reg");
-        $sql->bindParam(":cod_reg", $datos['cod_reg']);
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_reg");
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar genero distinta
-    protected function consultar_genero_distinto_modelo($datos){
-        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_gen WHERE cod_gen!=:cod_gen AND cod_gen!=3");
-        $sql->bindParam(":cod_gen", $datos['cod_gen']);
+    //consultar region
+    protected function consultar_region_distinta_modelo($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_reg WHERE cod_reg!=:cod_reg");
+        $sql->bindParam(":cod_reg", $datos['cod_reg']);
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
@@ -89,41 +56,6 @@ class mainModel
         $sql = mainModel::conectar()->prepare("SELECT * FROM tab_estat WHERE cod_estat!=:cod_estat");
         $sql->bindParam(":cod_estat", $datos['cod_estat']);
         $sql->execute();
-        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-    //valdiar persona
-    protected function validar_persona_modelo($ced){
-        $validarPersona = mainModel::ejecutar_consulta_simple("SELECT * FROM dat_per WHERE ced='$ced'");
-        $validarPersona->execute();
-        $row = $validarPersona->fetchAll(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //valdiar participación
-    protected function validar_participacion_modelo($datos){
-        $validarParticipacion = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even");
-        $validarParticipacion->bindParam(":cod_per", $datos['cod_per']);
-        $validarParticipacion->bindParam(":cod_even", $datos['cod_even']);
-        $validarParticipacion->execute();        
-        return $validarParticipacion;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //valdiar participación
-    protected function validar_disciplinas_evento_modelo($datos){
-        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_even WHERE cod_even=:cod_even");
-        $sql->bindParam(":cod_even", $datos['cod_even']);
-        $sql->execute();        
-        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //valdiar participación
-    protected function consultar_disciplinas_tipo_modelo($datos){
-        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_dis WHERE cod_tip_even=:cod_tip_even");
-        $sql->bindParam(":cod_tip_even", $datos['cod_tip_even']);
-        $sql->execute();        
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $row;
     }

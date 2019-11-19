@@ -88,26 +88,26 @@ class usuarioControlador extends usuarioModelo
         foreach ($row as $row) {
             echo '
             <tr>
-                <td>' . $row['cod_usr'] . '</td>
-                <td>' . $row['ced'] . '</td>
-                <td>' . $row['nom'] . '</td>
-                <td>' . $row['ape'] . '</td>
-                <td>' . $row['des_usr'] . '</td>
-                <td>' . $row['des_perf'] . '</td>
+                <td class="text-center">' . $row['cod_usr'] . '</td>
+                <td class="text-center">' . $row['ced'] . '</td>
+                <td class="text-center">' . $row['nom'] . '</td>
+                <td class="text-center">' . $row['ape'] . '</td>
+                <td class="text-center">' . $row['des_usr'] . '</td>
+                <td class="text-center">' . $row['des_perf'] . '</td>
                 
-                <td>
+                <td class="text-center">
                     <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
-                        <button type="submit" class="btn btn-info btn-md">
+                        <button type="submit" class="btn btn-default btn-sm">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
                     </form>    
                 </td>    
             
-                <td>
+                <td class="text-center">
                     <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarUsuarioAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
                         <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
-                        <button type="submit" class="btn btn-danger btn-md">
+                        <button type="submit" class="btn btn-danger btn-sm">
                             <i class="far fa-trash-alt fa-2x"></i>                            
                         </button>
                         <div class="RespuestaAjax"></div>

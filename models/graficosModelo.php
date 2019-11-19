@@ -11,7 +11,7 @@ class graficosModelo extends mainModel
     protected function graficos_torta_modelo($datos)
 
     {
-        $sql = mainModel::conectar()->prepare("SELECT c.*,d.*, COUNT(*) AS total,des_reg FROM dat_del AS a INNER JOIN tab_reg AS b ON a.cod_reg=b.cod_reg INNER JOIN dat_par AS c ON a.cod_par=c.cod_par INNER JOIN dat_even AS d ON c.cod_even=d.cod_even WHERE d.cod_even=:cod_even group by b.cod_reg ");
+        $sql = mainModel::conectar()->prepare("SELECT c.*,d.*, COUNT(*) AS total,b.* FROM dat_del AS a INNER JOIN tab_reg AS b ON a.cod_reg=b.cod_reg INNER JOIN dat_par AS c ON a.cod_par=c.cod_par INNER JOIN dat_even AS d ON c.cod_even=d.cod_even WHERE d.cod_even=:cod_even group by b.cod_reg ");
         $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);
