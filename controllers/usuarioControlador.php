@@ -8,6 +8,32 @@ if ($peticionAjax) {
 
 class usuarioControlador extends usuarioModelo
 {
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //TABLA USUARIOS
+    public function tabla_usuario_controlador()
+    {
+        $row = usuarioModelo::consultar_usuario_modelo();
+        foreach ($row as $row) {
+            echo '
+            <tr>
+                <td class="text-center">' . $row['cod_usr'] . '</td>
+                <td class="text-center">' . $row['ced'] . '</td>
+                <td class="text-center">' . $row['nom'] . '</td>
+                <td class="text-center">' . $row['ape'] . '</td>
+                <td class="text-center">' . $row['des_usr'] . '</td>
+                <td class="text-center">' . $row['des_perf'] . '</td>
+                <td class="text-center">
+                    <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
+                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <i class="far fa-edit fa-2x"></i>
+                        </button>
+                    </form>    
+                </td>
+            </tr>';
+        }
+        return $row;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function agregar_usuario_controlador()
     {
@@ -81,42 +107,7 @@ class usuarioControlador extends usuarioModelo
         }
         return mainModel::sweet_alert($alerta);
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function tabla_usuario()
-    {
-        $row = usuarioModelo::consultar_usuario_modelo();
-        foreach ($row as $row) {
-            echo '
-            <tr>
-                <td class="text-center">' . $row['cod_usr'] . '</td>
-                <td class="text-center">' . $row['ced'] . '</td>
-                <td class="text-center">' . $row['nom'] . '</td>
-                <td class="text-center">' . $row['ape'] . '</td>
-                <td class="text-center">' . $row['des_usr'] . '</td>
-                <td class="text-center">' . $row['des_perf'] . '</td>
-                
-                <td class="text-center">
-                    <form class="" action="' . SERVERURL . 'editarUsuario" method="POST" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
-                        <button type="submit" class="btn btn-default btn-sm">
-                            <i class="far fa-edit fa-2x"></i>
-                        </button>
-                    </form>    
-                </td>    
-            
-                <td class="text-center">
-                    <form class="FormularioAjax" action="' . SERVERURL . 'ajax/eliminarUsuarioAjax.php" method="POST" data-form="borrar" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_usr'] . '" name="cod_usr" hidden required>
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="far fa-trash-alt fa-2x"></i>                            
-                        </button>
-                        <div class="RespuestaAjax"></div>
-                    </form>
-                </td>
-            </tr>';
-        }
-        return $row;
-    }
+    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultar_usuario2()
     {

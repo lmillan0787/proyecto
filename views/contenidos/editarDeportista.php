@@ -77,7 +77,7 @@ $cod_par = $_POST['cod_par'];
                 <select name="cod_dis" id="seldis" class="form-control">
                     <?php
                     $insPart->formulario_participacion_editar_disciplina_controlador();
-                    $insPart->formulario_participacion_editar_disciplina_distinta_controlador();
+                    $insPart->formulario_participacion_editar_disciplina_distinto_controlador();
                     ?>
                 </select>
             </div>
@@ -94,6 +94,19 @@ $cod_par = $_POST['cod_par'];
                     ?>
                 </select>
             </div>
+            <!-- Estatus-->
+            <br><b><label for="textInput">Estatus de la participación:</label></b>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-toggle-on prefix grey-text"></i></label>
+                </div>
+                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estat" name="cod_estat" required>
+                    <?php
+                    $insPart->formulario_participacion_editar_estatus_controlador();
+                    $insPart->formulario_participacion_editar_estatus_distinto_controlador();
+                    ?>
+                </select>
+            </div>
             <br>
             <center>
                 <div class="row">
@@ -103,7 +116,9 @@ $cod_par = $_POST['cod_par'];
 
                     </div>
                     <div class="col-md-6">
-                        <div id="results"></div>
+                        <div id="results">
+                        <?php $insPart->formulario_participacion_editar_foto_controlador(); ?>
+                        </div>
                         <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>

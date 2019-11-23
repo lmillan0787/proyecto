@@ -150,7 +150,7 @@ class medicoControlador extends medicoModelo
                     <td class="text-center">' . $row['des_reg'] . '</td>
                     <td class="text-center">
                         <form class="" action="' . SERVERURL . 'editarMedico" method="POST" enctype="multipart/form-data">
-                            <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                            <input type="text" value="' . $row['cod_par'] . '" name="cod_par" hidden required>
                             <button type="submit" class="btn btn-default btn-md">
                                 <i class="far fa-edit fa-2x"></i>
                             </button>

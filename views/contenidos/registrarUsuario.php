@@ -17,12 +17,12 @@
             <div class="text-center">
             </div>            
             <!-- Cédula-->
-            <label for="textInput">Cédula:</label>
+            <b><label for="textInput">Cédula:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="6" maxlength="8" required pattern="[0-9]+" name="ced">                
+                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="">
             </div>
             <div id="result-ced"></div>
             <!-- Nombre de usuario-->
@@ -71,3 +71,19 @@
         </form>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.ced').mask('N-Z0000000', {
+            translation: {
+                'N': {
+                    pattern: /[vVeE]/
+
+                },
+                'Z': {
+                    pattern: /[0-9]/,
+                    optional: true
+                },
+            }
+        });
+    });
+</script>

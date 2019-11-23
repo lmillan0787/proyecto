@@ -9,89 +9,101 @@ $cod_par = $_POST['cod_par'];
 
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Registro de Delegado</strong>
+        <strong>Datos Básicos</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
-        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/editarDelegadoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/editarDeportistaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
             <div class="text-center">
             </div>
             <!-- Cédula-->
-            <b><label for="textInput ">Cédula:</<blabel></b>
-            <div class="input-group flex-nowrap">
+            <b><label for="textInput">Cédula:</label></b>
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" name="ced" onkeyup="javascript:this.value=this.value.toUpperCase();" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" value="V">
+                <?php $insPart->formulario_participacion_editar_cedula_controlador() ?>
             </div>
-            <div id="result-ced"></div
-            <!--Rol-->
-            <input type="text" name="cod_rol" value="2" hidden>
-                
-            <!--Perfil-->
-            <input type="text" name="cod_perf" value="5" hidden="">
-            <!--Evento-->
+            <div id="result-ced"></div>
+            <!-- Evento -->
             <br><b><label for="textInput">Evento:</label></b>
-            <div class="input-group flex-nowrap">
+            <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt prefix grey-text"></i></label>
                 </div>
-                <select name="cod_even" id="seleven" class="form-control">
-                    <option disabled selected>Evento</option>
+                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_even" name="cod_even" required>
                     <?php
-                    $insDelegado->consultarEvento();
+                    $insPart->formulario_participacion_editar_evento_controlador();
+                    $insPart->formulario_participacion_editar_evento_distinto_controlador();
                     ?>
                 </select>
             </div>
+            <!--Rol-->
+            <input type="text" name="cod_rol" value="2" hidden>
+            <!--Perfil-->
+            <input type="text" name="cod_perf" value="4" hidden="">
             <!-- Region -->
-            <br><b><label for="textInput">Región:</label><b>
+            <br><b><label for="textInput">Región:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <select name="cod_reg" id="selreg" class="form-control" required>
-                    <option disabled selected>Región</option>
                     <?php
-                    $insDelegado->consultarRegion();
+                    $insPart->formulario_participacion_editar_region_controlador();
+                    $insPart->formulario_participacion_editar_region_distinta_controlador();
                     ?>
                 </select>
             </div>
             <!-- Select Pueblo -->
-            <br><b><label for="textInput">Pueblo:</label><b>
+            <br><b><label for="textInput">Pueblo:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <select name="cod_pue" id="selpue" class="form-control" required>
-                    <option disabled selected>Pueblo</option>
                     <?php
-                    $insDelegado->consultarPueblo();
+                    $insPart->formulario_participacion_editar_pueblo_controlador();
+                    $insPart->formulario_participacion_editar_pueblo_distinto_controlador();
                     ?>
                 </select>
             </div>
             <!-- Select Disciplina -->
-            <br><b><label for="textInput">Disciplina:</label><b>
+            <br><b><label for="textInput">Disciplina:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <select name="cod_dis" id="seldis" class="form-control">
-                    <option disabled selected>Disciplina</option>
                     <?php
-                    $insDelegado->consultarDisciplina();
+                    $insPart->formulario_participacion_editar_disciplina_controlador();
+                    $insPart->formulario_participacion_editar_disciplina_distinto_controlador();
                     ?>
                 </select>
             </div>
             <!-- Select Categoria -->
-            <br><b><label for="textInput">Categoria:</label><b>
+            <br><b><label for="textInput">Categoria:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <select name="cod_cat" id="seldis" class="form-control">
-                    <option disabled selected>Categoria</option>
                     <?php
-                    $insDelegado->consultarCategoria();
+                    $insPart->formulario_participacion_editar_categoria_controlador();
+                    $insPart->formulario_participacion_editar_categoria_distinta_controlador();
+                    ?>
+                </select>
+            </div>
+            <!-- Estatus-->
+            <br><b><label for="textInput">Estatus de la participación:</label></b>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-toggle-on prefix grey-text"></i></label>
+                </div>
+                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estat" name="cod_estat" required>
+                    <?php
+                    $insPart->formulario_participacion_editar_estatus_controlador();
+                    $insPart->formulario_participacion_editar_estatus_distinto_controlador();
                     ?>
                 </select>
             </div>
@@ -104,8 +116,10 @@ $cod_par = $_POST['cod_par'];
 
                     </div>
                     <div class="col-md-6">
-                        <div id="results"></div>
-                        <input type="hidden" name="image" class="image-tag"">
+                        <div id="results">
+                        <?php $insPart->formulario_participacion_editar_foto_controlador(); ?>
+                        </div>
+                        <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>
             </center>                
@@ -143,39 +157,21 @@ $cod_par = $_POST['cod_par'];
     }
 </script>
 <script type="text/javascript">
-$(document).ready(function() {  
-    $('#ced').on('blur', function(){
-        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+    $(document).ready(function() {
+        $('#ced').on('blur', function() {
+            $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 
-        var ced = $(this).val();   
-        var dataString = 'ced='+ced;
+            var ced = $(this).val();
+            var dataString = 'ced=' + ced;
 
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-ced').fadeIn(1000).html(data);
-            }
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-ced').fadeIn(1000).html(data);
+                }
+            });
         });
-    });              
-});    
-</script><script type="text/javascript">
-$(document).ready(function() {  
-    $('#ced').on('blur', function(){
-        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
-
-        var ced = $(this).val();   
-        var dataString = 'ced='+ced;
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
-            data: dataString,
-            success: function(data) {
-                $('#result-ced').fadeIn(1000).html(data);
-            }
-        });
-    });              
-});    
+    });
 </script>

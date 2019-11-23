@@ -346,4 +346,94 @@ class participacionControlador extends participacionModelo
              ';
         }
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_participacion_editar_pueblo_distinto_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datos = [
+            "cod_par" => $cod_par
+        ];
+        $sql = mainModel::formulario_informacion_participacion_modelo($datos);
+        foreach ($sql as $row) {
+            $datos = [
+                "cod_pue" => $row['cod_pue']
+            ];
+        }
+        $row = mainModel::consultar_pueblo_distinto_modelo($datos);
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['cod_pue'] . '">' . $row['des_pue'] . '</option>             
+             ';
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_participacion_editar_disciplina_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datos = [
+            "cod_par" => $cod_par
+        ];
+        $row = mainModel::formulario_informacion_participacion_modelo($datos);
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['cod_dis'] . '">' . $row['des_dis'] . '</option>             
+             ';
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_participacion_editar_disciplina_distinto_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datos = [
+            "cod_par" => $cod_par
+        ];
+        $sql = mainModel::formulario_informacion_participacion_modelo($datos);
+        foreach ($sql as $row) {
+
+            $datos = [
+                "cod_dis" => $row['cod_dis']
+            ];
+        }
+        $row = mainModel::consultar_disciplina_distinta_modelo($datos);
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['cod_dis'] . '">' . $row['des_dis'] . '</option>             
+             ';
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_participacion_editar_categoria_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datos = [
+            "cod_par" => $cod_par
+        ];
+        $row = mainModel::formulario_informacion_participacion_modelo($datos);
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['cod_cat'] . '">' . $row['des_cat'] . '</option>             
+             ';
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_participacion_editar_categoria_distinta_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datos = [
+            "cod_par" => $cod_par
+        ];
+        $sql = mainModel::formulario_informacion_participacion_modelo($datos);
+        foreach ($sql as $row) {
+            
+            $datos = [
+                "cod_cat" => $row['cod_cat']
+            ];
+        }
+        $row = mainModel::consultar_categoria_distinta_modelo($datos);
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['cod_cat'] . '">' . $row['des_cat'] . '</option>             
+             ';
+        }
+    }
 }
