@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2019 a las 14:27:01
+-- Tiempo de generación: 23-11-2019 a las 22:02:24
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
 
@@ -51,7 +51,12 @@ INSERT INTO `dat_del` (`cod_del`, `cod_par`, `cod_reg`, `cod_pue`, `cod_dis`, `c
 (7, 8, 3, 10, 2, 1),
 (8, 9, 4, 36, 1, 1),
 (9, 10, 1, 19, 20, 1),
-(10, 11, 6, 18, 8, 1);
+(10, 11, 6, 18, 8, 1),
+(11, 27, 1, 1, 1, 1),
+(12, 28, 1, 1, 1, 1),
+(13, 29, 1, 14, 12, 1),
+(14, 30, 1, 2, 2, 1),
+(15, 31, 4, 18, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -74,7 +79,7 @@ CREATE TABLE `dat_even` (
 
 INSERT INTO `dat_even` (`cod_even`, `des_even`, `fec_even`, `cod_reg`, `cod_tip_even`, `cod_estat`) VALUES
 (1, 'GUAJIRA 2019', '2019-12-08', 6, 1, 1),
-(2, 'PRUEBA', '2050-10-10', 1, 2, 2),
+(2, 'PRUEBA', '2050-10-10', 7, 2, 1),
 (3, 'PRUEBA 2', '2019-11-18', 1, 3, 1),
 (4, 'PRUEBA 3', '2019-12-08', 3, 1, 2),
 (5, 'GUAJIRA 2', '2020-09-16', 5, 1, 1),
@@ -119,8 +124,15 @@ INSERT INTO `dat_par` (`cod_par`, `cod_per`, `cod_even`, `cod_perf`, `cod_estat`
 (17, 1, 5, 14, 1),
 (21, 1, 6, 15, 2),
 (22, 1, 7, 14, 2),
-(23, 4, 7, 10, 1),
-(24, 8, 7, 8, 1);
+(23, 4, 7, 10, 2),
+(24, 8, 7, 8, 1),
+(25, 1, 3, 4, 1),
+(26, 4, 1, 4, 1),
+(27, 1, 1, 4, 1),
+(28, 38, 1, 4, 1),
+(29, 38, 2, 5, 1),
+(30, 38, 3, 5, 1),
+(31, 38, 7, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -167,8 +179,8 @@ INSERT INTO `dat_per` (`cod_per`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`, `co
 (34, 'V19885422', 'JUAN', 'JOSE', '1990-12-08', 1, 1),
 (35, 'V-19885423', 'TEST', 'TEST', '1990-12-08', 1, 1),
 (36, 'v-11111111', 'deifert', 'garanton', '1990-12-08', 1, 1),
-(37, 'v-1234567', 'test', 'cedula', '1990-12-08', 2, 2),
-(38, 'v-88888888', 'test', 'test', '1998-12-08', 1, 2),
+(37, 'v-1234567', 'test', 'cedula', '1990-12-08', 2, 1),
+(38, 'v-88888888', 'test', 'test', '1998-12-08', 1, 1),
 (39, 'v-89999999', 'test', 'estts', '1990-12-08', 2, 1),
 (40, 'v-87777777', 'test', 'test', '1990-12-08', 1, 1),
 (41, 'v-87776666', 'test', 'test', '1990-12-08', 1, 1),
@@ -176,7 +188,7 @@ INSERT INTO `dat_per` (`cod_per`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`, `co
 (43, 'v-87745646', 'testsdfsa', 'test', '1990-12-08', 1, 1),
 (44, 'e-14564654', 'werqwer', 'werwre', '1990-12-08', 2, 1),
 (45, 'v-18789465', 'trew', 'qwer', '2003-09-17', 2, 1),
-(46, 'v-19885428', 'prueba', 'jueves', '1990-12-08', 2, 2);
+(46, 'v-19885428', 'prueba', 'jueves', '1990-12-08', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -275,46 +287,35 @@ INSERT INTO `tab_cat` (`cod_cat`, `des_cat`, `cod_gen`) VALUES
 CREATE TABLE `tab_dis` (
   `cod_dis` int(11) NOT NULL,
   `des_dis` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `cod_tip_even` int(11) NOT NULL
+  `cod_tip_even` int(11) NOT NULL,
+  `cod_gen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tab_dis`
 --
 
-INSERT INTO `tab_dis` (`cod_dis`, `des_dis`, `cod_tip_even`) VALUES
-(1, 'Cerbatana', 1),
-(2, 'Tiro con arco', 1),
-(3, 'Rallado de yuca', 1),
-(4, 'Corte de leña', 1),
-(5, 'Carrera de Watura', 1),
-(6, 'Curiara', 1),
-(7, 'Natación', 1),
-(8, 'Lucha indígena', 1),
-(9, 'Carrera de relevo con tronco', 1),
-(10, 'Prueba de fuerza', 1),
-(11, 'Lanza', 1),
-(12, 'Atletismo', 2),
-(13, 'Baloncesto', 2),
-(14, 'Futbol', 2),
-(15, 'Voleibol', 2),
-(16, 'Kickingball', 2),
-(17, 'Boxeo', 2),
-(18, 'Tenis de mesa', 2),
-(19, 'Pelotica de goma', 2),
-(20, 'Tronco encebao', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tab_dis_even`
---
-
-CREATE TABLE `tab_dis_even` (
-  `cod_dis_even` int(11) NOT NULL,
-  `cod_dis` int(11) NOT NULL,
-  `cod_even` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+INSERT INTO `tab_dis` (`cod_dis`, `des_dis`, `cod_tip_even`, `cod_gen`) VALUES
+(1, 'Cerbatana', 1, 3),
+(2, 'Tiro con arco', 1, 3),
+(3, 'Rallado de yuca', 1, 2),
+(4, 'Corte de leña', 1, 3),
+(5, 'Carrera de Watura', 1, 2),
+(6, 'Curiara', 1, 3),
+(7, 'Natación', 1, 3),
+(8, 'Lucha indígena', 1, 1),
+(9, 'Carrera de relevo con tronco', 1, 3),
+(10, 'Prueba de fuerza', 1, 3),
+(11, 'Lanza', 1, 3),
+(12, 'Atletismo', 2, 3),
+(13, 'Baloncesto', 2, 3),
+(14, 'Futbol', 2, 3),
+(15, 'Voleibol', 2, 3),
+(16, 'Kickingball', 2, 2),
+(17, 'Boxeo', 2, 1),
+(18, 'Tenis de mesa', 2, 3),
+(19, 'Pelotica de goma', 2, 1),
+(20, 'Tronco encebao', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -656,15 +657,8 @@ ALTER TABLE `tab_cat`
 --
 ALTER TABLE `tab_dis`
   ADD PRIMARY KEY (`cod_dis`),
-  ADD KEY `cod_tip_even` (`cod_tip_even`);
-
---
--- Indices de la tabla `tab_dis_even`
---
-ALTER TABLE `tab_dis_even`
-  ADD PRIMARY KEY (`cod_dis_even`),
-  ADD KEY `cod_even` (`cod_even`),
-  ADD KEY `cod_dis` (`cod_dis`);
+  ADD KEY `cod_tip_even` (`cod_tip_even`),
+  ADD KEY `cod_gen` (`cod_gen`);
 
 --
 -- Indices de la tabla `tab_edo`
@@ -730,7 +724,7 @@ ALTER TABLE `tab_tip_even`
 -- AUTO_INCREMENT de la tabla `dat_del`
 --
 ALTER TABLE `dat_del`
-  MODIFY `cod_del` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cod_del` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_even`
@@ -742,7 +736,7 @@ ALTER TABLE `dat_even`
 -- AUTO_INCREMENT de la tabla `dat_par`
 --
 ALTER TABLE `dat_par`
-  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per`
@@ -896,6 +890,7 @@ ALTER TABLE `tab_cat`
 -- Filtros para la tabla `tab_dis`
 --
 ALTER TABLE `tab_dis`
+  ADD CONSTRAINT `gen_dis` FOREIGN KEY (`cod_gen`) REFERENCES `tab_gen` (`cod_gen`) ON UPDATE CASCADE,
   ADD CONSTRAINT `tab_dis_ibfk_1` FOREIGN KEY (`cod_tip_even`) REFERENCES `tab_tip_even` (`cod_tip_even`) ON UPDATE CASCADE;
 
 --

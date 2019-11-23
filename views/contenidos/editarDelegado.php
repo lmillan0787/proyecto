@@ -1,7 +1,10 @@
 <?php
+
 $peticionAjax = false;
-include "./controllers/delegadoControlador.php";
-$insDelegado= new delegadoControlador();
+include "./controllers/participacionControlador.php";
+$insPart = new participacionControlador();
+$cod_par = $_POST['cod_par'];
+
 ?>
 
 <div class="card" id="form_invi">
@@ -10,7 +13,7 @@ $insDelegado= new delegadoControlador();
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
-        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarDelegadoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/editarDelegadoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
             <div class="text-center">
             </div>
             <!-- Cédula-->

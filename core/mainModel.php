@@ -156,7 +156,7 @@ class mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar participacion
     protected function formulario_informacion_participacion_modelo($datos){
-        $sql = mainModel::conectar()->prepare("SELECT a.*,b.*,c.*,d.*,e.*,f.*,g.*,h.* FROM dat_par AS a INNER JOIN dat_per AS b ON a.cod_per=b.cod_per INNER JOIN dat_even AS c ON a.cod_even=c.cod_even INNER JOIN tab_perf AS d ON a.cod_perf=d.cod_perf INNER JOIN tab_estat AS e ON a.cod_estat=e.cod_estat LEFT JOIN dat_per_tec AS f ON f.cod_par=a.cod_par LEFT JOIN tab_carg AS g ON f.cod_carg=g.cod_carg LEFT JOIN tab_inst AS h ON f.cod_inst=h.cod_inst WHERE a.cod_par=:cod_par");
+        $sql = mainModel::conectar()->prepare("SELECT a.*,b.*,c.*,d.*,e.*,f.*,g.*,h.*,i.*,i.cod_reg AS reg,j.*,k.* FROM dat_par AS a INNER JOIN dat_per AS b ON a.cod_per=b.cod_per INNER JOIN dat_even AS c ON a.cod_even=c.cod_even INNER JOIN tab_perf AS d ON a.cod_perf=d.cod_perf INNER JOIN tab_estat AS e ON a.cod_estat=e.cod_estat LEFT JOIN dat_per_tec AS f ON f.cod_par=a.cod_par LEFT JOIN tab_carg AS g ON f.cod_carg=g.cod_carg LEFT JOIN tab_inst AS h ON f.cod_inst=h.cod_inst LEFT JOIN dat_del AS i ON a.cod_par=i.cod_par LEFT JOIN tab_reg as j ON i.cod_reg=j.cod_reg LEFT JOIN tab_pue AS k ON i.cod_pue=k.cod_pue WHERE a.cod_par=:cod_par");
         $sql->bindParam(":cod_par", $datos['cod_par']);
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);

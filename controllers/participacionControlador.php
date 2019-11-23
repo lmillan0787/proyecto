@@ -103,7 +103,7 @@ class participacionControlador extends participacionModelo
         $row = mainModel::formulario_informacion_participacion_modelo($datos);
         foreach ($row as $row) {
             echo '
-                 <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="' . $row['ced'] . '">                
+                 <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="' . $row['ced'] . '" required>                
              ';
         }
         return $row;
@@ -297,5 +297,53 @@ class participacionControlador extends participacionModelo
              ';
         }
         return $row;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_participacion_editar_region_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datos = [
+            "cod_par" => $cod_par
+        ];
+        $row = mainModel::formulario_informacion_participacion_modelo($datos);
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['reg'] . '">' . $row['des_reg'] . '</option>             
+             ';
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_participacion_editar_region_distinta_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datos = [
+            "cod_par" => $cod_par
+        ];
+        $sql = mainModel::formulario_informacion_participacion_modelo($datos);
+        foreach ($sql as $row) {
+            $datos = [
+                "cod_reg" => $row['reg']
+            ];
+        }
+        $row = mainModel::consultar_region_distinta_modelo($datos);
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['cod_reg'] . '">' . $row['des_reg'] . '</option>             
+             ';
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function formulario_participacion_editar_pueblo_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $datos = [
+            "cod_par" => $cod_par
+        ];
+        $row = mainModel::formulario_informacion_participacion_modelo($datos);
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['cod_pue'] . '">' . $row['des_pue'] . '</option>             
+             ';
+        }
     }
 }

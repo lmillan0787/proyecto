@@ -1,9 +1,11 @@
 <?php
-$peticionAjax = false;
-include "./controllers/deportistaControlador.php";
-$insDeportista = new deportistaControlador();
-?>
 
+$peticionAjax = false;
+include "./controllers/participacionControlador.php";
+$insPart = new participacionControlador();
+$cod_par = $_POST['cod_par'];
+
+?>
 
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
@@ -11,35 +13,35 @@ $insDeportista = new deportistaControlador();
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
-        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarDeportistaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
+        <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/editarDeportistaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
             <div class="text-center">
             </div>
             <!-- Cédula-->
             <b><label for="textInput">Cédula:</label></b>
-            <div class="input-group flex-nowrap">
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" name="ced" onkeyup="javascript:this.value=this.value.toUpperCase();" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" value="V">
+                <?php $insPart->formulario_participacion_editar_cedula_controlador() ?>
             </div>
             <div id="result-ced"></div>
-            <!--Rol-->
-                        <input type="text" name="cod_rol" value="2" hidden>
-            <!--Perfil-->
-            <input type="text" name="cod_perf" value="4" hidden="">
-            <!--Evento-->
+            <!-- Evento -->
             <br><b><label for="textInput">Evento:</label></b>
-            <div class="input-group flex-nowrap">
+            <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                    <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt prefix grey-text"></i></label>
                 </div>
-                <select name="cod_even" id="seleven" class="form-control">
-                    <option disabled selected>Evento</option>
+                <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_even" name="cod_even" required>
                     <?php
-                    $insDeportista->consultarEvento();
+                    $insPart->formulario_participacion_editar_evento_controlador();
+                    $insPart->formulario_participacion_editar_evento_distinto_controlador();
                     ?>
                 </select>
             </div>
+            <!--Rol-->
+            <input type="text" name="cod_rol" value="2" hidden>
+            <!--Perfil-->
+            <input type="text" name="cod_perf" value="4" hidden="">
             <!-- Region -->
             <br><b><label for="textInput">Región:</label></b>
             <div class="input-group flex-nowrap">
@@ -47,9 +49,9 @@ $insDeportista = new deportistaControlador();
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <select name="cod_reg" id="selreg" class="form-control" required>
-                    <option disabled selected>Región</option>
                     <?php
-                    $insDeportista->consultarRegion();
+                    $insPart->formulario_participacion_editar_region_controlador();
+                    $insPart->formulario_participacion_editar_region_distinta_controlador();
                     ?>
                 </select>
             </div>
@@ -60,9 +62,9 @@ $insDeportista = new deportistaControlador();
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <select name="cod_pue" id="selpue" class="form-control" required>
-                    <option disabled selected>Pueblo</option>
                     <?php
-                    $insDeportista->consultarPueblo();
+                    $insPart->formulario_participacion_editar_pueblo_controlador();
+                    $insPart->formulario_participacion_editar_pueblo_distinto_controlador();
                     ?>
                 </select>
             </div>
@@ -73,9 +75,9 @@ $insDeportista = new deportistaControlador();
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <select name="cod_dis" id="seldis" class="form-control">
-                    <option disabled selected>Disciplina</option>
                     <?php
-                    $insDeportista->consultarDisciplina();
+                    $insPart->formulario_participacion_editar_disciplina_controlador();
+                    $insPart->formulario_participacion_editar_disciplina_distinta_controlador();
                     ?>
                 </select>
             </div>
@@ -86,9 +88,9 @@ $insDeportista = new deportistaControlador();
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
                 <select name="cod_cat" id="seldis" class="form-control">
-                    <option disabled selected>Categoria</option>
                     <?php
-                    $insDeportista->consultarCategoria();
+                    $insPart->formulario_participacion_editar_categoria_controlador();
+                    $insPart->formulario_participacion_editar_categoria_distinta_controlador();
                     ?>
                 </select>
             </div>
