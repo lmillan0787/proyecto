@@ -327,6 +327,19 @@ class mainModel
                     </script>
                 ";
             
+        } else if ($datos['Alerta'] == "simpleInstitucion") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "listaInstitucion/';
+                        });
+                    </script>
+                ";
+            
         } 
         return $alerta;
     }
