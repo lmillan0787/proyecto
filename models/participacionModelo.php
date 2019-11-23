@@ -17,7 +17,7 @@ class participacionModelo extends mainModel
         return $sql;
     }
     public function consultar_participacion_modelo($datos){
-        $sql = mainModel::conectar()->prepare("SELECT TIMESTAMPDIFF(YEAR,b.fec_nac,CURDATE()) AS edad, a.*,b.*, c.*, d.*, e.*, f.*, g.*, h.*, i.*, j.*, k.*, l.*, m.* FROM dat_par AS a INNER JOIN dat_per AS b ON a.cod_per=b.cod_per INNER JOIN dat_even AS c ON a.cod_even=c.cod_even INNER JOIN tab_perf AS d ON a.cod_perf=d.cod_perf INNER JOIN tab_gen AS e ON b.cod_gen=e.cod_gen  LEFT JOIN dat_del AS f ON a.cod_par=f.cod_par LEFT JOIN tab_reg AS g ON f.cod_reg=g.cod_reg LEFT JOIN tab_pue AS h ON f.cod_pue=h.cod_pue LEFT JOIN tab_dis AS i ON f.cod_dis=i.cod_dis LEFT JOIN dat_per_tec AS j ON a.cod_par=j.cod_par LEFT JOIN tab_inst AS k ON j.cod_inst=k.cod_inst LEFT JOIN tab_carg AS l ON j.cod_carg=l.cod_carg INNER JOIN tab_estat AS m ON m.cod_estat=a.cod_estat WHERE a.cod_even=:cod_even AND b.cod_estat=1 ORDER BY a.cod_par DESC");
+        $sql = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*, d.*, e.* FROM dat_par AS a INNER JOIN dat_per AS b ON a.cod_per=b.cod_per INNER JOIN tab_perf AS c ON a.cod_perf=c.cod_perf INNER JOIN tab_rol AS d ON c.cod_rol=d.cod_rol INNER JOIN tab_estat AS e ON a.cod_estat=e.cod_estat WHERE a.cod_even=:cod_even AND b.cod_estat=1 ORDER BY a.cod_par");
         $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->execute();
         $row = $sql->fetchAll(PDO::FETCH_ASSOC);

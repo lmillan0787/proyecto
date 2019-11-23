@@ -17,16 +17,16 @@ $insInvitado = new invitadoControlador();
 </nav>
 <!-- Tabla -->
 <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tablaTodas">
-    <table class="table table-bordered table-striped" id="tabla">
+    <table class="text-capitalize table table-bordered table-striped" id="tabla">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Cédula</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
-                <th scope="col">Género</th>
-                <th scope="col">Rol</th>
                 <th scope="col">Evento</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Estatus</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>

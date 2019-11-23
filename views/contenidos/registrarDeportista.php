@@ -15,26 +15,26 @@ $insDeportista = new deportistaControlador();
         <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarDeportistaAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
             <div class="text-center">
             </div>
-            <!-- Cédula-->
-            <b><label for="textInput">Cédula:</label></b>
+           <!-- Cédula-->
+           <b><label for="textInput">Cédula:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" name="ced" onkeyup="javascript:this.value=this.value.toUpperCase();" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" value="V">
+                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="" required>
             </div>
             <div id="result-ced"></div>
             <!--Rol-->
-            <input type="text" name="cod_rol" value="2" hidden>
+            <input type="text" name="cod_rol" value="2" hidden required>
             <!--Perfil-->
-            <input type="text" name="cod_perf" value="4" hidden="">
+            <input type="text" name="cod_perf" value="4" hidden required>
             <!--Evento-->
             <br><b><label for="textInput">Evento:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <select name="cod_even" id="cod_even" class="form-control">
+                <select name="cod_even" id="cod_even" class="form-control" required>
                     <option disabled selected>Evento</option>
                     <?php
                     $insDeportista->consultarEvento();
@@ -42,7 +42,6 @@ $insDeportista = new deportistaControlador();
                 </select>
             </div>
             <div id="result-even"></div>
-
             <!-- Region -->
             <br><b><label for="textInput">Región:</label></b>
             <div class="input-group flex-nowrap">
@@ -77,7 +76,7 @@ $insDeportista = new deportistaControlador();
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <select name="cod_cat" id="seldis" class="form-control">
+                <select name="cod_cat" id="seldis" class="form-control" required>
                     <option disabled selected>Categoria</option>
                     <?php
                     $insDeportista->consultarCategoria();
@@ -131,6 +130,7 @@ $insDeportista = new deportistaControlador();
         });
     }
 </script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#cod_even').val(1);
@@ -154,6 +154,20 @@ $insDeportista = new deportistaControlador();
     }
 </script>
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('.ced').mask('N-Z0000000', {
+            translation: {
+                'N': {
+                    pattern: /[vVeE]/
+
+                },
+                'Z': {
+                    pattern: /[0-9]/,
+                    optional: true
+                },
+            }
+        });
+    });
     $(document).ready(function() {
         $('#ced').on('blur', function() {
             $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);

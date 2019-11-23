@@ -136,6 +136,15 @@ class eventoModelo extends mainModel
         $sql->execute();
         return $sql;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function consultar_disciplinas_evento_modelo($datos)
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM tab_dis WHERE cod_tip_even=:cod_tip_even");
+        $sql->bindParam(":cod_tip_even", $datos['cod_tip_even']);
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
 
     
 }

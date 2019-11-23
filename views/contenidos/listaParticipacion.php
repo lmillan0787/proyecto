@@ -9,7 +9,7 @@ $cod_even = $_POST['cod_even'];
 $datos = [
     "cod_even" => $cod_even
 ];
-
+echo SERVERURL.$ruta['1'];
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">

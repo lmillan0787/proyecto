@@ -1,13 +1,12 @@
 <?php
 $peticionAjax = false;
-include "./controllers/deportistaControlador.php";
-$insDeportista = new deportistaControlador();
+include "./controllers/delegadoControlador.php";
+$insDelegado= new delegadoControlador();
 ?>
-
 
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Datos Básicos</strong>
+        <strong>Registro de Delegado</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
@@ -15,35 +14,34 @@ $insDeportista = new deportistaControlador();
             <div class="text-center">
             </div>
             <!-- Cédula-->
-            <b><label for="textInput">Cédula:</label></b>
+            <b><label for="textInput ">Cédula:</<blabel></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Cédula" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="" required>
+                <input type="text" id="ced" class="form-control" placeholder="Cédula" aria-describedby="addon-wrapping" name="ced" onkeyup="javascript:this.value=this.value.toUpperCase();" minlength="7" maxlength="9" required pattern="[vVeE0-9]+" value="V">
             </div>
-            <div id="result-ced"></div>
+            <div id="result-ced"></div
             <!--Rol-->
-            <input type="text" name="cod_rol" value="2" hidden required>
+            <input type="text" name="cod_rol" value="2" hidden>
+                
             <!--Perfil-->
-            <input type="text" name="cod_perf" value="5" hidden required>
+            <input type="text" name="cod_perf" value="5" hidden="">
             <!--Evento-->
-            <br><b><label for="textInput">Comisión:</label></b>
+            <br><b><label for="textInput">Evento:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <select name="cod_even" id="cod_even" class="form-control"required >
+                <select name="cod_even" id="seleven" class="form-control">
                     <option disabled selected>Evento</option>
                     <?php
-                    $insDeportista->consultarEvento();
+                    $insDelegado->consultarEvento();
                     ?>
                 </select>
             </div>
-            <div id="result-even"></div>
-
             <!-- Region -->
-            <br><b><label for="textInput">Región:</label></b>
+            <br><b><label for="textInput">Región:</label><b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -51,12 +49,12 @@ $insDeportista = new deportistaControlador();
                 <select name="cod_reg" id="selreg" class="form-control" required>
                     <option disabled selected>Región</option>
                     <?php
-                    $insDeportista->consultarRegion();
+                    $insDelegado->consultarRegion();
                     ?>
                 </select>
             </div>
             <!-- Select Pueblo -->
-            <br><b><label for="textInput">Pueblo:</label></b>
+            <br><b><label for="textInput">Pueblo:</label><b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -64,14 +62,36 @@ $insDeportista = new deportistaControlador();
                 <select name="cod_pue" id="selpue" class="form-control" required>
                     <option disabled selected>Pueblo</option>
                     <?php
-                    $insDeportista->consultarPueblo();
+                    $insDelegado->consultarPueblo();
                     ?>
                 </select>
             </div>
             <!-- Select Disciplina -->
-            <div id="select2lista"></div>
+            <br><b><label for="textInput">Disciplina:</label><b>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_dis" id="seldis" class="form-control">
+                    <option disabled selected>Disciplina</option>
+                    <?php
+                    $insDelegado->consultarDisciplina();
+                    ?>
+                </select>
+            </div>
             <!-- Select Categoria -->
-            <input type="text" name="cod_cat" value="1" hidden required>
+            <br><b><label for="textInput">Categoria:</label><b>
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                </div>
+                <select name="cod_cat" id="seldis" class="form-control">
+                    <option disabled selected>Categoria</option>
+                    <?php
+                    $insDelegado->consultarCategoria();
+                    ?>
+                </select>
+            </div>
             <br>
             <center>
                 <div class="row">
@@ -82,7 +102,7 @@ $insDeportista = new deportistaControlador();
                     </div>
                     <div class="col-md-6">
                         <div id="results"></div>
-                        <input type="hidden" name="image" class="image-tag">
+                        <input type="hidden" name="image" class="image-tag"">
                     </div>
                 </div>
             </center>                
@@ -120,78 +140,39 @@ $insDeportista = new deportistaControlador();
     }
 </script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#cod_even').val(1);
-        recargarLista();
+$(document).ready(function() {  
+    $('#ced').on('blur', function(){
+        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 
-        $('#cod_even').change(function() {
-            recargarLista();
-        });
-    })
-</script>
-<script type="text/javascript">
-    function recargarLista() {
+        var ced = $(this).val();   
+        var dataString = 'ced='+ced;
+
         $.ajax({
             type: "POST",
-            url: "<?php echo SERVERURL ?>ajax/disciplinasEventoAjax.php",
-            data: "cod_even=" + $('#cod_even').val(),
-            success: function(r) {
-                $('#select2lista').html(r);
+            url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
+            data: dataString,
+            success: function(data) {
+                $('#result-ced').fadeIn(1000).html(data);
             }
         });
-    }
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.ced').mask('N-Z0000000', {
-            translation: {
-                'N': {
-                    pattern: /[vVeE]/
+    });              
+});    
+</script><script type="text/javascript">
+$(document).ready(function() {  
+    $('#ced').on('blur', function(){
+        $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
 
-                },
-                'Z': {
-                    pattern: /[0-9]/,
-                    optional: true
-                },
+        var ced = $(this).val();   
+        var dataString = 'ced='+ced;
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
+            data: dataString,
+            success: function(data) {
+                $('#result-ced').fadeIn(1000).html(data);
             }
         });
-    });
-    $(document).ready(function() {
-        $('#ced').on('blur', function() {
-            $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
-
-            var ced = $(this).val();
-            var dataString = 'ced=' + ced;
-
-            $.ajax({
-                type: "POST",
-                url: "<?php echo SERVERURL ?>ajax/validarParticipacionAjax.php",
-                data: dataString,
-                success: function(data) {
-                    $('#result-ced').fadeIn(1000).html(data);
-                }
-            });
-        });
-    });
-    $(document).ready(function() {
-        $('#cod_even').on('blur', function() {
-            $('#result-even').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
-
-            var cod_even = $(this).val();
-            var ced = $('#ced').val();
-            var dataString = {
-                'cod_even': cod_even,
-                'ced': ced
-            };
-
-            $.ajax({
-                type: "POST",
-                url: "<?php echo SERVERURL ?>ajax/validarEventoParticipacionAjax.php",
-                data: dataString,
-                success: function(data) {
-                    $('#result-even').fadeIn(1000).html(data);
-                }
-            });
-        });
-    });
+    });              
+});    
 </script>

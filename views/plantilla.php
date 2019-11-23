@@ -1,4 +1,5 @@
 <?php
+session_start(['name' => 'junain']);
 $peticionAjax = false;
 ?>
 
@@ -50,14 +51,15 @@ $peticionAjax = false;
     require_once "controllers/vistasControlador.php";
     $vt = new vistasControlador();
     $vistasR = $vt->obtener_vistas_controlador();
-    if ($vistasR == "inicio" || $vistasR == "404") {
+    if ($vistasR == "inicio" || $vistasR == "404" || $vistasR == "validacion") {
         if ($vistasR == "inicio") {
             require_once "./views/contenidos/inicio.php";
+        } else if ($vistasR == "validacion"){
+            require_once "./views/contenidos/validacion.php";
         } else {
             require_once "./views/contenidos/404.php";
         }
     } else {
-        session_start(['name' => 'junain']);
         require_once "./controllers/loginControlador.php";
         $insLogin = new loginControlador();
         if (!isset($_SESSION['token_junain']) || !isset($_SESSION['cod_usr_junain'])) {

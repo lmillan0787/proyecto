@@ -24,6 +24,7 @@ require_once "./controllers/tecnicoControlador.php";
                 <th scope="col">Institución</th>
                 <th scope="col">Cargo</th>
                 <th scope="col">Comisión</th>
+                <th scope="col">Estatus</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>

@@ -22,8 +22,7 @@ $cod_per = $_POST['cod_per'];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <?php
-                $insPersona->formulario_persona_editar_cedula_controlador() ?>
+                <?php $insPersona->formulario_persona_editar_cedula_controlador() ?>
             </div>
             <div id="result-ced"></div>
             <!-- Nombre-->

@@ -5,7 +5,6 @@ if ($peticionAjax) {
 } else {
     require_once "./models/personaModelo.php";
 }
-
 class personaControlador extends personaModelo
 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +37,7 @@ class personaControlador extends personaModelo
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //agregas persona
+    //agregar persona
     public function agregar_persona_controlador()
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
@@ -120,7 +119,7 @@ class personaControlador extends personaModelo
                 'Persona actualizada exitosamente!',
                 'success'
             ).then(function(){
-                window.location='" . SERVERURL . "personas/';
+                window.location='" . SERVERURL . "listaPersonas/';
             });            
             </script>";
             } else {
@@ -235,27 +234,6 @@ class personaControlador extends personaModelo
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar genero distinto
-    public function formulario_estatus_distinto()
-    {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
-        $datos = [
-            "cod_per" => $cod_per
-        ];
-        $row = personaModelo::consultar_persona_modelo($datos);
-        foreach ($row as $row) {
-            $cod_estat = $row['cod_estat'];
-            $datos= [
-                "cod_estat" => $cod_estat
-            ];
-            $row = mainModel::consultar_estatus_distinto($datos);
-            foreach ($row as $row) {
-                echo '<option value="' . $row['cod_estat'] . '">' . $row['des_estat'] . '</option>';
-            }
-        }
-        return $row;
-    }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar genero distinto
     public function formulario_genero_distinto()
     {
         $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
@@ -276,6 +254,27 @@ class personaControlador extends personaModelo
         return $row;
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar estatus distinto
+    public function formulario_estatus_distinto()
+    {
+        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = [
+            "cod_per" => $cod_per
+        ];
+        $row = personaModelo::consultar_persona_modelo($datos);
+        foreach ($row as $row) {
+            $cod_estat = $row['cod_estat'];
+            $datos= [
+                "cod_estat" => $cod_estat
+            ];
+            $row = mainModel::consultar_estatus_distinto($datos);
+            foreach ($row as $row) {
+                echo '<option value="' . $row['cod_estat'] . '">' . $row['des_estat'] . '</option>';
+            }
+        }
+        return $row;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //validar cedula
     public function validar_cedula_controlador()
     {
@@ -286,25 +285,13 @@ class personaControlador extends personaModelo
         if ($ced == "") { 
 
         } else {
-            $validarCedula = personaModelo::validar_cedula_modelo($datos);
+            $validarCedula = mainModel::validar_cedula_modelo($datos);
             if ($validarCedula->rowCount() >= 1) {
                 echo '<div class="alert alert-danger"><strong>Error!</strong> Cédula registrada anteriormente.</div>';
             } else {
 
              }
         }
-    }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //validar fecha de nacimiento
-    public function validar_fecha_nacimiento_controlador()
-    {
-        $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
-        $año=date('Y')-15;
-        $fec=date('m-d');
-        $fecha_minima = $año.'-'.$fec;
-        if ($fec_nac > $fecha_minima) {
-            echo '<div class="alert alert-danger"><strong>Error!</strong> La fecha mínima permitida es ' . $fecha_minima . '</div>';
-        } else { }
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //validar cedula distinta
@@ -326,6 +313,7 @@ class personaControlador extends personaModelo
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //validar participacion
+    //validar participacion por
     public function validar_cedula_participacion_controlador()
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
@@ -335,7 +323,7 @@ class personaControlador extends personaModelo
         if($ced == ""){
 
         }else{
-            $validarCedula = personaModelo::validar_cedula_modelo($datosPersona);
+            $validarCedula = mainModel::validar_cedula_modelo($datosPersona);
             if ($validarCedula->rowCount() >= 1) {
                 $sql = personaModelo::consultar_persona_cedula_modelo($datosPersona);
                 foreach ($sql as $row) {
@@ -349,6 +337,17 @@ class personaControlador extends personaModelo
                 echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema, diríjase al registro de persona.</div>';
             }
         }
-        
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //validar fecha de nacimiento
+    public function validar_fecha_nacimiento_controlador()
+    {
+        $fec_nac = mainModel::limpiar_cadena($_POST['fec_nac']);
+        $año=date('Y')-15;
+        $fec=date('m-d');
+        $fecha_minima = $año.'-'.$fec;
+        if ($fec_nac > $fecha_minima) {
+            echo '<div class="alert alert-danger"><strong>Error!</strong> La fecha mínima permitida es ' . $fecha_minima . '</div>';
+        } else { }
     }
 }

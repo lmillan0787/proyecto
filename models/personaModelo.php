@@ -64,13 +64,6 @@ class personaModelo extends mainModel
         return $sql;
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected function validar_cedula_modelo($datos){
-        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced=:ced");
-        $sql->bindParam(":ced", $datos['ced']);
-        $sql->execute();
-        return $sql;
-    }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function consultar_genero_distinto_modelo($datos){
         $sql = mainModel::conectar()->prepare("SELECT * FROM tab_gen WHERE cod_gen!=:cod_gen AND cod_gen!=3");
         $sql->bindParam(":cod_gen", $datos['cod_gen']);

@@ -15,7 +15,7 @@ require_once "./controllers/medicoControlador.php";
 </nav>
 <!-- Tabla -->
 <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tablaTodas">
-    <table class="table table-bordered table-striped" id="tabla">
+    <table class="text-capitalize table table-bordered table-striped" id="tabla">
         <thead>
             <tr>
                 <th scope="col">#</th>

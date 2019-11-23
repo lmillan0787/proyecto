@@ -22,12 +22,12 @@ class invitadoControlador extends invitadoModelo
                     <td class="text-center">' . $row['ced'] . '</td>
                     <td class="text-center">' . $row['nom'] . '</td>
                     <td class="text-center">' . $row['ape'] . '</td>
-                    <td class="text-center">' . $row['des_gen'] . '</td>
-                    <td class="text-center">' . $row['des_perf'] . '</td>
                     <td class="text-center">' . $row['des_even'] . '</td>
+                    <td class="text-center">' . $row['des_perf'] . '</td>
+                    <td class="text-center">' . $row['des_estat'] . '</td>
                     <td class="text-center">
                         <form class="" action="' . SERVERURL . 'editarInvitado" method="POST" enctype="multipart/form-data">
-                            <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                            <input type="text" value="' . $row['cod_par'] . '" name="cod_par" hidden required>
                             <button type="submit" class="btn btn-default btn-sm">
                                 <i class="far fa-edit fa-2x"></i>
                             </button>
@@ -35,7 +35,6 @@ class invitadoControlador extends invitadoModelo
                     </td>                                                      
                 </tr>';
         }
-        return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //registrar invitado
@@ -49,50 +48,71 @@ class invitadoControlador extends invitadoModelo
             "cod_eeven" => $cod_even,
             "cod_perf" => $cod_perf
         ];
-        $sql = personaModelo::validar_cedula_participacion_modelo($datosInvitado);
+        $sql = mainModel::validar_cedula_modelo($datosInvitado);
         if ($sql->rowCount() == 0) {
             echo "<script>
-            Swal.fire({
-                title: 'La cédula que intenta ingresar no existe',
-                text: '¿Desea registrar a la persona?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si Registrar'
-              }).then((result) => {
-                if (result.value) {
-                    window.location='" . SERVERURL . "registrarPersona/';
-                }
-              })
-            </script>";
+                        Swal.fire({
+                            title: 'La cédula que intenta ingresar no existe',
+                            text: '¿Desea registrar a la persona?',
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si Registrar'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location='" . SERVERURL . "registrarPersona/';
+                            }
+                        })
+                    </script>
+                ";
         } else {
-            $row = personaModelo::validar_persona_modelo($ced);
-            foreach ($row as $row) {
+            $sql = mainModel::datos_persona_modelo($datosInvitado);
+            foreach ($sql as $row) {
+                $cod_estat = $row['cod_estat'];
                 $cod_per = $row['cod_per'];
             }
-            if ($row['cod_estat'] == 1) {
-                
+            if ($cod_estat == 2) {
+                echo "
+                       <script>
+                        Swal.fire(
+                            'Error ',
+                            'Persona deshabilitada para participar',
+                            'error'
+                        );     
+                       </script>
+                    ";
+            } else {
                 $datosPart = [
                     'cod_per' => $cod_per,
                     'cod_even' => $cod_even,
                     'cod_perf' => $cod_perf
                 ];
-                $validarParticipacion = mainModel::validar_participacion_modelo($datosPart);
+                $validarParticipacion = mainModel::validar_persona_participacion_modelo($datosPart);
                 if ($validarParticipacion->rowCount() >= 1) {
                     echo "
-               <script>
-               Swal.fire(
-                'La persona ya posee participacion para este evento',
-                'Dirijase al módulo de participaciones para editar o seleccione un evento diferente',
-                'error'
-               );     
-               
-               </script>
-               ";
+                            <script>
+                            Swal.fire(
+                                'La persona ya posee participación para este evento',
+                                'Dirijase al módulo de participaciones para editar o seleccione un evento diferente',
+                                'error'
+                            );     
+                            </script>
+                        ";
                 } else {
-                    $registrarInvitado = invitadoModelo::agregar_invitado($datosPart);
-                    if ($_POST['image'] != "") {
+
+                    if ($_POST['image'] == "") {
+                        echo "
+                            <script>
+                                Swal.fire(
+                                    'Falta capturar la foto',
+                                    'Debe capturar la foto del participante ',
+                                    'error'
+                                );     
+                            </script>
+                            ";
+                    } else {
+                        $registrarInvitado = invitadoModelo::agregar_invitado($datosPart);
                         $img = $_POST['image'];
                         $folderPath = "../views/assets/upload/";
 
@@ -105,60 +125,82 @@ class invitadoControlador extends invitadoModelo
 
                         $file = $folderPath . $fileName;
                         file_put_contents($file, $image_base64);
-
                         if ($registrarInvitado->rowCount() >= 1) {
                             echo "
-               <script>
-               Swal.fire(
-                'Registro exitoso',
-                'Exito al agregar la participación',
-                'success'
-               ).then(function(){
-                window.location='" . SERVERURL . "invitados/';
-            });     
-               
-               </script>
-               ";
+                                <script>
+                                    Swal.fire(
+                                        'Registro exitoso',
+                                        'Exito al agregar la participación',
+                                        'success'
+                                    ).then(function(){
+                                        window.location='" . SERVERURL . "listaInvitados/';
+                                    });     
+                                </script>
+                            ";
                         } else {
                             echo "
-               <script>
-               Swal.fire(
-                'Error inesperado',
-                'Recargue la pagina e intente de nuevo',
-                'error'
-               );     
-               
-               </script>
-               ";
+                                <script>
+                                    Swal.fire(
+                                        'Error inesperado',
+                                        'Recargue la pagina e intente de nuevo',
+                                        'error'
+                                    );     
+                                </script>
+                            ";
                         }
-                    } else {
-                        echo "
-                   <script>
-                   Swal.fire(
-                    'Falta capturar la foto',
-                    'Debe capturar la foto del participante ',
-                    'error'
-                   );     
-                   
-                   </script>
-                   ";
                     }
                 }
-            }else{
-                echo "
-                       <script>
-                       Swal.fire(
-                        'Error ',
-                        'Persona deshabilitada para participar',
-                        'error'
-                       );     
-                       
-                       </script>
-                       ";
             }
         }
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function editar_invitado_controlador()
+    {
+        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $ced = mainModel::limpiar_cadena($_POST['ced']);
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
+        $cod_estat = mainModel::limpiar_cadena($_POST['cod_estat']);
+        $datos = [
+            "ced" => $ced
+        ];
+        $sql = mainModel::datos_persona_modelo($datos);
+        foreach ($sql as $row) {
+            $cod_per = $row['cod_per'];
+        }
+        $datos = [
+            "cod_par" => $cod_par,
+            "cod_per" => $cod_per,
+            "cod_even" => $cod_even,
+            "cod_perf" => $cod_perf,
+            "cod_estat" => $cod_estat
+        ];
+        $sql = invitadoModelo::editar_invitado_modelo($datos);
+        if ($sql->rowCount() >= 1) {
+            echo "
+                                <script>
+                                    Swal.fire(
+                                        'Registro exitoso',
+                                        'Exito al agregar la participación',
+                                        'success'
+                                    ).then(function(){
+                                        window.location='" . SERVERURL . "listaInvitados/';
+                                    });     
+                                </script>
+                            ";
+        } else {
+            echo "
+                                <script>
+                                    Swal.fire(
+                                        'Error inesperado',
+                                        'Recargue la pagina e intente de nuevo',
+                                        'error'
+                                    );     
+                                </script>
+                            ";
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultarRegion()
     {
         $consultaRegion = mainModel::conectar()->prepare("SELECT * from tab_reg ");
@@ -171,7 +213,7 @@ class invitadoControlador extends invitadoModelo
 
         echo '</select>';
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultarPerfil()
     {
         $consultarPerfil = mainModel::ejecutar_consulta_simple("SELECT cod_perf,des_perf FROM tab_perf where cod_rol=5 ");

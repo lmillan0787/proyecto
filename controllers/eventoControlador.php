@@ -40,7 +40,7 @@ class eventoControlador extends eventoModelo
                         <i class="far fa-edit fa-2x"></i>
                     </button>
                 </form>
-            </td>            
+            </td>              
         </tr>   
         ';
         }
@@ -58,7 +58,6 @@ class eventoControlador extends eventoModelo
             "fec_even" => $fec_even,
             "cod_reg" => $cod_reg,
             "cod_tip_even" => $cod_tip_even,
-
         ];
         $validarEvento = eventoModelo::validar_evento_modelo($datosEvento);
         if ($validarEvento->rowCount() >= 1) {
@@ -88,7 +87,6 @@ class eventoControlador extends eventoModelo
             } else {
                 $validarEvento = eventoModelo::validar_region_modelo($datosEvento);
                 if ($validarEvento->rowCount() >= 1) {
-
                     $alerta = [
                         "Alerta" => "simple",
                         "Titulo" => "Ya existe un evento activo en esta región",
@@ -210,6 +208,28 @@ class eventoControlador extends eventoModelo
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar evento tipo
+    public function formulario_evento_tipo()
+    {
+        $Reg = eventoModelo::consultar_tipo_evento_modelo();
+        foreach ($Reg as $row) {
+            echo '<option value="' . $row['cod_tip_even'] . '">' . $row['des_tip_even'] . '</option>';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar estatus
+    public function formulario_evento_estatus()
+    {
+        $row = mainModel::consultar_estatus_modelo();
+        foreach ($row as $row) {
+            echo '
+                <option value="' . $row['cod_estat'] . '" selected>' . $row['des_estat'] . '</option>                
+                        ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //editar evento formulario
     public function formulario_editar_nombre_evento_controlador()
     {
@@ -233,9 +253,7 @@ class eventoControlador extends eventoModelo
         $datosEvento = [
             "cod_even" => $cod_even
         ];
-
         $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
-
         foreach ($row as $row) {
             $fec_even = $row['fec_even'];
             $fecha_actual = date("Y-m-d");
@@ -251,7 +269,7 @@ class eventoControlador extends eventoModelo
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //editar  region formulario
+    //editar region formulario
     public function formulario_editar_region_evento_controlador()
     {
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
@@ -262,6 +280,22 @@ class eventoControlador extends eventoModelo
         foreach ($row as $row) {
             echo '
             <option value="' . $row['cod_reg'] . '" selected>' . $row['des_reg'] . '</option>
+            ';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar tipo de evento formulario
+    public function formulario_editar_tipo_evento_controlador()
+    {
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $datosEvento = [
+            "cod_even" => $cod_even
+        ];
+        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
+        foreach ($row as $row) {
+            echo '
+            <option selected value="' . $row['cod_tip_even'] . '" selected>' . $row['des_tip_even'] . '</option>
             ';
         }
         return $row;
@@ -283,8 +317,8 @@ class eventoControlador extends eventoModelo
         return $row;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //editar tipo de evento formulario
-    public function formulario_editar_tipo_evento_controlador()
+    //consultar region distinta
+    public function formulario_evento_region_distinta()
     {
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $datosEvento = [
@@ -292,13 +326,108 @@ class eventoControlador extends eventoModelo
         ];
         $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
         foreach ($row as $row) {
+            $cod_reg = $row['cod_reg'];
+            $datosEvento = [
+                "cod_reg" => $cod_reg
+            ];
+            $row = mainModel::consultar_region_distinta_modelo($datosEvento);
+            foreach ($row as $row) {
+                echo '<option value="' . $row['cod_reg'] . '">' . $row['des_reg'] . '</option>';
+            }
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar evento distinto tipo
+    public function formulario_evento_tipo_distinto()
+    {
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $datosEvento = [
+            "cod_even" => $cod_even
+        ];
+        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
+        foreach ($row as $row) {
+            $cod_tip_even = $row['cod_tip_even'];
+            $datosEvento = [
+                "cod_tip_even" => $cod_tip_even
+            ];
+            $row = eventoModelo::consultar_tipo_evento_distinto_modelo($datosEvento);
+            foreach ($row as $row) {
+                echo '<option value="' . $row['cod_tip_even'] . '">' . $row['des_tip_even'] . '</option>';
+            }
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar estatus distinta
+    public function formulario_evento_estatus_distinto()
+    {
+        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $datosEvento = [
+            "cod_even" => $cod_even
+        ];
+        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
+        foreach ($row as $row) {
+            $cod_estat = $row['cod_estat'];
+            $datosEvento = [
+                "cod_estat" => $cod_estat
+            ];
+            $row = mainModel::consultar_estatus_distinto($datosEvento);
+            foreach ($row as $row) {
+                echo '<option value="' . $row['cod_estat'] . '">' . $row['des_estat'] . '</option>';
+            }
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar evento tipo
+    public function formulario_evento_tipo_no_mix()
+    {
+        $Reg = eventoModelo::consultar_tipo_evento_modelo_no_mix();
+        foreach ($Reg as $row) {
+            echo '<option value="' . $row['cod_tip_even'] . '">' . $row['des_tip_even'] . '</option>';
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar eventos activos
+    public function consultar_evento_activo()
+    {
+        $row = eventoModelo::consultar_evento_activo_modelo();
+        foreach ($row as $row) {
             echo '
-            <option selected value="' . $row['cod_tip_even'] . '" selected>' . $row['des_tip_even'] . '</option>
+                <form class="dropdown-item" action="' . SERVERURL . 'listaParticipacion/" method="POST" data-form="" enctype="multipart/form-data">
+                    <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
+                    <button  type="submit" class="btn btn-default even" value="">' . $row['des_even'] . '</button>
+                </form>
             ';
         }
         return $row;
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //editar evento formulario
+    public function cabecera_nombre_evento_controlador($datos)
+    {
+        $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
+        $datosEvento = [
+            "cod_even" => $cod_even
+        ];
+        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
+        foreach ($row as $row) {
+            echo $row['des_even'];
+        }
+        return $row;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar eventos activos
+    public function boton_credenciales($datos)
+    {
+        $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
+        echo '<form action="' . SERVERURL . 'ajax/credencialesFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
+                <input type="text" name="cod_even" value="' . $cod_even . '" hidden>                 
+                <button type="submit" class="btn btn-warning ">Credenciales</button>
+            </form>';
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //validar nombre del evento
     public function validar_evento_controlador()
@@ -334,14 +463,16 @@ class eventoControlador extends eventoModelo
         $fec_even = mainModel::limpiar_cadena($_POST['fec_even']);
         $fecha_actual = date("Y-m-d");
         $fecha_actual2 = date("d-m-Y");
-        if ($fec_even < $fecha_actual) {
-            echo '<div class="alert alert-danger"><strong>Error!</strong> La fecha mínima para registrar el evento es ' . $fecha_actual2 . '</div>';
-        } else if ($fec_even > '2051-01-01') {
-            echo '<div class="alert alert-danger"><strong>Error!</strong> La fecha maxima para registrar el evento es 01-01-2051</div>';
-        } else { }
+        if ($fec_even == "") { } else {
+            if ($fec_even < $fecha_actual) {
+                echo '<div class="alert alert-danger"><strong>Error!</strong> La fecha mínima para registrar el evento es ' . $fecha_actual2 . '</div>';
+            } else if ($fec_even > '2051-01-01') {
+                echo '<div class="alert alert-danger"><strong>Error!</strong> La fecha maxima para registrar el evento es 01-01-2051</div>';
+            } else { }
+        }
     }
     //validar fdisciplinas evento
-    public function validar_disciplinas_evento_controlador()
+    public function consultar_disciplinas_evento_controlador()
     {
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $datosEvento = [
@@ -353,13 +484,32 @@ class eventoControlador extends eventoModelo
             $datosEvento = [
                 "cod_tip_even" => $cod_tip_even
             ];
+        }
+        if ($cod_even == 3) {
+            $sql = mainModel::consultar_disciplinas_modelo($datosEvento);
+            echo '<br><b><label for="textInput">Disciplina:</label></b>
+                <div class="input-group flex-nowrap">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
+                    </div>
+                    <select name="cod_dis" id="seldis" class="form-control" required>
+                        <option disabled selected>Disciplina</option>';
+            foreach ($sql as $row) {
+                echo '
+                        <option value="' . $row['cod_dis'] . '">' . $row['des_dis'] . '</option>
+                    ';
+            }
+            echo  '  
+            </select>
+        </div>';
+        } else {
             $sql = mainModel::consultar_disciplinas_tipo_modelo($datosEvento);
             echo '<br><b><label for="textInput">Disciplina:</label></b>
                 <div class="input-group flex-nowrap">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                     </div>
-                    <select name="cod_dis" id="seldis" class="form-control">
+                    <select name="cod_dis" id="seldis" class="form-control" required>
                         <option disabled selected>Disciplina</option>';
             foreach ($sql as $row) {
                 echo '
@@ -375,7 +525,6 @@ class eventoControlador extends eventoModelo
     //validar fecha evento
     public function validar_fecha_distinta_controlador()
     {
-
         $fec_form = mainModel::limpiar_cadena($_POST['fec_even']);
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $datosEvento = [
@@ -419,7 +568,7 @@ class eventoControlador extends eventoModelo
         $datos = [
             "ced" => $ced
         ];
-        $persona = personaModelo::validar_persona_modelo($datos);
+        $persona = mainModel::validar_cedula_modelo($datos);
         foreach ($persona as $row) {
             $cod_per = $row['cod_per'];
 
@@ -457,165 +606,5 @@ class eventoControlador extends eventoModelo
             default:
                 break;
         }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar region distinta
-    public function formulario_evento_region_distinta()
-    {
-        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
-        $datosEvento = [
-            "cod_even" => $cod_even
-        ];
-        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
-        foreach ($row as $row) {
-            $cod_reg = $row['cod_reg'];
-            $datosEvento = [
-                "cod_reg" => $cod_reg
-            ];
-            $row = mainModel::consultar_region_distinta_modelo($datosEvento);
-            foreach ($row as $row) {
-                echo '<option value="' . $row['cod_reg'] . '">' . $row['des_reg'] . '</option>';
-            }
-        }
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar estatus
-    public function formulario_evento_estatus()
-    {
-        $row = mainModel::consultar_estatus_modelo();
-        foreach ($row as $row) {
-            echo '
-                <option value="' . $row['cod_estat'] . '" selected>' . $row['des_estat'] . '</option>                
-                        ';
-        }
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar estatus distinta
-    public function formulario_evento_estatus_distinto()
-    {
-        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
-        $datosEvento = [
-            "cod_even" => $cod_even
-        ];
-        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
-        foreach ($row as $row) {
-            $cod_estat = $row['cod_estat'];
-            $datosEvento = [
-                "cod_estat" => $cod_estat
-            ];
-            $row = mainModel::consultar_estatus_distinto($datosEvento);
-            foreach ($row as $row) {
-                echo '<option value="' . $row['cod_estat'] . '">' . $row['des_estat'] . '</option>';
-            }
-        }
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar evento tipo
-    public function formulario_evento_tipo()
-    {
-        $Reg = eventoModelo::consultar_tipo_evento_modelo();
-        foreach ($Reg as $row) {
-            echo '<option value="' . $row['cod_tip_even'] . '">' . $row['des_tip_even'] . '</option>';
-        }
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar evento tipo
-    public function formulario_evento_tipo_no_mix()
-    {
-        $Reg = eventoModelo::consultar_tipo_evento_modelo_no_mix();
-        foreach ($Reg as $row) {
-            echo '<option value="' . $row['cod_tip_even'] . '">' . $row['des_tip_even'] . '</option>';
-        }
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar evento distinto tipo
-    public function formulario_evento_tipo_distinto()
-    {
-        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
-        $datosEvento = [
-            "cod_even" => $cod_even
-        ];
-        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
-        foreach ($row as $row) {
-            $cod_tip_even = $row['cod_tip_even'];
-            $datosEvento = [
-                "cod_tip_even" => $cod_tip_even
-            ];
-            $row = eventoModelo::consultar_tipo_evento_distinto_modelo($datosEvento);
-            foreach ($row as $row) {
-                echo '<option value="' . $row['cod_tip_even'] . '">' . $row['des_tip_even'] . '</option>';
-            }
-        }
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar eventos activos
-    public function consultar_evento_activo()
-    {
-        $row = eventoModelo::consultar_evento_activo_modelo();
-        foreach ($row as $row) {
-            echo '
-                <form class="dropdown-item" action="' . SERVERURL . 'participacion/" method="POST" data-form="" enctype="multipart/form-data">
-                    <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
-                    <button  type="submit" class="btn btn-default even" value="">' . $row['des_even'] . '</button>
-                </form>
-            ';
-        }
-        return $row;
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //eliminar evento
-    public function eliminar_evento_controlador()
-    {
-        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
-        $datosEvento = [
-            "cod_even" => $cod_even
-        ];
-        $eliminarEvento = eventoModelo::eliminar_evento($datosEvento);
-        if ($eliminarEvento->rowCount() >= 1) {
-            $alerta = [
-                "Alerta" => "simpleEventos",
-                "Titulo" => "Borrado Exitoso",
-                "Texto" => "Evento eliminado del sistema exitosamente",
-                "Tipo" => "success"
-            ];
-        } else {
-            $alerta = [
-                "Alerta" => "simple",
-                "Titulo" => "Ocurrió un error inesperado",
-                "Texto" => "Error al eliminar el evento",
-                "Tipo" => "error"
-            ];
-        }
-        return mainModel::sweet_alert($alerta);
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //editar evento formulario
-    public function cabecera_nombre_evento_controlador($datos)
-    {
-        $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
-        $datosEvento = [
-            "cod_even" => $cod_even
-        ];
-        $row = eventoModelo::consultar_editar_evento_modelo($datosEvento);
-        foreach ($row as $row) {
-            echo $row['des_even'];
-        }
-        return $row;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //consultar eventos activos
-    public function boton_credenciales($datos)
-    {
-        $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
-        echo '<form action="' . SERVERURL . 'ajax/credencialesFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">                            
-                <input type="text" name="cod_even" value="' . $cod_even . '" hidden>                 
-                <button type="submit" class="btn btn-warning ">Credenciales</button>
-            </form>';
     }
 }

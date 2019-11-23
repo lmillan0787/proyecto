@@ -22,7 +22,7 @@ class deportistaModelo extends mainModel
         return $sql;
     }
     public function consultar_deportista(){
-        $consultaDeportista = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*,d.* ,e.*,f.*,g.*,h.*,i.*,j.*,k.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN dat_del AS c ON b.cod_par=c.cod_par INNER JOIN tab_gen AS d  ON a.cod_gen=d.cod_gen INNER JOIN tab_reg AS e ON c.cod_reg=e.cod_reg INNER JOIN tab_pue AS f on f.cod_pue=c.cod_pue INNER JOIN tab_reg AS g ON g.cod_reg=c.cod_reg INNER JOIN tab_dis AS h ON h.cod_dis=c.cod_dis INNER JOIN dat_even AS i on b.cod_even=i.cod_even INNER JOIN tab_perf as j ON b.cod_perf=j.cod_perf INNER JOIN tab_cat AS k ON c.cod_cat=k.cod_cat WHERE b.cod_perf=4  ORDER BY c.cod_par DESC");
+        $consultaDeportista = mainModel::conectar()->prepare("SELECT a.*, b.*, c.*,d.* ,e.*,f.*,g.*,h.*,i.*,j.*,k.*, TIMESTAMPDIFF(YEAR,a.fec_nac,CURDATE()) AS edad FROM dat_per AS a INNER JOIN dat_par AS b ON b.cod_per=a.cod_per INNER JOIN dat_del AS c ON b.cod_par=c.cod_par INNER JOIN tab_gen AS d  ON a.cod_gen=d.cod_gen INNER JOIN tab_reg AS e ON c.cod_reg=e.cod_reg INNER JOIN tab_pue AS f on f.cod_pue=c.cod_pue INNER JOIN tab_reg AS g ON g.cod_reg=c.cod_reg INNER JOIN tab_dis AS h ON h.cod_dis=c.cod_dis INNER JOIN dat_even AS i on b.cod_even=i.cod_even INNER JOIN tab_perf as j ON b.cod_perf=j.cod_perf INNER JOIN tab_cat AS k ON c.cod_cat=k.cod_cat WHERE b.cod_perf=4  AND a.cod_estat=1 ORDER BY c.cod_par DESC");
         $consultaDeportista->execute();
         $row = $consultaDeportista->fetchAll(PDO::FETCH_ASSOC);
         return $row;

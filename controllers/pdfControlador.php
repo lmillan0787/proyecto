@@ -21,14 +21,14 @@ class PDF extends FPDF
         $this->SetX(2);
         $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['des_even'])), 0);
         ////////////////////////////////////////////////////////////////////////
-        $this->Line(1, 1, 89, 1);
+        $this->Line(1, 1, 79, 1);
         $this->Line(1, 1, 1, 99);
-        $this->Line(1, 79.5, 89, 79.5);
-        $this->Line(89, 1, 89, 99);
-        $this->Line(1, 99, 89, 99);
+        $this->Line(1, 79.5, 79, 79.5);
+        $this->Line(79, 1, 79, 99);
+        $this->Line(1, 99, 79, 99);
         // Imagenes de Cabecera
-        $this->Image('../views/assets/fpdf/img/minppi.png', 45, 18, 30, 30);
-        $this->Image('../views/assets/fpdf/img/jyd.png', 60, 2, 8, 15);
+        $this->Image('../views/assets/fpdf/img/minppi.png', 48, 22, 20, 25);
+        $this->Image('../views/assets/fpdf/img/jyd.png', 42, 2, 12, 15);
         $this->Ln(22);
         // Arial bold 15
         $this->SetFont('helvetica', 'B', 10);
@@ -45,10 +45,10 @@ class PDF extends FPDF
         $this->SetXY(0, 65);
         if ($_POST['cod_rol'] == 2) {
             if ($_POST['cod_perf'] == 4) {
-                $this->Image('../views/assets/img/' . $_POST['cod_reg'] . '.jpg', 1.5, 80, 87, 17, 'JPG');
+                $this->Image('../views/assets/img/' . $_POST['cod_reg'] . '.jpg', 1.5, 80, 77, 17, 'JPG');
                 $this->Image('../views/assets/img/archery.png', 3, 82, 10, 10, 'png');
-                $this->Cell(95, 45, 'DEPORTISTA', 0, 1, 'C');
-                $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 87, 5);
+                $this->Cell(85, 45, 'DEPORTISTA', 0, 1, 'C');
+                $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 77, 5);
             } else if ($_POST['cod_perf'] == 5) {
                 $this->Image('../views/assets/img/' . $_POST['cod_reg'] . '.jpg', 1.5, 80, 87, 17, 'JPG');
                 $this->Image('../views/assets/img/coach.png', 3, 82, 10, 10, 'png');
@@ -83,7 +83,7 @@ $this->Output();
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //QR
         require('../views/assets/qrcode/qrcode.class.php');
-        $msg = "https://judenain.000webhostapp.com/prueba/";
+        $msg = $_POST['ced'];
         $err = 'H';
         $qrcode = new QRcode(utf8_encode($msg), $err);
         $qrcode->disableBorder();
@@ -95,7 +95,7 @@ $this->Output();
             $this->SetFont('Times', '', 10);
             $this->SetLineWidth(.5);
             ////////////////////////////////////////////////////////////QR/////////////////////////////
-            $qrcode->displayFPDF($this, 73, 2, 15);
+            $qrcode->displayFPDF($this, 58, 2,20 );
             ////////////////////////////////////////////////////////////QR/////////////////////////////
             $this->Ln(20);
             $this->Ln(20);
@@ -161,7 +161,7 @@ $this->Output();
             $this->Image('../views/assets/upload/' . $_POST['ced'] . '.jpg', 5, 15, 30, 30, 'JPG');
             //$this->Ln(2);
             ////////////////////////////////////////////////////////////QR/////////////////////////////
-            $qrcode->displayFPDF($this, 73, 2, 15);
+            $qrcode->displayFPDF($this, 58, 2,20 );
             ////////////////////////////////////////////////////////////QR/////////////////////////////
             //
             $this->SetY(49);
@@ -237,7 +237,7 @@ $this->Output();
             //$this->Ln(2);
 
             ////////////////////////////////////////////////////////////QR/////////////////////////////
-            $qrcode->displayFPDF($this, 73, 2, 15);
+            $qrcode->displayFPDF($this, 58, 2,20 );
             ////////////////////////////////////////////////////////////QR/////////////////////////////
 
             //
@@ -304,7 +304,7 @@ $this->Output();
             $this->SetLineWidth(.5);
 
             ////////////////////////////////////////////////////////////QR/////////////////////////////
-            $qrcode->displayFPDF($this, 73, 2, 15);
+            $qrcode->displayFPDF($this, 58, 2,20 );
             ////////////////////////////////////////////////////////////QR/////////////////////////////
 
 
@@ -391,7 +391,7 @@ $this->Ln(5);*/
             //$this->Ln(2);
 
             ////////////////////////////////////////////////////////////QR/////////////////////////////
-            $qrcode->displayFPDF($this, 73, 2, 15);
+            $qrcode->displayFPDF($this, 58, 2,20 );
             ////////////////////////////////////////////////////////////QR/////////////////////////////
 
             //
