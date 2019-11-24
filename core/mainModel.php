@@ -340,6 +340,19 @@ class mainModel
                     </script>
                 ";
             
+        } else if ($datos['Alerta'] == "simplePerfil") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "listaPerfiles/';
+                        });
+                    </script>
+                ";
+            
         } 
         return $alerta;
     }
