@@ -2,7 +2,7 @@
 
     $peticionAjax = false;
     require_once "./controllers/institucionControlador.php";
-    $insEvento = new eventoControlador();
+    $insInstitucion = new institucionControlador();
 
 ?>
 <div class="card" id="form_evento">

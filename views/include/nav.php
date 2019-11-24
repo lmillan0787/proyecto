@@ -52,6 +52,7 @@ $insEvento = new eventoControlador();
               <a class="dropdown-item" href="<?php echo SERVERURL ?>listaUsuarios/"><i class="fas fa-user-cog"></i> Usuarios</a>
               <a class="dropdown-item" href="<?php echo SERVERURL ?>listaEventos/"><i class="far fa-calendar-alt"></i> Eventos</a>
                <a class="dropdown-item" href="<?php echo SERVERURL ?>listaInstitucion/"><i class="far fa-building"></i> Instituciones</a>
+               <a class="dropdown-item" href="<?php echo SERVERURL ?>listaPerfiles/"><i class="fas fa-user-friends"></i> Perfiles</a>
               <a class="dropdown-item" href="<?php echo SERVERURL ?>listaPueblos/"><i class="fas fa-globe-americas"></i> Pueblos</a>
               <a class="dropdown-item" href="<?php echo SERVERURL ?>listaDisciplinas/"><i class="fas fa-futbol"></i> Disciplinas</a>
               <a class="dropdown-item" href="<?php echo SERVERURL ?>ajax/salirAjax.php"><i class="fas fa-power-off"></i> Salir</a>
