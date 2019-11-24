@@ -24,14 +24,12 @@ class eventoControlador extends eventoModelo
             <td class="text-center" id="">' . $row['des_tip_even'] . '</td>
             <td class="text-center" id="">' . $row['des_reg'] . '</td>            
             <td class="text-center" id="estatus' . $row['cod_estat'] . '">' . $row['des_estat'] . '</td>
-            <td class="text-center" class="btn-tabla">
-                <form class="" action="' . SERVERURL . 'estadisticas/" method="POST" data-form="" enctype="multipart/form-data">
-                    <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
-                    <input type="text" value="' . $row['des_even'] . '" name="des_even" hidden required>
+            <td class="text-center">
+                <a href="' . SERVERURL . 'estadisticas/'.$row['cod_even'].'">
                     <button type="submit" class="btn btn-warning btn-sm">
-                    <i class="fas fa-chart-bar fa-2x"></i>
+                        <i class="fas fa-chart-bar fa-2x"></i>
                     </button>
-                </form>
+                </a>  
             </td>
             <td class="text-center" class="btn-tabla">
                 <form class="" action="' . SERVERURL . 'editarEvento/" method="POST" data-form="" enctype="multipart/form-data">

@@ -4,7 +4,8 @@ $peticionAjax = false;
 
 require_once "./controllers/personaControlador.php";
 $insPersona = new personaControlador();
-$cod_per = $_POST['cod_per'];
+$var = explode("/",$_GET['views']);
+$cod_per = $var[1];
 
 ?>
 <div class="card" id="form_evento">
@@ -22,7 +23,7 @@ $cod_per = $_POST['cod_per'];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <?php $insPersona->formulario_persona_editar_cedula_controlador() ?>
+                <?php $insPersona->formulario_persona_editar_cedula_controlador($cod_per) ?>
             </div>
             <div id="result-ced"></div>
             <!-- Nombre-->
@@ -31,7 +32,7 @@ $cod_per = $_POST['cod_per'];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <?php $insPersona->formulario_persona_editar_nombre_controlador() ?>
+                <?php $insPersona->formulario_persona_editar_nombre_controlador($cod_per) ?>
             </div>
             <!-- Apellido-->
             <br><b><label for="textInput">Apellido:</label></b>
@@ -39,7 +40,7 @@ $cod_per = $_POST['cod_per'];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <?php $insPersona->formulario_persona_editar_apellido_controlador() ?>
+                <?php $insPersona->formulario_persona_editar_apellido_controlador($cod_per) ?>
             </div>
             <!-- Fecha de nacimiento-->
             <br><b><label for="textInput">Fecha de nacimiento:</label></b>
@@ -47,7 +48,7 @@ $cod_per = $_POST['cod_per'];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
                 </div>
-                <?php $insPersona->formulario_person_editar_fecha_controlador() ?>
+                <?php $insPersona->formulario_person_editar_fecha_controlador($cod_per) ?>
             </div>
             <!-- Género-->
             <br><b><label for="textInput">Género:</label></b>
@@ -57,8 +58,8 @@ $cod_per = $_POST['cod_per'];
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_gen" name="cod_gen" required>
                     <?php
-                    $insPersona->formulario_editar_persona_genero_controlador();
-                    $insPersona->formulario_genero_distinto();
+                    $insPersona->formulario_editar_persona_genero_controlador($cod_per);
+                    $insPersona->formulario_genero_distinto($cod_per);
                     ?>
                 </select>
             </div>
@@ -70,8 +71,8 @@ $cod_per = $_POST['cod_per'];
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estat" name="cod_estat" required>
                     <?php
-                    $insPersona->formulario_editar_persona_estatus_controlador();
-                    $insPersona->formulario_estatus_distinto();
+                    $insPersona->formulario_editar_persona_estatus_controlador($cod_per);
+                    $insPersona->formulario_estatus_distinto($cod_per);
                     ?>
                 </select>
             </div>

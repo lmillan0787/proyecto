@@ -16,7 +16,8 @@ class personaControlador extends personaModelo
         foreach ($sql as $row) {
             $n++;
             echo '
-            <tr>    
+            <tr>
+             
                 <td class="text-center">' . $n . '</td>
                 <td class="text-center">' . $row['ced'] . '</td>
                 <td class="text-center">' . $row['nom'] . '</td>
@@ -25,12 +26,11 @@ class personaControlador extends personaModelo
                 <td class="text-center">' . $row['edad'] . '</td> 
                 <td class="text-center">' . $row['des_estat'] . '</td>               
                 <td class="text-center">
-                    <form class="" action="' . SERVERURL . 'editarPersona" method="POST" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_per'] . '" name="cod_per" hidden required>
+                    <a href="' . SERVERURL . 'editarPersona/'.$row['cod_per'].'">
                         <button type="submit" class="btn btn-default btn-sm">
                             <i class="far fa-edit fa-2x"></i>
                         </button>
-                    </form>    
+                    </a>  
                 </td>               
             </tr>';
         }
@@ -135,11 +135,11 @@ class personaControlador extends personaModelo
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //editar persona formulario cedula
-    public function formulario_persona_editar_cedula_controlador()
-    {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+    public function formulario_persona_editar_cedula_controlador($datos)
+    {   
+        $datos = mainModel::limpiar_cadena($datos);
         $datos = [
-            "cod_per" => $cod_per
+            "cod_per" => $datos
         ];
         $row = personaModelo::consultar_persona_modelo($datos);
         foreach ($row as $row) {
@@ -151,11 +151,11 @@ class personaControlador extends personaModelo
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //editar persona formulario nombre
-    public function formulario_persona_editar_nombre_controlador()
+    public function formulario_persona_editar_nombre_controlador($datos)
     {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = mainModel::limpiar_cadena($datos);
         $datos = [
-            "cod_per" => $cod_per
+            "cod_per" => $datos
         ];
         $row = personaModelo::consultar_persona_modelo($datos);
         foreach ($row as $row) {
@@ -167,11 +167,11 @@ class personaControlador extends personaModelo
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //editar persona formulario apellido
-    public function formulario_persona_editar_apellido_controlador()
+    public function formulario_persona_editar_apellido_controlador($datos)
     {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = mainModel::limpiar_cadena($datos);
         $datos = [
-            "cod_per" => $cod_per
+            "cod_per" => $datos
         ];
         $row = personaModelo::consultar_persona_modelo($datos);
         foreach ($row as $row) {
@@ -183,11 +183,11 @@ class personaControlador extends personaModelo
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //editar persona formulario fecha
-    public function formulario_person_editar_fecha_controlador()
+    public function formulario_person_editar_fecha_controlador($datos)
     {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = mainModel::limpiar_cadena($datos);
         $datos = [
-            "cod_per" => $cod_per
+            "cod_per" => $datos
         ];
         $año=date('Y')-15;
         $fec=date('m-d');
@@ -202,11 +202,11 @@ class personaControlador extends personaModelo
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //editar persona formulario genero
-    public function formulario_editar_persona_genero_controlador()
+    public function formulario_editar_persona_genero_controlador($datos)
     {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = mainModel::limpiar_cadena($datos);
         $datos = [
-            "cod_per" => $cod_per
+            "cod_per" => $datos
         ];
         $row = personaModelo::consultar_persona_modelo($datos);
         foreach ($row as $row) {
@@ -218,11 +218,11 @@ class personaControlador extends personaModelo
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //editar persona formulario estatus
-    public function formulario_editar_persona_estatus_controlador()
+    public function formulario_editar_persona_estatus_controlador($datos)
     {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = mainModel::limpiar_cadena($datos);
         $datos = [
-            "cod_per" => $cod_per
+            "cod_per" => $datos
         ];
         $row = personaModelo::consultar_persona_modelo($datos);
         foreach ($row as $row) {
@@ -234,11 +234,11 @@ class personaControlador extends personaModelo
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar genero distinto
-    public function formulario_genero_distinto()
+    public function formulario_genero_distinto($datos)
     {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = mainModel::limpiar_cadena($datos);
         $datos = [
-            "cod_per" => $cod_per
+            "cod_per" => $datos
         ];
         $row = personaModelo::consultar_persona_modelo($datos);
         foreach ($row as $row) {
@@ -255,11 +255,11 @@ class personaControlador extends personaModelo
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar estatus distinto
-    public function formulario_estatus_distinto()
+    public function formulario_estatus_distinto($datos)
     {
-        $cod_per = mainModel::limpiar_cadena($_POST['cod_per']);
+        $datos = mainModel::limpiar_cadena($datos);
         $datos = [
-            "cod_per" => $cod_per
+            "cod_per" => $datos
         ];
         $row = personaModelo::consultar_persona_modelo($datos);
         foreach ($row as $row) {
@@ -278,6 +278,7 @@ class personaControlador extends personaModelo
     //validar cedula
     public function validar_cedula_controlador()
     {
+        
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $datos = [
             "ced" => $ced
