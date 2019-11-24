@@ -8,7 +8,7 @@
 <div class="card" id="form_ini">
 
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Datos Básicos</strong>
+        <strong>Datos Básicos del Usuario</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">

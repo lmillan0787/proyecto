@@ -396,10 +396,7 @@ class eventoControlador extends eventoModelo
         $row = eventoModelo::consultar_evento_activo_modelo();
         foreach ($row as $row) {
             echo '
-                <form class="dropdown-item" action="' . SERVERURL . 'listaParticipacion/" method="POST" data-form="" enctype="multipart/form-data">
-                    <input type="text" value="' . $row['cod_even'] . '" name="cod_even" hidden required>
-                    <button  type="submit" class="btn btn-default even" value="">' . $row['des_even'] . '</button>
-                </form>
+            <a class="dropdown-item" href="'.SERVERURL.'listaParticipacion/'.$row['cod_even'].'"><i class="fas fa-user-check"></i> '.$row['des_even'].'</a>
             ';
         }
         return $row;
