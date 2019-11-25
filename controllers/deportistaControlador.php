@@ -20,7 +20,7 @@ class deportistaControlador extends deportistaModelo
         /*echo $ced . ' ' . $cod_even . ' ' . $cod_perf . ' ' . $cod_pue . ' ' . $cod_reg . ' ' . $cod_dis . ' ' . $cod_cat;*/
         $datos = [
             "ced" => $ced,
-            "cod_eeven" => $cod_even,
+            "cod_even" => $cod_even,
             "cod_perf" => $cod_perf
         ];
         $sql = mainModel::validar_cedula_modelo($datos);
@@ -91,8 +91,8 @@ class deportistaControlador extends deportistaModelo
                             </script>
                             ";
                     } else {
-                        $registrarInvitado = deportistaModelo::agregar_deportista($datosPart);
-                        $img = $_POST['image'];
+                        $registrarDeportista = deportistaModelo::agregar_deportista($datosPart);
+                        $img = strtolower($_POST['image']);
                         $folderPath = "../views/assets/upload/";
 
                         $image_parts = explode(";base64,", $img);
@@ -104,7 +104,7 @@ class deportistaControlador extends deportistaModelo
 
                         $file = $folderPath . $fileName;
                         file_put_contents($file, $image_base64);
-                        if ($registrarInvitado->rowCount() >= 1) {
+                        if ($registrarDeportista->rowCount() >= 1) {
                             echo "
                                 <script>
                                     Swal.fire(

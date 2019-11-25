@@ -39,19 +39,19 @@ class tecnicoControlador extends tecnicoModelo
         return $row;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //registrar personal técnico
-    public function agregar_invitado_controlador()
+    public function agregar_tecnico_controlador()
     {
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
         $cod_inst = mainModel::limpiar_cadena($_POST['cod_inst']);
         $cod_carg = mainModel::limpiar_cadena($_POST['cod_carg']);
-        $datosInvitado = [
+        $datosTecnico = [
             "ced" => $ced,
             "cod_eeven" => $cod_even,
             "cod_perf" => $cod_perf
         ];
-        $sql = mainModel::validar_cedula_modelo($datosInvitado);
+        $sql = mainModel::validar_cedula_modelo($datosTecnico);
         if ($sql->rowCount() == 0) {
             echo "<script>
                         Swal.fire({
@@ -70,7 +70,7 @@ class tecnicoControlador extends tecnicoModelo
                     </script>
                 ";
         } else {
-            $sql = mainModel::datos_persona_modelo($datosInvitado);
+            $sql = mainModel::datos_persona_modelo($datosTecnico);
             foreach ($sql as $row) {
                 $cod_estat = $row['cod_estat'];
                 $cod_per = $row['cod_per'];

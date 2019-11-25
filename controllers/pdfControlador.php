@@ -83,7 +83,7 @@ class PDF extends FPDF
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //QR
         require('../views/assets/qrcode/qrcode.class.php');
-        $msg = SERVERURL."validacion/";
+        $msg = SERVERURL."validacion/".$_POST['cod_par']."/";
         $err = 'H';
         $qrcode = new QRcode(utf8_encode($msg), $err);
         $qrcode->disableBorder();
@@ -129,13 +129,7 @@ class PDF extends FPDF
             $this->SetX(20);
             $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['apellido'])), 0);
             $this->Ln(5);
-            $this->SetX(2);
-            $this->Cell(40, 5, 'Edad:', 0);
-            $this->Ln(0);
-            $this->SetX(20);
-            //$this->Cell(40,5,'31',0);
-            $this->Cell(40, 5, $_POST['edad'], 0);
-            $this->Ln(5);
+            //alias
             $this->SetX(2);
             $this->Cell(40, 5, 'Territorio:', 0);
             $this->Ln(0);
@@ -343,21 +337,13 @@ class PDF extends FPDF
             //$this->Cell(40,5,'Millan',0);
             $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['apellido'])), 0);
             $this->Ln(5);
-            /*
-$this->SetX(2);
-$this->Cell(40,5,'Edad:',0);
-$this->Ln(0);
-$this->SetX(22);
-//$this->Cell(40,5,'31',0);
-$this->Cell(40,5,$_POST['edad'],0);
-$this->Ln(5);*/
 
             $this->SetX(2);
             $this->Cell(40, 5, 'Territorio:', 0);
             $this->Ln(0);
             $this->SetX(20);
             //$this->Cell(40,5,'Zonas Urbanas',0);
-            $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['des_reg'], 'UTF-8')), 0);
+            $this->Cell(40, 5, utf8_decode(mb_strtoupper($_POST['alias'], 'UTF-8')), 0);
             $this->Ln(5);
 
             $this->SetX(2);

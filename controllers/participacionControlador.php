@@ -12,16 +12,23 @@ class participacionControlador extends participacionModelo
     public function tabla_participacion($datos)
     {  
         $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
-
         $datos = [
             "cod_even" => $cod_even
         ];
-        $sql = participacionModelo::consultar_participacion_modelo($datos);
+        $sql = participacionModelo::lista_participacion_modelo($datos);
         $n = 0;
         foreach ($sql as $row) {
-
+            $datos = [
+                "cod_par" => $row['cod_par']
+            ];
             $n++;
-            if ($row['cod_rol'] == 2) {
+            if ($row['cod_rol'] == 2) {   
+                $sql = participacionModelo::lista_participacion_delegaciones_modelo($datos);
+                foreach ($sql as $row){
+                    $alias = $row['alias'];
+                    $des_pue = $row['des_pue'];
+                    $des_dis = $row['des_dis'];
+                }
                 $form = '
                 <form action="' . SERVERURL . 'ajax/participacionFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">
                     <input type="text" name="ced" value="' . $row['ced'] . '" hidden>
@@ -29,9 +36,9 @@ class participacionControlador extends participacionModelo
                     <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
                     <input type="text" name="cod_perf" value="' . $row['cod_perf'] . '" hidden>
                     <input type="text" name="cod_rol" value="' . $row['cod_rol'] . '" hidden>
-                    <input type="text" name="alias" value="' . $row['alias'] . '" hidden>
-                    <input type="text" name="des_pue" value="' . $row['des_pue'] . '" hidden>
-                    <input type="text" name="des_dis" value="' . $row['des_dis'] . '" hidden>
+                    <input type="text" name="alias" value="' .$alias. '" hidden>
+                    <input type="text" name="des_pue" value="' . $des_pue. '" hidden>
+                    <input type="text" name="des_dis" value="' . $des_dis. '" hidden>
                     <input type="text" name="cod_reg" value="' . $row['cod_reg'] . '" hidden>
                     <input type="text" name="des_even" value="' . $row['des_even'] . '" hidden>
                     <input type="text" name="cod_even" value="' . $row['cod_even'] . '" hidden>
@@ -43,13 +50,18 @@ class participacionControlador extends participacionModelo
                 </form>
                 ';
             } else if ($row['cod_rol'] == 4) {
-                $form = '
+                $sql = participacionModelo::lista_participacion_tecnicos_modelo($datos);
+                foreach ($sql as $row){
+                    $des_carg = $row['des_carg'];
+                    $siglas = $row['siglas'];
+                }
+                    $form = '
                     <form action="' . SERVERURL . 'ajax/participacionFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer">
                     <input type="text" name="ced" value="' . $row['ced'] . '" hidden>
                     <input type="text" name="nombre" value="' . $row['nom'] . '" hidden>
                     <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
-                    <input type="text" name="des_carg" value="' . $row['des_carg'] . '" hidden>
-                    <input type="text" name="siglas" value="' . $row['siglas'] . '" hidden>
+                    <input type="text" name="des_carg" value="' . $des_carg. '" hidden>
+                    <input type="text" name="siglas" value="' . $siglas. '" hidden>
                     <input type="text" name="des_perf" value="' . $row['des_perf'] . '" hidden>
                     <input type="text" name="cod_perf" value="' . $row['cod_perf'] . '" hidden>
                     <input type="text" name="cod_rol" value="' . $row['cod_rol'] . '" hidden>
@@ -70,7 +82,6 @@ class participacionControlador extends participacionModelo
                     <input type="text" name="apellido" value="' . $row['ape'] . '" hidden>
                     <input type="text" name="cod_perf" value="' . $row['cod_perf'] . '" hidden>
                     <input type="text" name="des_perf" value="' . $row['des_perf'] . '" hidden>
-                    <input type="text" name="edad" value="' . $row['edad'] . '" hidden>
                     <input type="text" name="genero" value="' . $row['des_perf'] . '" hidden>
                     <input type="text" name="cod_rol" value="' . $row['cod_rol'] . '" hidden>
                     <input type="text" name="des_even" value="' . $row['des_even'] . '" hidden>
@@ -96,18 +107,13 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function datos_credenciales_controlador()
+    public function credencial_delegacion($datos)
     {
-        $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
+        $cod_even = mainModel::limpiar_cadena($datos['cod_even']);
         $datos = [
             "cod_even" => $cod_even
         ];
-        $row = participacionModelo::consultar_participacion_modelo($datos);
-        foreach ($row as $row) {
-            require_once "../controllers/pdfControlador.php";
-            $insCredencial = new PDF('p', 'mm', array(100, 90));
-            $insCredencial->generar_credencial_controlador1();
-        }
+        $row = participacionModelo::lista_participacion_modelo($datos);
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -485,24 +491,21 @@ class participacionControlador extends participacionModelo
             if (($row['cod_estat_per'] == 1) && ($row['cod_estat_even'] == 1) && ($row['cod_estat_par'] == 1)){
                 echo '<script>
                 Swal.fire(
-                    "Esta credencial se encuentra activa",
-                    "",
+                    "Credencial Activa",
+                    "'.ucfirst($row['nom']).' '.ucfirst($row['ape']).'<br>'.ucfirst($row['ced']).'<br>'.mb_strtoupper($row['des_even']).'",
                     "success"
-                );     
+                );    
                 </script>';
             }else{
                 echo '<script>
                 Swal.fire(
-                    "Esta credencial se encuentra deshabilitada",
-                    "",
+                    "Credencial Deshabilitada",
+                    "'.ucfirst($row['nom']).' '.ucfirst($row['ape']).'<br>'.ucfirst($row['ced']).'<br>'.mb_strtoupper($row['des_even']).'",
                     "error"
-                );     
+                );    
                 </script>';
             }
-        }
-    
-      
-                       
+        }                   
         
     }
 }

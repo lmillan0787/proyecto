@@ -8,7 +8,7 @@ if ($peticionAjax) {
 
 class tecnicoModelo extends mainModel
 {
-    protected function agregar_tecnico($datos)
+    protected function agregar_tecnico_modelo($datos)
     {
         $sql = mainModel::conectar()->prepare("INSERT INTO dat_par (cod_per,cod_even,cod_perf,cod_estat) VALUES (:cod_per,:cod_even,:cod_perf,1);
         INSERT INTO dat_per_tec (cod_par,cod_inst,cod_carg) VALUES (LAST_insert_id(),:cod_inst,:cod_carg)");
