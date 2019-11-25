@@ -26,32 +26,32 @@
             </div>
             <div id="result-ced"></div>
             <!-- Nombre de usuario-->
-            <label for=" textInput">Nombre de usuario:</label>
+            <br><b><label for=" textInput">Nombre de usuario:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="des_usr">
+                <input type="text" class="form-control text-uppercase" placeholder="Nombre de usuario" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="des_usr">
             </div>
             <!-- clave-->
-            <label for="textInput">Clave:</label>
+            <br><b><label for="textInput">Clave:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-key prefix grey-text"></i></span>
                 </div>
-                <input type="password" class="form-control" placeholder="Clave" aria-describedby="addon-wrapping" minlength="6" maxlength="10" required name="clave">
+                <input type="password" class="form-control" placeholder="Clave" aria-describedby="addon-wrapping" minlength="8" maxlength="8" required name="clave">
             </div>
             <!-- clave-->
-            <label for="textInput">Repetir clave:</label>
+            <br><b><label for="textInput">Repetir clave:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-key prefix grey-text"></i></span>
                 </div>
-                <input type="password" class="form-control" placeholder="Repetir clave" aria-describedby="addon-wrapping" minlength="6" maxlength="10" required  name="repClave">
+                <input type="password" class="form-control" placeholder="Repetir clave" aria-describedby="addon-wrapping" minlength="8" maxlength="8" required  name="repClave">
             </div>           
             <!-- Rol-->
             <input type="text" value="1" name="cod_rol" hidden required>
-            <label for="textInput">Perfil:</label>
+            <br><b><label for="textInput">Perfil:</label></b>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-users-cog prefix grey-text"></i></label>

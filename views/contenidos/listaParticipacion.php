@@ -16,13 +16,11 @@ $datos = [
     <div id="titulo">
         <h3>PARTICIPACIÓN <?php $insEvento->cabecera_nombre_evento_controlador($datos) ?></h3>
     </div>
-    <!--
     <?php $insEvento->boton_credenciales($datos) ?>
-    <button class="btn btn-info" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarParticipacion/'">Registrar</button>-->
 </nav>
 <!-- Tabla -->
 <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tablaTodas">
-    <table class="table table-bordered table-striped" id="tabla">
+    <table class="text-capitalize table table-bordered table-striped" id="tabla">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -32,7 +30,6 @@ $datos = [
                 <th scope="col">Rol</th>
                 <th scope="col">Estatus</th>
                 <th scope="col">Credencial</th>
-                <th scope="col">Editar</th>
             </tr>
         </thead>
         <tbody>

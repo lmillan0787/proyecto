@@ -335,7 +335,7 @@ class personaControlador extends personaModelo
                     }
                 }
             } else {
-                echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no está regitrada en el sistema, diríjase al registro de persona.</div>';
+                echo '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no se encuentra registrada en el sistema, diríjase a Registro de Persona.</div>';
             }
         }
     }

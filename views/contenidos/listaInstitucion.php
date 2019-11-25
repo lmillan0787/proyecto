@@ -7,7 +7,7 @@
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">
     <div id="titulo">
-        <h3>DISCIPLINAS</h3>
+        <h3>INSTITUCIONES</h3>
     </div>
     <button class="btn btn-cyan" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarInstitucion/'">Registrar</button>
 </nav>
@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Institucion</th>
+                <th scope="col">Institución</th>
                 <th scope="col">Siglas</th>
                 <th scope="col">Editar</th>
             </tr>

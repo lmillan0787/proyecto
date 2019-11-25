@@ -50,40 +50,40 @@ class PDF extends FPDF
                 $this->Cell(85, 45, 'DEPORTISTA', 0, 1, 'C');
                 $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 77, 5);
             } else if ($_POST['cod_perf'] == 5) {
-                $this->Image('../views/assets/img/' . $_POST['cod_reg'] . '.jpg', 1.5, 80, 87, 17, 'JPG');
+                $this->Image('../views/assets/img/' . $_POST['cod_reg'] . '.jpg', 1.5, 80, 77, 17, 'JPG');
                 $this->Image('../views/assets/img/coach.png', 3, 82, 10, 10, 'png');
-                $this->Cell(95, 45, 'DELEGADO', 0, 1, 'C');
-                $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 87, 5);
+                $this->Cell(85, 45, 'DELEGADO', 0, 1, 'C');
+                $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 77, 5);
             } else if ($_POST['cod_perf'] == 6) {
-                $this->Image('../views/assets/img/' . $_POST['cod_reg'] . '.jpg', 1.5, 80, 87, 17, 'JPG');
+                $this->Image('../views/assets/img/' . $_POST['cod_reg'] . '.jpg', 1.5, 80, 77, 17, 'JPG');
                 $this->Image('../views/assets/img/medico.png', 3, 82, 10, 10, 'png');
-                $this->Cell(95, 45, utf8_decode('MÉDICO'), 0, 1, 'C');
-                $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 87, 5);
+                $this->Cell(85, 45, utf8_decode('MÉDICO'), 0, 1, 'C');
+                $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 77, 5);
             }
         } else if ($_POST['cod_rol'] == 5) {
-            $this->Image('../views/assets/img/azul_cielo.jpeg', 1.5, 80, 87, 17, 'PNG');
-            $this->Cell(90, 45, strtoupper($_POST['des_perf']), 0, 1, 'C');
-            $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 87, 5);
+            $this->Image('../views/assets/img/azul_cielo.jpeg', 1.5, 80, 77, 17, 'PNG');
+            $this->Cell(85, 45, utf8_decode(mb_strtoupper($_POST['des_perf'])), 0, 1, 'C');
+            $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 77, 5);
         } else if ($_POST['cod_rol'] == 4) {
-            $this->Image('../views/assets/img/fondo_tecnicos.jpg', 1.5, 80, 87, 17, 'JPG');
+            $this->Image('../views/assets/img/fondo_tecnicos.jpg', 1.5, 80, 77, 17, 'JPG');
             $this->Image('../views/assets/img/tecnicos.png', 3, 82, 10, 10, 'png');
-            $this->Cell(95, 45, strtoupper(utf8_decode($_POST['des_perf'])), 0, 1, 'C');
-            $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 87, 5);
+            $this->Cell(85, 45, utf8_decode(mb_strtoupper($_POST['des_perf'])), 0, 1, 'C');
+            $this->Image('../views/assets/fpdf/img/banner.jpg', 1.5, 93.6, 77, 5);
         }
     }
     public function generar_credencial_controlador1()
     {
-        $this->AddPage();
-$this->SetFont('Arial','B',16);
-$this->Cell(40,10,'Hello World!');
-$this->Output();
+    $this->AddPage();
+    $this->SetFont('Arial','B',16);
+    $this->Cell(40,10,'Hello World!');
+    $this->Output();
     }
     public function generar_credencial_controlador()
     {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //QR
         require('../views/assets/qrcode/qrcode.class.php');
-        $msg = $_POST['ced'];
+        $msg = SERVERURL."validacion/";
         $err = 'H';
         $qrcode = new QRcode(utf8_encode($msg), $err);
         $qrcode->disableBorder();

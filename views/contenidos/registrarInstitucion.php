@@ -18,16 +18,16 @@
             <b><label for=" textInput">Nombre del Institucion:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
+                    <span class="input-group-text text-uppercase" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Nombre del Institucion" aria-describedby="addon-wrapping" minlength="2" maxlength="60" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="des_inst" id="des_inst">
             </div>
             <div id="result-inst"></div>
             <!-- Tipo de evento-->
-           <b><label for=" textInput">Siglas del Institucion:</label></b>
+           <br><b><label for=" textInput">Siglas del Institucion:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
+                    <span class="input-group-text text-uppercase" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
                 <input type="text" class="form-control" placeholder="Siglas de la Institucion" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="siglas" id="siglas">
             </div>

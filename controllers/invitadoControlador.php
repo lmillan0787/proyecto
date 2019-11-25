@@ -176,6 +176,18 @@ class invitadoControlador extends invitadoModelo
             "cod_estat" => $cod_estat
         ];
         $sql = invitadoModelo::editar_invitado_modelo($datos);
+        $img = $_POST['image'];
+        $folderPath = "../views/assets/upload/";
+
+        $image_parts = explode(";base64,", $img);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = $_POST['ced'] . '.jpg';
+
+        $file = $folderPath . $fileName;
+        file_put_contents($file, $image_base64);
         if ($sql->rowCount() >= 1) {
             echo "
                                 <script>

@@ -12,7 +12,6 @@ $insInvitado = new invitadoControlador();
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
         <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarInvitadoAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
-
             <div class="text-center">
             </div>
             <!-- Cédula-->

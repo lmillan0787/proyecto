@@ -26,11 +26,11 @@
             if ($consultaUsuario->rowCount() == 1) {
                 $row=$consultaUsuario->fetch();
                 session_start(['name' => 'junain']);
-                $_SESSION['des_usr_junain'] = $row['des_usr'];
-                $_SESSION['cod_perf_junain'] = $row['cod_perf'];
-                $_SESSION['cod_per_junain'] = $row['cod_per'];
-                $_SESSION['cod_usr_junain'] = $row['cod_usr'];
-                $_SESSION['token_junain'] = md5(uniqid(mt_rand(),true));
+                $_SESSION['des_usr'] = $row['des_usr'];
+                $_SESSION['cod_perf'] = $row['cod_perf'];
+                $_SESSION['cod_per'] = $row['cod_per'];
+                $_SESSION['cod_usr'] = $row['cod_usr'];
+                $_SESSION['token'] = md5(uniqid(mt_rand(),true));
 
                 $url = SERVERURL . "home/";
 

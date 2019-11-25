@@ -198,6 +198,14 @@ class mainModel
         $sql->execute();
         return $sql;
     }
+    //consultar participacion
+    protected function validar_triple_estatus($datos){
+        $sql = mainModel::conectar()->prepare("SELECT a.cod_estat AS cod_estat_per, b.cod_estat AS cod_estat_even, c.cod_estat AS cod_estat_par FROM dat_par AS c INNER JOIN dat_per AS a ON c.cod_per=a.cod_per INNER JOIN dat_even AS b ON c.cod_even=b.cod_even WHERE cod_par=:cod_par");
+        $sql->bindParam(":cod_par", $datos['cod_par']);
+        $sql->execute();
+        $row = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //encryptar datos
     protected function encryption($string)

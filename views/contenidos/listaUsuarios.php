@@ -1,12 +1,15 @@
 <?php
+if ($_SESSION['cod_perf'] != 1) {
+    echo '<script> window.location.href="' . SERVERURL . 'home/"</script>';
+}
+$peticionAjax = false;
+require_once "./controllers/usuarioControlador.php";
 
-    $peticionAjax = false;
-    require_once "./controllers/usuarioControlador.php";
 
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">
-<div id="titulo">
+    <div id="titulo">
         <h3>USUARIOS</h3>
     </div>
     <button class="btn btn-cyan" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarUsuario/'">Registrar</button>

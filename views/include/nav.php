@@ -46,15 +46,20 @@ $insEvento = new eventoControlador();
             <span class="sr-only">(current)</span>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cogs"></i> <?php echo $_SESSION['des_usr_junain'] ?>
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cogs"></i> <?php echo $_SESSION['des_usr'] ?>
             </a>
             <div class="dropdown-menu dropdown-menu-center dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-              <a class="dropdown-item" href="<?php echo SERVERURL ?>listaUsuarios/"><i class="fas fa-user-cog"></i> Usuarios</a>
-              <a class="dropdown-item" href="<?php echo SERVERURL ?>listaEventos/"><i class="far fa-calendar-alt"></i> Eventos</a>
-               <a class="dropdown-item" href="<?php echo SERVERURL ?>listaInstitucion/"><i class="far fa-building"></i> Instituciones</a>
-               <a class="dropdown-item" href="<?php echo SERVERURL ?>listaPerfiles/"><i class="fas fa-user-friends"></i> Perfiles</a>
+              <?php 
+            if($_SESSION['cod_perf'] == 1){
+              echo '
+              <a class="dropdown-item" href="'.SERVERURL.'listaUsuarios/"><i class="fas fa-user-cog"></i> Usuarios</a>
+              <a class="dropdown-item" href="'.SERVERURL.'listaEventos/"><i class="far fa-calendar-alt"></i> Eventos</a>
+              <a class="dropdown-item" href="'.SERVERURL.'listaDisciplinas/"><i class="fas fa-futbol"></i> Disciplinas</a>
+              ';}
+              ?>
+              <a class="dropdown-item" href="<?php echo SERVERURL ?>listaInstitucion/"><i class="far fa-building"></i> Instituciones</a>
+              <a class="dropdown-item" href="<?php echo SERVERURL ?>listaPerfiles/"><i class="fas fa-user-friends"></i> Roles</a>
               <a class="dropdown-item" href="<?php echo SERVERURL ?>listaPueblos/"><i class="fas fa-globe-americas"></i> Pueblos</a>
-              <a class="dropdown-item" href="<?php echo SERVERURL ?>listaDisciplinas/"><i class="fas fa-futbol"></i> Disciplinas</a>
               <a class="dropdown-item" href="<?php echo SERVERURL ?>ajax/salirAjax.php"><i class="fas fa-power-off"></i> Salir</a>
             </div>
           </li>

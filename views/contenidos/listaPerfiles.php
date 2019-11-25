@@ -7,7 +7,7 @@
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">
     <div id="titulo">
-        <h3>Perfiles Técnicos</h3>
+        <h3>Roles Técnicos</h3>
     </div>
     <button class="btn btn-cyan" type="submit" onclick="location.href='<?php echo SERVERURL ?>registrarPerfil/'">Registrar</button>
 </nav>
@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nombre de Perfil</th>
+                <th scope="col">Nombre del Rol</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>

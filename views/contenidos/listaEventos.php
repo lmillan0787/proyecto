@@ -1,7 +1,11 @@
 <?php
+if($_SESSION['cod_perf'] != 1){
+    echo '<script> window.location.href="' . SERVERURL . 'home/"</script>';
+}
 $peticionAjax = false;
 require_once "./controllers/eventoControlador.php";
 $insEvento = new eventoControlador();
+
 ?>
 <!-- Barra de busqueda y boton -->
 <nav class="navbar navbar-dark teal darken-1">

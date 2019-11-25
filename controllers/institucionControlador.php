@@ -43,7 +43,7 @@ class institucionControlador extends institucionModelo
                 $alerta = [
                     "Alerta" => "simple",
                     "Titulo" => "Ocurrió un error inesperado",
-                    "Texto" => "Error al Registrar el Institucion",
+                    "Texto" => "Error al Registrar Institucion",
                     "Tipo" => "error"
                     
                 ];
@@ -171,7 +171,7 @@ class institucionControlador extends institucionModelo
             echo "
                        <script>
                        Swal.fire(
-                        'Institucion actualizada ',
+                        'Institución actualizada ',
                         '',
                         'success'
                        ).then(function(){

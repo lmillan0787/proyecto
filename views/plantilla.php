@@ -1,5 +1,5 @@
 <?php
-session_start(['name' => 'junain']);
+        session_start(['name' => 'junain']);
 $peticionAjax = false;
 ?>
 
@@ -62,11 +62,11 @@ $peticionAjax = false;
     } else {
         require_once "./controllers/loginControlador.php";
         $insLogin = new loginControlador();
-        if (!isset($_SESSION['token_junain']) || !isset($_SESSION['cod_usr_junain'])) {
+        if (!isset($_SESSION['token']) || !isset($_SESSION['cod_usr'])) {
             $insLogin->forzar_cierre_sesion_controlador();
         }
-        require_once "include/nav.php";
 
+        require_once "include/nav.php";
         ?>
 
         <div id="con_todo" class="z-depth-5">

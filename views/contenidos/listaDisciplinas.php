@@ -1,7 +1,9 @@
 <?php
-
-    $peticionAjax = false;
-    require_once "./controllers/disciplinaControlador.php";
+if ($_SESSION['cod_perf'] != 1) {
+    echo '<script> window.location.href="' . SERVERURL . 'home/"</script>';
+}
+$peticionAjax = false;
+require_once "./controllers/disciplinaControlador.php";
 
 ?>
 <!-- Barra de busqueda y boton -->
