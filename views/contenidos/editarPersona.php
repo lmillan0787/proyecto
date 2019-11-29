@@ -1,12 +1,19 @@
 <?php
-
 $peticionAjax = false;
-
-require_once "./controllers/personaControlador.php";
-$insPersona = new personaControlador();
 $var = explode("/",$_GET['views']);
 $cod_per = $var[1];
-
+$año = date('Y') - 15;
+$fec = date('m-d');
+require_once "./controllers/personaControlador.php";
+$persona = new personaControlador();
+$ced = $persona->datos_persona($cod_per)['ced'];
+$nom = $persona->datos_persona($cod_per)['nom'];
+$ape = $persona->datos_persona($cod_per)['ape'];
+$fec_nac = $persona->datos_persona($cod_per)['fec_nac'];
+$cod_gen = $persona->datos_persona($cod_per)['cod_gen'];
+$des_gen = $persona->datos_persona($cod_per)['des_gen'];
+$cod_estat = $persona->datos_persona($cod_per)['cod_estat'];
+$des_estat = $persona->datos_persona($cod_per)['des_estat'];
 ?>
 <div class="card" id="form_evento">
     <h5 class="card-header info-color white-text text-center py-4">
@@ -23,7 +30,7 @@ $cod_per = $var[1];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <?php $insPersona->formulario_persona_editar_cedula_controlador($cod_per) ?>
+                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Ejm: V-12345678" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="<?php echo $ced ?>" required>
             </div>
             <div id="result-ced"></div>
             <!-- Nombre-->
@@ -32,7 +39,7 @@ $cod_per = $var[1];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <?php $insPersona->formulario_persona_editar_nombre_controlador($cod_per) ?>
+                <input type="text" class="nom text-capitalize form-control" placeholder="Nombre" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="nom" value="<?php echo $nom ?>">
             </div>
             <!-- Apellido-->
             <br><b><label for="textInput">Apellido:</label></b>
@@ -40,7 +47,7 @@ $cod_per = $var[1];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <?php $insPersona->formulario_persona_editar_apellido_controlador($cod_per) ?>
+                <input type="text" class="ape text-capitalize form-control" placeholder="Apellido" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="ape" value="<?php echo $ape ?>">
             </div>
             <!-- Fecha de nacimiento-->
             <br><b><label for="textInput">Fecha de nacimiento:</label></b>
@@ -48,8 +55,9 @@ $cod_per = $var[1];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
                 </div>
-                <?php $insPersona->formulario_person_editar_fecha_controlador($cod_per) ?>
+                <input type="date" class="fec_nac form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1919-01-01" max="<?php echo $año . '-' . $fec ?>" step="1" name="fec_nac" id="fec_nac" value="<?php echo $fec_nac ?>" required>
             </div>
+            <div id="result-fec"></div>
             <!-- Género-->
             <br><b><label for="textInput">Género:</label></b>
             <div class="input-group">
@@ -57,10 +65,8 @@ $cod_per = $var[1];
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-venus-mars prefix grey-text"></i></label>
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_gen" name="cod_gen" required>
-                    <?php
-                    $insPersona->formulario_editar_persona_genero_controlador($cod_per);
-                    $insPersona->formulario_genero_distinto($cod_per);
-                    ?>
+                    <option value="<?php echo $cod_gen ?>"><?php echo $des_gen ?></option>
+                    <?php echo $persona->formulario_persona_genero_distinto($cod_per)?>
                 </select>
             </div>
             <!-- Estatus-->
@@ -70,10 +76,8 @@ $cod_per = $var[1];
                     <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-toggle-on prefix grey-text"></i></label>
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estat" name="cod_estat" required>
-                    <?php
-                    $insPersona->formulario_editar_persona_estatus_controlador($cod_per);
-                    $insPersona->formulario_estatus_distinto($cod_per);
-                    ?>
+                    <option value="<?php echo $cod_estat ?>"><?php echo $des_estat ?></option>
+                    <?php echo $persona->formulario_persona_estatus_distinto($cod_per)?>
                 </select>
             </div>
             <input type="text" value="<?php echo $cod_per ?>" id="cod_per" name="cod_per" hidden required>
@@ -111,7 +115,6 @@ $cod_per = $var[1];
             }
         });
     });
-
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     $(document).ready(function() {
         $('#ced').on('blur', function() {
@@ -129,6 +132,24 @@ $cod_per = $var[1];
                 data: dataString,
                 success: function(data) {
                     $('#result-ced').fadeIn(1000).html(data);
+                }
+            });
+        });
+    });
+    ///////////////////////////////////#ced<script type="text/javascript">
+    $(document).ready(function() {
+        $('#fec_nac').on('blur', function() {
+            $('#result-fec').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+
+            var fec_nac = $(this).val();
+            var dataString = 'fec_nac=' + fec_nac;
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarPersonaAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-fec').fadeIn(1000).html(data);
                 }
             });
         });

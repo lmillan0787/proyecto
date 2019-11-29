@@ -4,7 +4,7 @@
     if (isset($_POST['cod_par']) && isset($_POST['ced']) && isset($_POST['cod_even']) && isset($_POST['cod_perf']) && isset($_POST['cod_estat'])) {
         require_once "../controllers/invitadoControlador.php";
         $insInvitado = new invitadoControlador();
-        $insInvitado->editar_invitado_controlador();
+        echo $insInvitado->editar_invitado_controlador();
         
 
     } else {

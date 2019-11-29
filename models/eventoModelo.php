@@ -130,7 +130,7 @@ class eventoModelo extends mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function validar_participacion_modelo($datos)
     {
-        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even");
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even AND cod_estat='1'");
         $sql->bindParam(":cod_per", $datos['cod_per']);
         $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->execute();

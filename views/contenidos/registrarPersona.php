@@ -44,7 +44,7 @@ $fec = date('m-d');
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-calendar-alt prefix grey-text"></i></span>
                 </div>
-                <input type="date" class="fec_nac form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1919-01-01" max="<?php echo $año . '-' . $fec ?>" step="1" name="fec_nac" id="fec_nac">
+                <input type="date" class="fec_nac form-control" placeholder="Fecha de nacimiento" aria-label="Username" aria-describedby="addon-wrapping" min="1919-01-01" max="<?php echo $año . '-' . $fec ?>" step="1" name="fec_nac" id="fec_nac" required>
             </div>
             <div id="result-fec"></div>
             <!-- Género-->

@@ -42,7 +42,7 @@ class tecnicoModelo extends mainModel
     }
     protected function editar_tecnico_modelo($datos)
     {
-        $sql = mainModel::conectar()->prepare("UPDATE dat_par AS a INNER JOIN dat_per_tec AS b ON a.cod_par=b.cod_par SET a.cod_per=:cod_per,a.cod_even=:cod_even,a.cod_perf=:cod_perf,a.cod_estat=:cod_estat,b.cod_inst=:cod_inst,b.cod_carg=:cod_carg WHERE a.cod_par=:cod_par");
+        $sql = mainModel::conectar()->prepare("UPDATE dat_par AS a INNER JOIN dat_per_tec AS b ON a.cod_par=b.cod_par SET a.cod_per=:cod_per,a.cod_even=:cod_even,a.cod_perf=:cod_perf,a.cod_estat=:cod_estat,b.cod_inst=:cod_inst,b.cod_carg=:cod_carg,a.foto=:foto WHERE a.cod_par=:cod_par");
         $sql->bindParam(":cod_par", $datos['cod_par']);
         $sql->bindParam(":cod_per", $datos['cod_per']);
         $sql->bindParam(":cod_even", $datos['cod_even']);
@@ -50,6 +50,7 @@ class tecnicoModelo extends mainModel
         $sql->bindParam(":cod_estat", $datos['cod_estat']);
         $sql->bindParam(":cod_inst", $datos['cod_inst']);
         $sql->bindParam(":cod_carg", $datos['cod_carg']);
+        $sql->bindParam(":foto", $datos['foto']);
         $sql->execute();
         return $sql;
     }

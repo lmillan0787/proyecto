@@ -66,7 +66,6 @@ class puebloControlador extends puebloModelo
                 </td>    
             </tr>';
         }
-        return $row;
     }
     
 }

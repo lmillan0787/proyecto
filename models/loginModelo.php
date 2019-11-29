@@ -11,7 +11,7 @@
     {
         protected function iniciar_sesion_modelo($datos)
         {
-            $sql = mainModel::conectar()->prepare("SELECT *  FROM dat_usr WHERE des_usr=:des_usr AND clave=:clave");
+            $sql = mainModel::conectar()->prepare("SELECT *  FROM dat_usr WHERE des_usr=:des_usr AND clave=:clave AND cod_estat=1");
             $sql->bindParam(':des_usr', $datos['des_usr']);
             $sql->bindParam(':clave', $datos['clave']);
             $sql->execute();

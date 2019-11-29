@@ -4,7 +4,7 @@
     if (isset($_POST['cod_par']) && isset($_POST['ced']) && isset($_POST['cod_even']) && isset($_POST['cod_perf']) && isset($_POST['cod_estat'])) {
         require_once "../controllers/tecnicoControlador.php";
         $insTecnico = new tecnicoControlador();
-        $insTecnico->editar_tecnico_controlador();
+        echo $insTecnico->editar_tecnico_controlador();
         
 
     } else {

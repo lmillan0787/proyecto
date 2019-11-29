@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2019 a las 10:26:05
+-- Tiempo de generación: 27-11-2019 a las 13:23:11
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
 
@@ -51,7 +51,14 @@ INSERT INTO `dat_del` (`cod_del`, `cod_par`, `cod_reg`, `cod_pue`, `cod_dis`, `c
 (7, 8, 3, 10, 2, 1),
 (8, 9, 4, 36, 1, 1),
 (9, 10, 1, 19, 20, 1),
-(10, 11, 6, 18, 8, 1);
+(10, 11, 6, 18, 8, 1),
+(11, 27, 1, 1, 1, 1),
+(12, 28, 1, 1, 1, 1),
+(13, 29, 1, 14, 12, 1),
+(14, 30, 1, 2, 2, 1),
+(15, 31, 4, 18, 1, 1),
+(16, 32, 8, 17, 11, 2),
+(17, 33, 1, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -73,12 +80,14 @@ CREATE TABLE `dat_even` (
 --
 
 INSERT INTO `dat_even` (`cod_even`, `des_even`, `fec_even`, `cod_reg`, `cod_tip_even`, `cod_estat`) VALUES
-(1, 'GUAJIRA 2019', '2019-12-08', 6, 1, 1),
-(2, 'PRUEBA', '2050-10-10', 1, 2, 2),
+(1, 'GUAJIRA 2019', '2019-12-08', 6, 1, 2),
+(2, 'PRUEBA', '2050-10-10', 7, 2, 1),
 (3, 'PRUEBA 2', '2019-11-18', 1, 3, 1),
 (4, 'PRUEBA 3', '2019-12-08', 3, 1, 2),
 (5, 'GUAJIRA 2', '2020-09-16', 5, 1, 1),
-(6, 'WQERWEQR', '2020-10-10', 8, 1, 1);
+(6, 'WQERWEQR', '2020-10-10', 8, 1, 1),
+(7, 'PRUEBA JUEVES', '2019-12-22', 2, 3, 1),
+(8, '', '2020-12-08', 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -110,16 +119,25 @@ INSERT INTO `dat_par` (`cod_par`, `cod_per`, `cod_even`, `cod_perf`, `cod_estat`
 (9, 32, 1, 4, 1),
 (10, 33, 1, 4, 1),
 (11, 34, 1, 4, 1),
-(12, 35, 1, 15, 1),
+(12, 35, 1, 15, 2),
 (13, 1, 2, 7, 1),
-(14, 35, 2, 15, 1),
+(14, 8, 2, 15, 1),
 (15, 1, 5, 15, 1),
-(16, 8, 3, 15, 1),
+(16, 8, 3, 15, 2),
 (17, 1, 5, 14, 1),
-(18, 1, 1, 14, 1),
-(19, 1, 1, 14, 1),
-(20, 1, 3, 15, 1),
-(21, 1, 6, 15, 1);
+(21, 1, 6, 15, 2),
+(22, 1, 7, 14, 2),
+(23, 4, 7, 10, 2),
+(24, 8, 7, 8, 1),
+(25, 1, 3, 4, 1),
+(26, 4, 1, 4, 1),
+(27, 1, 1, 4, 1),
+(28, 38, 1, 4, 1),
+(29, 38, 2, 5, 1),
+(30, 38, 3, 5, 1),
+(31, 38, 7, 6, 1),
+(32, 8, 1, 4, 1),
+(33, 40, 1, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -160,21 +178,27 @@ INSERT INTO `dat_per` (`cod_per`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`, `co
 (28, 'V24217518', 'JESUS', 'PEREZ', '2004-11-13', 1, 1),
 (29, 'V24218996', 'LUIS', 'LOPEZ', '1984-01-01', 1, 1),
 (30, 'V11690653', 'XIOEMIL', 'PINEDA', '1975-09-08', 1, 1),
-(31, 'V27569093', 'CARLOS', 'MORENO', '2003-07-10', 1, 1),
+(31, 'V-27569093', 'CARLOS', 'MORENO', '2003-07-10', 1, 1),
 (32, 'V24215551', 'PRUEBA', 'PRUEBA', '1990-12-08', 1, 1),
 (33, 'V19885421', 'JULIAN', 'JOSE', '1990-12-08', 1, 1),
 (34, 'V19885422', 'JUAN', 'JOSE', '1990-12-08', 1, 1),
 (35, 'V-19885423', 'TEST', 'TEST', '1990-12-08', 1, 1),
 (36, 'v-11111111', 'deifert', 'garanton', '1990-12-08', 1, 1),
-(37, 'v-1234567', 'test', 'cedula', '1990-12-08', 2, 2),
-(38, 'v-88888888', 'test', 'test', '1998-12-08', 1, 2),
+(37, 'v-1234567', 'test', 'cedula', '1990-12-08', 2, 1),
+(38, 'v-88888888', 'test', 'test', '1998-12-08', 1, 1),
 (39, 'v-89999999', 'test', 'estts', '1990-12-08', 2, 1),
 (40, 'v-87777777', 'test', 'test', '1990-12-08', 1, 1),
-(41, 'v-87776666', 'test', 'test', '1990-12-08', 1, 1),
+(41, 'v-87776666', 'werqwerwqerwqerqwerw', 'weqr', '1990-12-08', 1, 1),
 (42, 'v-87776660', 'test', 'test', '1990-12-08', 1, 1),
 (43, 'v-87745646', 'testsdfsa', 'test', '1990-12-08', 1, 1),
 (44, 'e-14564654', 'werqwer', 'werwre', '1990-12-08', 2, 1),
-(45, 'v-18789465', 'trew', 'qwer', '2003-09-17', 2, 1);
+(45, 'v-18789465', 'trew', 'qwer', '2003-09-17', 2, 1),
+(46, 'v-19885428', 'prueba', 'jueves', '1990-12-08', 2, 1),
+(47, 'e-22222222', 'de', 'de', '1990-12-08', 1, 1),
+(48, 'v-22222222', 'fuera', 'fuera', '1990-12-08', 1, 1),
+(49, 'v-55522333', 'pe', 'pe', '1990-12-08', 1, 1),
+(50, 'v-231123', 'asd', 'asd', '1990-12-08', 1, 1),
+(51, 'v-188887', 'ta', 'b  rrrr', '1990-12-08', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -194,8 +218,10 @@ CREATE TABLE `dat_per_tec` (
 --
 
 INSERT INTO `dat_per_tec` (`cod_equ_tec`, `cod_par`, `cod_inst`, `cod_carg`) VALUES
-(1, 1, 1, 1),
-(2, 13, 2, 3);
+(1, 1, 2, 1),
+(2, 13, 2, 3),
+(3, 23, 1, 2),
+(4, 24, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -208,16 +234,26 @@ CREATE TABLE `dat_usr` (
   `cod_per` int(11) NOT NULL,
   `des_usr` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
   `clave` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `cod_perf` int(11) NOT NULL
+  `cod_perf` int(11) NOT NULL,
+  `cod_estat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='datos de usuario';
 
 --
 -- Volcado de datos para la tabla `dat_usr`
 --
 
-INSERT INTO `dat_usr` (`cod_usr`, `cod_per`, `des_usr`, `clave`, `cod_perf`) VALUES
-(1, 1, 'DGARANTON', 'UFFUQTdINGNVT0ZocnNkVXljWnJLdz09', 1),
-(2, 8, 'EROMERO', 'UFFUQTdINGNVT0ZocnNkVXljWnJLdz09', 1);
+INSERT INTO `dat_usr` (`cod_usr`, `cod_per`, `des_usr`, `clave`, `cod_perf`, `cod_estat`) VALUES
+(1, 1, 'DGARANTON', '4423784d', 1, 1),
+(2, 8, 'EROMERO', 'UFFUQTdINGNVT0ZocnNkVXljWnJLdz09', 1, 1),
+(3, 38, 'TESTTT', 'dUg2RytPUnRXYjFwVUNOWDVRb3Zldz09', 1, 1),
+(4, 4, 'jpruebas', 'ckd2QWw4aVlOR1RPZlFFRERobEVLUT09', 2, 1),
+(5, 48, 'prueba', 'UElDMkdIQytpRkxPOU5DbXdSc3FWdz09', 1, 1),
+(6, 47, 'asdf', 'ckd2QWw4aVlOR1RPZlFFRERobEVLUT09', 2, 1),
+(12, 49, 'deiferddddd', 'Q3BLdUk0S1JBTlN5alI1cDI2OUpaUT09', 1, 1),
+(21, 46, 'qwqw', 'Mk9nUGpjOEM5MnJ4ZHpzNG9EeW11UT09', 1, 1),
+(22, 43, 'qwqwi', 'Q3BLdUk0S1JBTlN5alI1cDI2OUpaUT09', 1, 1),
+(23, 42, 'sfasdfsdfa', 'Q3BLdUk0S1JBTlN5alI1cDI2OUpaUT09', 1, 1),
+(24, 35, 'deifer', 'ckd2QWw4aVlOR1RPZlFFRERobEVLUT09', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -271,46 +307,35 @@ INSERT INTO `tab_cat` (`cod_cat`, `des_cat`, `cod_gen`) VALUES
 CREATE TABLE `tab_dis` (
   `cod_dis` int(11) NOT NULL,
   `des_dis` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `cod_tip_even` int(11) NOT NULL
+  `cod_tip_even` int(11) NOT NULL,
+  `cod_gen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `tab_dis`
 --
 
-INSERT INTO `tab_dis` (`cod_dis`, `des_dis`, `cod_tip_even`) VALUES
-(1, 'Cerbatana', 1),
-(2, 'Tiro con arco', 1),
-(3, 'Rallado de yuca', 1),
-(4, 'Corte de leña', 1),
-(5, 'Carrera de Watura', 1),
-(6, 'Curiara', 1),
-(7, 'Natación', 1),
-(8, 'Lucha indígena', 1),
-(9, 'Carrera de relevo con tronco', 1),
-(10, 'Prueba de fuerza', 1),
-(11, 'Lanza', 1),
-(12, 'Atletismo', 2),
-(13, 'Baloncesto', 2),
-(14, 'Futbol', 2),
-(15, 'Voleibol', 2),
-(16, 'Kickingball', 2),
-(17, 'Boxeo', 2),
-(18, 'Tenis de mesa', 2),
-(19, 'Pelotica de goma', 2),
-(20, 'Tronco encebao', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tab_dis_even`
---
-
-CREATE TABLE `tab_dis_even` (
-  `cod_dis_even` int(11) NOT NULL,
-  `cod_dis` int(11) NOT NULL,
-  `cod_even` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+INSERT INTO `tab_dis` (`cod_dis`, `des_dis`, `cod_tip_even`, `cod_gen`) VALUES
+(1, 'Cerbatana', 1, 3),
+(2, 'Tiro con arco', 1, 3),
+(3, 'Rallado de yuca', 1, 2),
+(4, 'Corte de leña', 1, 3),
+(5, 'Carrera de Watura', 1, 2),
+(6, 'Curiara', 1, 3),
+(7, 'Natación', 1, 3),
+(8, 'Lucha indígena', 1, 1),
+(9, 'Carrera de relevo con tronco', 1, 3),
+(10, 'Prueba de fuerza', 1, 3),
+(11, 'Lanza', 1, 3),
+(12, 'Atletismo', 2, 3),
+(13, 'Baloncesto', 2, 3),
+(14, 'Futbol', 2, 3),
+(15, 'Voleibol', 2, 3),
+(16, 'Kickingball', 2, 2),
+(17, 'Boxeo', 2, 1),
+(18, 'Tenis de mesa', 2, 3),
+(19, 'Pelotica de goma', 2, 1),
+(20, 'Tronco encebao', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -402,7 +427,7 @@ INSERT INTO `tab_gen` (`cod_gen`, `des_gen`) VALUES
 
 CREATE TABLE `tab_inst` (
   `cod_inst` int(11) NOT NULL,
-  `des_inst` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `des_inst` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `siglas` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -411,8 +436,9 @@ CREATE TABLE `tab_inst` (
 --
 
 INSERT INTO `tab_inst` (`cod_inst`, `des_inst`, `siglas`) VALUES
-(1, 'Ministerio del Poder Popular Para los Pueblos Indí', 'MINPPPI'),
-(2, 'Ministerio de Juventud y Deporte', 'MINDEP');
+(1, 'Ministerio del Poder Popular Para los Pueblos Indígenas', 'MINPPPI'),
+(2, 'Ministerio de Juventud y Deporte', 'MINDEP'),
+(3, 'Ministerio de la Mujer', 'minmu');
 
 -- --------------------------------------------------------
 
@@ -632,7 +658,8 @@ ALTER TABLE `dat_usr`
   ADD UNIQUE KEY `des_usr` (`des_usr`),
   ADD UNIQUE KEY `cod_per_2` (`cod_per`),
   ADD KEY `cod_perf` (`cod_perf`),
-  ADD KEY `cod_per` (`cod_per`);
+  ADD KEY `cod_per` (`cod_per`),
+  ADD KEY `cod_estat` (`cod_estat`);
 
 --
 -- Indices de la tabla `tab_carg`
@@ -652,15 +679,8 @@ ALTER TABLE `tab_cat`
 --
 ALTER TABLE `tab_dis`
   ADD PRIMARY KEY (`cod_dis`),
-  ADD KEY `cod_tip_even` (`cod_tip_even`);
-
---
--- Indices de la tabla `tab_dis_even`
---
-ALTER TABLE `tab_dis_even`
-  ADD PRIMARY KEY (`cod_dis_even`),
-  ADD KEY `cod_even` (`cod_even`),
-  ADD KEY `cod_dis` (`cod_dis`);
+  ADD KEY `cod_tip_even` (`cod_tip_even`),
+  ADD KEY `cod_gen` (`cod_gen`);
 
 --
 -- Indices de la tabla `tab_edo`
@@ -726,37 +746,37 @@ ALTER TABLE `tab_tip_even`
 -- AUTO_INCREMENT de la tabla `dat_del`
 --
 ALTER TABLE `dat_del`
-  MODIFY `cod_del` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cod_del` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_even`
 --
 ALTER TABLE `dat_even`
-  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_par`
 --
 ALTER TABLE `dat_par`
-  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per`
 --
 ALTER TABLE `dat_per`
-  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per_tec`
 --
 ALTER TABLE `dat_per_tec`
-  MODIFY `cod_equ_tec` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cod_equ_tec` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_usr`
 --
 ALTER TABLE `dat_usr`
-  MODIFY `cod_usr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cod_usr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_carg`
@@ -798,7 +818,7 @@ ALTER TABLE `tab_gen`
 -- AUTO_INCREMENT de la tabla `tab_inst`
 --
 ALTER TABLE `tab_inst`
-  MODIFY `cod_inst` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cod_inst` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_perf`
@@ -855,6 +875,7 @@ ALTER TABLE `dat_even`
 -- Filtros para la tabla `dat_par`
 --
 ALTER TABLE `dat_par`
+  ADD CONSTRAINT `cod_perf_par` FOREIGN KEY (`cod_perf`) REFERENCES `tab_perf` (`cod_perf`) ON UPDATE CASCADE,
   ADD CONSTRAINT `dat_par_ibfk_5` FOREIGN KEY (`cod_per`) REFERENCES `dat_per` (`cod_per`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `dat_par_ibfk_6` FOREIGN KEY (`cod_even`) REFERENCES `dat_even` (`cod_even`) ON UPDATE CASCADE,
   ADD CONSTRAINT `estatus_cod_per` FOREIGN KEY (`cod_estat`) REFERENCES `tab_estat` (`cod_estat`) ON UPDATE CASCADE;
@@ -879,7 +900,8 @@ ALTER TABLE `dat_per_tec`
 --
 ALTER TABLE `dat_usr`
   ADD CONSTRAINT `dat_usr_ibfk_2` FOREIGN KEY (`cod_perf`) REFERENCES `tab_perf` (`cod_perf`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `dat_usr_ibfk_3` FOREIGN KEY (`cod_per`) REFERENCES `dat_per` (`cod_per`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `dat_usr_ibfk_3` FOREIGN KEY (`cod_per`) REFERENCES `dat_per` (`cod_per`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usr_estat` FOREIGN KEY (`cod_estat`) REFERENCES `tab_estat` (`cod_estat`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tab_cat`
@@ -891,6 +913,7 @@ ALTER TABLE `tab_cat`
 -- Filtros para la tabla `tab_dis`
 --
 ALTER TABLE `tab_dis`
+  ADD CONSTRAINT `gen_dis` FOREIGN KEY (`cod_gen`) REFERENCES `tab_gen` (`cod_gen`) ON UPDATE CASCADE,
   ADD CONSTRAINT `tab_dis_ibfk_1` FOREIGN KEY (`cod_tip_even`) REFERENCES `tab_tip_even` (`cod_tip_even`) ON UPDATE CASCADE;
 
 --

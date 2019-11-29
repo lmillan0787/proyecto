@@ -1,9 +1,7 @@
 <?php
-
-    $peticionAjax = false;
-    require_once "./controllers/usuarioControlador.php";
-    $insUsuario = new usuarioControlador();
-
+$peticionAjax = false;
+require_once "./controllers/usuarioControlador.php";
+$insUsuario = new usuarioControlador();
 ?>
 <div class="card" id="form_ini">
 
@@ -15,14 +13,14 @@
         <form class="FormularioAjax" action="<?php echo SERVERURL ?>ajax/registrarUsuarioAjax.php" method="POST" data-form="guardar" autocomplete="off" enctype="multipart/form-data">
 
             <div class="text-center">
-            </div>            
+            </div>
             <!-- Cédula-->
             <b><label for="textInput">Cédula:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Ejm: V-12345678" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="">
+                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Ejm: V-12345678" aria-describedby="addon-wrapping" minlength="8" maxlength="10" name="ced" value="" required>
             </div>
             <div id="result-ced"></div>
             <!-- Nombre de usuario-->
@@ -31,7 +29,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user prefix grey-text"></i></span>
                 </div>
-                <input type="text" class="form-control text-uppercase" placeholder="Nombre de usuario" aria-describedby="addon-wrapping" minlength="2" maxlength="20" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s]+" name="des_usr">
+                <input type="text" class="form-control text-uppercase" placeholder="Nombre de usuario" aria-describedby="addon-wrapping" minlength="4" maxlength="12" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚöÖüÜ\s0-9]+" name="des_usr">
             </div>
             <!-- clave-->
             <br><b><label for="textInput">Clave:</label></b>
@@ -47,8 +45,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="fas fa-key prefix grey-text"></i></span>
                 </div>
-                <input type="password" class="form-control" placeholder="Repetir clave" aria-describedby="addon-wrapping" minlength="8" maxlength="8" required  name="repClave">
-            </div>           
+                <input type="password" class="form-control" placeholder="Repetir clave" aria-describedby="addon-wrapping" minlength="8" maxlength="8" required name="repClave">
+            </div>
             <!-- Rol-->
             <input type="text" value="1" name="cod_rol" hidden required>
             <br><b><label for="textInput">Perfil:</label></b>
@@ -58,12 +56,7 @@
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_perf" name="cod_perf" required>
                     <option value="">Perfil</option>
-                    <?php
-                        $insUsuario->formulario_usuario();
-                        foreach ($row as $row) {
-                            echo '<option value="' . $row['cod_perf'] . '">' . $row['des_perf'] . '</option>';
-                        }
-                    ?>
+                    <?php $insUsuario->formulario_usuario_perfil() ?>
                 </select>
             </div>
             <button class="btn btn-info btn-block" type="submit">Registrar</button>
@@ -77,13 +70,27 @@
             translation: {
                 'N': {
                     pattern: /[vVeE]/
-
                 },
                 'Z': {
                     pattern: /[0-9]/,
                     optional: true
                 },
             }
+        });
+    });
+    $(document).ready(function() {
+        $('#ced').on('blur', function() {
+            $('#result-ced').html('<img src="<?php echo SERVERURL ?>views/assets/img/loader.gif" />').fadeOut(1000);
+            var ced = $(this).val();
+            var dataString = 'ced=' + ced;
+            $.ajax({
+                type: "POST",
+                url: "<?php echo SERVERURL ?>ajax/validarUsuarioAjax.php",
+                data: dataString,
+                success: function(data) {
+                    $('#result-ced').fadeIn(1000).html(data);
+                }
+            });
         });
     });
 </script>

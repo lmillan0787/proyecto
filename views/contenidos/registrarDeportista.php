@@ -21,7 +21,7 @@ $insDeportista = new deportistaControlador();
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Ejm: V-12345678" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="" required>
+                <input type="text" id="ced" class="ced text-capitalize form-control" placeholder="Ejm: V-12345678" aria-describedby="addon-wrapping" minlength="8" maxlength="10"  name="ced" value="">
             </div>
             <div id="result-ced"></div>
             <!--Rol-->
@@ -85,15 +85,14 @@ $insDeportista = new deportistaControlador();
             </div>
             <br>
             <center>
-                <div class="row">
+            <br><div class="row">
                     <div class="col-md-6">
                         <div id="my_camera"></div>
                         <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
-
                     </div>
                     <div class="col-md-6">
                         <div id="results"></div>
-                        <input type="hidden" name="image" class="image-tag">
+                        <input type="hidden" name="image" class="image-tag"">
                     </div>
                 </div>
             </center>

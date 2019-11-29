@@ -3,8 +3,6 @@ $peticionAjax = false;
 include "./controllers/deportistaControlador.php";
 $insDeportista = new deportistaControlador();
 ?>
-
-
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
         <strong>Datos Básicos</strong>
@@ -28,7 +26,7 @@ $insDeportista = new deportistaControlador();
             <!--Perfil-->
             <input type="text" name="cod_perf" value="5" hidden required>
             <!--Evento-->
-            <br><b><label for="textInput">Comisión:</label></b>
+            <br><b><label for="textInput">Evento:</label></b>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
@@ -41,7 +39,6 @@ $insDeportista = new deportistaControlador();
                 </select>
             </div>
             <div id="result-even"></div>
-
             <!-- Region -->
             <br><b><label for="textInput">Región:</label></b>
             <div class="input-group flex-nowrap">
@@ -78,7 +75,6 @@ $insDeportista = new deportistaControlador();
                     <div class="col-md-6">
                         <div id="my_camera"></div>
                         <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
-
                     </div>
                     <div class="col-md-6">
                         <div id="results"></div>
@@ -87,7 +83,7 @@ $insDeportista = new deportistaControlador();
                 </div>
             </center>                
             <br><button class=" btn btn-info btn-block" type="submit">Registrar</button>
-                        <div class="RespuestaAjax"></div>
+            <div class="RespuestaAjax"></div>
         </form>
     </div>
 </div>

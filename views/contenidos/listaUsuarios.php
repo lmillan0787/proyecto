@@ -25,6 +25,7 @@ require_once "./controllers/usuarioControlador.php";
                 <th scope="col">Apellido</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Perfil</th>
+                <th scope="col">Estatus</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>

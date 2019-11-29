@@ -43,6 +43,13 @@ class personaModelo extends mainModel
         return $row;
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected function consultar_persona_existe_modelo($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE ced=:ced");
+        $sql->bindParam(":ced", $datos['ced']);
+        $sql->execute();
+        return $sql;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function editar_persona_modelo($datos){
        $sql = mainModel::conectar()->prepare("UPDATE dat_per SET ced=:ced, nom=:nom, ape=:ape, fec_nac=:fec_nac, cod_gen=:cod_gen, cod_estat=:cod_estat WHERE cod_per=:cod_per");
        $sql->bindParam(":cod_per", $datos['cod_per']);

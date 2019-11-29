@@ -16,7 +16,6 @@ $datos = [
     <div id="titulo">
         <h3>PARTICIPACIÓN <?php $insEvento->cabecera_nombre_evento_controlador($datos) ?></h3>
     </div>
-    <?php $insEvento->boton_credenciales($datos) ?>
 </nav>
 <!-- Tabla -->
 <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tablaTodas">

@@ -191,8 +191,26 @@ class mainModel
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //consultar participacion
+    protected function validar_estatus_persona($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_per WHERE cod_per=:cod_per AND cod_estat!='1'");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->execute();
+        return $sql;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar participacion
     protected function validar_persona_participacion_modelo($datos){
-        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even");
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even AND cod_estat='1'");
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->execute();
+        return $sql;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //consultar participacion
+    protected function validar_persona_participacion_distinta_modelo($datos){
+        $sql = mainModel::conectar()->prepare("SELECT * FROM dat_par WHERE cod_per=:cod_per AND cod_even=:cod_even AND cod_estat='1' AND cod_par!=:cod_par");
+        $sql->bindParam(":cod_par", $datos['cod_par']);
         $sql->bindParam(":cod_per", $datos['cod_per']);
         $sql->bindParam(":cod_even", $datos['cod_even']);
         $sql->execute();
@@ -221,17 +239,15 @@ class mainModel
     //desencriptar datos
     protected function description($string)
     {
-
         $key = hash('sha256', SECRET_KEY);
         $iv = substr(hash('sha256', SECRET_IV), 0, 16);
-        $output = onpenssl_descrypt(base64_decode($string), METHOD, $key, 0, $iv);
+        $output = openssl_decrypt(base64_decode($string), METHOD, $key, 0, $iv);
         return $output;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //funcion para crear numero aleatorios
     protected function generar_codigo_aleatorio($letra, $longitud, $num)
     {
-
         for ($i = 1; $i <= $longitud; $i++) {
             $numero = rad(0, 9);
             $letra .= $numero;
@@ -242,7 +258,6 @@ class mainModel
     //proteger de iyecciones SQL
     protected function limpiar_cadena($cadena)
     {
-
         $cadena = trim($cadena);
         $cadena = stripslashes($cadena);
         $cadena = str_ireplace("<script>", "", $cadena);
@@ -263,7 +278,6 @@ class mainModel
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected function sweet_alert($datos)
     {
-
         if ($datos['Alerta'] == "simple") {
             $alerta = "
                     <script>
@@ -322,7 +336,7 @@ class mainModel
                         });
                     </script>
                 ";
-        } else if ($datos['Alerta'] == "simpleUsuarios") {
+        } else if ($datos['Alerta'] == "simpleUsuario") {
             $alerta = "
                     <script>
                         Swal.fire(
@@ -362,6 +376,34 @@ class mainModel
                 ";
             
         } 
+        else if ($datos['Alerta'] == "simpleInvitado") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "listaInvitados/';
+                        });
+                    </script>
+                ";
+            
+        }
+        else if ($datos['Alerta'] == "simpleTecnico") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "listaTecnicos/';
+                        });
+                    </script>
+                ";
+            
+        }
         return $alerta;
     }
 }

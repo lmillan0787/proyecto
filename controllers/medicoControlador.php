@@ -158,7 +158,7 @@ class medicoControlador extends medicoModelo
                     </td>                                                     
                 </tr>';
         }
-        return $row;
+
     }
 
     public function consultarRegion()

@@ -7,7 +7,7 @@ $insInvitado = new invitadoControlador();
 <div class="card" id="form_invi">
 
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Datos Básicos</strong>
+        <strong>Datos Básicos del Invitado</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
@@ -53,13 +53,12 @@ $insInvitado = new invitadoControlador();
             <center>
             <br><div class="row">
                     <div class="col-md-6">
-                        <div id="my_camera"></div>
+                        <div id="my_camera" class="border border-info rounded mb-0 example z-depth-5"></div>
                         <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
-                        
                     </div>
                     <div class="col-md-6">
                         <div id="results"></div>
-                        <input type="hidden" name="image" class="image-tag"">
+                        <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>
             </center>

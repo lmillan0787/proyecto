@@ -10,6 +10,7 @@ class deportistaControlador extends deportistaModelo
 {
     public function agregar_deportista_controlador()
     {
+        
         $ced = mainModel::limpiar_cadena($_POST['ced']);
         $cod_even = mainModel::limpiar_cadena($_POST['cod_even']);
         $cod_perf = mainModel::limpiar_cadena($_POST['cod_perf']);
@@ -17,10 +18,9 @@ class deportistaControlador extends deportistaModelo
         $cod_reg = mainModel::limpiar_cadena($_POST['cod_reg']);
         $cod_dis = mainModel::limpiar_cadena($_POST['cod_dis']);
         $cod_cat = mainModel::limpiar_cadena($_POST['cod_cat']);
-        /*echo $ced . ' ' . $cod_even . ' ' . $cod_perf . ' ' . $cod_pue . ' ' . $cod_reg . ' ' . $cod_dis . ' ' . $cod_cat;*/
         $datos = [
             "ced" => $ced,
-            "cod_even" => $cod_even,
+            "cod_eeven" => $cod_even,
             "cod_perf" => $cod_perf
         ];
         $sql = mainModel::validar_cedula_modelo($datos);
@@ -91,8 +91,8 @@ class deportistaControlador extends deportistaModelo
                             </script>
                             ";
                     } else {
-                        $registrarDeportista = deportistaModelo::agregar_deportista($datosPart);
-                        $img = strtolower($_POST['image']);
+                        $registrarInvitado = deportistaModelo::agregar_deportista($datosPart);
+                        $img = $_POST['image'];
                         $folderPath = "../views/assets/upload/";
 
                         $image_parts = explode(";base64,", $img);
@@ -104,7 +104,7 @@ class deportistaControlador extends deportistaModelo
 
                         $file = $folderPath . $fileName;
                         file_put_contents($file, $image_base64);
-                        if ($registrarDeportista->rowCount() >= 1) {
+                        if ($registrarInvitado->rowCount() >= 1) {
                             echo "
                                 <script>
                                     Swal.fire(
@@ -160,7 +160,6 @@ class deportistaControlador extends deportistaModelo
                     </td>                                            
                 </tr>';
         }
-        return $row;
     }
 
     public function consultarRegion()

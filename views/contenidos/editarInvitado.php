@@ -9,7 +9,7 @@ $cod_par = $_POST['cod_par'];
 
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Datos Básicos</strong>
+        <strong>Datos Básicos del Invitado</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
@@ -65,6 +65,11 @@ $cod_par = $_POST['cod_par'];
                     ?>
                 </select>
             </div>
+            <br><center>    
+            <div class="col-md-6">
+                <?php $insPart->formulario_participacion_editar_foto_controlador(); ?>
+            </div>
+            </center>
             <center>
                 <br>
                 <div class="row">
@@ -73,16 +78,13 @@ $cod_par = $_POST['cod_par'];
                         <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
                     </div>
                     <div class="col-md-6">
-                        <div id="results">
-                            <?php
-                            $insPart->formulario_participacion_editar_foto_controlador();
-                            ?>
-                        </div>
                         <input type="hidden" name="image" class="image-tag"">
+                        <div id="results">
+                        </div>
                     </div>
                 </div>
             </center>
-            <button class=" btn btn-info btn-block" type="submit">Registrar</button>
+            <button class=" btn btn-info btn-block" type="submit">Aceptar</button>
             <div class="RespuestaAjax"></div>
         </form>
     </div>

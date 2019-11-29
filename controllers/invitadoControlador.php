@@ -76,20 +76,23 @@ class invitadoControlador extends invitadoModelo
                 echo "
                        <script>
                         Swal.fire(
-                            'Error ',
-                            'Persona deshabilitada para participar',
+                            'Persona deshabilitada para participar ',
+                            'Ingrese otro número de cédula',
                             'error'
                         );     
                        </script>
                     ";
             } else {
+                $img = $_POST['image'];
                 $datosPart = [
                     'cod_per' => $cod_per,
                     'cod_even' => $cod_even,
-                    'cod_perf' => $cod_perf
+                    'cod_perf' => $cod_perf,
+                    'foto' => $img
                 ];
                 $validarParticipacion = mainModel::validar_persona_participacion_modelo($datosPart);
                 if ($validarParticipacion->rowCount() >= 1) {
+
                     echo "
                             <script>
                             Swal.fire(
@@ -112,8 +115,10 @@ class invitadoControlador extends invitadoModelo
                             </script>
                             ";
                     } else {
+
+
                         $registrarInvitado = invitadoModelo::agregar_invitado($datosPart);
-                        $img = $_POST['image'];
+
                         $folderPath = "../views/assets/upload/";
 
                         $image_parts = explode(";base64,", $img);
@@ -121,7 +126,7 @@ class invitadoControlador extends invitadoModelo
                         $image_type = $image_type_aux[1];
 
                         $image_base64 = base64_decode($image_parts[1]);
-                        $fileName = $_POST['ced'] . '.jpg';
+                        $fileName = $_POST['ced'].$cod_even.'.jpg';
 
                         $file = $folderPath . $fileName;
                         file_put_contents($file, $image_base64);
@@ -164,53 +169,113 @@ class invitadoControlador extends invitadoModelo
         $datos = [
             "ced" => $ced
         ];
-        $sql = mainModel::datos_persona_modelo($datos);
-        foreach ($sql as $row) {
-            $cod_per = $row['cod_per'];
-        }
-        $datos = [
-            "cod_par" => $cod_par,
-            "cod_per" => $cod_per,
-            "cod_even" => $cod_even,
-            "cod_perf" => $cod_perf,
-            "cod_estat" => $cod_estat
-        ];
-        $sql = invitadoModelo::editar_invitado_modelo($datos);
-        $img = $_POST['image'];
-        $folderPath = "../views/assets/upload/";
-
-        $image_parts = explode(";base64,", $img);
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-
-        $image_base64 = base64_decode($image_parts[1]);
-        $fileName = $_POST['ced'] . '.jpg';
-
-        $file = $folderPath . $fileName;
-        file_put_contents($file, $image_base64);
-        if ($sql->rowCount() >= 1) {
-            echo "
-                                <script>
-                                    Swal.fire(
-                                        'Registro exitoso',
-                                        'Exito al agregar la participación',
-                                        'success'
-                                    ).then(function(){
-                                        window.location='" . SERVERURL . "listaInvitados/';
-                                    });     
-                                </script>
-                            ";
+        $ced = str_replace(' ', '', $ced);
+        if (strlen($ced) < 8) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Debe ingresar un número de cédula válido",
+                "Texto" => "Mínimo 6 dígitos, máximo 8 dígitos",
+                "Tipo" => "error"
+            ];
         } else {
-            echo "
-                                <script>
-                                    Swal.fire(
-                                        'Error inesperado',
-                                        'Recargue la pagina e intente de nuevo',
-                                        'error'
-                                    );     
-                                </script>
-                            ";
+            $sql = mainModel::datos_persona_modelo($datos);
+            foreach ($sql as $row) {
+                $cod_per = $row['cod_per'];
+            }
+            $sql = mainModel::validar_estatus_persona($datos);
+            if ($sql->rowCount() >= 1) {
+                $alerta = [
+                    "Alerta" => "simple",
+                    "Titulo" => "La persona ya posee una participación activa para este evento",
+                    "Texto" => "",
+                    "Tipo" => "error"
+                ];
+            } else {
+                $hora = time();
+                $img1 = $hora . $_POST['image'];
+                $img = $_POST['image'];
+                $datos = [
+                    "cod_par" => $cod_par,
+                    "cod_per" => $cod_per,
+                    "cod_even" => $cod_even,
+                    "cod_perf" => $cod_perf,
+                    "cod_estat" => $cod_estat
+                ];
+                $sql = mainModel::validar_persona_participacion_distinta_modelo($datos);
+                if ($sql->rowCount() >= 1) {
+                    $alerta = [
+                        "Alerta" => "simple",
+                        "Titulo" => "La persona ya posee una participación activa para este evento",
+                        "Texto" => "",
+                        "Tipo" => "error"
+                    ];
+                } else {
+                    if ($_POST['image'] == "") {
+                        $datos = [
+                            "cod_par" => $cod_par,
+                            "cod_per" => $cod_per,
+                            "cod_even" => $cod_even,
+                            "cod_perf" => $cod_perf,
+                            "cod_estat" => $cod_estat,
+                            "foto" => "0"
+                        ];
+                        $sql = invitadoModelo::editar_invitado_modelo($datos);
+                        if($sql->rowCount() >= 1){
+                            $alerta = [
+                                "Alerta" => "simpleInvitado",
+                                "Titulo" => "Actualización exitosa",
+                                "Texto" => "",
+                                "Tipo" => "success"
+                            ];
+                        }else{
+                            $alerta = [
+                                "Alerta" => "simple",
+                                "Titulo" => "Ningún cambio realizado",
+                                "Texto" => "Recargue la página e intente de nuevo",
+                                "Tipo" => "error"
+                            ];
+                        }
+                    } else {
+                        $hora = time();
+                        $img1 = $hora . $_POST['image'];
+                        $img = $_POST['image'];
+                        $datos = [
+                            "cod_par" => $cod_par,
+                            "cod_per" => $cod_per,
+                            "cod_even" => $cod_even,
+                            "cod_perf" => $cod_perf,
+                            "cod_estat" => $cod_estat,
+                            "foto" => $img1
+                        ];
+                        $folderPath = "../views/assets/upload/";
+                        $image_parts = explode(";base64,", $img);
+                        $image_type_aux = explode("image/", $image_parts[0]);
+                        $image_type = $image_type_aux[1];
+                        $image_base64 = base64_decode($image_parts[1]);
+                        $fileName = $_POST['ced'].$cod_even.'.jpg';
+                        $file = $folderPath . $fileName;
+                        file_put_contents($file, $image_base64);
+                        $sql = invitadoModelo::editar_invitado_modelo($datos);
+                        if($sql->rowCount() >= 1){
+                            $alerta = [
+                                "Alerta" => "simpleInvitado",
+                                "Titulo" => "Actualización exitosa",
+                                "Texto" => "",
+                                "Tipo" => "success"
+                            ];
+                        }else{
+                            $alerta = [
+                                "Alerta" => "simple",
+                                "Titulo" => "Ningún cambio realizado",
+                                "Texto" => "Recargue la página e intente de nuevo",
+                                "Tipo" => "error"
+                            ];
+                        }
+                    }
+                }
+            }
         }
+        return mainModel::sweet_alert($alerta);
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function consultarRegion()
