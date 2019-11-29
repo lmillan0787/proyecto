@@ -8,7 +8,7 @@ $insDeportista = new deportistaControlador();
 
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Datos Básicos</strong>
+        <strong>Datos Básicos del Deportista</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">

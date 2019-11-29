@@ -389,8 +389,7 @@ class mainModel
                     </script>
                 ";
             
-        }
-        else if ($datos['Alerta'] == "simpleTecnico") {
+        }else if ($datos['Alerta'] == "simpleTecnico") {
             $alerta = "
                     <script>
                         Swal.fire(
@@ -403,6 +402,18 @@ class mainModel
                     </script>
                 ";
             
+        }else if ($datos['Alerta'] == "simpleDeportista") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "listaDeportistas/';
+                        });
+                    </script>
+                ";
         }
         return $alerta;
     }

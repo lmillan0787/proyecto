@@ -316,7 +316,7 @@ class participacionControlador extends participacionModelo
         $row = mainModel::formulario_informacion_participacion_modelo($datos);
         foreach ($row as $row) {
             echo '
-                <img src="' . SERVERURL . 'views/assets/upload/' . $row['ced'] . '.jpg"/>            
+                <img src="' . SERVERURL . 'views/assets/upload/'.$row['ced'].$row['cod_even'].'.jpg"/>            
              ';
         }
         return $row;

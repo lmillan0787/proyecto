@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2019 a las 13:23:11
+-- Tiempo de generación: 29-11-2019 a las 13:19:05
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
 
@@ -42,23 +42,8 @@ CREATE TABLE `dat_del` (
 --
 
 INSERT INTO `dat_del` (`cod_del`, `cod_par`, `cod_reg`, `cod_pue`, `cod_dis`, `cod_cat`) VALUES
-(1, 2, 2, 35, 4, 2),
-(2, 3, 3, 19, 11, 2),
-(3, 4, 5, 13, 8, 1),
-(4, 5, 7, 4, 6, 1),
-(5, 6, 8, 14, 8, 1),
-(6, 7, 7, 17, 20, 1),
-(7, 8, 3, 10, 2, 1),
-(8, 9, 4, 36, 1, 1),
-(9, 10, 1, 19, 20, 1),
-(10, 11, 6, 18, 8, 1),
-(11, 27, 1, 1, 1, 1),
-(12, 28, 1, 1, 1, 1),
-(13, 29, 1, 14, 12, 1),
-(14, 30, 1, 2, 2, 1),
-(15, 31, 4, 18, 1, 1),
-(16, 32, 8, 17, 11, 2),
-(17, 33, 1, 2, 2, 1);
+(1, 4, 3, 30, 17, 2),
+(2, 5, 5, 17, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -80,14 +65,9 @@ CREATE TABLE `dat_even` (
 --
 
 INSERT INTO `dat_even` (`cod_even`, `des_even`, `fec_even`, `cod_reg`, `cod_tip_even`, `cod_estat`) VALUES
-(1, 'GUAJIRA 2019', '2019-12-08', 6, 1, 2),
-(2, 'PRUEBA', '2050-10-10', 7, 2, 1),
-(3, 'PRUEBA 2', '2019-11-18', 1, 3, 1),
-(4, 'PRUEBA 3', '2019-12-08', 3, 1, 2),
-(5, 'GUAJIRA 2', '2020-09-16', 5, 1, 1),
-(6, 'WQERWEQR', '2020-10-10', 8, 1, 1),
-(7, 'PRUEBA JUEVES', '2019-12-22', 2, 3, 1),
-(8, '', '2020-12-08', 4, 1, 1);
+(1, 'GUAJIRA 2019', '2019-12-11', 6, 1, 1),
+(2, 'CARACAS', '2020-12-08', 8, 2, 1),
+(3, 'PRUEBA EXTREMA', '2020-01-01', 2, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -100,44 +80,21 @@ CREATE TABLE `dat_par` (
   `cod_per` int(11) NOT NULL,
   `cod_even` int(11) NOT NULL,
   `cod_perf` int(11) NOT NULL,
-  `cod_estat` int(11) NOT NULL
+  `cod_estat` int(11) NOT NULL,
+  `foto` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `dat_par`
 --
 
-INSERT INTO `dat_par` (`cod_par`, `cod_per`, `cod_even`, `cod_perf`, `cod_estat`) VALUES
-(1, 1, 1, 7, 1),
-(2, 10, 1, 4, 1),
-(3, 30, 1, 4, 1),
-(4, 5, 1, 4, 1),
-(5, 2, 1, 4, 1),
-(6, 6, 1, 4, 1),
-(7, 7, 1, 4, 1),
-(8, 31, 1, 5, 1),
-(9, 32, 1, 4, 1),
-(10, 33, 1, 4, 1),
-(11, 34, 1, 4, 1),
-(12, 35, 1, 15, 2),
-(13, 1, 2, 7, 1),
-(14, 8, 2, 15, 1),
-(15, 1, 5, 15, 1),
-(16, 8, 3, 15, 2),
-(17, 1, 5, 14, 1),
-(21, 1, 6, 15, 2),
-(22, 1, 7, 14, 2),
-(23, 4, 7, 10, 2),
-(24, 8, 7, 8, 1),
-(25, 1, 3, 4, 1),
-(26, 4, 1, 4, 1),
-(27, 1, 1, 4, 1),
-(28, 38, 1, 4, 1),
-(29, 38, 2, 5, 1),
-(30, 38, 3, 5, 1),
-(31, 38, 7, 6, 1),
-(32, 8, 1, 4, 1),
-(33, 40, 1, 4, 1);
+INSERT INTO `dat_par` (`cod_par`, `cod_per`, `cod_even`, `cod_perf`, `cod_estat`, `foto`) VALUES
+(1, 1, 1, 10, 2, '0'),
+(2, 1, 1, 14, 2, '0'),
+(3, 1, 2, 7, 2, '0'),
+(4, 1, 1, 4, 1, '1575022551data:image/jpeg;base64,/9j/4AAQSkZJRgABA'),
+(5, 1, 1, 5, 2, ''),
+(6, 1, 2, 7, 2, '0');
 
 -- --------------------------------------------------------
 
@@ -160,7 +117,7 @@ CREATE TABLE `dat_per` (
 --
 
 INSERT INTO `dat_per` (`cod_per`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`, `cod_estat`) VALUES
-(1, 'v-19885429', 'deifer gabriel', 'garanton goyo', '1990-12-08', 1, 1),
+(1, 'V-19885429', 'deifergabriel', 'garantongoyo', '1990-12-08', 1, 1),
 (2, 'V-20139377', 'geraldo', 'gonzalez', '1989-07-22', 1, 1),
 (3, 'V-14224513', 'anderson', 'ruiz', '1979-12-10', 1, 1),
 (4, 'V-19885427', 'amilkar', 'lopez', '1990-12-08', 1, 1),
@@ -172,7 +129,7 @@ INSERT INTO `dat_per` (`cod_per`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`, `co
 (10, 'V-10747258', 'yovanni', 'urbina', '1973-01-01', 1, 1),
 (16, 'E-26704514', 'MARCOS', 'ROJAS', '1986-04-22', 1, 1),
 (17, 'V8349014', 'JUANA', 'LEWUIS', '1994-09-14', 2, 1),
-(25, 'V15684123', 'LUZ', 'ORTIZ', '1995-08-15', 2, 1),
+(25, 'V-15684123', 'LUZ', 'ORTIZ', '1995-08-15', 2, 1),
 (26, 'V-18530418', 'luis', 'millan', '1987-07-25', 1, 1),
 (27, 'V24217510', 'JARED', 'ROMERO', '1994-05-05', 2, 1),
 (28, 'V24217518', 'JESUS', 'PEREZ', '2004-11-13', 1, 1),
@@ -198,7 +155,8 @@ INSERT INTO `dat_per` (`cod_per`, `ced`, `nom`, `ape`, `fec_nac`, `cod_gen`, `co
 (48, 'v-22222222', 'fuera', 'fuera', '1990-12-08', 1, 1),
 (49, 'v-55522333', 'pe', 'pe', '1990-12-08', 1, 1),
 (50, 'v-231123', 'asd', 'asd', '1990-12-08', 1, 1),
-(51, 'v-188887', 'ta', 'b  rrrr', '1990-12-08', 1, 1);
+(51, 'v-188887', 'ta', 'b  rrrr', '1990-12-08', 1, 1),
+(52, 'V-19885430', 'Deifer', 'garanton', '1990-12-08', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -218,10 +176,9 @@ CREATE TABLE `dat_per_tec` (
 --
 
 INSERT INTO `dat_per_tec` (`cod_equ_tec`, `cod_par`, `cod_inst`, `cod_carg`) VALUES
-(1, 1, 2, 1),
-(2, 13, 2, 3),
-(3, 23, 1, 2),
-(4, 24, 1, 1);
+(1, 1, 1, 1),
+(2, 3, 1, 2),
+(3, 6, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -243,7 +200,7 @@ CREATE TABLE `dat_usr` (
 --
 
 INSERT INTO `dat_usr` (`cod_usr`, `cod_per`, `des_usr`, `clave`, `cod_perf`, `cod_estat`) VALUES
-(1, 1, 'DGARANTON', '4423784d', 1, 1),
+(1, 1, 'dgaranton', 'YkRXeHdZL1lUQy9FMHJnMk1UQnoxdz09', 1, 1),
 (2, 8, 'EROMERO', 'UFFUQTdINGNVT0ZocnNkVXljWnJLdz09', 1, 1),
 (3, 38, 'TESTTT', 'dUg2RytPUnRXYjFwVUNOWDVRb3Zldz09', 1, 1),
 (4, 4, 'jpruebas', 'ckd2QWw4aVlOR1RPZlFFRERobEVLUT09', 2, 1),
@@ -253,7 +210,9 @@ INSERT INTO `dat_usr` (`cod_usr`, `cod_per`, `des_usr`, `clave`, `cod_perf`, `co
 (21, 46, 'qwqw', 'Mk9nUGpjOEM5MnJ4ZHpzNG9EeW11UT09', 1, 1),
 (22, 43, 'qwqwi', 'Q3BLdUk0S1JBTlN5alI1cDI2OUpaUT09', 1, 1),
 (23, 42, 'sfasdfsdfa', 'Q3BLdUk0S1JBTlN5alI1cDI2OUpaUT09', 1, 1),
-(24, 35, 'deifer', 'ckd2QWw4aVlOR1RPZlFFRERobEVLUT09', 1, 1);
+(24, 35, 'deifer', 'ckd2QWw4aVlOR1RPZlFFRERobEVLUT09', 1, 1),
+(25, 52, 'DPRUEBAS', 'UElDMkdIQytpRkxPOU5DbXdSc3FWdz09', 1, 1),
+(26, 25, 'DEIFER2', 'aTdORXl3TWdMRGJHblhzUkNWU0U3dz09', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -746,37 +705,37 @@ ALTER TABLE `tab_tip_even`
 -- AUTO_INCREMENT de la tabla `dat_del`
 --
 ALTER TABLE `dat_del`
-  MODIFY `cod_del` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `cod_del` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_even`
 --
 ALTER TABLE `dat_even`
-  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cod_even` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_par`
 --
 ALTER TABLE `dat_par`
-  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `cod_par` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per`
 --
 ALTER TABLE `dat_per`
-  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `cod_per` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_per_tec`
 --
 ALTER TABLE `dat_per_tec`
-  MODIFY `cod_equ_tec` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cod_equ_tec` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `dat_usr`
 --
 ALTER TABLE `dat_usr`
-  MODIFY `cod_usr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `cod_usr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `tab_carg`

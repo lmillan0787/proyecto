@@ -26,6 +26,7 @@ require_once "./controllers/deportistaControlador.php";
                 <th scope="col">Pueblo</th>
                 <th scope="col">Disciplina</th>
                 <th scope="col">Categoría</th>
+                <th scope="col">Estatus</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>

@@ -9,7 +9,7 @@ $cod_par = $_POST['cod_par'];
 
 <div class="card" id="form_invi">
     <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Datos Básicos</strong>
+        <strong>Datos Básicos del Deportista</strong>
     </h5>
     <!--Formulario de inicio-->
     <div class="card-body px-lg-5">
@@ -39,9 +39,10 @@ $cod_par = $_POST['cod_par'];
                 </select>
             </div>
             <!--Rol-->
-            <input type="text" name="cod_rol" value="2" hidden>
+            <input type="text" name="cod_par" value="<?php echo $cod_par ?>" hidden required>
+            <input type="text" name="cod_rol" value="2" hidden required>
             <!--Perfil-->
-            <input type="text" name="cod_perf" value="4" hidden="">
+            <input type="text" name="cod_perf" value="4" hidden required>
             <!-- Region -->
             <br><b><label for="textInput">Región:</label></b>
             <div class="input-group flex-nowrap">
@@ -107,23 +108,26 @@ $cod_par = $_POST['cod_par'];
                     ?>
                 </select>
             </div>
-            <br>
+            <br><center>    
+            <div class="col-md-6">
+                <?php $insPart->formulario_participacion_editar_foto_controlador(); ?>
+            </div>
+            </center>
             <center>
+                <br>
                 <div class="row">
                     <div class="col-md-6">
                         <div id="my_camera"></div>
                         <input class="btn btn-success" type=button value="Capturar Imagen" onClick="take_snapshot()" required>
-
                     </div>
                     <div class="col-md-6">
+                        <input type="hidden" name="image" class="image-tag"">
                         <div id="results">
-                        <?php $insPart->formulario_participacion_editar_foto_controlador(); ?>
                         </div>
-                        <input type="hidden" name="image" class="image-tag">
                     </div>
                 </div>
-            </center>                
-            <br><button class=" btn btn-info btn-block" type="submit">Registrar</button>
+            </center>
+            <br><button class=" btn btn-info btn-block" type="submit">Aceptar</button>
                         <div class="RespuestaAjax"></div>
         </form>
     </div>

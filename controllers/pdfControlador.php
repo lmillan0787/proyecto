@@ -103,7 +103,7 @@ class PDF extends FPDF
             $this->Line(4, 14, 4, 46);
             $this->Line(4, 46, 36, 46);
             $this->Line(36, 14, 36, 46);
-            $this->Image('../views/assets/upload/' . $_POST['ced'] . '.jpg', 5, 15, 30, 30, 'JPG');
+            $this->Image('../views/assets/upload/' .$_POST['ced'].$_POST['cod_even'].'.jpg', 5, 15, 30, 30, 'JPG');
 
             $this->SetY(49);
             $this->SetX(2);
@@ -152,7 +152,7 @@ class PDF extends FPDF
             $this->Line(4, 14, 4, 46);
             $this->Line(4, 46, 36, 46);
             $this->Line(36, 14, 36, 46);
-            $this->Image('../views/assets/upload/' . $_POST['ced'] . '.jpg', 5, 15, 30, 30, 'JPG');
+            $this->Image('../views/assets/upload/' .$_POST['ced'].$_POST['cod_even'].'.jpg', 5, 15, 30, 30, 'JPG');
             //$this->Ln(2);
             ////////////////////////////////////////////////////////////QR/////////////////////////////
             $qrcode->displayFPDF($this, 58, 2,20 );
@@ -227,7 +227,7 @@ class PDF extends FPDF
             $this->Line(4, 14, 4, 46);
             $this->Line(4, 46, 36, 46);
             $this->Line(36, 14, 36, 46);
-            $this->Image('../views/assets/upload/' . $_POST['ced'] . '.jpg', 5, 15, 30, 30, 'JPG');
+            $this->Image('../views/assets/upload/' .$_POST['ced'].$_POST['cod_even']. '.jpg', 5, 15, 30, 30, 'JPG');
             //$this->Ln(2);
 
             ////////////////////////////////////////////////////////////QR/////////////////////////////
@@ -307,7 +307,7 @@ class PDF extends FPDF
             $this->Line(4, 14, 4, 46);
             $this->Line(4, 46, 36, 46);
             $this->Line(36, 14, 36, 46);
-            $this->Image('../views/assets/upload/' . $_POST['ced'] . '.jpg', 5, 15, 30, 30, 'JPG');
+            $this->Image('../views/assets/upload/' .$_POST['ced'].$_POST['cod_even']. '.jpg', 5, 15, 30, 30, 'JPG');
             $this->Ln(2);
 
             $this->SetX(2);
@@ -373,7 +373,7 @@ class PDF extends FPDF
             $this->Line(4, 14, 4, 46);
             $this->Line(4, 46, 36, 46);
             $this->Line(36, 14, 36, 46);
-            $this->Image('../views/assets/upload/' . $_POST['ced'] . '.jpg', 5, 15, 30, 30, 'JPG');
+            $this->Image('../views/assets/upload/' .$_POST['ced'].$_POST['cod_even']. '.jpg', 5, 15, 30, 30, 'JPG');
             //$this->Ln(2);
 
             ////////////////////////////////////////////////////////////QR/////////////////////////////

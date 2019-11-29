@@ -25,6 +25,7 @@ require_once "./controllers/delegadoControlador.php";
                 <th scope="col">Evento</th>
                 <th scope="col">Región</th>
                 <th scope="col">Disciplina</th>
+                <th scope="col">Estatus</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>
