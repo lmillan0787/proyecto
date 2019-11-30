@@ -33,18 +33,18 @@ class delegadoModelo extends mainModel
         return $validarCedula;
 
     }
-    protected function editar_deportista($datos){
-        $editarDeportista = mainModel::conectar()->prepare("UPDATE dat_per SET (nac=:nac, ced=:ced, nom=:nom, ape=:ape, fec_nac=:fec_nac, cod_gen=cod_gen) WHERE cod_per=:cod_per");
-       $editarDeportista->bindParam(":nac", $datos['nac']);
-       $editarDeportista->bindParam(":ced", $datos['ced']);
-       $editarDeportista->bindParam(":nom", $datos['nom']);
-       $editarDeportista->bindParam(":ape", $datos['ape']);
-       $editarDeportista->bindParam(":fec_nac", $datos['fec_nac']);
-       $editarDeportista->bindParam(":cod_gen", $datos['cod_gen']);
-       $editarDeportista->execute();
-       return $editarDeportista;
+    protected function editar_delegado_modelo($datos){
+        $sql = mainModel::conectar()->prepare("UPDATE dat_par AS a INNER JOIN dat_del b ON a.cod_par=b.cod_par SET cod_per=:cod_per,cod_even=:cod_even,cod_estat=:cod_estat,cod_reg=:cod_reg,cod_pue=:cod_pue,cod_dis=:cod_dis,cod_cat=:cod_cat,foto=:foto WHERE a.cod_par=:cod_par");
+        $sql->bindParam(":cod_par", $datos['cod_par']);
+        $sql->bindParam(":cod_per", $datos['cod_per']);
+        $sql->bindParam(":cod_even", $datos['cod_even']);
+        $sql->bindParam(":cod_estat", $datos['cod_estat']);
+        $sql->bindParam(":cod_reg", $datos['cod_reg']);
+        $sql->bindParam(":cod_pue", $datos['cod_pue']);
+        $sql->bindParam(":cod_dis", $datos['cod_dis']);
+        $sql->bindParam(":cod_cat", $datos['cod_cat']);
+        $sql->bindParam(":foto", $datos['foto']);  
+        $sql->execute();
+        return $sql;
     }
-
-  
-
 }

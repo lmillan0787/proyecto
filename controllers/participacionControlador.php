@@ -49,6 +49,31 @@ class participacionControlador extends participacionModelo
                     </button>
                 </form>
                 ';
+                if($row['cod_perf'] == 4){
+                    $editar='
+                                <a href="' . SERVERURL . 'editarDeportista/' . $row['cod_par'] . '/">
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <i class="far fa-edit fa-2x"></i>
+                                    </button>
+                                </a>  
+                            ';
+                }else if($row['cod_perf'] == 5){
+                    $editar='
+                                <a href="' . SERVERURL . 'editarDelegado/' . $row['cod_par'] . '/">
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <i class="far fa-edit fa-2x"></i>
+                                    </button>
+                                </a>  
+                            ';
+                }else if($row['cod_perf'] == 6){
+                    $editar='
+                                <a href="' . SERVERURL . 'editarMedico/' . $row['cod_par'] . '/">
+                                    <button type="submit" class="btn btn-default btn-sm">
+                                        <i class="far fa-edit fa-2x"></i>
+                                    </button>
+                                </a>  
+                            ';
+                }
             } else if ($row['cod_rol'] == 4) {
                 $sql = participacionModelo::lista_participacion_tecnicos_modelo($datos);
                 foreach ($sql as $row){
@@ -74,6 +99,13 @@ class participacionControlador extends participacionModelo
                     </button>
                 </form>
                 ';
+                $editar='
+                            <a href="' . SERVERURL . 'editarTecnico/' . $row['cod_par'] . '/">
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <i class="far fa-edit fa-2x"></i>
+                                </button>
+                            </a>  
+                        ';
             } else if ($row['cod_rol'] == 5) {
                 $form = '
                 <form action="' . SERVERURL . 'ajax/participacionFpdfAjax.php" method="POST" target="_blank" rel="noopener noreferrer"> 
@@ -93,6 +125,13 @@ class participacionControlador extends participacionModelo
                     </button>
                 </form>
                 ';
+                $editar='
+                            <a href="' . SERVERURL . 'editarInvitado/' . $row['cod_par'] . '/">
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <i class="far fa-edit fa-2x"></i>
+                                </button>
+                            </a>  
+                        ';
             }
             echo '
             <tr>
@@ -103,6 +142,8 @@ class participacionControlador extends participacionModelo
                 <td class="text-center">' . $row['des_perf'] . '</td>
                 <td class="text-center">' . $row['des_estat'] . '</td>
                 <td class="text-center">' . $form . '</td>
+                <td class="text-center">' . $editar . '</td>
+               
             </tr>';
         }
     }
@@ -117,9 +158,9 @@ class participacionControlador extends participacionModelo
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_cedula_controlador()
+    public function formulario_participacion_editar_cedula_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -132,9 +173,9 @@ class participacionControlador extends participacionModelo
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_evento_controlador()
+    public function formulario_participacion_editar_evento_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -147,9 +188,9 @@ class participacionControlador extends participacionModelo
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_evento_distinto_controlador()
+    public function formulario_participacion_editar_evento_distinto_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -167,9 +208,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_rol_controlador()
+    public function formulario_participacion_editar_rol_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -181,9 +222,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_rol_distinto_controlador()
+    public function formulario_participacion_editar_rol_distinto_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -202,9 +243,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_estatus_controlador()
+    public function formulario_participacion_editar_estatus_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -217,9 +258,9 @@ class participacionControlador extends participacionModelo
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_estatus_distinto_controlador()
+    public function formulario_participacion_editar_estatus_distinto_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -237,9 +278,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_cargo_controlador()
+    public function formulario_participacion_editar_cargo_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -252,9 +293,9 @@ class participacionControlador extends participacionModelo
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_cargo_distinto_controlador()
+    public function formulario_participacion_editar_cargo_distinto_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -272,9 +313,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_institucion_controlador()
+    public function formulario_participacion_editar_institucion_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -287,9 +328,9 @@ class participacionControlador extends participacionModelo
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_institucion_distinta_controlador()
+    public function formulario_participacion_editar_institucion_distinta_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -307,9 +348,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_foto_controlador()
+    public function formulario_participacion_editar_foto_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -322,9 +363,9 @@ class participacionControlador extends participacionModelo
         return $row;
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_region_controlador()
+    public function formulario_participacion_editar_region_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -336,9 +377,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_region_distinta_controlador()
+    public function formulario_participacion_editar_region_distinta_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -356,9 +397,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_pueblo_controlador()
+    public function formulario_participacion_editar_pueblo_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -370,9 +411,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_pueblo_distinto_controlador()
+    public function formulario_participacion_editar_pueblo_distinto_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -390,9 +431,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_disciplina_controlador()
+    public function formulario_participacion_editar_disciplina_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -404,9 +445,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_disciplina_distinto_controlador()
+    public function formulario_participacion_editar_disciplina_distinto_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -414,7 +455,8 @@ class participacionControlador extends participacionModelo
         foreach ($sql as $row) {
 
             $datos = [
-                "cod_dis" => $row['cod_dis']
+                "cod_dis" => $row['cod_dis'],
+                "cod_tip_even" => $row['cod_tip_even']
             ];
         }
         $row = mainModel::consultar_disciplina_distinta_modelo($datos);
@@ -425,9 +467,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_categoria_controlador()
+    public function formulario_participacion_editar_categoria_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -439,9 +481,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function formulario_participacion_editar_categoria_distinta_controlador()
+    public function formulario_participacion_editar_categoria_distinta_controlador($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];
@@ -460,9 +502,9 @@ class participacionControlador extends participacionModelo
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function validar_participacion_evento_distinto()
+    public function validar_participacion_evento_distinto($cod_par)
     {
-        $cod_par = mainModel::limpiar_cadena($_POST['cod_par']);
+        $cod_par = mainModel::limpiar_cadena($cod_par);
         $datos = [
             "cod_par" => $cod_par
         ];

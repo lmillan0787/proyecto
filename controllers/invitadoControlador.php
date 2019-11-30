@@ -26,13 +26,12 @@ class invitadoControlador extends invitadoModelo
                     <td class="text-center">' . $row['des_perf'] . '</td>
                     <td class="text-center">' . $row['des_estat'] . '</td>
                     <td class="text-center">
-                        <form class="" action="' . SERVERURL . 'editarInvitado" method="POST" enctype="multipart/form-data">
-                            <input type="text" value="' . $row['cod_par'] . '" name="cod_par" hidden required>
-                            <button type="submit" class="btn btn-default btn-sm">
-                                <i class="far fa-edit fa-2x"></i>
-                            </button>
-                        </form>    
-                    </td>                                                      
+                    <a href="' . SERVERURL . 'editarInvitado/' . $row['cod_par'] . '/">
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <i class="far fa-edit fa-2x"></i>
+                        </button>
+                    </a>  
+                </td>                                                      
                 </tr>';
         }
     }

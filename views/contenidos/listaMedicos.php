@@ -24,6 +24,7 @@ require_once "./controllers/medicoControlador.php";
                 <th scope="col">Apellido</th>
                 <th scope="col">Evento</th>
                 <th scope="col">Región</th>
+                <th scope="col">Estatus</th></th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>

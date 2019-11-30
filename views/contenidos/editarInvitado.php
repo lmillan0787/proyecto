@@ -1,9 +1,9 @@
 <?php
-
 $peticionAjax = false;
+$var = explode("/",$_GET['views']);
+$cod_par = $var[1];
 include "./controllers/participacionControlador.php";
 $insPart = new participacionControlador();
-$cod_par = $_POST['cod_par'];
 
 ?>
 
@@ -23,7 +23,7 @@ $cod_par = $_POST['cod_par'];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <?php $insPart->formulario_participacion_editar_cedula_controlador() ?>
+                <?php $insPart->formulario_participacion_editar_cedula_controlador($cod_par) ?>
             </div>
             <div id="result-ced"></div>
             <!-- Evento -->
@@ -34,8 +34,8 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_even" name="cod_even" required>
                     <?php
-                    $insPart->formulario_participacion_editar_evento_controlador();
-                    $insPart->formulario_participacion_editar_evento_distinto_controlador();
+                    $insPart->formulario_participacion_editar_evento_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_evento_distinto_controlador($cod_par);
                     ?>
                 </select>
             </div>
@@ -47,8 +47,8 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_perf" name="cod_perf" required>
                     <?php
-                    $insPart->formulario_participacion_editar_rol_controlador();
-                    $insPart->formulario_participacion_editar_rol_distinto_controlador();
+                    $insPart->formulario_participacion_editar_rol_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_rol_distinto_controlador($cod_par);
                     ?>
                 </select>
             </div>
@@ -60,14 +60,14 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estat" name="cod_estat" required>
                     <?php
-                    $insPart->formulario_participacion_editar_estatus_controlador();
-                    $insPart->formulario_participacion_editar_estatus_distinto_controlador();
+                    $insPart->formulario_participacion_editar_estatus_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_estatus_distinto_controlador($cod_par);
                     ?>
                 </select>
             </div>
             <br><center>    
             <div class="col-md-6">
-                <?php $insPart->formulario_participacion_editar_foto_controlador(); ?>
+                <?php $insPart->formulario_participacion_editar_foto_controlador($cod_par); ?>
             </div>
             </center>
             <center>

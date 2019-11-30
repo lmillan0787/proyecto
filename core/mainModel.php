@@ -415,6 +415,32 @@ class mainModel
                     </script>
                 ";
         }
+        else if ($datos['Alerta'] == "simpleDelegado") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "listaDelegados/';
+                        });
+                    </script>
+                ";
+        }
+        else if ($datos['Alerta'] == "simpleMedico") {
+            $alerta = "
+                    <script>
+                        Swal.fire(
+                            '" . $datos['Titulo'] . "',
+                            '" . $datos['Texto'] . "',
+                            '" . $datos['Tipo'] . "'
+                        ).then(function(){
+                            window.location='" . SERVERURL . "listaMedicos/';
+                        });
+                    </script>
+                ";
+        }
         return $alerta;
     }
 }

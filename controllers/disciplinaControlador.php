@@ -118,7 +118,7 @@ class disciplinaControlador extends disciplinaModelo
         ];
         $sql = disciplinaModelo::consultar_disciplinas_distintas_modelo($datos);
         if ($sql->rowCount() >= 1){
-            echo'<div class="alert alert-danger"><strong>Error!</strong> Ya existe esta disciplina</div>';
+            echo'<div class="alert alert-danger"><strong></strong> Ya existe esta disciplina</div>';
         }
         
     }
@@ -157,7 +157,7 @@ class disciplinaControlador extends disciplinaModelo
                         '',
                         'success'
                        ).then(function(){
-                        window.location='" . SERVERURL . "disciplinas/';
+                        window.location='" . SERVERURL . "listaDisciplinas/';
                     }); 
                        
                        </script>

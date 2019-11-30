@@ -29,6 +29,7 @@ $datos = [
                 <th scope="col">Rol</th>
                 <th scope="col">Estatus</th>
                 <th scope="col">Credencial</th>
+                <th scope="col">Editar</th>
             </tr>
         </thead>
         <tbody>

@@ -28,12 +28,11 @@ class deportistaControlador extends deportistaModelo
                     <td class="text-center">' . $row['des_cat'] . '</td>
                     <td class="text-center">' . $row['des_estat'] . '</td>
                     <td class="text-center">
-                    <form class="" action="' . SERVERURL . 'editarDeportista" method="POST" enctype="multipart/form-data">
-                        <input type="text" value="' . $row['cod_par'] . '" name="cod_par" hidden required>
-                        <button type="submit" class="btn btn-default btn-sm">
-                            <i class="far fa-edit fa-2x"></i>
-                        </button>
-                    </form>    
+                        <a href="' . SERVERURL . 'editarDeportista/' . $row['cod_par'] . '/">
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <i class="far fa-edit fa-2x"></i>
+                            </button>
+                        </a>  
                     </td>                                            
                 </tr>';
         }

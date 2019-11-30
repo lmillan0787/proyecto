@@ -1,9 +1,10 @@
 <?php
 
 $peticionAjax = false;
+$var = explode("/",$_GET['views']);
+$cod_par = $var[1];
 include "./controllers/participacionControlador.php";
 $insPart = new participacionControlador();
-$cod_par = $_POST['cod_par'];
 
 ?>
 
@@ -22,7 +23,7 @@ $cod_par = $_POST['cod_par'];
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="addon-wrapping"><i class="far fa-id-card prefix grey-text"></i></span>
                 </div>
-                <?php $insPart->formulario_participacion_editar_cedula_controlador() ?>
+                <?php $insPart->formulario_participacion_editar_cedula_controlador($cod_par) ?>
             </div>
             <div id="result-ced"></div>
             <!-- Evento -->
@@ -33,16 +34,15 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_even" name="cod_even" required>
                     <?php
-                    $insPart->formulario_participacion_editar_evento_controlador();
-                    $insPart->formulario_participacion_editar_evento_distinto_controlador();
+                    $insPart->formulario_participacion_editar_evento_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_evento_distinto_controlador($cod_par);
                     ?>
                 </select>
             </div>
             <!--Rol-->
             <input type="text" name="cod_par" value="<?php echo $cod_par ?>" hidden required>
             <input type="text" name="cod_rol" value="2" hidden required>
-            <!--Perfil-->
-            <input type="text" name="cod_perf" value="4" hidden required>
+            <input type="text" name="cod_perf" value="5" hidden required>
             <!-- Region -->
             <br><b><label for="textInput">Región:</label></b>
             <div class="input-group flex-nowrap">
@@ -51,8 +51,8 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select name="cod_reg" id="selreg" class="form-control" required>
                     <?php
-                    $insPart->formulario_participacion_editar_region_controlador();
-                    $insPart->formulario_participacion_editar_region_distinta_controlador();
+                    $insPart->formulario_participacion_editar_region_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_region_distinta_controlador($cod_par);
                     ?>
                 </select>
             </div>
@@ -64,8 +64,8 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select name="cod_pue" id="selpue" class="form-control" required>
                     <?php
-                    $insPart->formulario_participacion_editar_pueblo_controlador();
-                    $insPart->formulario_participacion_editar_pueblo_distinto_controlador();
+                    $insPart->formulario_participacion_editar_pueblo_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_pueblo_distinto_controlador($cod_par);
                     ?>
                 </select>
             </div>
@@ -77,8 +77,8 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select name="cod_dis" id="seldis" class="form-control">
                     <?php
-                    $insPart->formulario_participacion_editar_disciplina_controlador();
-                    $insPart->formulario_participacion_editar_disciplina_distinto_controlador();
+                    $insPart->formulario_participacion_editar_disciplina_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_disciplina_distinto_controlador($cod_par);
                     ?>
                 </select>
             </div>
@@ -90,8 +90,8 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select name="cod_cat" id="seldis" class="form-control">
                     <?php
-                    $insPart->formulario_participacion_editar_categoria_controlador();
-                    $insPart->formulario_participacion_editar_categoria_distinta_controlador();
+                    $insPart->formulario_participacion_editar_categoria_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_categoria_distinta_controlador($cod_par);
                     ?>
                 </select>
             </div>
@@ -103,14 +103,14 @@ $cod_par = $_POST['cod_par'];
                 </div>
                 <select class="browser-default custom-select" id="inputGroupSelect01" id="cod_estat" name="cod_estat" required>
                     <?php
-                    $insPart->formulario_participacion_editar_estatus_controlador();
-                    $insPart->formulario_participacion_editar_estatus_distinto_controlador();
+                    $insPart->formulario_participacion_editar_estatus_controlador($cod_par);
+                    $insPart->formulario_participacion_editar_estatus_distinto_controlador($cod_par);
                     ?>
                 </select>
             </div>
             <br><center>    
             <div class="col-md-6">
-                <?php $insPart->formulario_participacion_editar_foto_controlador(); ?>
+                <?php $insPart->formulario_participacion_editar_foto_controlador($cod_par); ?>
             </div>
             </center>
             <center>

@@ -16,7 +16,7 @@ $peticionAjax = false;
     <meta http-equiv="Pragma" content="no-cache">
     <title>Junain</title>
 
-
+    <link rel="stylesheet" href="css/master.css?n=1">
     <!-- Bootstrap core CSS -->
     <link href="<?php echo SERVERURL ?>views/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->

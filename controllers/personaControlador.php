@@ -145,8 +145,8 @@ class personaControlador extends personaModelo
             if ($validarPersona->rowCount() >= 1) {
                 $alerta = [
                     "Alerta" => "simple",
-                    "Titulo" => "Ocurrió un error inesperado",
-                    "Texto" => "Ya existe una persona con ese número de cédula",
+                    "Titulo" => "Ya existe una persona con ese número de cédula",
+                    "Texto" => "",
                     "Tipo" => "error"
                 ];
             } else {
@@ -357,7 +357,7 @@ class personaControlador extends personaModelo
                     }
                 }
             } else {
-                $alerta = '<div class="alert alert-danger"><strong>Error!</strong> La cédula ingresada no se encuentra registrada en el sistema, diríjase a Registro de Persona.</div>';
+                $alerta = '<div class="alert alert-danger"><strong></strong> La cédula ingresada no se encuentra registrada en el sistema, diríjase a Registro de Persona.</div>';
             }
         }
         return $alerta;
@@ -373,9 +373,9 @@ class personaControlador extends personaModelo
         $fecha_minima = "1919-01-01";
         $fecha_alerta = $fec=date('d-m').'-'.$año;
         if ($fec_nac > $fecha_maxima) {
-            $alerta = '<div class="alert alert-danger"><strong>Error!</strong> La fecha máxima permitida es ' . $fecha_alerta . '</div>';
+            $alerta = '<div class="alert alert-danger"><strong></strong> La fecha máxima permitida es ' . $fecha_alerta . '</div>';
         } else if($fec_nac < $fecha_minima){
-            $alerta = '<div class="alert alert-danger"><strong>Error!</strong> La fecha mínima permitida es 01-01-1919 </div>';
+            $alerta = '<div class="alert alert-danger"><strong></strong> La fecha mínima permitida es 01-01-1919 </div>';
         }else { 
             $alerta =false;
         }
